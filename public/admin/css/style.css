@@ -1,0 +1,28 @@
+﻿html
+{
+    font-family: 'Cairo', sans-serif !important;
+}
+body
+{
+    font-family: 'Cairo', sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6 
+{
+    font-family: 'Cairo', sans-serif !important;
+}
+.box-header .box-title
+{
+    margin-bottom:10px!important;
+}
+.serach-f-table
+{
+    float:left !important ;
+}
+iframe
+{
+    width:94%;
+}
+.cursor-pointer
+{
+    cursor: pointer;
+}

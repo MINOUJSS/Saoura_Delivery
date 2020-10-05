@@ -19,4 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','Store\StoreController@index')->name('store');
 Auth::routes();
 
+//---------------admine routes-----------------------
+Route::get('admins','Admin\HomeController@index')->name('admine');
+//---------------------------------------------------
+
 Route::get('/home', 'HomeController@index')->name('home');
