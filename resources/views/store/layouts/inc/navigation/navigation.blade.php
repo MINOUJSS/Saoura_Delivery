@@ -4,7 +4,7 @@
         <div id="responsive-nav">
             <!-- category nav -->
         <div class="category-nav {{is_home()}}">
-                <span class="category-header">Categories <i class="fa fa-list"></i></span>
+                <span class="category-header">الأصناف <i class="fa fa-list"></i></span>
                 <ul class="category-list">
                     <li class="dropdown side-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women’s Clothing <i class="fa fa-angle-left"></i></a>
@@ -202,9 +202,8 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
+                <li><a href="{{url('/')}}">الرئيسية</a></li>                    
+                    {{-- <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
                         <div class="custom-menu">
                             <div class="row">
                                 <div class="col-md-4">
@@ -343,13 +342,13 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#">Sales</a></li>
-                    <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pages <i class="fa fa-caret-down"></i></a>
+                    <li><a href="#">Sales</a></li> --}}
+                    <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">الصفحات <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="{{route('products')}}">Products</a></li>
-                            <li><a href="{{route('product-page')}}">Product Details</a></li>
-                            <li><a href="{{route('checkout')}}">Checkout</a></li>
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="{{route('products')}}">المنتجات</a></li>
+                            <li><a href="{{route('product-page')}}">تفاصيل المنتج</a></li>
+                            <li><a href="{{route('checkout')}}">الدفع</a></li>
                         </ul>
                     </li>
                 </ul>
