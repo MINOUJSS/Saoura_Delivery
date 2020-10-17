@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/','Store\StoreController@index')->name('store');
+Route::get('/products','Store\StoreController@products')->name('products');
+Route::get('/product-page','Store\StoreController@product_page')->name('product-page');
+Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes();
 
 //---------------admine routes-----------------------

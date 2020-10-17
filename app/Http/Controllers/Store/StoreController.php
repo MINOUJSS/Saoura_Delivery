@@ -11,4 +11,19 @@ class StoreController extends Controller
     {
         return view('store.index');
     }
+    
+    public function products()
+    {
+        return view('store.products');
+    }
+
+    public function product_page()
+    {
+        return view('store.product-page');
+    }
+
+    public function checkout()
+    {
+        return view('store.checkout');
+    }
 }

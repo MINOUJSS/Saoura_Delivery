@@ -6,5 +6,5 @@
 @include('store.layouts.inc.navigation.navigation')
 @endsection
 @section('content')
-@include('store.layouts.inc.index.content')	
+@include('store.layouts.inc.products.content')	
 @endsection
