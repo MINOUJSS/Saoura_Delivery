@@ -12,17 +12,40 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header">HEADER</li>
+        <li class="header">محتوى القائمة</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>الرئيسية</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>الرئيسية</span></a></li>      
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <a href="#"><i class="fa fa-users"></i> <span>المستخدمين</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">كل المستخدمين</a></li>
+            <li><a href="#">إضافة مستخدم</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-tag"></i> <span>الأصناف</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#">كل الأصناف</a></li>
+            <li><a href="#">إضافة صنف</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-product-hunt"></i> <span>المنتجات</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#">كل المنتجات</a></li>
+            <li><a href="#">إضافة منتج</a></li>
+          </ul>
+        </li>
+        <li class=""><a href="#"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>      
+        <li class="treeview">
+          <a href="#"><i class="fa fa-bullhorn"></i> <span>العروض</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#">كل العروض</a></li>
+            <li><a href="#">إضافة عرض</a></li>
+          </ul>
+        </li>
+        <li class=""><a href="#"><i class="fa fa-shopping-cart"></i> <span>المبيعات</span></a></li>      
+        <li class=""><a href="#"><i class="fa fa-user"></i> <span>المستهلكين</span></a></li>      
       </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
