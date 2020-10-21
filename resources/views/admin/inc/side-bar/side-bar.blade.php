@@ -44,8 +44,10 @@
             <li><a href="#">إضافة عرض</a></li>
           </ul>
         </li>
+        <li class=""><a href="#"><i class="fa fa-calendar-check-o"></i> <span>الطلبات</span></a></li>
         <li class=""><a href="#"><i class="fa fa-shopping-cart"></i> <span>المبيعات</span></a></li>      
         <li class=""><a href="#"><i class="fa fa-user"></i> <span>المستهلكين</span></a></li>      
+        <li class=""><a href="#"><i class="fa fa-search"></i> <span>كلمات البحث</span></a></li>
       </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
