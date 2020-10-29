@@ -6,11 +6,36 @@
         <div class="category-nav {{is_home()}}">
                 <span class="category-header">الأصناف <i class="fa fa-list"></i></span>
                 <ul class="category-list">
+                    @foreach(get_all_categories() as $category)
                     <li class="dropdown side-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women’s Clothing <i class="fa fa-angle-left"></i></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} @if(has_sub_categories($category->id))<i class="fa fa-angle-left"></i>@endif</a>
+                        @if(has_sub_categories($category->id))
                         <div class="custom-menu">
                             <div class="row">
+                                <div class="col-md-12">
+                                <a href="#"><h3>{{$category->name}}</h3></a>
+                                    <hr>
+                                </div>
+                                @foreach(get_sub_gategories($category->id) as $sub_category)
                                 <div class="col-md-4">
+                                    <ul class="list-links">
+                                        <li>
+                                            <h3 class="list-links-title">{{$sub_category->name}}</h3></li>
+                                            @if(has_sub_sub_categories($sub_category->id))
+                                            @foreach(get_sub_sub_categories($sub_category->id) as $sub_sub_category)
+                                        <li><a href="#">{{$sub_sub_category->name}}</a></li>
+                                            @endforeach
+                                        {{-- <li><a href="#">Women’s Clothing</a></li>
+                                        <li><a href="#">Men’s Clothing</a></li>
+                                        <li><a href="#">Phones & Accessories</a></li>
+                                        <li><a href="#">Jewelry & Watches</a></li>
+                                        <li><a href="#">Bags & Shoes</a></li> --}}
+                                        @endif
+                                    </ul>
+                                    <hr class="hidden-md hidden-lg">
+                                </div>
+                                @endforeach
+                                {{-- <div class="col-md-4">
                                     <ul class="list-links">
                                         <li>
                                             <h3 class="list-links-title">Categories</h3></li>
@@ -32,19 +57,7 @@
                                         <li><a href="#">Jewelry & Watches</a></li>
                                         <li><a href="#">Bags & Shoes</a></li>
                                     </ul>
-                                    <hr class="hidden-md hidden-lg">
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="list-links">
-                                        <li>
-                                            <h3 class="list-links-title">Categories</h3></li>
-                                        <li><a href="#">Women’s Clothing</a></li>
-                                        <li><a href="#">Men’s Clothing</a></li>
-                                        <li><a href="#">Phones & Accessories</a></li>
-                                        <li><a href="#">Jewelry & Watches</a></li>
-                                        <li><a href="#">Bags & Shoes</a></li>
-                                    </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row hidden-sm hidden-xs">
                                 <div class="col-md-12">
@@ -58,10 +71,12 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
+                        @endif
                     </li>
-                    <li><a href="#">Men’s Clothing</a></li>
-                    <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones & Accessories <i class="fa fa-angle-left"></i></a>
+                    @endforeach
+                {{--<li><a href="#">Men’s Clothing</a></li>
+                     <li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Phones & Accessories <i class="fa fa-angle-left"></i></a>
                         <div class="custom-menu">
                             <div class="row">
                                 <div class="col-md-4">
@@ -192,8 +207,8 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#">Bags & Shoes</a></li>
-                    <li><a href="#">View All</a></li>
+                    <li><a href="#">Bags & Shoes</a></li> --}}
+                    <li><a href="#">رؤية الكل</a></li>
                 </ul>
             </div>
             <!-- /category nav -->

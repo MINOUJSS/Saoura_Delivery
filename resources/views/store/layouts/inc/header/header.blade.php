@@ -50,8 +50,11 @@
                         <input class="input search-input" type="text" placeholder="أدخل كلمتك الرئيسية">
                         <select class="input search-categories">
                             <option value="0">كل التصنيفات</option>
-                            <option value="1">التصنيف 01</option>
-                            <option value="1">التصنيف 02</option>
+                            @foreach(get_all_categories() as $index => $category)
+                        <option value="{{$index + 1 }}">{{$category->name}}</option>
+                            @endforeach
+                            {{-- <option value="1">التصنيف 01</option>
+                            <option value="1">التصنيف 02</option> --}}
                         </select>
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
