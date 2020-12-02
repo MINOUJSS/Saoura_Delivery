@@ -384,7 +384,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -398,13 +401,17 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-13T00:52:37+00:00"
         },
         {
             "name": "egulias/email-validator",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "version": "2.1.24",
@@ -420,6 +427,8 @@
 =======
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "version": "2.1.23",
             "source": {
                 "type": "git",
@@ -431,7 +440,10 @@
                 "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/5fa792ad1853ae2bc60528dd3e5cbf4542d3c1df",
                 "reference": "5fa792ad1853ae2bc60528dd3e5cbf4542d3c1df",
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
                 "shasum": ""
@@ -480,8 +492,11 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-11-14T15:56:27+00:00"
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -490,7 +505,10 @@
             },
             "time": "2020-10-31T20:37:35+00:00"
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
         },
@@ -548,7 +566,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -556,7 +577,10 @@
                 "source": "https://github.com/fideloper/TrustedProxy/tree/4.4.1"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-22T13:48:01+00:00"
@@ -998,7 +1022,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1006,7 +1033,10 @@
                 "source": "https://github.com/laravel/framework"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-03T14:12:58+00:00"
@@ -1075,7 +1105,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1083,7 +1116,10 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.5.0"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-29T13:07:12+00:00"
@@ -1139,7 +1175,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1147,7 +1186,10 @@
                 "source": "https://github.com/laravel/ui/tree/v2.5.0"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-03T19:45:19+00:00"
@@ -1221,7 +1263,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1257,7 +1302,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-31T13:49:32+00:00"
@@ -1398,7 +1446,10 @@
             "description": "Mime-type detection for Flysystem",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1416,7 +1467,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-18T11:50:25+00:00"
@@ -1595,7 +1649,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1613,7 +1670,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T06:02:30+00:00"
@@ -1735,7 +1795,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -1743,7 +1806,10 @@
                 "source": "https://github.com/opis/closure/tree/3.6.1"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-07T02:01:34+00:00"
@@ -2565,7 +2631,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -2586,7 +2655,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -2639,7 +2711,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -2660,7 +2735,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -2784,7 +2862,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -2805,7 +2886,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -2878,7 +2962,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -2899,7 +2986,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -3027,7 +3117,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3048,7 +3141,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -3115,7 +3211,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3136,7 +3235,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-14T17:08:19+00:00"
@@ -3197,7 +3299,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3218,7 +3323,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -3318,7 +3426,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3339,7 +3450,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-28T05:55:23+00:00"
@@ -3402,7 +3516,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3423,7 +3540,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -3490,7 +3610,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3511,7 +3634,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -3579,7 +3705,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3600,7 +3729,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -3669,7 +3801,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3690,7 +3825,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -3765,7 +3903,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -3786,7 +3927,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -3858,6 +4002,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -3897,10 +4042,16 @@
             "support": {
                 "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.20.0"
             },
+=======
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.20.0"
+            },
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
                     "type": "custom"
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
                 },
                 {
@@ -3923,13 +4074,24 @@
                 },
                 {
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
+=======
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -3987,7 +4149,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "description": "Symfony polyfill for the Mbstring extension",
@@ -4001,7 +4166,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4022,7 +4190,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -4086,7 +4257,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4107,7 +4281,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -4174,7 +4351,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4195,7 +4375,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -4266,7 +4449,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4287,7 +4473,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-23T14:02:19+00:00"
@@ -4337,7 +4526,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4358,7 +4550,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -4436,7 +4631,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4457,7 +4655,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -4607,7 +4808,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4628,7 +4832,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -4706,7 +4913,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4727,7 +4937,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-24T12:01:57+00:00"
@@ -4793,7 +5006,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4814,7 +5030,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-09-28T13:05:58+00:00"
@@ -4890,7 +5109,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -4911,7 +5133,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-27T10:11:13+00:00"
@@ -5095,7 +5320,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5125,7 +5353,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-12T00:07:28+00:00"
@@ -5183,7 +5414,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5205,7 +5439,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-10T18:47:58+00:00"
@@ -5265,7 +5502,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5279,13 +5519,17 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-21T16:02:39+00:00"
         },
         {
             "name": "facade/ignition",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "version": "2.5.2",
@@ -5314,6 +5558,18 @@
 <<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
 =======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
+=======
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facade/ignition.git",
+                "reference": "81698c5e32837c74abf9bb764ff0c1b3e001afb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/81698c5e32837c74abf9bb764ff0c1b3e001afb3",
+                "reference": "81698c5e32837c74abf9bb764ff0c1b3e001afb3",
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
                 "shasum": ""
             },
@@ -5374,8 +5630,11 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-11-17T09:18:51+00:00"
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5386,7 +5645,10 @@
             },
             "time": "2020-10-27T13:02:22+00:00"
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
         },
@@ -5439,7 +5701,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5447,7 +5712,10 @@
                 "source": "https://github.com/facade/ignition-contracts/tree/1.0.2"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-16T08:27:54+00:00"
@@ -5513,7 +5781,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5521,7 +5792,10 @@
                 "source": "https://github.com/filp/whoops/tree/2.9.1"
             },
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-01T12:00:00+00:00"
@@ -5752,8 +6026,11 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-11-13T09:40:50+00:00"
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5839,7 +6116,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -5861,7 +6141,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-10-29T15:12:23+00:00"
@@ -6557,7 +6840,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "support": {
@@ -6575,7 +6861,10 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9e09247611864b58be5d9751294175039c04b9e3
+=======
+>>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
 =======
 >>>>>>> eccd0ccf0d6c343b5f737141ccb50f3641d7fdac
             "time": "2020-11-10T12:51:38+00:00"
