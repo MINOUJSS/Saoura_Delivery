@@ -103,14 +103,14 @@
             <!-- The user image in the navbar-->
             <img src="{{url('admin-css')}}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">الكسندر بيرس</span>
+          <span class="hidden-xs">{{Auth::user()->name}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
               <img src="{{url('admin-css')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
               <p>
-                ألكسندر بيرس - مطور ويب
+                {{Auth::user()->name}} - مطور ويب
                 <small>عضو منذ نوفمبر 2012</small>
               </p>
             </li>

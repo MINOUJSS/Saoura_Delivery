@@ -10,6 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>لوحة تحكم المتجر|{{$title??''}}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="{{url('admin-css')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('admin-css')}}/css/bootstrap-rtl.min.css">
@@ -35,6 +37,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" href="{{url('admin-css')}}/dist/css/skins/skin-blue.min.css">
 
+    <!-- sweet alert link-->
+    <script src="{{url('vendor')}}/sweetalert/sweetalert.all.js"></script>    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,6 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
-         fixed layout. -->
+         fixed layout. --> 
+         @include('sweetalert::alert')        
   </body>
 </html>

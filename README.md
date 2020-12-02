@@ -76,3 +76,27 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## add this code to unauthanticated function in Handler.php file in vendor/laravel/framework/src/illuminate/foundation/exceptions/handler.php
+
+protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        // return $request->expectsJson()
+        //             ? response()->json(['message' => $exception->getMessage()], 401)
+        //             : redirect()->guest($exception->redirectTo() ?? route('login'));
+        if($request->expectsJson())
+        {
+            return response()->json(['message' => $exception->getMessage()], 401);
+        }
+         $guard=Arr::get($exception->guards(),0);
+         switch($guard)
+         {
+             case 'admin':
+                $login='admin.login';
+             break;
+             default:
+             $login='login';
+            break;
+         }
+        return redirect()->guest(route($login));  
+    }

@@ -5,7 +5,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>D</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Dashboard</b>SD</span>
+      <span class="logo-lg"><b>Saoura </b>Delivery</span>
     </a>
 
     <!-- Header Navbar -->

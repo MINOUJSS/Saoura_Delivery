@@ -21,6 +21,7 @@ class CreateSubSubCategoriesTable extends Migration
                   ->on('sub__categories')
                   ->onDelete('cascade');
             $table->string('name')->unique();
+            $table->string('icon')->default('/');
             $table->timestamps();
         });
     }
