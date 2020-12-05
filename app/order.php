@@ -1,0 +1,18 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class order extends Model
+{
+    protected $fillable = [
+        'user_id', 'billing_name','billing_email','billing_address','billing_mobile','status'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    
+}
