@@ -22,6 +22,13 @@
             <li><a href="#">إضافة مستخدم</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-user-secret"></i> <span>الموردين</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+          <li><a href="#">كل الموردين</a></li>
+          <li><a href="#">إضافة مورد</a></li>
+          </ul>
+        </li>
       <li class="treeview {{active_categories_links_group()}}">
         <a href="{{route('admin.categories')}}"><i class="fa fa-tag"></i> <span>الأصناف</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -31,19 +38,26 @@
           <li class="{{active_create_sub_sub_categories_link()}}"><a href="{{route('admin.create.sub_sub_categories')}}">إضافة صنف تحت تحت الصنف</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-product-hunt"></i> <span>المنتجات</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <li class="treeview {{active_brands_links_group()}}">
+          <a href="{{route('admin.brands')}}"><i class="fa fa-gift"></i> <span>العلامات التجارية</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">كل المنتجات</a></li>
-            <li><a href="#">إضافة منتج</a></li>
+            <li class="{{active_brands_link()}}"><a href="{{route('admin.brands')}}">كل العلامات التجارية</a></li>
+            <li class="{{active_create_brand_link()}}"><a href="{{route('admin.create.brand')}}">إضافة علامة تجارية</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{active_products_links_group()}}">
+          <a href="{{route('admin.products')}}"><i class="fa fa-gift"></i> <span>المنتجات</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li class="{{active_products_link()}}"><a href="{{route('admin.products')}}">كل المنتجات</a></li>
+            <li class="{{active_create_product_link()}}"><a href="{{route('admin.create.product')}}">إضافة منتج</a></li>
           </ul>
         </li>
         <li class=""><a href="#"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>      
-        <li class="treeview">
+      <li class="treeview {{active_deals_links_group()}}">
           <a href="#"><i class="fa fa-bullhorn"></i> <span>العروض</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">كل العروض</a></li>
-            <li><a href="#">إضافة عرض</a></li>
+          <li class="{{active_deals_link()}}"><a href="{{route('admin.deals')}}">كل العروض</a></li>
+          <li class="{{active_create_deal_link()}}"><a href="{{route('admin.add.deal')}}">إضافة عرض</a></li>
           </ul>
         </li>
         <li class=""><a href="#"><i class="fa fa-calendar-check-o"></i> <span>الطلبات</span></a></li>

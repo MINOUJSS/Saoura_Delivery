@@ -89,8 +89,219 @@ function active_create_sub_sub_categories_link()
         return '';
     }      
 }
+//:::::::::::function to active deals links group
+function active_deals_links_group()
+{ 
+    $deals_url=url('/admin/deals'); 
+    $create_deal_url=url('/admin/deal/create');
+    $current_url=Request::url();
+    if($current_url==$deals_url || $current_url==$create_deal_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active deals links
+function active_deals_link()
+{ 
+    $deals_url=url('/admin/deals'); 
+    $current_url=Request::url();
+    if($current_url==$deals_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create deal link
+function active_create_deal_link()
+{ 
+    $create_deal_url=url('/admin/deal/create');
+    $current_url=Request::url();
+    if($current_url==$create_deal_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active brands links group
+function active_brands_links_group()
+{ 
+    $brands_url=url('/admin/brands'); 
+    $create_brand_url=url('/admin/brand/create');
+    $edit_brand_url=url('/admin/brand/edit');
+    $current_url=Request::url();
+    if($current_url==$brands_url || $current_url==$create_brand_url || $current_url==$edit_brand_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active brands links
+function active_brands_link()
+{ 
+    $brands_url=url('/admin/brands'); 
+    $current_url=Request::url();
+    if($current_url==$brands_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create brand link
+function active_create_brand_link()
+{ 
+    $create_brand_url=url('/admin/brand/create');
+    $current_url=Request::url();
+    if($current_url==$create_brand_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active products links group
+function active_products_links_group()
+{ 
+    $products_url=url('/admin/products'); 
+    $create_product_url=url('/admin/product/create');
+    $edit_product_url=url('/admin/product/edit');
+    $current_url=Request::url();
+    if($current_url==$products_url || $current_url==$create_product_url || $current_url==$edit_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active products links
+function active_products_link()
+{ 
+    $products_url=url('/admin/products'); 
+    $current_url=Request::url();
+    if($current_url==$products_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create product link
+function active_create_product_link()
+{ 
+    $create_product_url=url('/admin/product/create');
+    $current_url=Request::url();
+    if($current_url==$create_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//global_Purchasing_price function
+function global_Purchasing_price()
+{
+    $all_products=App\product::all();
+        $x=0;
+        foreach($all_products as $product)
+        {
+            $x+=($product->Purchasing_price * $product->qty);
+        }
+        return $x;
+}
+//global_selling_price function
+function global_selling_price()
+{
+    $all_products=App\product::all();
+        $x=0;
+        foreach($all_products as $product)
+        {
+            $x+=($product->selling_price * $product->qty);
+        }
+        return $x;
+}
+//globale products in the store
+function global_product_in_the_store()
+{
+    $products=App\product::all();
+    return $products->count();
+}
+//globale products qty in the store
+function global_product_qty_in_the_store()
+{
+    $products=App\product::all();
+    $qty=0;
+    foreach($products as $product)
+    {
+        $qty+=$product->qty;
+    }
+    return $qty;
+}
+//get completed_sales_in_this_month
+function get_completed_sales_in_this_month($id)
+{
+    $sals=App\Completed_Sale::where('product_id',$id)->get();
+    if($sals!=null){
+        $x=0;
+        foreach($sals as $sale)
+        {
+            $now=new DateTime();
+            $date= new DateTime($sale->created_at);        
+            $inreval=$date->diff($now);
+            $days=$inreval->format('%a') ; 
+            if($days<=30)
+            {
+                $x+=1;
+            } 
+        }
+    // dd($sale->created_at);                 
+    return $x;    
+    }else
+    {
+        return 0;
+    }
 
-
+}
+//get get_product_reating_from_id
+function get_product_reating_from_id($id)
+{
+    $reatings=App\reating::where('product_id',$id)->get();
+    if($reatings->count()>0){
+        $result=0;
+        foreach($reatings as $reating)
+        {
+            $result+=$reating->reating;
+        }
+        // dd($result);
+        $final_result=$result/$reatings->count();
+    return $final_result;
+    }else
+    {
+        return '0.00';
+    }
+}
 /*---------------------------------------------------------
     //        Store Functions                //
 ---------------------------------------------------------*/

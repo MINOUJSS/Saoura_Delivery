@@ -31,26 +31,20 @@ class CreateProductsTable extends Migration
             ->references('id')
             ->on('brands')
             ->onDelete('cascade');
-            $table->string('image');
+            $table->string('image')->default('/');
             $table->text('short_description');
             $table->text('long_description');
-            $table->double('Purchasing_price');
-            $table->double('selling_price');
-            $table->double('reating')->default(0);
+            $table->decimal('Purchasing_price',6,2);
+            $table->decimal('to_magazin_price',6,2);
+            $table->decimal('to_consumer_price',6,2);
+            $table->decimal('ombalage_price',6,2);
+            $table->decimal('adds_price',6,2);
+            $table->decimal('selling_price',6,2);            
             $table->integer('qty');
             $table->integer('category_id');
             $table->integer('sub_category_id')->default(0);
-            $table->integer('sub_sub_category_id')->default(0);
-            $table->unsignedBigInteger('color_id');
-            $table->foreign('color_id')
-            ->references('id')
-            ->on('colors')
-            ->onDelete('cascade');
-            $table->unsignedBigInteger('size_id');
-            $table->foreign('size_id')
-            ->references('id')
-            ->on('sizes')
-            ->onDelete('cascade');
+            $table->integer('sub_sub_category_id')->default(0);            
+            $table->integer('statu')->default('0');
             $table->timestamps();
         });
     }

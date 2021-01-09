@@ -14,5 +14,10 @@ class category extends Model
      {   
         return $this->hasMany('App\Sub_Category');
      }
+
+     public function products()
+     {
+        return $this->hasMany('App\product');
+     }
      
 }

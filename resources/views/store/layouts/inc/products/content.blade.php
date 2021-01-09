@@ -2,8 +2,8 @@
 <div id="breadcrumb">
     <div class="container">
         <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li class="active">Products</li>
+        <li><a href="{{url('/')}}">الرئيسية</a></li>
+            <li class="active">المنتجات</li>
         </ul>
     </div>
 </div>

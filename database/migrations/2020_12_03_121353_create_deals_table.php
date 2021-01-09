@@ -29,6 +29,7 @@ class CreateDealsTable extends Migration
             $table->text('daitels');
             $table->integer('descount');
             $table->string('link');
+            $table->string('image')->default('/');
             $table->timestamps();
         });
     }

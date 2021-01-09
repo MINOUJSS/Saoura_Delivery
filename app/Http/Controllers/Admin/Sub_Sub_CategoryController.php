@@ -87,4 +87,33 @@ class Sub_Sub_CategoryController extends Controller
         $sub_sub_category->delete();
         return redirect(url('/admin/categories#sub_sub_category'));
     }
+
+    public function get_sub_sub_categories_from_category_id($sub_category_id)
+    {
+        $html="<option value='0'>إختر تحت تحت الصنف</option>";
+        if($sub_category_id==0)
+        {
+            return json_encode($html);
+        }
+        $sub_sub_categories=Sub_Sub_Category::where('sub_category_id',$sub_category_id)->get();                
+        
+        if($sub_sub_categories->count() > 0)
+        {
+            foreach($sub_sub_categories as $sub_sub_cat)
+            {
+                if(old('product_sub_sub_category')==$sub_sub_cat->name)
+                {
+                    $selected=" selected";
+                }else
+                {
+                    $selected=" ";
+                }
+
+                $html.= '<option value="'.$sub_sub_cat->id.'"'.$selected.'>'.$sub_sub_cat->name.'</option>';
+            }        
+        
+        }
+            return json_encode($html);  
+    }
+
 }

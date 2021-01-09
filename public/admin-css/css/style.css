@@ -34,3 +34,8 @@ iframe
 {
     float:right !important;
 }
+
+.witespace
+{
+    white-space: nowrap;
+}

@@ -41,11 +41,32 @@ Route::prefix('admin')->group(function(){
     Route::get('/sub-category/{id}/delete','Admin\Sub_CategoryController@destroy');
     Route::get('/sub-sub-category/{id}/delete','Admin\Sub_Sub_CategoryController@destroy');
     Route::get('/category/{id}/edit','Admin\CategoryController@edite');
-    Route::get('/sub-category/{id}/edit','Admin\Sub_CategoryController@edite');
+    Route::get('/sub-category/{id}/edit','Admin\Sub_CategoryController@edite');    
+    Route::get('/sub-category/get_sub_categories_from_category_id/{id}','Admin\Sub_CategoryController@get_sub_categories_from_category_id');
     Route::get('/sub-sub-category/{id}/edit','Admin\Sub_Sub_CategoryController@edite');
+    Route::get('/sub-sub-category/get_sub_sub_categories_from_category_id/{id}','Admin\Sub_Sub_CategoryController@get_sub_sub_categories_from_category_id');
     Route::post('/category/update','Admin\CategoryController@update')->name('admin.category.update');
     Route::post('/sub_category/update','Admin\Sub_CategoryController@update')->name('admin.sub_category.update');
     Route::post('/sub_sub_category/update','Admin\Sub_Sub_CategoryController@update')->name('admin.sub_sub_category.update');
+    Route::get('/deals','Admin\DealController@index')->name('admin.deals');
+    Route::get('/deal/create','Admin\DealController@create')->name('admin.add.deal');
+    Route::post('/deal/store','Admin\DealController@store')->name('admin.deal.store');
+    Route::get('/deal/{id}/delete','Admin\DealController@destroy');
+    Route::get('/deal/{id}/edit','Admin\DealController@edit');
+    Route::post('/deal/update','Admin\DealController@update')->name('admin.deal.update');
+    Route::get('/products','Admin\ProductController@index')->name('admin.products');    
+    Route::get('/product/{id}/delete','Admin\ProductController@destroy');
+    Route::get('/product/{id}/edit','Admin\ProductController@edit');
+    Route::post('/product/update','Admin\ProductController@update')->name('admin.product.update');
+    Route::get('/product/create','Admin\ProductController@create')->name('admin.create.product');
+    Route::post('/product/store','Admin\ProductController@store')->name('admin.product.store');
+
+    Route::get('/brands','Admin\BrandController@index')->name('admin.brands');    
+    Route::get('/brand/{id}/delete','Admin\BrandController@destroy');
+    Route::get('/brand/{id}/edit','Admin\BrandController@edit');
+    Route::post('/brand/update','Admin\BrandController@update')->name('admin.brand.update');
+    Route::get('/brand/create','Admin\BrandController@create')->name('admin.create.brand');
+    Route::post('/brand/store','Admin\BrandController@store')->name('admin.brand.store');
 });
 
 //---------------------------------------------------

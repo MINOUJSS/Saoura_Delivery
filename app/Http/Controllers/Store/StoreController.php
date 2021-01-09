@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\product;
 
 class StoreController extends Controller
 {
@@ -14,7 +15,8 @@ class StoreController extends Controller
     
     public function products()
     {
-        return view('store.products');
+        $products=product::OrderBy('id','desc')->paginate(12);
+        return view('store.products',compact('products'));
     }
 
     public function product_page()
