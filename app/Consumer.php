@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consumer extends Model
 {
-    //
+    public function completed_sales()
+    {
+        return $this->hasMany('App\Completed_Sale');
+    }
 }

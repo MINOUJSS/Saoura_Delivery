@@ -9,8 +9,13 @@ class color extends Model
     protected $fillable = [
         'name', 'code'
     ];
-    public function product()
+    public function product_colors()
     {
-        return $this->belongsTo('App\product');
+        return $this->hasMany('App\product_colors');
     }
+    public function user()
+    {
+        return $this->belongsTo('App\Admin');
+    }
+
 }

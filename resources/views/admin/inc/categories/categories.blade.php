@@ -45,8 +45,8 @@
                         <td>{{get_sub_categories_count($category->id)}}</td>
                         <td>{{get_sub_sub_categories_count_for_category_id($category->id)}}</td>
                         <td>{{$category->created_at->diffForHumans()}}</td>
-                        <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_category" title="{{$category->name}}" url="{{url('admin/category').'/'.$category->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>
-                        {{-- <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a id="delete_category" title="{{$category->name}}" href="" url="{{url('admin/category').'/'.$category->id.'/destroy'}}"><i class="fa fa-trash text-danger cursor-pointer"></i></a></td> --}}
+                        <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_category" title="{{$category->name}}" url="{{url('admin/category').'/'.$category->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+                        {{-- <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a id="delete_category" title="{{$category->name}}" href="" url="{{url('admin/category').'/'.$category->id.'/destroy'}}"><i class="fa fa-trash-o text-danger cursor-pointer"></i></a></td> --}}
                         </tr>
                         <tr> 
                         @endforeach
@@ -94,8 +94,8 @@
                         <td>{{$sub_category->name}}</td>
                         <td>{{get_sub_sub_categories_count_for_sub_category_id($sub_category->id)}}</td>
                         <td>{{$sub_category->created_at->diffForHumans()}}</td>
-                        <td><a href="{{url('admin/sub-category').'/'.$sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_sub_category" title="{{$sub_category->name}}" url="{{url('admin/sub-category').'/'.$sub_category->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>
-                        {{-- <td><a href="{{url('admin/category').'/'.$sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a href="{{url('admin/category').'/'.$sub_category->id.'/destroy'}}"><i class="fa fa-trash text-danger"></i></a></td> --}}
+                        <td><a href="{{url('admin/sub-category').'/'.$sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_sub_category" title="{{$sub_category->name}}" url="{{url('admin/sub-category').'/'.$sub_category->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+                        {{-- <td><a href="{{url('admin/category').'/'.$sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a href="{{url('admin/category').'/'.$sub_category->id.'/destroy'}}"><i class="fa fa-trash-o text-danger"></i></a></td> --}}
                         </tr>
                         <tr> 
                         @endforeach        
@@ -140,8 +140,8 @@
                         <td>{{$index+1}}</td>
                         <td>{{$sub_sub_category->name}}</td>
                         <td>{{$sub_sub_category->created_at->diffForHumans()}}</td>
-                        <td><a href="{{url('admin/sub-sub-category').'/'.$sub_sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_sub_sub_category" title="{{$sub_sub_category->name}}" url="{{url('admin/sub-sub-category').'/'.$sub_sub_category->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>
-                        {{-- <td><a href="{{url('admin/category').'/'.$sub_sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a href="{{url('admin/category').'/'.$sub_sub_category->id.'/destroy'}}"><i class="fa fa-trash text-danger"></i></a></td> --}}
+                        <td><a href="{{url('admin/sub-sub-category').'/'.$sub_sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_sub_sub_category" title="{{$sub_sub_category->name}}" url="{{url('admin/sub-sub-category').'/'.$sub_sub_category->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+                        {{-- <td><a href="{{url('admin/category').'/'.$sub_sub_category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a> <a href="{{url('admin/category').'/'.$sub_sub_category->id.'/destroy'}}"><i class="fa fa-trash-o text-danger"></i></a></td> --}}
                         </tr>
                         <tr> 
                         @endforeach         

@@ -14,4 +14,9 @@ class Completed_Sale extends Model
     {
         return $this->belongsTo('App\product');
     }
+
+    public function consumer()
+    {
+        return $this->belongsTo('App\consumer');
+    }
 }

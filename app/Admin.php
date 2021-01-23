@@ -42,4 +42,24 @@ class Admin extends Authenticatable
     {
         return $this->hasMany('App\product');
     }
+
+    public function brands()
+    {
+        return $this->hasMany('App\brand');
+    }
+
+    public function colors()
+    {
+        return $this->hasMany('App\color');
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany('App\size');
+    }
+
+    public function products_images()
+    {
+        return $this->hasMany('App\Product_Images');
+    }
 }

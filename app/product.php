@@ -47,6 +47,14 @@ class product extends Model
         return $this->hasMany('App\Product_Images');
     }
     
+    public function colors()
+    {
+        return $this->hasMany('App\product');
+    }
+    public function copleted_sales()
+    {
+        return $this->haMany('App\Completed_Sale');
+    }
     // public function colors()
     // {
     //     return $this->hasMany('App\color');

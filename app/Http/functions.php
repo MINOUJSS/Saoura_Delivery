@@ -21,10 +21,22 @@ function active_categories_links_group()
 { 
     $categories_url=url('/admin/categories'); 
     $create_categories_url=url('/admin/categories/create');
-    $create_sub_categories_url=url('/admin/sub-categories/create');
-    $create_sub_sub_categories_url=url('/admin/sub-sub-categories/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_categories_url=url('/admin/category/'.$url_array[5].'/edit');    
+    $edit_sub_categories_url=url('/admin/sub-category/'.$url_array[5].'/edit');
+    $edit_sub_sub_categories_url=url('/admin/sub-sub-category/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_categories_url="";
+        $edit_sub_categories_url="";
+        $edit_sub_sub_categories_url="";  
+    }
+    $create_sub_categories_url=url('/admin/sub-categories/create');    
+    $create_sub_sub_categories_url=url('/admin/sub-sub-categories/create');    
     $current_url=Request::url();
-    if($current_url==$categories_url || $current_url==$create_categories_url || $current_url==$create_sub_categories_url || $current_url==$create_sub_sub_categories_url)
+    if($current_url==$categories_url || $current_url==$create_categories_url || $current_url==$edit_categories_url || $current_url==$create_sub_categories_url || $current_url==$edit_sub_categories_url || $current_url==$create_sub_sub_categories_url || $current_url==$edit_sub_sub_categories_url )
     {
         return 'active';
     }
@@ -94,8 +106,16 @@ function active_deals_links_group()
 { 
     $deals_url=url('/admin/deals'); 
     $create_deal_url=url('/admin/deal/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);    
+    if(count($url_array)>5){
+    $edit_deal_url=url('/admin/deal/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_deal_url="";   
+    }
     $current_url=Request::url();
-    if($current_url==$deals_url || $current_url==$create_deal_url)
+    if($current_url==$deals_url || $current_url==$create_deal_url || $current_url==$edit_deal_url)
     {
         return 'active';
     }
@@ -132,12 +152,223 @@ function active_create_deal_link()
         return '';
     }      
 }
+//:::::::::::function to active users links group
+function active_users_links_group()
+{ 
+    $users_url=url('/admin/users'); 
+    $create_user_url=url('/admin/user/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_user_url=url('/admin/user/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_user_url="";   
+    }
+    $current_url=Request::url();
+    if($current_url==$users_url || $current_url==$create_user_url || $current_url==$edit_user_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active users links
+function active_users_link()
+{ 
+    $users_url=url('/admin/users'); 
+    $current_url=Request::url();
+    if($current_url==$users_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create user link
+function active_create_user_link()
+{ 
+    $create_user_url=url('/admin/user/create');
+    $current_url=Request::url();
+    if($current_url==$create_user_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active colors links group
+function active_colors_links_group()
+{ 
+    $colors_url=url('/admin/colors'); 
+    $create_color_url=url('/admin/color/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_color_url=url('/admin/color/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_color_url="";  
+    }
+    $current_url=Request::url();
+    if($current_url==$colors_url || $current_url==$create_color_url || $current_url==$edit_color_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active colors links
+function active_colors_link()
+{ 
+    $colors_url=url('/admin/colors'); 
+    $current_url=Request::url();
+    if($current_url==$colors_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create color link
+function active_create_color_link()
+{ 
+    $create_color_url=url('/admin/color/create');
+    $current_url=Request::url();
+    if($current_url==$create_color_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active sizes links group
+function active_sizes_links_group()
+{ 
+    $sizes_url=url('/admin/sizes'); 
+    $create_size_url=url('/admin/size/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_size_url=url('/admin/size/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_size_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$sizes_url || $current_url==$create_size_url || $current_url==$edit_size_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active sizes links
+function active_sizes_link()
+{ 
+    $sizes_url=url('/admin/sizes'); 
+    $current_url=Request::url();
+    if($current_url==$sizes_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create size link
+function active_create_size_link()
+{ 
+    $create_size_url=url('/admin/size/create');
+    $current_url=Request::url();
+    if($current_url==$create_size_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active suppliers links group
+function active_suppliers_links_group()
+{ 
+    $suppliers_url=url('/admin/suppliers'); 
+    $create_supplier_url=url('/admin/supplier/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_supplier_url=url('/admin/supplier/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_supplier_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$suppliers_url || $current_url==$create_supplier_url || $current_url==$edit_supplier_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active suppliers links
+function active_suppliers_link()
+{ 
+    $suppliers_url=url('/admin/suppliers'); 
+    $current_url=Request::url();
+    if($current_url==$suppliers_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create supplier link
+function active_create_supplier_link()
+{ 
+    $create_supplier_url=url('/admin/supplier/create');
+    $current_url=Request::url();
+    if($current_url==$create_supplier_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
 //:::::::::::function to active brands links group
 function active_brands_links_group()
 { 
     $brands_url=url('/admin/brands'); 
     $create_brand_url=url('/admin/brand/create');
-    $edit_brand_url=url('/admin/brand/edit');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_brand_url=url('/admin/brand/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_brand_url="";
+    }
     $current_url=Request::url();
     if($current_url==$brands_url || $current_url==$create_brand_url || $current_url==$edit_brand_url)
     {
@@ -181,7 +412,14 @@ function active_products_links_group()
 { 
     $products_url=url('/admin/products'); 
     $create_product_url=url('/admin/product/create');
-    $edit_product_url=url('/admin/product/edit');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/product/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
     $current_url=Request::url();
     if($current_url==$products_url || $current_url==$create_product_url || $current_url==$edit_product_url)
     {
@@ -212,6 +450,94 @@ function active_create_product_link()
     $create_product_url=url('/admin/product/create');
     $current_url=Request::url();
     if($current_url==$create_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active sales links group
+function active_sales_links_group()
+{ 
+    $sales_url=url('/admin/sales'); 
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/sale/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$sales_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active consumers links group
+function active_consumers_links_group()
+{ 
+    $sales_url=url('/admin/consumers'); 
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/sale/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$sales_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active searsh_words links group
+function active_searsh_words_links_group()
+{ 
+    $sales_url=url('/admin/searsh-words'); 
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/searsh-word/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$sales_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active orders links group
+function active_orders_links_group()
+{ 
+    $orders_url=url('/admin/orders'); 
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/order/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$orders_url)
     {
         return 'active';
     }
@@ -301,6 +627,59 @@ function get_product_reating_from_id($id)
     {
         return '0.00';
     }
+}
+//get_user_type_name function
+function get_user_type_name($code)
+{
+    if($code==1)
+    {
+        return 'بائع';
+    }elseif($code==2)
+    {
+        return 'مؤكد الطلبات';
+    }elseif($code==3)
+    {
+        return 'موصل الطلبات';
+    }else
+    {
+        return 'لم يتم تحديد الوظيفة';
+    }
+}
+// user_is_active function
+function user_is_active($code)
+{
+    if($code==1)
+    {
+        return '<spam class="label label-success">مفعل<spam>';
+    }else
+    {
+        return "<spam class='label label-danger'>غير مفعل</spam>";
+    }
+}
+//get all product images
+function get_all_product_images($product_id)
+{    
+    // $product=App\product::findOrFail($product_id);
+    $product_images=App\product_images::where('product_id',$product_id)->get();
+    $product_colors=App\product_colors::where('product_id',$product_id)->get();    
+    // $first_image=url("admin-css/uploads/images/products/".$product->image);
+    $images=[]; 
+    if($product_images->count() > 0)
+    {
+        foreach($product_images as $prod)
+        {
+            $images[]=url("admin-css/uploads/images/products/small/".$prod->image);
+        }
+    }   
+    if($product_colors->count() > 0)
+    {
+        foreach($product_colors as $prod)
+        {
+            $images[]=url("admin-css/uploads/images/products/colors/".$prod->image);
+        }
+    }
+    // dd($images);
+    return $images;
 }
 /*---------------------------------------------------------
     //        Store Functions                //

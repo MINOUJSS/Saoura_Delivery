@@ -98,7 +98,7 @@
               <tr>
                 <td>{{$product->id}}</td>
                 <td>{{$product->name}}</td>
-                @if($product->brand_id!=0)
+                @if($product->brand!=null)
                 <td>{{$product->brand->name}}</td>
                 @else
                 <td>بدون علامة تجارية</td>
@@ -133,7 +133,12 @@
                 <td>بدون مزود</td>
                 @endif
                 <td>{{$product->user->name}}</td>
-                <td style="width : 100px;"><a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>
+                <td>
+                  <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-size')}}"><button class="btn btn-block btn-primary btn-xs"><i class="fa fa-hand-scissors-o"> إضافة مقاس</i></button></a>
+                  <a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
+                  <i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
               </tr> 
               @endforeach             
             </tbody></table>            

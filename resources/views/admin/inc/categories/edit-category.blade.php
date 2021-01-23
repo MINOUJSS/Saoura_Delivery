@@ -66,7 +66,7 @@
                               <td>{{$index + 1 }}.</td>
                             <td>{{$category->name}}</td>
                             <td>{{$category->created_at}}</td>
-                              <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_category" title="{{$category->name}}" url="{{url('admin/category').'/'.$category->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>
+                              <td><a href="{{url('admin/category').'/'.$category->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_category" title="{{$category->name}}" url="{{url('admin/category').'/'.$category->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
                             </tr>
                             @endforeach             
                             @else 

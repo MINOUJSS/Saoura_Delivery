@@ -41,7 +41,7 @@
             <td>{{substr($deal->daitels,0,200)}}</td>
             <td style="width :100px">{{$deal->descount}} %</td>
             <td>{{$deal->link}}</td>
-            <td style="width : 100px;"><a href="{{url('admin/deal').'/'.$deal->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_deal" title="{{$deal->title}}" url="{{url('admin/deal').'/'.$deal->id.'/delete'}}" class="fa fa-trash text-danger cursor-pointer"></i></td>           
+            <td style="width : 100px;"><a href="{{url('admin/deal').'/'.$deal->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_deal" title="{{$deal->title}}" url="{{url('admin/deal').'/'.$deal->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>           
           </tr>
           @endforeach
           @else 

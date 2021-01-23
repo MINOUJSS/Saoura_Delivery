@@ -10,9 +10,9 @@ class order extends Model
         'user_id', 'billing_name','billing_email','billing_address','billing_mobile','status'
     ];
 
-    public function user()
+    public function consumer()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Consumer');
     }
     
 }
