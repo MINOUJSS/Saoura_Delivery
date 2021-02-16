@@ -16,14 +16,14 @@ class CreateConsumersTable extends Migration
         Schema::create('consumers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('lastname');
+            $table->string('lastname')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->text('telephone');
-            $table->text('address');
-            $table->text('googl_map_address');
+            $table->text('address')->nullable();
+            $table->text('googl_map_address')->nullable();
             $table->timestamps();
         });
     }

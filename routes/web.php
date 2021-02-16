@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/','Store\StoreController@index')->name('store');
-Route::get('/products','Store\StoreController@products')->name('products');
+// Route::get('/','Store\StoreController@index')->name('store');
+// Route::get('/products','Store\StoreController@products')->name('products');
 Route::get('/product-page','Store\StoreController@product_page')->name('product-page');
-Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
+// Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes();
 
 //--------------------------------------------
@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function(){
     //authontication
     Route::get('/login','Auth\AdminLoginController@ShowLoginForm')->name('admin.login');
     Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
-    Route::post('/logout','Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('/logout','Auth\AdminLoginController@logout')->name('admin.logout');
     //dashboard (index)
     Route::get('/','Admin\AdminController@index')->name('admin.dashboard');
     //categories
@@ -86,7 +86,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/product/add-image/store','Admin\ProductController@store_image')->name('admin.add-image-to-product.store');
     Route::get('/product/{id}/edit-image','Admin\ProductController@edit_image');
     Route::post('/product/edit-image/update','Admin\ProductController@update_image')->name('admin.edit-image-to-product.update');
-    Route::get('/product/{id}/delete-image','Admin\ProductController@delete_image');
+    Route::get('/product/{id}/delete-image','Admin\ProductController@delete_image');    
     //brands
     Route::get('/brands','Admin\BrandController@index')->name('admin.brands');    
     Route::get('/brand/{id}/delete','Admin\BrandController@destroy');
@@ -130,12 +130,54 @@ Route::prefix('admin')->group(function(){
     Route::get('/searsh-words','Admin\SearshWordsController@index')->name('admin.searsh-words');
     //orders
     Route::get('/Orders','Admin\OrderController@index')->name('admin.orders');
+    //notifications
+    Route::get('/notifications','Admin\NotificationController@index')->name('admin.notifications');
+    //discounts
+    Route::get('/products/discounts','Admin\DiscountsController@index')->name('admin.discounts');
+    Route::get('/product/{id}/discount/create','Admin\DiscountsController@create')->name('admin.create.discount');
+    Route::post('/product/discount/store','Admin\DiscountsController@store')->name('admin.discount.store');
+    Route::get('/product/discount/{id}/delete','Admin\DiscountsController@destroy')->name('admin.discount.destroy');
 });
-
 //--------------------------------------------
-//              store routes
+//              user routes
 //--------------------------------------------
 //home
 Route::get('/home', 'HomeController@index')->name('home');
+//--------------------------------------------
+//              store routes
+//--------------------------------------------
+//consumer routes
+Route::prefix('consumer')->group(function(){
+    //authontication
+    Route::get('/login','Auth\ConsumerLoginController@ShowLoginForm')->name('consumer.login');
+    Route::post('/login','Auth\ConsumerLoginController@login')->name('consumer.login.submit');
+    Route::get('/logout','Auth\ConsumerLoginController@logout')->name('consumer.logout');
+    Route::get('/register','Auth\ConsumerRegisterController@ShowRegisterForm')->name('consumer.register');
+    Route::post('/register','Auth\ConsumerRegisterController@register')->name('consumer.register.submit');
+    //dashboard (index)
+    Route::get('/','Store\ConsumerController@index')->name('consumer.dashboard');
+});
+//store
+Route::get('/','Store\StoreController@index')->name('store');
 //products
-Route::get('/products', 'ProductsController@index')->name('products');
+Route::get('/products', 'Store\ProductController@index')->name('products');
+//
+Route::get('/product/{id}', 'Store\ProductController@product');
+//add to cart
+Route::get('product/{product}/add-to-cart','Store\ProductController@addToCart')->name('cart.add');
+Route::post('product/{product}/add-with-qty','Store\ProductController@addWithQty')->name('cart.addwithqty');
+//updatqty
+Route::post('product/{product}/updateqty','Store\ProductController@updateQty')->name('cart.update');
+//remove from cart
+Route::get('product/{product}/remove-from-cart','Store\ProductController@removeFromCart')->name('cart.remove');
+//checkout
+Route::get('/checkout','Store\CheckoutController@index')->name('checkout');
+//show cart
+Route::get('cart/','Store\ProductController@showCart')->name('cart.show');
+//order
+Route::post('order/create','Store\OrderController@create_order')->name('store.create.order');
+//categories
+Route::get('/products/category/{name}', 'Store\ProductController@index');
+//rating a product
+Route::post('/rating/create','Store\RatingController@create')->name('store.create.rating');
+

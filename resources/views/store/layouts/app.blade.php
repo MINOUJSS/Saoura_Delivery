@@ -7,15 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>E-SHOP HTML Template</title>
+	<title>الساورة دليفري</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
 	<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="{{url('store')}}/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="{{url('store')}}/css/rtl_bootstrap.css" />
-
+	
 	<!-- Slick -->
 	<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/slick.css" />
 	<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/slick-theme.css" />
@@ -29,7 +29,9 @@
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/style.css" />
 	<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/my_style.css" />
-
+	<link type="text/css" rel="stylesheet" href="{{url('store')}}/css/starrr.css" />
+	<!-- sweet alert link-->
+    <script src="{{url('vendor')}}/sweetalert/sweetalert.all.js"></script>    
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -155,7 +157,49 @@
 	<script src="{{url('store')}}/js/nouislider.min.js"></script>
 	<script src="{{url('store')}}/js/jquery.zoom.min.js"></script>
 	<script src="{{url('store')}}/js/main.js"></script>
+	<script src="{{url('store')}}/js/My_function.js"></script>
+	<script src="{{url('store')}}/js/starrr.js"></script>
+	<script>
+		$(function(){
+			var pathname=document.location.pathname.toString();
+			if(pathname =='/products' )
+			{
+				//			
+				var product_ratings=document.getElementsByName('products_ratings');
+			for(var b=0 ;b<=product_ratings.length; b++)
+			{
+				$('.product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
+			}else{			
+			//get product ratings
+			var product_rating=document.getElementById('product_ratings');
+			$('.product-star').starrr({
+				readOnly:true,
+				rating:product_rating.getAttribute('data-rating')
+			});
+			//get consumer rating
+			var consumers_ratings = document.getElementsByName('consumer_rating');
+			for(var a=0; a < consumers_ratings.length;a++)
+			{
+				$('.consumer-star-'+a).starrr({
+				readOnly:true,
+				rating:consumers_ratings[a].getAttribute('data-rating')
+			    });					
+			}						
+			//put star rating in hidenn input
+			$('.put-stars').starrr();		
+			$('.put-stars').on('starrr:change', function(e, value){
+              alert('new rating is ' + value)
+            })
 
+			}			
+		});
+	</script>
+	<!--incloud sweet alert script-->
+	@include('sweetalert::alert')
 </body>
 
 </html>

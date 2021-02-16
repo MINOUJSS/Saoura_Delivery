@@ -1,47 +1,78 @@
 <div class="col-md-6">
     <div class="product-body">
         <div class="product-label">
-            <span>New</span>
-            <span class="sale">-20%</span>
+            @if(is_new_product($product->created_at))
+            <span>جديد</span>
+            @endif
+            @if(has_discount($product->id))
+            <span class="sale">- %{{$product->discount->discount}}</span>
+            @endif
         </div>
-        <h2 class="product-name">Product Name Goes Here</h2>
-        <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+        <h2 class="product-name">{{$product->name}}</h2>
+        <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
         <div>
-            <div class="product-rating">
+            {{-- <div class="product-rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o empty"></i>
-            </div>
-            <a href="#">3 Review(s) / Add Review</a>
+            </div> --}}
+            <div id="product_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
+            <div class='product-star starrr'></div>
+
+            <a href="#tab2">{{$reviews->count()}} مراجعات / إضافة مراجعة</a>
         </div>
-        <p><strong>Availability:</strong> In Stock</p>
-        <p><strong>Brand:</strong> E-SHOP</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div class="product-options">
+        <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
+        <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
+        <p>{{$product->short_description}}</p>
+        <div class="product-options"> 
+            @if(count($product->sizes)>0)           
             <ul class="size-option">
-                <li><span class="text-uppercase">Size:</span></li>
-                <li class="active"><a href="#">S</a></li>
-                <li><a href="#">XL</a></li>
-                <li><a href="#">SL</a></li>
+                <li><span class="text-uppercase">المقاس:</span></li>
+                @foreach($product->sizes as $size)                
+                <li class="active"><a id="size-box-{{$size->id}}" style="cursor:pointer;@if(session()->has('cart') && session()->get('cart')->items[$product->id]['size_id']==$size->id){{'border:2px solid #000;'}}@endif" onclick="select_size({{$size->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li>
+                {{-- <li><a href="#">XL</a></li>
+                <li><a href="#">SL</a></li> --}}
+                @endforeach
+            </ul>           
+            @endif
+            @if(count($product->colors)>0) 
+            <ul class="color-option">                
+                <li><span class="text-uppercase">اللون:</span></li>
+                @foreach($product->colors as $color)
+                <li class="active"><a id="color-box-{{$color->id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->id)}};@if(session()->has('cart') && session()->get('cart')->items[$product->id]['color_id']==$color->id){{'border:2px solid #000;'}}@endif" onclick="select_color({{$color->id}})"></a></li>
+                @endforeach
             </ul>
-            <ul class="color-option">
-                <li><span class="text-uppercase">Color:</span></li>
-                <li class="active"><a href="#" style="background-color:#475984;"></a></li>
-                <li><a href="#" style="background-color:#8A2454;"></a></li>
-                <li><a href="#" style="background-color:#BF6989;"></a></li>
-                <li><a href="#" style="background-color:#9A54D8;"></a></li>
-            </ul>
+            @endif
         </div>
 
         <div class="product-btns">
-            <div class="qty-input">
-                <span class="text-uppercase">QTY: </span>
-                <input class="input" type="number">
-            </div>
-            <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+            @if(session()->has('cart') && array_key_exists($product->id,session()->get('cart')->items))
+            <form name="update_cart" action="{{route('cart.update',$product->id)}}" method="POST" enctype="multipart/form-data">
+                @csrf 
+                <div class="qty-input">
+                    <span class="text-uppercase">الكمية: </span>
+                    <input name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
+                    <input id="color_id" name="color_id" class="input" type="hidden" value="@if(old('color_id')){{old('color_id')}}@else{{session()->get('cart')->items[$product->id]['color_id']}}@endif">
+                    <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">
+                </div>
+                {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> تعديل</button>
+                </form>            
+            @else 
+            <form name="add_to_cart" action="{{route('cart.addwithqty',$product->id)}}" method="POST" enctype="multipart/form-data">
+                @csrf 
+                <div class="qty-input">
+                    <span class="text-uppercase">الكمية: </span>
+                    <input name="qty" class="input" type="number" value="1">
+                    <input id="color_id" name="color_id" class="input" type="hidden" value="0">
+                    <input id="size_id" name="size_id" class="input" type="hidden" value="0">
+                </div>
+                {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
+                </form>
+            @endif 
             <div class="pull-right">
                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>

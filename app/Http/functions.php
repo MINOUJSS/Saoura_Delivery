@@ -152,6 +152,57 @@ function active_create_deal_link()
         return '';
     }      
 }
+//:::::::::::function to active discounts links group
+function active_discounts_links_group()
+{ 
+    $discounts_url=url('/admin/discounts'); 
+    $create_discount_url=url('/admin/discount/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);    
+    if(count($url_array)>5){
+    $edit_discount_url=url('/admin/discount/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_discount_url="";   
+    }
+    $current_url=Request::url();
+    if($current_url==$discounts_url || $current_url==$create_discount_url || $current_url==$edit_discount_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active discounts links
+function active_discounts_link()
+{ 
+    $deals_url=url('/admin/discounts'); 
+    $current_url=Request::url();
+    if($current_url==$deals_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create discount link
+function active_create_discount_link()
+{ 
+    $create_discount_url=url('/admin/discount/create');
+    $current_url=Request::url();
+    if($current_url==$create_discount_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
 //:::::::::::function to active users links group
 function active_users_links_group()
 { 
@@ -610,6 +661,18 @@ function get_completed_sales_in_this_month($id)
     }
 
 }
+//get get_product_reating_from_consumer_id
+function get_product_reating_from_consumer_created_at($product_id,$date)
+{
+    $rating=App\reating::where('product_id',$product_id)->where('created_at',$date)->first();
+    if($rating!=null)
+    {
+        return $rating->reating;
+    }else
+    {
+        return 0;
+    }    
+}
 //get get_product_reating_from_id
 function get_product_reating_from_id($id)
 {
@@ -680,6 +743,40 @@ function get_all_product_images($product_id)
     }
     // dd($images);
     return $images;
+}
+//get no read notification
+function get_no_read_notification_count()
+{
+    $note=App\admin_notefication::where('status',0)->get();
+    return $note->count();
+}
+// print note nember no read in string
+function print_note_nember_string($num)
+{
+    //لديك 10 إخطارات
+    if($num==0)
+    {
+        return 'ليس لديك أي إشعار جديد';
+    }elseif($num==1)
+    {
+        return 'لديك إشعار واحد جديد';
+    }elseif($num==2)
+    {
+        return 'لديك إشعارين جديدين';
+    }elseif($num >=3 && $num<=20)
+    {
+        return 'لديك'.$num.'إشعارات جديدة';
+    }else
+    {
+        return 'لديك'.$num.'إشعار جديد';
+    }
+
+}
+//get_no_reading_note_data
+function get_no_reading_note_data()
+{
+    $note=App\admin_notefication::where('status',0)->get();
+    return $note;
 }
 /*---------------------------------------------------------
     //        Store Functions                //
@@ -798,5 +895,162 @@ function has_sub_sub_category($sub_category_id)
     }else
     {
         return false;
+    }
+}
+//function product_availability
+function product_availability($id)
+{
+    $product=App\product::findOrFail($id);
+    if($product->qty > 1)
+    {
+        return 'متوفر في المخازن بكميات محدودة';
+    }
+    else
+    {
+        return 'غير متوفر في المخازن';
+    }
+}
+//function get_product_color_name_form_id_color
+function get_product_color_code_form_id_color($id)
+{
+    $color=App\color::findOrFail($id);
+    return $color->code;
+}
+//function get_product_color_name_form_id_color
+function get_product_size_name_form_id_size($id)
+{
+    $size=App\size::findOrFail($id);
+    return $size->name;
+}
+//function get_product_size_form_id_color
+function get_product_size_form_id_size($id)
+{
+    $size=App\size::findOrFail($id);
+    return $size->size;
+}
+//function return css code to border the selected color box
+function selected_box_color($product_id,$color_id)
+{
+    if(session()->has('cart') && session()->get('cart')->items[$product_id]['color_id']==$color_id)
+    {
+        return'border:2px solid #000;';
+    }
+    else
+    {
+        return '';
+    }
+}
+//function return css code to border the selected size box
+function selected_box_size($product_id,$size_id)
+{
+    if(session()->has('cart') && session()->get('cart')->items[$product_id]['size_id']==$size_id)
+    {
+        return'border:2px solid #000;';
+    }
+    else
+    {
+        return '';
+    }
+}
+//function to print product choose color with html
+function print_product_colors_html($product_id)
+{
+    $product=App\product::findOrFail($product_id);
+    // $product_colors=App\product_colors::where('product_id',$product->id)->get();
+    $colors=$product->colors;
+    $html="";
+    if(count($colors)>0)
+    {
+        $html.='<ul class="color-option"><li><span class="text-uppercase">اللون:</span></li>';        
+        foreach($colors as $p_color)
+        {
+        $color=App\color::findOrFail($p_color->color_id);
+        $html.='<li><a id="color-box-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.')"></a></li>';        
+        }
+    }
+    $html.='</ul>';
+    if(session()->has('cart'))
+    {
+        $color_value=session()->get('cart')->items[$product->id]['color_id'];
+    }
+    else
+    {
+        $color_value=0;
+    }
+    $html.='<input type="hidden" name="color_id" id="color_id" value="'.$color_value.'" >';
+    return $html;
+}
+//function to print product choose size with html
+function print_product_sizes_html($product_id)
+{
+    $product=App\product::findOrFail($product_id);
+    // $product_colors=App\product_colors::where('product_id',$product->id)->get();
+    $sizes=$product->sizes;
+    $html="";
+    if(count($sizes)>0)
+    {
+        $html.='<ul class="size-option"><li><span class="text-uppercase">المقاس:</span></li>';        
+        foreach($sizes as $p_size)
+        {
+        $size=App\size::findOrFail($p_size->size_id);
+        $html.='<li class="active"><a id="size-box-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
+        }
+    }
+    $html.='</ul>';
+    if(session()->has('cart'))
+    {
+        $size_value=session()->get('cart')->items[$product->id]['size_id'];
+    }
+    else
+    {
+        $size_value=0;
+    }
+    $html.='<input type="hidden" name="size_id" id="size_id" value="'.$size_value.'" >';
+    return $html;
+}
+//is new product
+function is_new_product($date)
+{    
+    $old_date=strtotime(date($date));
+    $curent_date=time();
+    $diff_date=$curent_date-$old_date;
+    $days=floor($diff_date/(60*60*24));    
+    if($days<=30)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+//is product has discount
+function has_discount($product_id)
+{
+    $discount=App\discount::where('product_id',$product_id)->where('exp_date','>=',date('Y-m-d H:i:s'))->first();
+    if($discount!=null)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+//print final price
+function price_with_discount($price,$discount)
+{
+    $new_price=($discount * $price) /100;
+    return $new_price;
+}
+//get product discount
+function get_product_discount($product_id)
+{
+    $discount=App\discount::where('product_id',$product_id)->first();
+    if($discount!=null){
+        return $discount->discount;
+    }else
+    {
+        return 0;
     }
 }

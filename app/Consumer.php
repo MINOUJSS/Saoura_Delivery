@@ -10,4 +10,9 @@ class Consumer extends Model
     {
         return $this->hasMany('App\Completed_Sale');
     }
+
+    public function reatings()
+    {
+        return $this->hasMany('App\reating');
+    }
 }

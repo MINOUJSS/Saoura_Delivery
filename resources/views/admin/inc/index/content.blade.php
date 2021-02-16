@@ -48,13 +48,13 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{$orders->count()}}</h3>
               <p>الطلبات</p>
             </div>
             <div class="icon">
               <i class="fa fa-calendar-check-o"></i>
             </div>
-            <a href="#" class="small-box-footer">معلومات أكثر <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('admin.orders')}}" class="small-box-footer">معلومات أكثر <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

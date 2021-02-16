@@ -21,7 +21,7 @@
                     {{ __('E-Mail Address') }}
                 </span>
                 <div class="wrap-input100 validate-input m-b-36 @if($errors->has('email')) has-error @endif" data-validate = "Username is required">                
-                    <input id="email" type="email" class="input100 @if($errors->has('email')) has-error @endif" type="text" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus >
+                    <input id="email" type="email" class="input100 @if($errors->has('email')) has-error @endif" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus >
                     <span class="focus-input100"></span>               
                     @if($errors->has('email'))
                 <li>

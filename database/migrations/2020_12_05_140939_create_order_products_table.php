@@ -25,6 +25,16 @@ class CreateOrderProductsTable extends Migration
             ->references('id')
             ->on('products')
             ->onDelete('cascade');
+            $table->unsignedBigInteger('color_id');
+            $table->foreign('color_id')
+            ->references('id')
+            ->on('colors')
+            ->onDelete('cascade');
+            $table->unsignedBigInteger('size_id');
+            $table->foreign('size_id')
+            ->references('id')
+            ->on('sizes')
+            ->onDelete('cascade');
             $table->integer('qty');          
             $table->timestamps();
         });

@@ -44,21 +44,27 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">10</span>
+            <span class="label label-warning">{{get_no_read_notification_count()}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">لديك 10 إخطارات</li>
+            <li class="header">{{print_note_nember_string(get_no_read_notification_count())}}</li>
             <li>
               <!-- Inner Menu: contains the notifications -->
               <ul class="menu">
-                <li><!-- start notification -->
-                  <a href="#">
-                    <i class="fa fa-users text-aqua"></i> انضم 5 أعضاء جدد اليوم
+                @if(count(get_no_reading_note_data())>0)
+                <!-- start notification -->
+                @foreach(get_no_reading_note_data() as $note)
+                <li>
+                  <a href="{{url($note->link)}}">
+                    <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
                   </a>
-                </li><!-- end notification -->
+                </li>
+                @endforeach
+                <!-- end notification -->
+                @endif
               </ul>
             </li>
-            <li class="footer"><a href="#">مشاهدة الكل</a></li>
+            <li class="footer"><a href="{{route('admin.notifications')}}">مشاهدة الكل</a></li>
           </ul>
         </li>
         <!-- Tasks Menu -->
@@ -132,12 +138,15 @@
                 <a href="#" class="btn btn-default btn-flat">الملف الشخصي</a>
               </div>
               <div class="pull-right">
-                <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
+                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat">
      {{ __('خروج') }}</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{-- 
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"
+                  
+                  <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                   @csrf
-                </form>
+                </form> --}}
               {{-- <a href="#" class="btn btn-default btn-flat">Sign out</a> --}}
               </div>
             </li>

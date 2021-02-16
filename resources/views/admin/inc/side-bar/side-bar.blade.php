@@ -74,6 +74,14 @@
           <li class="{{active_create_deal_link()}}"><a href="{{route('admin.add.deal')}}">إضافة عرض</a></li>
           </ul>
         </li>
+        {{-- <li class="treeview {{active_discounts_links_group()}}">
+          <a href="#"><i class="fa fa-percent"></i> <span>التخفيضات</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+          <li class="{{active_discounts_link()}}"><a href="{{route('admin.discounts')}}">كل التخفيضات</a></li>
+          <li class="{{active_create_discount_link()}}"><a href="{{route('admin.create.discount')}}">إضافة تخفيض</a></li>
+          </ul>
+        </li> --}}
+        <li class="{{active_discounts_links_group()}}"><a href="{{route('admin.discounts')}}"><i class="fa fa-percent"></i> <span>التخفيضات</span></a></li>
         <li class="{{active_orders_links_group()}}"><a href="{{route('admin.orders')}}"><i class="fa fa-calendar-check-o"></i> <span>الطلبات</span></a></li>
         <li class="{{active_sales_links_group()}}"><a href="{{route('admin.sales')}}"><i class="fa fa-shopping-cart"></i> <span>المبيعات</span></a></li>      
         <li class="{{active_consumers_links_group()}}"><a href="{{route('admin.consumers')}}"><i class="fa fa-user"></i> <span>المستهلكين</span></a></li>      

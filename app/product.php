@@ -49,49 +49,26 @@ class product extends Model
     
     public function colors()
     {
-        return $this->hasMany('App\product');
+        return $this->hasMany('App\product_colors');
     }
+
+    public function sizes()
+    {
+        return $this->hasMany('App\product_sizes');
+    }
+
     public function copleted_sales()
     {
         return $this->haMany('App\Completed_Sale');
     }
-    // public function colors()
-    // {
-    //     return $this->hasMany('App\color');
-    // }
-
-    // public function sizes()
-    // {
-    //     return $this->hasMany('App\size');
-    // }
+    public function reatings()
+    {
+        return $this->hasMany('App\reating');
+    }
     
-    // public function categories()
-    // {
-    //     return $this->belongsToMany('App\Category');
-    // }
+    public function discount()
+    {
+        return $this->hasOne('App\discount');
+    }
     
-    // public function deals()
-    // {
-    //     return $this->hasMany('App\deal');
-    // }
-
-    // public function order_products()
-    // {
-    //     return $this->hasMany('App\order_product');
-    // }
-
-    // public function sub_categorys()
-    // {
-    //     return $this->hasMany('App\Sub_Category');
-    // }
-
-    // public function sub_sub_categorys()
-    // {
-    //     return $this->hasMany('App\Sub_Sub_Category');
-    // }
-
-    // public function suppliers()
-    // {
-    //     return $this->belongsToMany('App\supplier');
-    // }
 }

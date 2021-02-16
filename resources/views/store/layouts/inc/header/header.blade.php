@@ -76,9 +76,17 @@
                             <li><a href="#"><i class="fa fa-user-o"></i> حسابي</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
                             <li><a href="#"><i class="fa fa-exchange"></i> مقارنة</a></li>
-                            <li><a href="#"><i class="fa fa-check"></i> الدفع</a></li>
+                            <li><a href="#"><i class="fa fa-check"></i> الدفع</a></li>                            
                             <li><a href="#"><i class="fa fa-unlock-alt"></i> تسجيل الدخول</a></li>
                             <li><a href="#"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
+                            <li><i class="fa fa-user-plus"></i><a href="{{route('consumer.logout')}}"></i> تسجيل الخروج</a></li> 
+                                {{--
+                                     onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                                
+                                    <form id="logout-form" action="{{ route('consumer.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>                            --}}
                         </ul>
                     </li>
                     <!-- /Account -->
@@ -88,16 +96,35 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="qty">3</span>
+                                <span class="qty">{{session()->has('cart')?session()->get('cart')->totalQty:'0'}}</span>
                             </div>
                             <strong class="text-uppercase">عربة التسوق:</strong>
                             <br>
-                            <span>35.20 دج</span>
+                            <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                         </a>
                         <div class="custom-menu">
                             <div id="shopping-cart">
                                 <div class="shopping-cart-list">
+                                    @if(session()->has('cart'))
+                                    @foreach(session()->get('cart')->items as $item)
+                                    {{-- {{dd($item['title'])}} --}}
                                     <div class="product product-widget">
+                                        <div class="product-thumb">
+                                            <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-price">{{$item['price']}} دج<span class="qty"> الكمية:{{$item['qty']}}</span></h3>
+                                            <h2 class="product-name"><a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a></h2>
+                                        </div>
+                                        <a href="{{route('cart.remove',$item['id'])}}"><button class="cancel-btn"><i class="fa fa-trash"></i></button></a>
+                                    </div>
+                                    @endforeach
+                                    @else 
+                                   <div class="product product-widget">
+                                   السلة فارغة     
+                                    </div>              
+                                    @endif
+                                    {{-- <div class="product product-widget">
                                         <div class="product-thumb">
                                             <img src="{{url('store')}}/img/thumb-product01.jpg" alt="">
                                         </div>
@@ -106,22 +133,14 @@
                                             <h2 class="product-name"><a href="#">اسم المنتج هنا</a></h2>
                                         </div>
                                         <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                    <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="{{url('store')}}/img/thumb-product01.jpg" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price"> 32.50 دج<span class="qty">x3</span></h3>
-                                            <h2 class="product-name"><a href="#">اسم المنتج هنا</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
+                                    </div> --}}
                                 </div>
+                                @if(session()->has('cart'))
                                 <div class="shopping-cart-btns">
-                                    <button class="main-btn">عرض عربة التسوق</button>
-                                    <button class="primary-btn">الدفع <i class="fa fa-arrow-circle-right"></i></button>
+                                    <a href="{{route('cart.show')}}"><button class="main-btn">عرض عربة التسوق</button></a>
+                                    <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </li>

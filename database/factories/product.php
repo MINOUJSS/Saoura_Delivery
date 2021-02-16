@@ -11,7 +11,7 @@ $factory->define(product::class, function (Faker $faker) {
        'supplier_id'=>random_int(1,5),
        'name'=> $faker->unique()->sentence,
        'brand_id'=> random_int(1,5),
-       'image'=>'product0'.random_int(1,8).'.jpg',       
+       'image'=>'main-product0'.random_int(1,8).'.jpg',       
        'short_description'=> $faker->sentence,
        'long_description'=> $faker->paragraph,
        'Purchasing_price'=> $faker->randomFloat($nbMaxDecimals = null, $min = 200.00, $max = 2000.00),

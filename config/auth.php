@@ -58,6 +58,17 @@ return [
             'hash' => false,
         ],
 
+        'consumer' => [
+            'driver' => 'session',
+            'provider' => 'consumers',
+        ],
+
+        'consumer-api' => [
+            'driver' => 'token',
+            'provider' => 'consumers',
+            'hash' => false,
+        ],
+
 
     ],
 
@@ -87,6 +98,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'consumers' => [
+            'driver' => 'eloquent',
+            'model' => App\Store_Model\Consumer::class,
         ],
 
         // 'users' => [
@@ -120,6 +136,13 @@ return [
 
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'consumers' => [
+            'provider' => 'consumers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

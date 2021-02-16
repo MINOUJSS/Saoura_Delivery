@@ -25,7 +25,10 @@ class CreateReatingsTable extends Migration
             ->references('id')
             ->on('consumers')
             ->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
             $table->decimal('reating',6,2)->default('0.00'); 
+            $table->text('review');
             $table->timestamps();
         });
     }

@@ -226,6 +226,10 @@ class ProductController extends Controller
         }
         else
         {
+            //validate form
+            $this->validate($request,[
+                'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
         //store color for this product
             $product_color=new product_colors;
             $product_color->user_id=$request->input('user_id');
