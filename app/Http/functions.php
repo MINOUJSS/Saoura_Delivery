@@ -1040,7 +1040,8 @@ function has_discount($product_id)
 //print final price
 function price_with_discount($price,$discount)
 {
-    $new_price=($discount * $price) /100;
+    $price_discount=($discount * $price) /100;
+    $new_price=$price - $price_discount;
     return $new_price;
 }
 //get product discount
@@ -1053,4 +1054,34 @@ function get_product_discount($product_id)
     {
         return 0;
     }
+}
+//get product price
+function get_product_price_by_id($product_id)
+{
+    $product=App\product::findOrFail($product_id);
+    if($product!=null){
+        return $product->selling_price;
+    }else
+    {
+        return 0;
+    }
+}
+//function get color code from color id
+function get_color_code_from_id($color_id)
+{
+    //dd($color_id);
+    $color=App\color::findOrFail($color_id);
+    return $color->code;
+}
+//function get color name from color id
+function get_color_name_from_id($color_id)
+{
+    $color=App\color::findOrFail($color_id);
+    return $color->name;
+}
+//function get_product_color_name_form_id_color
+function get_product_brand_name_form_id_brand($id)
+{
+    $brand=App\brand::findOrFail($id);
+    return $brand->name;
 }

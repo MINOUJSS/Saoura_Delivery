@@ -25,11 +25,20 @@ class Cart
   }
 
   public function add($product)
-  {    
+  {
+    if(has_discount($product->id))
+    {
+      $price=price_with_discount($product->selling_price,get_product_discount($product->id));
+    }
+    else
+    {
+      $price=$product->selling_price;
+    } 
+
     $item=[
         'id' =>$product->id,
         'title' =>$product->name,
-        'price' =>$product->selling_price,
+        'price' =>$price,
         'color_id' =>0,
         'size_id' =>0,
         'qty' =>0,
@@ -39,12 +48,12 @@ class Cart
     {
         $this->items[$product->id]=$item;
         $this->totalQty += 1;
-        $this->totalPrice += $product->selling_price;
+        $this->totalPrice += $price;
     }
     else
     {
         $this->totalQty +=1;
-        $this->totalPrice+=$product->selling_price;
+        $this->totalPrice+=$price;
     }
 
         $this->items[$product->id]['qty'] +=1;
@@ -54,11 +63,20 @@ class Cart
   }
 
   public function addWithQty($product,$qty,$color_id,$size_id)
-  {        
+  {  
+    if(has_discount($product->id))
+    {
+      $price=price_with_discount($product->selling_price,get_product_discount($product->id));
+    }
+    else
+    {
+      $price=$product->selling_price;
+    } 
+
     $item=[
         'id' =>$product->id,
         'title' =>$product->name,
-        'price' =>$product->selling_price,
+        'price' =>$price,
         'color_id' =>0,
         'size_id' =>0,
         'qty' =>0,
@@ -68,12 +86,12 @@ class Cart
     {
         $this->items[$product->id]=$item;
         $this->totalQty += $qty;
-        $this->totalPrice += $product->selling_price * $qty;
+        $this->totalPrice += $price * $qty;
     }
     else
     {
         $this->totalQty +=$qty;
-        $this->totalPrice+=$product->selling_price * $qty;
+        $this->totalPrice+=$price * $qty;
     }
 
         $this->items[$product->id]['qty'] +=$qty;

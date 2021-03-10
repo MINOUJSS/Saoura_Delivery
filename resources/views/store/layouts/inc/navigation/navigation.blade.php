@@ -13,17 +13,17 @@
                         <div class="custom-menu">
                             <div class="row">
                                 <div class="col-md-12">
-                                <a href="#"><h3>{{$category->name}}</h3></a>
+                                <a href="{{url('products/category/'.$category->name)}}"><h3>{{$category->name}}</h3></a>
                                     <hr>
                                 </div>
                                 @foreach(get_sub_gategories($category->id) as $sub_category)
                                 <div class="col-md-4">
                                     <ul class="list-links">
                                         <li>
-                                            <h3 class="list-links-title">{{$sub_category->name}}</h3></li>
+                                            <a href="{{url('products/sub-category/'.$sub_category->name)}}"><h3 class="list-links-title">{{$sub_category->name}}</h3></a></li>
                                             @if(has_sub_sub_categories($sub_category->id))
                                             @foreach(get_sub_sub_categories($sub_category->id) as $sub_sub_category)
-                                        <li><a href="#">{{$sub_sub_category->name}}</a></li>
+                                        <li><a href="{{url('products/sub-sub-category/'.$sub_sub_category->name)}}">{{$sub_sub_category->name}}</a></li>
                                             @endforeach
                                         {{-- <li><a href="#">Women’s Clothing</a></li>
                                         <li><a href="#">Men’s Clothing</a></li>
@@ -222,6 +222,7 @@
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                 <li><a href="{{url('/')}}">الرئيسية</a></li>                    
+                <li><a href="{{route('products')}}">المنتجات</a></li>
                     {{-- <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
                         <div class="custom-menu">
                             <div class="row">
@@ -361,15 +362,13 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="#">Sales</a></li> --}}
+                    <li><a href="#">Sales</a></li> 
                     <li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">الصفحات <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
                             <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="{{route('products')}}">المنتجات</a></li>
-                            <li><a href="{{route('product-page')}}">تفاصيل المنتج</a></li>
-                            <li><a href="{{route('checkout')}}">الدفع</a></li>
+                            <li><a href="{{route('products')}}">المنتجات</a></li>                            
                         </ul>
-                    </li>
+                    </li>--}}
                 </ul>
             </div>
             <!-- menu nav -->

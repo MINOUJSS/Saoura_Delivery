@@ -38,7 +38,7 @@
                 <!-- /aside widget -->
 
                 <!-- aside widget -->
-                @include('store.layouts.inc.products.filter-by-gender')
+                {{-- @include('store.layouts.inc.products.filter-by-gender') --}}
                 <!-- /aside widget -->
 
                 <!-- aside widget -->

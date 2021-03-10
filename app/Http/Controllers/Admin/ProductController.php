@@ -245,7 +245,7 @@ class ProductController extends Controller
             if($file->move('admin-css/uploads/images/products/colors/',$imagename))
             {
                 //insert into database;
-                $product_color->image=$imagename;
+                $product_color->color_image=$imagename;
             }
         }                    
         $product_color->save();

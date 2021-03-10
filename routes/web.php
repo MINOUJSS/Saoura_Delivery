@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,13 +13,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/','Store\StoreController@index')->name('store');
-// Route::get('/products','Store\StoreController@products')->name('products');
-Route::get('/product-page','Store\StoreController@product_page')->name('product-page');
+Route::get('/test',function(){
+    $color_ids=[1,2,3];
+    $size_id=1;
+    $brand_id=1;
+    $min_price=500;
+    $max_price=2000;
+    //$products=DB::table('products')
+    $products=App\product_colors::join('products','product_colors.product_id','products.id');    
+    //->join('product_colors','products.id','product_colors.product_id');    
+    $i=-1;
+    foreach($color_ids as $color_id)
+    {
+        $products->orwhere('color_id',$color_id);
+    }
+    //dd($product_ids);
+    //->join('product_sizes','products.id','product_sizes.product_id')
+    //->where('brand_id',$brand_id)
+    //->where('selling_price','>=',$min_price)
+    //->where('selling_price','<=',$max_price)
+    //->whereBetween('selling_price',array($min_price,$max_price))    
+    $r=$products->get();
+    dd($r);
+    echo '<pre>';
+   print_r($r);
+   echo"</pre>";
+});
 // Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes();
 
@@ -161,6 +181,8 @@ Route::prefix('consumer')->group(function(){
 Route::get('/','Store\StoreController@index')->name('store');
 //products
 Route::get('/products', 'Store\ProductController@index')->name('products');
+//shop by result
+Route::get('/shop-by', 'Store\ProductController@shop_bay_result')->name('shop_by');
 //
 Route::get('/product/{id}', 'Store\ProductController@product');
 //add to cart
@@ -177,7 +199,34 @@ Route::get('cart/','Store\ProductController@showCart')->name('cart.show');
 //order
 Route::post('order/create','Store\OrderController@create_order')->name('store.create.order');
 //categories
-Route::get('/products/category/{name}', 'Store\ProductController@index');
+Route::get('/products/category/{name}', 'Store\ProductController@products_by_category');
+//sub categories
+Route::get('/products/sub-category/{name}', 'Store\ProductController@products_by_sub_category');
+//sub sub categories
+Route::get('/products/sub-sub-category/{name}', 'Store\ProductController@products_by_sub_sub_category');
 //rating a product
 Route::post('/rating/create','Store\RatingController@create')->name('store.create.rating');
-
+//remove color from searcher session
+Route::get('/searcher/color/{index}/delete','Store\SearcherSessionController@delete_color')->name('searcher.color.delete');
+//remove size from searcher session
+Route::get('/searcher/size/{index}/delete','Store\SearcherSessionController@delete_size')->name('searcher.size.delete');
+//remove brand from searcher session
+Route::get('/searcher/brand/{index}/delete','Store\SearcherSessionController@delete_brand')->name('searcher.brand.delete');
+//remove min_price from searcher session
+Route::get('/searcher/min-price/delete','Store\SearcherSessionController@delete_min_price')->name('searcher.min-price.delete');
+//remove max_price from searcher session
+Route::get('/searcher/max-price/delete','Store\SearcherSessionController@delete_max_price')->name('searcher.max-price.delete');
+//add color for searcher session
+Route::get('/searcher/color/{id}/add','Store\SearcherSessionController@add_color')->name('searcher.color.add');
+//add size for searcher session
+Route::get('/searcher/size/{id}/add','Store\SearcherSessionController@add_size')->name('searcher.size.add');
+//add brand for searcher session
+Route::get('/searcher/brand/{id}/add','Store\SearcherSessionController@add_brand')->name('searcher.brand.add');
+//add min_price for searcher session
+Route::get('/searcher/max-price/{max_price}/add','Store\SearcherSessionController@add_max_price')->name('searcher.max_price.add');
+//add min_price for searcher session
+Route::get('/searcher/min-price/{min_price}/add','Store\SearcherSessionController@add_min_price')->name('searcher.min_price.add');
+//forget searcher session
+Route::get('/searcher/forget','Store\SearcherSessionController@forget_searcher')->name('searcher.forget');
+//get searcher pragnation
+Route::get('/searcher/get_pagination','Store\SearcherSessionController@get_pagination')->name('searcher.get_pagination');

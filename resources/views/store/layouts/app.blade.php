@@ -160,7 +160,8 @@
 	<script src="{{url('store')}}/js/My_function.js"></script>
 	<script src="{{url('store')}}/js/starrr.js"></script>
 	<script>
-		$(function(){
+		$(function(){												
+			// 
 			var pathname=document.location.pathname.toString();
 			if(pathname =='/products' )
 			{

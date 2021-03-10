@@ -1,6 +1,6 @@
 <div class="store-filter clearfix">
     <div class="pull-left">
-        <div class="row-filter">
+        {{-- <div class="row-filter">
             <a href="#"><i class="fa fa-th-large"></i></a>
             <a href="#" class="active"><i class="fa fa-bars"></i></a>
         </div>
@@ -12,10 +12,10 @@
                     <option value="0">Rating</option>
                 </select>
             <a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-        </div>
+        </div> --}}
     </div>
     <div class="pull-right">
-        <div class="page-filter">
+        {{-- <div class="page-filter">
             <span class="text-uppercase">Show:</span>
             <select class="input">
                     <option value="0">10</option>
@@ -29,6 +29,9 @@
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-        </ul>
-    </div>
+        </ul>  --}}
+        <div id="my_pagination">
+        {{$products->links('vendor.pagination.store-pagination')}}
+        </div>
+    </div> 
 </div>

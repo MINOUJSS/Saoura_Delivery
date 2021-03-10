@@ -75,13 +75,13 @@
                                     irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             </div>
                         </div> --}}
-
-                        <ul class="reviews-pages">
+                        {{$reviews->links('vendor.pagination.reviews-pagination')}}
+                        {{-- <ul class="reviews-pages">
                             <li class="active">1</li>
                             <li><a href="#">2</a></li>
                             <li><a href="#">3</a></li>
                             <li><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -48,7 +48,7 @@
                                     {!!print_product_colors_html($item['id'])!!}
                                     {!!print_product_sizes_html($item['id'])!!}
                                 </td>
-                                <td class="price text-center"><strong>{{$item['price']}} دج</strong><br><del class="font-weak"><small>$40.00</small></del></td>
+                                <td class="price text-center">@if(has_discount($item['id']))<strong>{{$item['price']}} د.ج</strong><br><del class="font-weak"><small>{{get_product_price_by_id($item['id'])}}</small></del>@else <strong>{{get_product_price_by_id($item['id'])}} </strong>@endif</td>
                                 <td class="qty text-center">
                                     
                                     <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                        

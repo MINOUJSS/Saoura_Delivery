@@ -10,4 +10,9 @@ class product_sizes extends Model
     {
         return $this->belongsTo('App\size');
     }
+
+    public function product()
+    {
+        return $this->belongsTo('App\product');
+    }
 }

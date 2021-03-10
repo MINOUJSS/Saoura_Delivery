@@ -124,23 +124,25 @@
 
   // PRICE SLIDER
   var slider = document.getElementById('price-slider');
+  var min_price = document.getElementById('min_price');
+  var max_price = document.getElementById('max_price');  
   if (slider) {
     noUiSlider.create(slider, {
-      start: [1, 999],
+      start: [parseInt(min_price.getAttribute('data-price')), parseInt(max_price.getAttribute('data-price'))],
       connect: true,
       tooltips: [true, true],
       format: {
         to: function(value) {
-          return value.toFixed(2) + '$';
+          return value.toFixed(2) + ' د.ج';
         },
         from: function(value) {
           return value
         }
       },
-      range: {
-        'min': 1,
-        'max': 999
-      }
+      range: {        
+        'min': parseInt(min_price.getAttribute('data-price')),
+        'max': parseInt(max_price.getAttribute('data-price').toString())
+      }      
     });
   }
 

@@ -31,7 +31,7 @@ class CreateProductColorsTable extends Migration
             ->on('colors')
             ->onDelete('cascade');
             $table->integer('qty');
-            $table->string('image')->default('/');
+            $table->string('color_image')->default('/');
             $table->timestamps();
         });
     }
