@@ -25,11 +25,11 @@ class DealController extends Controller
         return view('admin.deals',compact('deals'));
     }
 
-    public function create()
+    public function create_slider()
     {
         return view('admin.add-deal');
     }
-    public function destroy($id)
+    public function destroy_slider($id)
     {
         $deal=deal::findOrfail($id);
     //delete the image uploaded from deals folder
@@ -42,19 +42,19 @@ class DealController extends Controller
         //redurect 
         return redirect()->back();
     }
-    public function edit($id)
+    public function edit_slider($id)
     {
         $deal=deal::findOrfail($id);    
         return view('admin.edit-deal',compact('deal'));
     }
-    public function update(Request $request)
+    public function update_slider(Request $request)
     {
         //validate data
         $this->validate($request,[
             'product_id' =>'required|numeric',
             'title'=>'required|min:6',
             'daitels'=>'required|min:50',
-            'descount'=>'required|numeric',
+            // 'descount'=>'required|numeric',
             'link'=>'required|url',
             'image' =>'mimes:jpeg,bmp,png'
         ]);
@@ -81,7 +81,7 @@ class DealController extends Controller
         $deal->product_id=$request->input('product_id');
         $deal->title=$request->input('title');
         $deal->daitels=$request->input('daitels');
-        $deal->descount=$request->input('descount');
+        // $deal->descount=$request->input('descount');
         $deal->link=$request->input('link');
         $deal->update();
         //alert success message
@@ -91,14 +91,14 @@ class DealController extends Controller
         return redirect()->back();
 
     }
-    public function store(Request $request)
+    public function store_slider(Request $request)
     {
                 // validate data
                 $this->validate($request,[
                     'product_id' =>'required|numeric',
                     'title'=>'required|min:6',
                     'daitels'=>'required|min:50',
-                    'descount'=>'required|numeric',
+                    // 'descount'=>'required|numeric',
                     'link'=>'required|url',
                     'image' =>'required|mimes:jpeg,bmp,png'
                 ]); 
@@ -108,7 +108,7 @@ class DealController extends Controller
                 $deal->product_id=$request->input('product_id');
                 $deal->title=$request->input('title');
                 $deal->daitels=$request->input('daitels');
-                $deal->descount=$request->input('descount');
+                // $deal->descount=$request->input('descount');
                 $deal->link=$request->input('link');
                 //upload image
                 if($file=$request->file('image'))

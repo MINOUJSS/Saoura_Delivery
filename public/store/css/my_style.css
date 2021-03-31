@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5, h6
 {
     font-family: 'Cairo', sans-serif !important;
 }
+li
+{
+  font-family: 'Cairo', sans-serif !important;
+}
 /*------------------*/
   .square_radio
   {    
@@ -20,4 +24,29 @@ h1, h2, h3, h4, h5, h6
     margin-right:15px;
     padding:5px;      
   }
- 
+  
+ /*::::::::: start dashboard css::::::::::: */
+.dash-div
+{
+  border:1px solid #F8694A;
+  padding:10px;
+  margin:5px;
+}
+.dash-div:hover
+{
+  color:#F8694A;
+  border:1px solid #000;
+}
+.dash-div:hover h4
+{
+  color:#F8694A;
+}
+.consumer-menu
+{
+  font-size:20px;
+}
+.consumer-menu li
+{
+  margin-bottom: 5px;
+}
+ /*::::::::: end dashboard css::::::::::: */

@@ -14,30 +14,19 @@ use Illuminate\Support\Facades\DB;
 |
 */
 Route::get('/test',function(){
-    $color_ids=[1,2,3];
-    $size_id=1;
-    $brand_id=1;
-    $min_price=500;
-    $max_price=2000;
-    //$products=DB::table('products')
-    $products=App\product_colors::join('products','product_colors.product_id','products.id');    
-    //->join('product_colors','products.id','product_colors.product_id');    
-    $i=-1;
-    foreach($color_ids as $color_id)
-    {
-        $products->orwhere('color_id',$color_id);
-    }
-    //dd($product_ids);
-    //->join('product_sizes','products.id','product_sizes.product_id')
-    //->where('brand_id',$brand_id)
-    //->where('selling_price','>=',$min_price)
-    //->where('selling_price','<=',$max_price)
-    //->whereBetween('selling_price',array($min_price,$max_price))    
-    $r=$products->get();
-    dd($r);
-    echo '<pre>';
-   print_r($r);
-   echo"</pre>";
+    $date="2021-03-30 13:33:00";
+    //function get_dis_product_exp_day
+// function get_dis_product_exp_day($date)
+// {
+//     $to_date=new DateTime($date);
+//     $from_now=new DateTime();
+//     $interval=$to_date->diff($from_now);
+//         return $interval->format('%d');
+// }    
+    dd(get_dis_product_exp_sec($date));
+//     echo '<pre>';
+//    print_r($r);
+//    echo"</pre>";
 });
 // Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes();
@@ -75,13 +64,20 @@ Route::prefix('admin')->group(function(){
     Route::get('/sub-sub-category/{id}/edit','Admin\Sub_Sub_CategoryController@edite');
     Route::get('/sub-sub-category/get_sub_sub_categories_from_category_id/{id}','Admin\Sub_Sub_CategoryController@get_sub_sub_categories_from_category_id');        
     Route::post('/sub_sub_category/update','Admin\Sub_Sub_CategoryController@update')->name('admin.sub_sub_category.update');
-    //deals
-    Route::get('/deals','Admin\DealController@index')->name('admin.deals');
-    Route::get('/deal/create','Admin\DealController@create')->name('admin.add.deal');
-    Route::post('/deal/store','Admin\DealController@store')->name('admin.deal.store');
-    Route::get('/deal/{id}/delete','Admin\DealController@destroy');
-    Route::get('/deal/{id}/edit','Admin\DealController@edit');
-    Route::post('/deal/update','Admin\DealController@update')->name('admin.deal.update');
+    //slider deals
+    Route::get('/slider-deals','Admin\DealController@index')->name('admin.slider.deals');
+    Route::get('/slider-deal/create','Admin\DealController@create_slider')->name('admin.add.slider.deal');
+    Route::post('/slider-deal/store','Admin\DealController@store_slider')->name('admin.deal.store');
+    Route::get('/slider-deal/{id}/delete','Admin\DealController@destroy_slider');
+    Route::get('/slider-deal/{id}/edit','Admin\DealController@edit_slider');
+    Route::post('/slider-deal/update','Admin\DealController@update_slider')->name('admin.slider.deal.update');
+    //sid deals
+    Route::get('/sid-deals','Admin\DealController@sid_deal_index')->name('admin.sid.deals');
+    Route::get('/sid-deal/create','Admin\DealController@create_slider')->name('admin.add.sid.deal');
+    Route::post('/sid-deal/store','Admin\DealController@store_slider')->name('admin.sid.deal.store');
+    Route::get('/sid-deal/{id}/delete','Admin\DealController@destroy_slider');
+    Route::get('/sid-deal/{id}/edit','Admin\DealController@edit_slider');
+    Route::post('/sid-deal/update','Admin\DealController@update_slider')->name('admin.sid.deal.update');
     //products
     Route::get('/products','Admin\ProductController@index')->name('admin.products');    
     Route::get('/product/{id}/delete','Admin\ProductController@destroy');
@@ -175,12 +171,14 @@ Route::prefix('consumer')->group(function(){
     Route::get('/register','Auth\ConsumerRegisterController@ShowRegisterForm')->name('consumer.register');
     Route::post('/register','Auth\ConsumerRegisterController@register')->name('consumer.register.submit');
     //dashboard (index)
-    Route::get('/','Store\ConsumerController@index')->name('consumer.dashboard');
+    Route::get('/{id}/dashboard','Store\ConsumerController@index')->name('consumer.dashboard');
 });
 //store
 Route::get('/','Store\StoreController@index')->name('store');
 //products
 Route::get('/products', 'Store\ProductController@index')->name('products');
+//find products
+Route::get('/products/search', 'Store\ProductController@find_products')->name('store.product.find');
 //shop by result
 Route::get('/shop-by', 'Store\ProductController@shop_bay_result')->name('shop_by');
 //
@@ -230,3 +228,23 @@ Route::get('/searcher/min-price/{min_price}/add','Store\SearcherSessionControlle
 Route::get('/searcher/forget','Store\SearcherSessionController@forget_searcher')->name('searcher.forget');
 //get searcher pragnation
 Route::get('/searcher/get_pagination','Store\SearcherSessionController@get_pagination')->name('searcher.get_pagination');
+//wish list route
+Route::get('/consumer/wish-list','Store\ConsumerController@wish_list')->name('consumer.wish_list');
+//compar list route
+Route::get('/consumer/compar-list','Store\ConsumerController@compar_list')->name('consumer.compar_list');
+//add to wish list route
+Route::get('/consumer/wish-list/add/{product_id}','Store\ConsumerController@add_to_wish_list')->name('consumer.wish_list.add');
+//add to compar list route
+Route::get('/consumer/compar-list/add/{product_id}','Store\ConsumerController@add_to_compar_list')->name('consumer.compar_list.add');
+//edit consumer account
+Route::get('/consumer/{consumer_id}/edit-account','Store\ConsumerController@edit_account')->name('consumer.edit.account');
+//update consumer account
+Route::post('/consumer/update-account','Store\ConsumerController@update_account')->name('consumer.update.account');
+//edit consumer password
+Route::get('/consumer/{consumer_id}/edit-password','Store\ConsumerController@edit_password')->name('consumer.edit.password');
+//update consumer password
+Route::post('/consumer/update-password','Store\ConsumerController@update_password')->name('consumer.update.password');
+//edit consumer orders
+Route::get('/consumer/{consumer_id}/orders','Store\ConsumerController@orders')->name('consumer.orders');
+//load-dis-products
+Route::get('/load-dis-products/{id}','Store\StoreController@dis_products');

@@ -53,11 +53,11 @@
                                     
                                     <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                        
                                     <input class="btn btn-primary" type="submit" name="submit" value="حفظ">                                        
+                                </form>
                                 </td>
                                 <td class="total text-center"><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></td>
                                 <td class="text-right"><a href="{{route('cart.remove',$item['id'])}}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
-                            </tr>
-                             </form>
+                            </tr>                             
                             @endforeach
                             @endif                                
                         </tbody>                            

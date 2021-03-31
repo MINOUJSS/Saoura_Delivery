@@ -1,5 +1,10 @@
-@extends('auth.consumer.layouts.app')
-
+@extends('store.layouts.app')
+@section('header')
+@include('store.layouts.inc.header.header')
+@endsection
+@section('navigation')
+@include('store.layouts.inc.navigation.navigation')
+@endsection
 @section('content')
  <!-- BREADCRUMB -->
  <div id="breadcrumb">
@@ -17,7 +22,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h4 class="text-uppercase">تسجيل الدخول</h4>
+                @if(session()->has('message'))
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-warning"></i> إنتبه!</h4>
+                    تأكد من معلوماتك و كلمة المرور
+                  </div>
+                @endif
+                <p>ليس لديك حساب بالموقع و ترغب بإنشاء حساب جديد؟... <a class="text-primary" href="{{route('consumer.register')}}">تفضل من هنا</a></p>
+                <h4 class="text-uppercase">تسجيل الدخول</h4>                
                 <p>أدخل بريدك الإلكتروني و كلمة المرور</p>
                 <form class="review-form" method="POST" action="{{ route('consumer.login.submit') }}">
                     @csrf

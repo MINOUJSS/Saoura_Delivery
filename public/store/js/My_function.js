@@ -1,5 +1,7 @@
 //
-$(document).ready(function(){
+$(document).ready(function(){                                                              
+   //document.getElementById('countdown').click();      			
+	//setTimeout(countDown,1000);       
    // var consumer_rating=document.getElementById('consumer_rating').getAttribute('data-rating');                 
    //get min price change     
       $('.noUi-handle-lower').on('mouseup',function(event){
@@ -246,17 +248,132 @@ function sort_product_result()
       }
    });   
 };
-//function loade pagination
-// function load_pagination(data)
-// {
-//    // $('#my_pagination').load('store/pagination.php');
-//    //send data to products controler
-//    // $.ajax({
-//    //    url:'/searcher/get_pagination',
-//    //    method:'GET',
-//    //    data:{products:data},
-//    //    success:function(result){
-//    //       console.log(result);
-//    //    }
-//    // });
-// }
+//function add to carte
+function add_to_cart(product_id)
+{
+   //send data to products controler to add to catr function   
+   var host_name=document.location.protocol+'//'+document.location.host;
+   $.ajax({
+      url:host_name+'/product/'+product_id+'/add-to-cart',
+      method:'GET',
+      success:function(data){
+         $('#cart_section').fadeIn(500).html(data);  
+         //alert success
+         Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: 'تم إضافة المنتج إلى السلة',
+            showConfirmButton: false,
+            timer: 1500
+          })
+      }
+   });
+}
+
+//function add to wish-list
+function add_to_wish_list(product_id)
+{
+   //send data to products controler to add to catr function   
+   var host_name=document.location.protocol+'//'+document.location.host;
+   $.ajax({
+      url:host_name+'/consumer/wish-list/add/'+product_id,
+      method:'GET',
+      success:function(data){
+         //alert(data);
+         if(data)
+         {
+            $('#wish_list_button'+product_id).css('color','#F8694A');
+            //alert success
+         Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: 'تم إضافة المنتج إلى قائمة المفضلة',
+            showConfirmButton: false,
+            timer: 1500
+          });
+         }else
+         {
+            $('#wish_list_button'+product_id).css('color','#30323A');
+            //alert success
+         Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: 'تم حذف المنتج إلى قائمة المفضلة',
+            showConfirmButton: false,
+            timer: 1500
+          });
+         }
+         
+      }
+   });
+}
+
+//function add to compar-list
+function add_to_compar_list(product_id)
+{
+   //send data to products controler to add to catr function   
+   var host_name=document.location.protocol+'//'+document.location.host;
+   $.ajax({
+      url:host_name+'/consumer/compar-list/add/'+product_id,
+      method:'GET',
+      success:function(data){
+         //alert(data);
+         if(data)
+         {
+            $('#compar_list_button'+product_id).css('color','#F8694A');
+            //alert success
+         Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: 'تم إضافة المنتج إلى قائمة المقارنة',
+            showConfirmButton: false,
+            timer: 1500
+          });
+         }else
+         {
+            $('#compar_list_button'+product_id).css('color','#30323A');
+            //alert success
+         Swal.fire({
+            //position: 'top-end',
+            icon: 'success',
+            title: 'تم حذف المنتج إلى قائمة المقارنة',
+            showConfirmButton: false,
+            timer: 1500
+          });
+         }
+         
+      }
+   });
+}
+//function get_interval_seconds()
+function countDown(index,date)
+{
+var eventDate=new Date(date);
+var now=new Date();
+var currentTime=now.getTime();
+var eventTime=eventDate.getTime();   
+var remTime= eventTime-currentTime;
+var s=Math.floor(remTime/1000);
+var m=Math.floor(s/60);
+var h=Math.floor(m/60);
+var d=Math.floor(h/24);
+h%=24;
+m%=60;
+s%=60;
+d=(d<10)?"0"+d :d;
+h=(h<10)?"0"+h :h;
+m=(m<10)?"0"+m :m;
+s=(s<10)?"0"+s :s;
+if(d>0){
+document.getElementById("days"+index).textContent=d+" ي";
+document.getElementById("heurs"+index).textContent=h+" سا";
+document.getElementById("munites"+index).textContent=m+" د";
+// document.getElementById("seconds"+index).textContent=s;
+}else
+{
+document.getElementById("heurs"+index).textContent=h+" سا";
+document.getElementById("munites"+index).textContent=m+" د";
+document.getElementById("seconds"+index).textContent=s+" ثا";
+}
+setTimeout(alert('1000'),1000);
+}

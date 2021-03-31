@@ -29,12 +29,12 @@ class ConsumerLoginController extends Controller
         if(Auth::guard('consumer')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember))
         {
             //if successful ,redirect to dashboard
-            // return redirect()->intended(route('consumer.dashboard'));
-            return redirect()->back();
+            return redirect()->intended(route('consumer.dashboard',Auth::guard('consumer')->user()->id));
+            //return redirect()->back();
         }        
             
         //if unsuccessful redirect back to login form with data
-        return redirect()->back()->withInput($request->only('email','remember'));                        
+        return redirect(route('consumer.login'))->withInput($request->only('email','remember'))->with('message','تأكد من معلوماتك و كلمة المرور');                        
 
     }
     public function logout()

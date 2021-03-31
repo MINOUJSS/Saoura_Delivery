@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\product;
 use App\category;
 use App\Sub_Category;
@@ -17,7 +18,8 @@ use App\product_colors;
 use App\product_sizes;
 use App\Store_Model\Cart;
 use App\Store_Model\Searcher;
-
+use App\searsh_word;
+use Auth;
 class ProductController extends Controller
 {
     public function index()
@@ -418,7 +420,64 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $cart->add($product);
         session()->put('cart',$cart);
          //dd($cart);
-        return redirect()->back();
+        //return redirect()->back();
+        //start output    
+        $output='<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div class="header-btns-icon">
+                                <i class="fa fa-shopping-cart"></i>';
+                                $totalQty=session()->has('cart')?session()->get('cart')->totalQty:'0';
+                                $output.='<span class="qty">'.$totalQty.'</span>
+                            </div>
+                            <strong class="text-uppercase">عربة التسوق:</strong>
+                            <br>';
+                            $totalPrice=session()->has('cart')?session()->get('cart')->totalPrice:'0.00';
+                            $output.='<span>'.$totalPrice.' دج</span>
+                        </a>
+                        <div class="custom-menu">
+                            <div id="shopping-cart">
+                                <div class="shopping-cart-list">';
+                                    if(session()->has('cart'))
+                                    {
+                                    foreach(session()->get('cart')->items as $item)
+                                    {
+                                    $output.='<div class="product product-widget">
+                                        <div class="product-thumb">';
+                                        $image=url('admin-css/uploads/images/products/'.$item['image']);
+                                            $output.='<img src="'.$image.'" alt="">
+                                        </div>
+                                        <div class="product-body">';
+                                        $price=$item['price'];
+                                        $qty=$item['qty'];
+                                        $titel=$item['title'];
+                                        $url=url('product/'.$item['id']);
+                                           $output.='<h3 class="product-price">'.$price.' دج<span class="qty"> الكمية:'.$qty.'</span></h3>';
+                                            $output.='<h2 class="product-name"><a href="'.$url.'">'.$titel.'</a></h2>
+                                        </div>';
+                                        $route=route('cart.remove',$item['id']);
+                                        $output.='<a href="'.$route.'"><button class="cancel-btn"><i class="fa fa-trash"></i></button></a>
+                                    </div>';
+                                    }
+                                    }
+                                    else
+                                    { 
+                                   $output.='<div class="product product-widget">
+                                   السلة فارغة     
+                                    </div>';           
+                                    }                                    
+                                $output.='</div>';
+                                if(session()->has('cart'))
+                                {
+                                $output.='<div class="shopping-cart-btns">';
+                                $show_cart_route=route('cart.show');
+                                $checkout_route=route('checkout');
+                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض عربة التسوق</button></a>';
+                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                </div>';
+                                }
+                            $output.='</div>
+                        </div>';
+        //end output       
+        return $output;
 
     }
 
@@ -513,170 +572,43 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 
-    // public function shop_bay_result()
-    // {
-    //     if(session()->has('searcher'))
-    //     {            
-    //         if(count(session()->get('searcher')->query['colors'])!=0)
-    //         {
-    //             foreach(session()->get('searcher')->query['colors'] as $color_id)
-    //             {
-    //                 $product_color=product_colors::find($color_id);
-    //                 $p_c[]=$product_color->product;
-    //                 if($product_color!=null){
-    //                     $pro_id_o_s_c[]=$product_color->product_id;
-    //                 }else
-    //                 {
-    //                     $p_c[]=null;
-    //                     $pro_id_o_s_c[]=null; 
-    //                 }
-    //             }
-    //         }else
-    //         {
-    //             $p_c[]=null;
-    //             $pro_id_o_s_c[]=null;
-    //         }
-    //         if(count(session()->get('searcher')->query['sizes'])!=0)
-    //         {
-    //             foreach(session()->get('searcher')->query['sizes'] as $size_id)
-    //             {
-    //                 $product_size=product_sizes::find($size_id);
-    //                 $p_s[]=$product_size->product;
-    //                 if($product_size!=null){
-    //                 $pro_id_o_s_s[]=$product_size->product_id;
-    //             }else
-    //             {
-    //                 $p_s[]=null;
-    //                 $pro_id_o_s_s[]=null; 
-    //             }
-    //             }
-    //         }else
-    //         {
-    //             $p_s[]=null;
-    //             $pro_id_o_s_s[]=null;
-    //         }
-    //         //
-    //         if(count(session()->get('searcher')->query['brands'])!=0)
-    //         {
-    //             foreach(session()->get('searcher')->query['brands'] as $brand_id)
-    //             {
-    //                 $product_brands=product::where('brand_id',$brand_id)->get();
-                    
-    //                 if(count($product_brands)!=0){
-    //                     foreach($product_brands as $prod)
-    //                     {
-    //                         $p_b[]=$prod;
-    //                         $pro_id_o_s_b[]=$prod->id;
-    //                     }                    
-                    
-    //             }else
-    //             {
-    //                 $p_b[]=null;
-    //                 $pro_id_o_s_b[]=null; 
-    //             }
-    //          }
-    //         }else
-    //         {
-    //             $p_b[]=null;
-    //             $pro_id_o_s_b[]=null;
-    //         }
-    //         //
-    //         if(session()->get('searcher')->query['min_price']!=0 && session()->get('searcher')->query['max_price']==0)
-    //         {                      
-    //                 $pro_min_max=product::where('selling_price','>=',session()->get('searcher')->query['min_price'])->get();
-    //                 foreach($pro_min_max as $prod)
-    //                 {
-    //                     $p_m_m[]=$prod;
-    //                     $pro_id_b_m_m_p[]=$prod->id;
-    //                 }                    
-    //         }elseif(session()->get('searcher')->query['min_price']==0 && session()->get('searcher')->query['max_price']!=0)
-    //         {
-    //                 $pro_min_max=product::where('selling_price','<=',session()->get('searcher')->query['max_price'])->get();
-    //                 foreach($pro_min_max as $prod)
-    //                 {
-    //                     $p_m_m[]=$prod;
-    //                     $pro_id_b_m_m_p[]=$prod->id;
-    //                 }
-    //         }elseif(session()->get('searcher')->query['min_price']!=0 && session()->get('searcher')->query['max_price']!=0)
-    //         {
-    //             $pro_min_max=product::whereBetween('selling_price',[session()->get('searcher')->query['min_price'],session()->get('searcher')->query['max_price']])->get();                
-    //                 foreach($pro_min_max as $prod)
-    //                 {
-    //                     $p_m_m[]=$prod;
-    //                     $pro_id_b_m_m_p[]=$prod->id;
-    //                 }                
-    //         }else
-    //         {
-    //             $p_m_m[]=null;
-    //             $pro_id_b_m_m_p[]=null;                  
-    //         } 
-    //         $null_array[]=null;        
-    //         $prod_ids_array=array_unique(array_merge($p_c,$p_s,$p_b,$p_m_m));
-    //         if(in_array(null,$prod_ids_array))
-    //         {
-    //             $new_prod_ids=array_diff($prod_ids_array,$null_array);
-    //         }else
-    //         {
-    //             $new_prod_ids=$prod_ids_array; 
-    //         } 
-    //         //dd($new_prod_ids);
-    //         $products=$new_prod_ids;
-    //         // foreach($new_prod_ids as $id)
-    //         // {
-    //         //     $products[]=product::findOrFail($id);
-    //         // } 
-            
-    //         //
-    //     }else
-    //     {
-    //         $products=product::orderBy('id','desc')->get();
-    //     }
-    //     //dd($products);
-    //     $output='';
-    //     if(count($products)>0){
-    // foreach($products as $index => $product){
-    // $output.='<!-- Product Single -->
-    // <div class="col-md-4 col-sm-6 col-xs-6">
-    //     <div class="product product-single">
-
-    //         <div class="product-rating pull-left">
-    //             <div name="products_ratings" data-rating="'.get_product_reating_from_id($product->id).'"></div>
-    //             <div class="product-star-'.$index.' starrr"></div>
-    //         </div>
-
-    //         <div class="product-thumb">
-    //             <div class="product-label">';
-    //                 if(is_new_product($product->created_at)){
-    //                 $output.='<span>جديد</span>';
-    //                 }
-    //                 if(has_discount($product->id)){
-    //                 $output.='<span class="sale">- %'.$product->discount->discount.'</span>';
-    //                 }
-    //             $output.='</div>
-    //             <a href="'.url("/product/".$product->id).'"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>                
-    //             <img src="'.url('/admin-css/uploads/images/products/'.$product->image).'" alt="'.$product->name.'" height="350" width="262">
-    //         </div>
-    //         <div class="product-body"> 
-    //             <h3 class="product-price">';if(has_discount($product->id)){ $output.=price_with_discount($product->selling_price,get_product_discount($product->id)).' د.ج <del class="product-old-price">'.$product->selling_price.' د.ج </del>';}else{ $output.=$product->selling_price.' د.ج ';}$output.='</h3>';
-                
-    //         $output.='<h2 class="product-name"><a href="#">'.substr($product->name,0,20).'</a></h2>
-    //             <div class="product-btns">
-    //                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-    //                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-    //                 <a href="'.route('cart.add',$product->id).'"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
-    // <!-- /Product Single -->
-    // <div class="clearfix visible-sm visible-xs"></div>';
-    //     }
-    //     }else{ 
-    // $output.='<p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i> لا توجد منتجات بالمتجر!</p>';
-    //     }
-
-    //     return $output;
-    // }
+    public function find_products(Request $request)
+    {
+        //validation
+        $this->validate($request,[
+            'query'=>'required'
+        ]);
+        //get consumer id
+            if(Auth::guard('consumer')->check())
+            {
+                $consumer_id=Auth::guard('consumer')->user()->id;
+            }
+            else
+            {
+                $consumer_id=0;
+            }
+        //
+        $query=$request->input('query');         
+        //insert query in search word table
+        $search_word=new searsh_word;
+        $search_word->consumer_id=$consumer_id;
+        $search_word->word=$query;
+        $search_word->save();
+        //
+        $category_id=$request->input('category'); 
+        //if category_id=0
+        if($category_id==0)
+        {
+            $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->paginate(12); 
+        }
+        else
+        {
+        //ifcategory_id!=0
+        $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('category_id',$category_id)->paginate(12);
+        }        
+        return view('store.search',compact('products','query','category_id')); 
+        //return view('store.search');
+    }
 
     public function shop_bay_result()
     {       

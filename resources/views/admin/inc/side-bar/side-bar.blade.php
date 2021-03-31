@@ -67,11 +67,18 @@
           </ul>
         </li>
         <li class=""><a href="#"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>      
-      <li class="treeview {{active_deals_links_group()}}">
-          <a href="#"><i class="fa fa-bullhorn"></i> <span>العروض</span> <i class="fa fa-angle-left pull-right"></i></a>
+      <li class="treeview {{active_slider_deals_links_group()}}">
+          <a href="#"><i class="fa fa-bullhorn"></i> <span>عروض السلايدر</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-          <li class="{{active_deals_link()}}"><a href="{{route('admin.deals')}}">كل العروض</a></li>
-          <li class="{{active_create_deal_link()}}"><a href="{{route('admin.add.deal')}}">إضافة عرض</a></li>
+          <li class="{{active_slider_deals_link()}}"><a href="{{route('admin.slider.deals')}}">كل العروض</a></li>
+          <li class="{{active_create_slider_deal_link()}}"><a href="{{route('admin.add.slider.deal')}}">إضافة عرض</a></li>
+          </ul>
+        </li>
+        <li class="treeview {{active_sid_deals_links_group()}}">
+          <a href="#"><i class="fa fa-bullhorn"></i> <span>عروض جانبية</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+          <li class="{{active_sid_deals_link()}}"><a href="{{route('admin.sid.deals')}}">كل العروض</a></li>
+          <li class="{{active_create_sid_deal_link()}}"><a href="{{route('admin.add.sid.deal')}}">إضافة عرض</a></li>
           </ul>
         </li>
         {{-- <li class="treeview {{active_discounts_links_group()}}">

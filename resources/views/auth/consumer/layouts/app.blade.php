@@ -555,7 +555,7 @@
                             <ul class="custom-menu">
                                 <li><a href="index.html">الرئيسية</a></li>
                                 <li><a href="{{route('products')}}">المنتجات</a></li>
-                                <li><a href="{{route('product-page')}}">تفاصيل المنتج</a></li>
+                                <li><a href="#">تفاصيل المنتج</a></li>
                                 <li><a href="{{route('checkout')}}">الدفع</a></li>
                             </ul>
                         </li>

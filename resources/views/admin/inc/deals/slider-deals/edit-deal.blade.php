@@ -20,7 +20,7 @@
           <h3 class="box-title">تعديل عرض خاص</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="{{route('admin.deal.update')}}" method="POST" enctype="multipart/form-data">
+        <form role="form" action="{{route('admin.slider.deal.update')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <input type="hidden" name="deal_id" value="{{$deal->id}}">
           <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
@@ -52,7 +52,7 @@
               </span>
             @endif
             </div>
-            <div class="form-group {{$errors->has('descount')? 'has-error':''}}">
+            {{-- <div class="form-group {{$errors->has('descount')? 'has-error':''}}">
               <label for="descount">قيمة التخفيض</label>
               <input type="number" class="form-control" name="descount" id="descount" placeholder="أكتب قيمة التخفيض هنا" value="@if(!old('descount')){{$deal->descount}}@else {{old('descount')}}@endif">
               @if($errors->has('descount'))
@@ -60,7 +60,7 @@
                 {{ $errors->first('descount')}}
               </span>
             @endif
-            </div>
+            </div> --}}
             <div class="form-group {{$errors->has('link')? 'has-error':''}}">
               <label for="link">رابط المنتج</label>
               <input type="text" class="form-control" name="link" id="link" placeholder="أكتب رابط المنتج هنا" value="@if(!old('link')){{$deal->link}}@else {{old('link')}}@endif">

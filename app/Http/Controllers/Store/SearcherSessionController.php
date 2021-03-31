@@ -889,11 +889,5 @@ class SearcherSessionController extends Controller
     </ul>';
     }       
     return $output;                
-    }
-
-    //get pagination
-    // public function get_pagination($products)
-    // {        
-    //     return $products;
-    // }
+    }    
 }

@@ -71,6 +71,7 @@ class OrderController extends Controller
         $order_product=new order_product;
         $order_product->order_id=$order->id;
         $order_product->product_id=$request->product_id[$x];
+        $order_product->consumer_id=$consumer_id;
         $order_product->qty=$request->product_qty[$x];
         $order_product->color_id=$request->product_color[$x];
         $order_product->size_id=$request->product_size[$x];

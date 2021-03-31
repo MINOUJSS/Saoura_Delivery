@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class wish_list extends Model
+class compar_list extends Model
 {
     public function product()
     {

@@ -102,7 +102,7 @@ function active_create_sub_sub_categories_link()
     }      
 }
 //:::::::::::function to active deals links group
-function active_deals_links_group()
+function active_slider_deals_links_group()
 { 
     $deals_url=url('/admin/deals'); 
     $create_deal_url=url('/admin/deal/create');
@@ -125,7 +125,7 @@ function active_deals_links_group()
     }      
 }
 //:::::::::::function to active deals links
-function active_deals_link()
+function active_slider_deals_link()
 { 
     $deals_url=url('/admin/deals'); 
     $current_url=Request::url();
@@ -139,7 +139,58 @@ function active_deals_link()
     }      
 }
 //:::::::::::function to active create deal link
-function active_create_deal_link()
+function active_create_slider_deal_link()
+{ 
+    $create_deal_url=url('/admin/deal/create');
+    $current_url=Request::url();
+    if($current_url==$create_deal_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active sid deals links group
+function active_sid_deals_links_group()
+{ 
+    $deals_url=url('/admin/deals'); 
+    $create_deal_url=url('/admin/deal/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);    
+    if(count($url_array)>5){
+    $edit_deal_url=url('/admin/deal/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_deal_url="";   
+    }
+    $current_url=Request::url();
+    if($current_url==$deals_url || $current_url==$create_deal_url || $current_url==$edit_deal_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active sid deals links
+function active_sid_deals_link()
+{ 
+    $deals_url=url('/admin/deals'); 
+    $current_url=Request::url();
+    if($current_url==$deals_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create sid deal link
+function active_create_sid_deal_link()
 { 
     $create_deal_url=url('/admin/deal/create');
     $current_url=Request::url();
@@ -786,7 +837,8 @@ function is_home()
 { 
     $home_url=url('/'); 
     $current_url=Request::url();
-    if($current_url==$home_url)
+    $slids=App\deal::orderBy('id','desc')->get();
+    if($current_url==$home_url && $slids->count()>0)
     {
         return '';
     }
@@ -1084,4 +1136,81 @@ function get_product_brand_name_form_id_brand($id)
 {
     $brand=App\brand::findOrFail($id);
     return $brand->name;
+}
+//function products_counter
+function products_counter($nember)
+{
+    if($nember==0)
+    {
+        return 'منتج';
+    }elseif($nember==1)
+    {
+        return 'منتج واحد';
+    }elseif($nember==2)
+    {
+        return 'منتجين';
+    }elseif($nember >= 3 && $nember<=10)
+    {
+        return 'منتجات';
+    }else
+    {
+        return 'منتج';
+    }
+}
+//function if in wish list
+function in_wish_list($consumer_id,$product_id)
+{
+    $w_list=App\wish_list::where('consumer_id',$consumer_id)->where('product_id',$product_id)->first();
+    if($w_list==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//function if in compar list
+function in_compar_list($consumer_id,$product_id)
+{
+    $c_list=App\compar_list::where('consumer_id',$consumer_id)->where('product_id',$product_id)->first();
+    if($c_list==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//function get_dis_product_exp_day
+function get_dis_product_exp_day($date)
+{
+    $to_date=new DateTime($date);
+    $from_now=new DateTime();
+    $interval=$to_date->diff($from_now);
+    //
+    return $interval->format('%d');
+}
+function get_dis_product_exp_heur($date)
+{
+    $to_date=new DateTime($date);
+    $from_now=new DateTime();
+    $interval=$to_date->diff($from_now);
+    //
+    return $interval->format('%h');
+}
+function get_dis_product_exp_munite($date)
+{
+    $to_date=new DateTime($date);
+    $from_now=new DateTime();
+    $interval=$to_date->diff($from_now);
+    //
+    return $interval->format('%i');
+}
+function get_dis_product_exp_sec($date)
+{
+    $to_date=new DateTime($date);
+    $from_now=new DateTime();
+    $interval=$to_date->diff($from_now);
+    //
+    return $interval->format('%s');
 }

@@ -160,10 +160,14 @@
 	<script src="{{url('store')}}/js/My_function.js"></script>
 	<script src="{{url('store')}}/js/starrr.js"></script>
 	<script>
-		$(function(){												
+		$(function(){																					
 			// 
+
+   //
 			var pathname=document.location.pathname.toString();
-			if(pathname =='/products' )
+			var path_array=document.location.pathname.split('/');
+            var cat_or_sub_cat_name=path_array[path_array.length-1];
+			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name)
 			{
 				//			
 				var product_ratings=document.getElementsByName('products_ratings');

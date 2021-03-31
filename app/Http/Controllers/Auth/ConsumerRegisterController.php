@@ -56,6 +56,6 @@ class ConsumerRegisterController extends Controller
         $consumer->password=Hash::make($request->password);
         $consumer->save();
         //redirect
-        return redirect()->route('consumer.dashboard');
+        return redirect()->route('consumer.dashboard',$consumer->id);
     }
 }

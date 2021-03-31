@@ -6,7 +6,7 @@
 @include('admin.inc.side-bar.side-bar')
 @endsection
 @section('content')
-@include('admin.inc.deals.add-deal')
+@include('admin.inc.deals.slider-deals.add-deal')
 @endsection
 @section('main-footer')
 @include('admin.inc.main-footer.main-footer')

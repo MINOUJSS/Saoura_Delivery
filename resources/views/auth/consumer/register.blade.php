@@ -1,5 +1,10 @@
-@extends('auth.consumer.layouts.app')
-
+@extends('store.layouts.app')
+@section('header')
+@include('store.layouts.inc.header.header')
+@endsection
+@section('navigation')
+@include('store.layouts.inc.navigation.navigation')
+@endsection
 @section('content')
  <!-- BREADCRUMB -->
  <div id="breadcrumb">
@@ -17,7 +22,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h4 class="text-uppercase">تسجيل الدخول</h4>
+                <p>لديك حساب بالموقع و ترغب بتسجيل الدخول؟... <a class="text-primary" href="{{route('consumer.login')}}">تفضل من هنا</a></p>
+                <h4 class="text-uppercase">تسجيل الدخول</h4>                
                 <p>أدخل معلوماتك و إنضم إلى عائلتنا</p>
                 <form class="review-form" method="POST" action="{{ route('consumer.register.submit') }}">
                     @csrf

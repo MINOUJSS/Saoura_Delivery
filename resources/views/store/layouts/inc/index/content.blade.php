@@ -15,7 +15,7 @@
 <!-- /HOME -->
 
 <!-- section -->
-@include('store.layouts.inc.index.section-new')
+{{-- @include('store.layouts.inc.index.section-new') --}}
 <!-- /section -->
 
 <!-- section -->

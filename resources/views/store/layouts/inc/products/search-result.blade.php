@@ -28,9 +28,12 @@
                 
             <h2 class="product-name"><a href="#">{{substr($product->name,0,20)}}</a></h2>
                 <div class="product-btns">
-                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                    <a href="{{route('cart.add',$product->id)}}"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a>
+                    @if(Auth::guard('consumer')->check()) 
+                    <a id="wish_list_button{{$product->id}}" onclick="add_to_wish_list({{$product->id}})" class="main-btn icon-btn" @if(in_wish_list(Auth::guard('consumer')->user()->id,$product->id))style="color:#F8694A"@endif><i class="fa fa-heart"></i></a>
+                    <a id="compar_list_button{{$product->id}}" onclick="add_to_compar_list({{$product->id}})" class="main-btn icon-btn" @if(in_compar_list(Auth::guard('consumer')->user()->id,$product->id))style="color:#F8694A"@endif><i class="fa fa-exchange"></i></a>
+                    @endif
+                    {{-- <a href="{{route('cart.add',$product->id)}}"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a> --}}
+                    <a onclick="add_to_cart({{$product->id}})"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a>
                 </div>
             </div>
         </div>
@@ -39,6 +42,6 @@
     <div class="clearfix visible-sm visible-xs"></div>    
     @endforeach
     @else 
-    <p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i> لا توجد منتجات بالمتجر!</p>
+    <p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i>  ما تبحث عنة غير موجود!</p>
     @endif
 </div>

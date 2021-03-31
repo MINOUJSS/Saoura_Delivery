@@ -46,12 +46,14 @@
 
                 <!-- Search -->
                 <div class="header-search">
-                    <form>
-                        <input class="input search-input" type="text" placeholder="أدخل كلمتك الرئيسية">
-                        <select class="input search-categories">
-                            <option value="0">كل التصنيفات</option>
+                    <form action="{{route('store.product.find')}}" method="GET" enctype="multipart/form-data">
+                        <div class="form-group {{$errors->has('query')? 'has-error': ''}}">
+                        <input name="query" class="input search-input" type="text" value="@if(Request::url()==route('store.product.find')){{$query}}@endif" placeholder="أدخل كلمة البحث">
+                        </div>
+                        <select name="category" class="input search-categories">
+                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل التصنيفات</option>
                             @foreach(get_all_categories() as $index => $category)
-                        <option value="{{$index + 1 }}">{{$category->name}}</option>
+                        <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
                             @endforeach
                             {{-- <option value="1">التصنيف 01</option>
                             <option value="1">التصنيف 02</option> --}}
@@ -73,26 +75,24 @@
                         </div>
                         <a href="#" class="text-uppercase">دخول</a> / <a href="#" class="text-uppercase">انضم</a>
                         <ul class="custom-menu">
-                            <li><a href="#"><i class="fa fa-user-o"></i> حسابي</a></li>
-                            <li><a href="#"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i> مقارنة</a></li>
-                            <li><a href="#"><i class="fa fa-check"></i> الدفع</a></li>                            
-                            <li><a href="#"><i class="fa fa-unlock-alt"></i> تسجيل الدخول</a></li>
-                            <li><a href="#"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
-                            <li><i class="fa fa-user-plus"></i><a href="{{route('consumer.logout')}}"></i> تسجيل الخروج</a></li> 
-                                {{--
-                                     onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"
-                                
-                                    <form id="logout-form" action="{{ route('consumer.logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>                            --}}
+                            @if(Auth::guard('consumer')->check())
+                            <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>
+                            <li><a href="{{route('consumer.wish_list')}}"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
+                            <li><a href="{{route('consumer.compar_list')}}"><i class="fa fa-exchange"></i> مقارنة</a></li>
+                            @if(session()->has('cart'))
+                            <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> الدفع</a></li>                                                        
+                            @endif
+                            <li><a href="{{route('consumer.logout')}}"><i class="fa fa-sign-out"></i></i> تسجيل الخروج</a></li>                                 
+                            @else 
+                            <li><a href="{{route('consumer.login')}}"><i class="fa fa-sign-in"></i> تسجيل الدخول</a></li>
+                            <li><a href="{{route('consumer.register')}}"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
+                            @endif
                         </ul>
                     </li>
                     <!-- /Account -->
 
                     <!-- Cart -->
-                    <li class="header-cart dropdown default-dropdown">
+                    <li id="cart_section" class="header-cart dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>

@@ -1,12 +1,13 @@
 <div class="section">
     <!-- container -->
     <div class="container">
+        @if(count($dis_products)>0)
         <!-- row -->
         <div class="row">
             <!-- section-title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h2 class="title">Deals Of The Day</h2>
+                    <h2 class="title">عروض اليوم</h2>
                     <div class="pull-right">
                         <div class="product-slick-dots-1 custom-dots"></div>
                     </div>
@@ -30,7 +31,73 @@
             <div class="col-md-9 col-sm-6 col-xs-6">
                 <div class="row">
                     <div id="product-slick-1" class="product-slick">
+
+                        @foreach($dis_products as $index => $product)                                                                                                
                         <!-- Product Single -->
+                        <div class="col-md-4 col-sm-6 col-xs-6" style="direction: rtl;">
+                            <div class="product product-single">                                
+                                {{-- <script>
+                                    $(document).ready(function(){
+                                        countDown('{{$index}}','{{$product->discount->exp_date}}');
+                                    });                                    
+                                </script> --}}
+                                <div class="product-rating pull-left">
+                                    <div name="products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
+                                    <div class='product-star-{{$index}} starrr'></div>
+                                </div>
+
+                                <div class="product-thumb">
+                                    <div class="product-label">
+                                        @if(is_new_product($product->created_at))
+                                        <span>جديد</span>
+                                        @endif
+                                        @if(has_discount($product->id))
+                                        <span class="sale">- %{{$product->discount->discount}}</span>
+                                        @endif
+                                    </div>                                   
+                                    {{-- <input type="hidden" id="dis_prod_ids" value="{{print_r($dis_product_ids)}}"> --}}
+                                    <ul class="product-countdown" name="product-countdown{{$product->id}}">
+                                        
+                                    </ul>                                    
+                                    {{-- <input type="hidden" id="countdown" onclick="countDown('{{$index}}','{{$product->discount->exp_date}}')">--}} 
+                                    <a href="{{url('/product/'.$product->id)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
+                                    {{-- <img src="{{url('store')}}/img/product01.jpg" alt=""> --}}
+                                    <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}" height="350" width="262">
+                                </div>
+                                <div class="product-body"> 
+                                    <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
+                                    
+                                <h2 class="product-name"><a href="#">{{substr($product->name,0,20)}}</a></h2>
+                                    <div class="product-btns">
+                                        @if(Auth::guard('consumer')->check()) 
+                                        <a id="wish_list_button{{$product->id}}" onclick="add_to_wish_list({{$product->id}})" class="main-btn icon-btn" @if(in_wish_list(Auth::guard('consumer')->user()->id,$product->id))style="color:#F8694A"@endif><i class="fa fa-heart"></i></a>
+                                        <a id="compar_list_button{{$product->id}}" onclick="add_to_compar_list({{$product->id}})" class="main-btn icon-btn" @if(in_compar_list(Auth::guard('consumer')->user()->id,$product->id))style="color:#F8694A"@endif><i class="fa fa-exchange"></i></a>
+                                        @endif
+                                        {{-- <a href="{{route('cart.add',$product->id)}}"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a> --}}
+                                        <a onclick="add_to_cart({{$product->id}})"><button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف للسلة</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <!-- /Product Single -->
+                        @php
+                            $products_ids[]=$product->id;
+                            $p_ids_string='[';
+                        @endphp
+                        @endforeach
+                        <!--convert array to string-->
+                         @foreach ($products_ids as $index=>$id)                         
+                          @php
+                          if($index+1>=count($products_ids)){ 
+                             $p_ids_string.=$id.']';
+                          }else
+                          {
+                            $p_ids_string.=$id.',';
+                          }
+                          @endphp
+                         @endforeach
+                        
+                        {{-- <!-- Product Single -->
                         <div class="product product-single">
                             <div class="product-thumb">
                                 <div class="product-label">
@@ -62,9 +129,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Product Single -->
+                        <!-- /Product Single --> --}}
 
-                        <!-- Product Single -->
+                        {{-- <!-- Product Single -->
                         <div class="product product-single">
                             <div class="product-thumb">
                                 <div class="product-label">
@@ -163,14 +230,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Product Single -->
+                        <!-- /Product Single --> --}}
                     </div>
                 </div>
             </div>
             <!-- /Product Slick -->
         </div>
         <!-- /row -->
-
+@endif
         <!-- row -->
         <div class="row">
             <!-- section title -->
@@ -340,3 +407,25 @@
     </div>
     <!-- /container -->
 </div>
+<!--------------------------->
+<script>
+    function countDown(product_ids)
+   {
+    
+    product_ids.forEach(element => {
+        //alert(element);
+   setTimeout(() => {
+       setInterval(() => {
+           var target=document.getElementsByName('product-countdown'+element);
+        $(target).load('/load-dis-products/'+element);
+       }, 1000);    
+   }, 1000);
+    
+
+             }); 
+     
+   }
+                                                                                            
+
+       countDown({{$p_ids_string}});
+</script>

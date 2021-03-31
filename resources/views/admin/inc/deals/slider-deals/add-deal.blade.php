@@ -51,7 +51,7 @@
             </span>
           @endif
           </div>
-          <div class="form-group {{$errors->has('descount')? 'has-error':''}}">
+          {{-- <div class="form-group {{$errors->has('descount')? 'has-error':''}}">
             <label for="descount">قيمة التخفيض</label>
             <input type="number" class="form-control" name="descount" id="descount" placeholder="أكتب قيمة التخفيض هنا" value="{{old('descount')}}">
             @if($errors->has('descount'))
@@ -59,7 +59,7 @@
               {{ $errors->first('descount')}}
             </span>
           @endif
-          </div>
+          </div> --}}
           <div class="form-group {{$errors->has('link')? 'has-error':''}}">
             <label for="link">رابط المنتج</label>
             <input type="text" class="form-control" name="link" id="link" placeholder="أكتب رابط المنتج هنا" value="{{old('link')}}">

@@ -14,8 +14,8 @@ class order_product extends Model
         return $this->hasMany('App\order');
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasMany('App\product');
+        return $this->belongsTo('App\product');
     }
 }

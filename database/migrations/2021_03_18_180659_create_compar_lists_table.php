@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDealsTable extends Migration
+class CreateComparListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,18 @@ class CreateDealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('deals', function (Blueprint $table) {
+        Schema::create('compar_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('consumer_id');
+            $table->foreign('consumer_id')
             ->references('id')
-            ->on('users')
+            ->on('consumers')
             ->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
             ->references('id')
             ->on('products')
-            ->onDelete('cascade');
-            $table->string('title');
-            $table->text('daitels');
-            // $table->integer('descount');
-            $table->string('link');
-            $table->string('image')->default('/');
+            ->onDelete('cascade');            
             $table->timestamps();
         });
     }
@@ -41,6 +36,6 @@ class CreateDealsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deals');
+        Schema::dropIfExists('compar_lists');
     }
 }
