@@ -4,7 +4,7 @@
         <div id="responsive-nav">
             <!-- category nav -->
         <div class="category-nav {{is_home()}}">
-                <span class="category-header">الأصناف <i class="fa fa-list"></i></span>
+                <span class="category-header">الأقسام <i class="fa fa-list"></i></span>
                 <ul class="category-list">
                     @foreach(get_all_categories() as $category)
                     <li class="dropdown side-dropdown">
@@ -212,7 +212,7 @@
                         </div>
                     </li>
                     <li><a href="#">Bags & Shoes</a></li> --}}
-                    <li><a href="#">رؤية الكل</a></li>
+                    <li><a href="{{route('products')}}">رؤية الكل</a></li>
                 </ul>
             </div>
             <!-- /category nav -->
@@ -221,8 +221,12 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                <li><a href="{{url('/')}}">الرئيسية</a></li>                    
+                <li><a href="{{url('/')}}">الرئيسية</a></li>                
                 <li><a href="{{route('products')}}">منتجاتنا</a></li>
+                <li><a href="{{route('how_to_ship')}}">طريقة تسليم الطلبات</a></li>
+                <li><a href="{{route('contra')}}">سياسة خصوصية</a></li>
+                <li><a href="{{route('about_as')}}">من نحن</a></li>
+                <li><a href="{{route('contact_us')}}">إتصل بنا</a></li>
                     {{-- <li class="dropdown mega-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Women <i class="fa fa-caret-down"></i></a>
                         <div class="custom-menu">
                             <div class="row">

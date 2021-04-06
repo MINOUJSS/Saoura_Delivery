@@ -15,6 +15,14 @@
         <li class="header">محتوى القائمة</li>
         <!-- Optionally, you can add icons to the links -->
       <li class="{{active_dashboard_link()}}"><a href="{{url('/admin')}}"><i class="fa fa-dashboard"></i> <span>الرئيسية</span></a></li>      
+      <li class="treeview {{active_users_links_group()}}">
+        <a href="#"><i class="fa fa-file-text"></i> <span>تعديل صفحات المتجر</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+          <li><a href="{{route('admin.about_us')}}">صفحة من نحن</a></li>
+          <li><a href="{{route('admin.contra')}}">صفحة سياسة خصوصية</a></li>
+          <li><a href="{{route('admin.how_to_ship')}}">صفحة طريقة تسليم الطلبات</a></li>
+        </ul>
+      </li>
         <li class="treeview {{active_users_links_group()}}">
           <a href="{{route('admin.users')}}"><i class="fa fa-users"></i> <span>المستخدمين</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">

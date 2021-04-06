@@ -537,6 +537,69 @@ $('body').on('click','#delete_deal',function(event){
     });
 
 });
+//delete sid deal function
+$('body').on('click','#delete_sid_deal',function(event){
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    deal_name=me.attr('title'),
+    deal_id=me.attr('deal_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف عرض '+ deal_name + ' ؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف العرض"+deal_name
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف العرض لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
 //delete product function
 $('body').on('click','#delete_product',function(event){
     event.preventDefault();

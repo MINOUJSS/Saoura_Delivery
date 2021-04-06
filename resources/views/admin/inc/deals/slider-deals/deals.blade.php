@@ -27,7 +27,7 @@
             <th>رقم المنتج</th>
             <th>عنوان العرض</th>
             <th>تفاصيل العرض</th>
-            <th>قيمة التخفيض</th>
+            {{-- <th>قيمة التخفيض</th> --}}
             <th style="width:200px;">رابط المنتج</th>
             <th>العمليات</th>
           </tr>
@@ -39,7 +39,7 @@
             <td>{{$deal->product_id}}</td>
             <td>{{$deal->title}}</td>
             <td>{{substr($deal->daitels,0,200)}}</td>
-            <td style="width :100px">{{$deal->descount}} %</td>
+            {{-- <td style="width :100px">{{$deal->descount}} %</td> --}}
             <td>{{$deal->link}}</td>
             <td style="width : 100px;"><a href="{{url('admin/slider-deal').'/'.$deal->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_deal" title="{{$deal->title}}" url="{{url('admin/slider-deal').'/'.$deal->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>           
           </tr>

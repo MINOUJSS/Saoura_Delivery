@@ -104,12 +104,12 @@ function active_create_sub_sub_categories_link()
 //:::::::::::function to active deals links group
 function active_slider_deals_links_group()
 { 
-    $deals_url=url('/admin/deals'); 
-    $create_deal_url=url('/admin/deal/create');
+    $deals_url=url('/admin/slider-deals'); 
+    $create_deal_url=url('/admin/slider-deal/create');
     $request_url=Request::url();
     $url_array=explode('/',$request_url);    
     if(count($url_array)>5){
-    $edit_deal_url=url('/admin/deal/'.$url_array[5].'/edit');
+    $edit_deal_url=url('/admin/slider-deal/'.$url_array[5].'/edit');
     }else
     {
         $edit_deal_url="";   
@@ -127,7 +127,7 @@ function active_slider_deals_links_group()
 //:::::::::::function to active deals links
 function active_slider_deals_link()
 { 
-    $deals_url=url('/admin/deals'); 
+    $deals_url=url('/admin/slider-deals'); 
     $current_url=Request::url();
     if($current_url==$deals_url)
     {
@@ -141,7 +141,7 @@ function active_slider_deals_link()
 //:::::::::::function to active create deal link
 function active_create_slider_deal_link()
 { 
-    $create_deal_url=url('/admin/deal/create');
+    $create_deal_url=url('/admin/slider-deal/create');
     $current_url=Request::url();
     if($current_url==$create_deal_url)
     {
@@ -155,12 +155,12 @@ function active_create_slider_deal_link()
 //:::::::::::function to active sid deals links group
 function active_sid_deals_links_group()
 { 
-    $deals_url=url('/admin/deals'); 
-    $create_deal_url=url('/admin/deal/create');
+    $deals_url=url('/admin/sid-deals'); 
+    $create_deal_url=url('/admin/sid-deal/create');
     $request_url=Request::url();
     $url_array=explode('/',$request_url);    
     if(count($url_array)>5){
-    $edit_deal_url=url('/admin/deal/'.$url_array[5].'/edit');
+    $edit_deal_url=url('/admin/sid-deal/'.$url_array[5].'/edit');
     }else
     {
         $edit_deal_url="";   
@@ -178,7 +178,7 @@ function active_sid_deals_links_group()
 //:::::::::::function to active sid deals links
 function active_sid_deals_link()
 { 
-    $deals_url=url('/admin/deals'); 
+    $deals_url=url('/admin/sid-deals'); 
     $current_url=Request::url();
     if($current_url==$deals_url)
     {
@@ -192,7 +192,7 @@ function active_sid_deals_link()
 //:::::::::::function to active create sid deal link
 function active_create_sid_deal_link()
 { 
-    $create_deal_url=url('/admin/deal/create');
+    $create_deal_url=url('/admin/sid-deal/create');
     $current_url=Request::url();
     if($current_url==$create_deal_url)
     {
@@ -1206,6 +1206,7 @@ function get_dis_product_exp_munite($date)
     //
     return $interval->format('%i');
 }
+//get dis_product_exp_sec
 function get_dis_product_exp_sec($date)
 {
     $to_date=new DateTime($date);
@@ -1213,4 +1214,58 @@ function get_dis_product_exp_sec($date)
     $interval=$to_date->diff($from_now);
     //
     return $interval->format('%s');
+}
+//function has facebook()
+function has_facebook()
+{
+    $setting=App\setting::where('var','facebook')->first();
+    if($setting->value!=null)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+//function get facebook data
+function get_facebook_data()
+{
+    $setting=App\setting::where('var','facebook')->first();
+    return $setting;
+}
+//function has youtube()
+function has_youtube()
+{
+    $setting=App\setting::where('var','youtube')->first();
+    if($setting->value!=null)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+//function get youtube data
+function get_youtube_data()
+{
+    $setting=App\setting::where('var','youtube')->first();
+    return $setting;
+}
+//function has instagram()
+function has_instagram()
+{
+    $setting=App\setting::where('var','instagram')->first();
+    if($setting->value!=null)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+//function get instagram data
+function get_instagram_data()
+{
+    $setting=App\setting::where('var','instagram')->first();
+    return $setting;
 }

@@ -69,15 +69,21 @@
 						</div>
 						<!-- /footer logo -->
 
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+						<p>تابعونا على وسائل التواصل الإجتماعي</p>
 
 						<!-- footer social -->
 						<ul class="footer-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							@if(has_facebook())
+							<li><a href="{{get_facebook_data()->value}}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							@endif
+							@if(has_youtube())
+							<li><a href="{{get_youtube_data()->value}}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+							@endif
+							@if(has_instagram())
+							<li><a href="{{get_instagram_data()->value}}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+							@endif
+							{{-- <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li> --}}
 						</ul>
 						<!-- /footer social -->
 					</div>
@@ -87,13 +93,11 @@
 				<!-- footer widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-header">My Account</h3>
-						<ul class="list-links">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">Compare</a></li>
-							<li><a href="#">Checkout</a></li>
-							<li><a href="#">Login</a></li>
+						<h3 class="footer-header">أقسام المتجر</h3>
+						<ul class="list-links">							
+							@foreach(get_all_categories() as $index => $category)
+							<li><a href="{{url('products/category/'.$category->name)}}">{{$category->name}}</a></li>	
+							@endforeach							
 						</ul>
 					</div>
 				</div>
@@ -104,41 +108,64 @@
 				<!-- footer widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-header">Customer Service</h3>
+						<h3 class="footer-header">خدمة الزبائن</h3>
 						<ul class="list-links">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Shiping & Return</a></li>
-							<li><a href="#">Shiping Guide</a></li>
-							<li><a href="#">FAQ</a></li>
+							<li><a href="{{route('about_as')}}">من نحن</a></li>
+							<li><a href="{{route('contra')}}">سياسة خصوصية</a></li>
+							<li><a href="{{route('how_to_ship')}}">طريقة تسليم الطلبات</a></li>
+							<li><a href="{{route('contact_us')}}">إتصل بنا</a></li>
+							<li><a href="{{route('faq')}}">أسئلة شائعة</a></li>
 						</ul>
 					</div>
 				</div>
 				<!-- /footer widget -->
-
+				@if(!Auth::guard('consumer')->check())
 				<!-- footer subscribe -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
-						<h3 class="footer-header">Stay Connected</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-						<form>
-							<div class="form-group">
-								<input class="input" placeholder="Enter Email Address">
+						<h3 class="footer-header">إبقى في إتصال معنا</h3>
+						<p>سجل في القائمة البريدية للمتجر ليصلك كل جديد عن العروض المغرية لمتجرنا في ولاية بشار.</p>
+						<form action="{{route('email_list.store')}}" method="POST" enctype="multipart/form-data">
+							@csrf
+							<div class="form-group {{$errors->has('email')? 'has-error': ''}}">
+								<input class="form-control" name="email" placeholder="بريدك الإلكتروني">
+								@if($errors->has('email'))
+								<span class="help-block">
+									{{$errors->first('email')}}
+								</span>
+								@endif
 							</div>
-							<button class="primary-btn">Join Newslatter</button>
+							<button class="primary-btn"> سجل </button>
 						</form>
 					</div>
 				</div>
 				<!-- /footer subscribe -->
+				@else 
+				<!-- footer widget -->
+				<div class="col-md-3 col-sm-6 col-xs-6">
+					<div class="footer">
+						<h3 class="footer-header">حسابي</h3>
+						<ul class="list-links">							
+							<li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}">حسابي</a></li>
+							<li><a href="{{route('consumer.wish_list')}}">قائمة المفضلة</a></li>
+							<li><a href="{{route('consumer.compar_list')}}">قائمة المقارنة</a></li>
+							<li><a href="{{route('checkout')}}">الدفع</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /footer widget -->
+				@endif
 			</div>
 			<!-- /row -->
 			<hr>
 			<!-- row -->
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
+				<div class="col-md-12 text-center">
 					<!-- footer copyright -->
 					<div class="footer-copyright">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+						{{-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> --}}
+						  جميع الحقوق محفوظة لموقع <a href="{{url('/')}}"> ساورة دليفري</a> &copy;<script>document.write(new Date().getFullYear());</script>| تم عمل هذا القلب بـ <i class="fa fa-heart-o" aria-hidden="true"></i> من طرف <a href="https://colorlib.com" target="_blank">كولرليب</a>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 					</div>
 					<!-- /footer copyright -->

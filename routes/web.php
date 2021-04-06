@@ -73,11 +73,11 @@ Route::prefix('admin')->group(function(){
     Route::post('/slider-deal/update','Admin\DealController@update_slider')->name('admin.slider.deal.update');
     //sid deals
     Route::get('/sid-deals','Admin\DealController@sid_deal_index')->name('admin.sid.deals');
-    Route::get('/sid-deal/create','Admin\DealController@create_slider')->name('admin.add.sid.deal');
-    Route::post('/sid-deal/store','Admin\DealController@store_slider')->name('admin.sid.deal.store');
-    Route::get('/sid-deal/{id}/delete','Admin\DealController@destroy_slider');
-    Route::get('/sid-deal/{id}/edit','Admin\DealController@edit_slider');
-    Route::post('/sid-deal/update','Admin\DealController@update_slider')->name('admin.sid.deal.update');
+    Route::get('/sid-deal/create','Admin\DealController@create_sid_deal')->name('admin.add.sid.deal');
+    Route::post('/sid-deal/store','Admin\DealController@store_sid_deal')->name('admin.sid.deal.store');
+    Route::get('/sid-deal/{id}/delete','Admin\DealController@destroy_sid_deal');
+    Route::get('/sid-deal/{id}/edit','Admin\DealController@edit_sid_deal');
+    Route::post('/sid-deal/update','Admin\DealController@update_sid_deal')->name('admin.sid.deal.update');
     //products
     Route::get('/products','Admin\ProductController@index')->name('admin.products');    
     Route::get('/product/{id}/delete','Admin\ProductController@destroy');
@@ -153,6 +153,13 @@ Route::prefix('admin')->group(function(){
     Route::get('/product/{id}/discount/create','Admin\DiscountsController@create')->name('admin.create.discount');
     Route::post('/product/discount/store','Admin\DiscountsController@store')->name('admin.discount.store');
     Route::get('/product/discount/{id}/delete','Admin\DiscountsController@destroy')->name('admin.discount.destroy');
+    //pages
+    Route::get('/من-نحن','Admin\PagesController@about_us')->name('admin.about_us');
+    Route::post('/من-نحن/update','Admin\PagesController@about_us_update')->name('admin.about_us.update');
+    Route::get('/سياسة-خصوصية','Admin\PagesController@contra')->name('admin.contra');
+    Route::post('/سياسة-خصوصية/update','Admin\PagesController@contra_update')->name('admin.contra.update');
+    Route::get('/طريقة-تسليم-الطلبات','Admin\PagesController@how_to_ship')->name('admin.how_to_ship');
+    Route::post('/طريقة-تسليم-الطلبات/update','Admin\PagesController@how_to_ship_update')->name('admin.how_to_ship.update');
 });
 //--------------------------------------------
 //              user routes
@@ -248,3 +255,19 @@ Route::post('/consumer/update-password','Store\ConsumerController@update_passwor
 Route::get('/consumer/{consumer_id}/orders','Store\ConsumerController@orders')->name('consumer.orders');
 //load-dis-products
 Route::get('/load-dis-products/{id}','Store\StoreController@dis_products');
+//about us
+Route::get('/من-نحن','Store\PagesController@about_us')->name('about_as');
+//contra
+Route::get('/سياسة-خصوصية','Store\PagesController@contra')->name('contra');
+//how_to_ship
+Route::get('/طريقة-تسليم-الطلبات','Store\PagesController@how_to_ship')->name('how_to_ship');
+//contact us
+Route::get('/إتصل_بنا','Store\PagesController@contact_us')->name('contact_us');
+//contact us store
+Route::post('/إتصل_بنا/create','Store\PagesController@contact_us_store')->name('contact_us.store');
+//faq
+Route::get('/أسئلة-شائعة','Store\PagesController@faq')->name('faq');
+//faq store
+Route::post('/أسئلة-شائعة/create','Store\PagesController@faq_store')->name('faq.store');
+//create email list
+Route::post('/email_list/create','Store\PagesController@email_list_store')->name('email_list.store');

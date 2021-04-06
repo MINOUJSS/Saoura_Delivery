@@ -17,13 +17,16 @@
 
             <!-- banner -->
             <div class="col-md-3 col-sm-6 col-xs-6">
+                @if($sid_deal!==null)
                 <div class="banner banner-2">
-                    <img src="{{url('store')}}/img/banner14.jpg" alt="">
+                    {{-- <img src="{{url('store')}}/img/banner14.jpg" alt="" height="438" width="263"> --}}
+                    <img src="{{url('admin-css/uploads/images/deals').'/'.$sid_deal->image}}" alt="" height="438" width="263">
                     <div class="banner-caption">
-                        <h2 class="white-color">NEW<br>COLLECTION</h2>
-                        <button class="primary-btn">Shop Now</button>
+                        <h2 class="white-color">{{$sid_deal->title}}</h2>
+                        <a href="{{$sid_deal->link}}"><button class="primary-btn">إشتري الآن</button></a>
                     </div>
                 </div>
+                @endif
             </div>
             <!-- /banner -->
 
@@ -65,7 +68,7 @@
                                     <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}" height="350" width="262">
                                 </div>
                                 <div class="product-body"> 
-                                    <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
+                                    <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <br><del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
                                     
                                 <h2 class="product-name"><a href="#">{{substr($product->name,0,20)}}</a></h2>
                                     <div class="product-btns">
@@ -95,142 +98,7 @@
                             $p_ids_string.=$id.',';
                           }
                           @endphp
-                         @endforeach
-                        
-                        {{-- <!-- Product Single -->
-                        <div class="product product-single">
-                            <div class="product-thumb">
-                                <div class="product-label">
-                                    <span>New</span>
-                                    <span class="sale">-20%</span>
-                                </div>
-                                <ul class="product-countdown">
-                                    <li><span>00 H</span></li>
-                                    <li><span>00 M</span></li>
-                                    <li><span>00 S</span></li>
-                                </ul>
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                <img src="{{url('store')}}/img/product01.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <div class="product-btns">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Product Single --> --}}
-
-                        {{-- <!-- Product Single -->
-                        <div class="product product-single">
-                            <div class="product-thumb">
-                                <div class="product-label">
-                                    <span class="sale">-20%</span>
-                                </div>
-                                <ul class="product-countdown">
-                                    <li><span>00 H</span></li>
-                                    <li><span>00 M</span></li>
-                                    <li><span>00 S</span></li>
-                                </ul>
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                <img src="{{url('store')}}/img/product07.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <div class="product-btns">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Product Single -->
-
-                        <!-- Product Single -->
-                        <div class="product product-single">
-                            <div class="product-thumb">
-                                <div class="product-label">
-                                    <span>New</span>
-                                    <span class="sale">-20%</span>
-                                </div>
-                                <ul class="product-countdown">
-                                    <li><span>00 H</span></li>
-                                    <li><span>00 M</span></li>
-                                    <li><span>00 S</span></li>
-                                </ul>
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                <img src="{{url('store')}}/img/product06.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <div class="product-btns">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Product Single -->
-
-                        <!-- Product Single -->
-                        <div class="product product-single">
-                            <div class="product-thumb">
-                                <div class="product-label">
-                                    <span>New</span>
-                                    <span class="sale">-20%</span>
-                                </div>
-                                <ul class="product-countdown">
-                                    <li><span>00 H</span></li>
-                                    <li><span>00 M</span></li>
-                                    <li><span>00 S</span></li>
-                                </ul>
-                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                <img src="{{url('store')}}/img/product08.jpg" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <div class="product-btns">
-                                    <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Product Single --> --}}
+                         @endforeach                                                
                     </div>
                 </div>
             </div>
@@ -238,7 +106,7 @@
         </div>
         <!-- /row -->
 @endif
-        <!-- row -->
+        {{-- <!-- row -->
         <div class="row">
             <!-- section title -->
             <div class="col-md-12">
@@ -403,29 +271,31 @@
             </div>
             <!-- /Product Slick -->
         </div>
-        <!-- /row -->
+        <!-- /row --> --}}
     </div>
     <!-- /container -->
 </div>
 <!--------------------------->
+@if(count($dis_products)>0)
 <script>
     function countDown(product_ids)
    {
     
     product_ids.forEach(element => {
-        //alert(element);
-   setTimeout(() => {
+        //alert(element);   
        setInterval(() => {
+        // setTimeout(() => {
            var target=document.getElementsByName('product-countdown'+element);
         $(target).load('/load-dis-products/'+element);
-       }, 1000);    
-   }, 1000);
+    //    },2000);    
+   }, 3000);
     
 
              }); 
      
-   }
-                                                                                            
-
+   }                                                                                        
+      
        countDown({{$p_ids_string}});
+       
 </script>
+@endif

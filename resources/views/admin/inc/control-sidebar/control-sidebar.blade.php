@@ -41,8 +41,14 @@
       <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+        <h3 class="control-sidebar-heading">إعداد عامة</h3>
+        <ul class="sidebar-menu">
+          {{-- <li class="header">محتوى القائمة</li> --}}
+          <!-- Optionally, you can add icons to the links -->
+        <li><a href="#"><i class="fa fa-cog"></i> <span>إعدادت الموقع</span></a></li>      
+        </ul>
+        {{-- <form method="post">
+          <h3 class="control-sidebar-heading">إعداد عامة</h3>
           <div class="form-group">
             <label class="control-sidebar-subheading">
               Report panel usage
@@ -52,7 +58,7 @@
               Some information about this general settings option
             </p>
           </div><!-- /.form-group -->
-        </form>
+        </form> --}}
       </div><!-- /.tab-pane -->
     </div>
   </aside><!-- /.control-sidebar -->

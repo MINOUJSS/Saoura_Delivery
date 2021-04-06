@@ -23,7 +23,7 @@
 <!-- /section -->
 
 <!-- section -->
-@include('store.layouts.inc.index.new-collection')
+{{-- @include('store.layouts.inc.index.new-collection') --}}
 <!-- /section -->
 
 <!-- section -->

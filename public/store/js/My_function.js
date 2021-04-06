@@ -1,8 +1,5 @@
 //
 $(document).ready(function(){                                                              
-   //document.getElementById('countdown').click();      			
-	//setTimeout(countDown,1000);       
-   // var consumer_rating=document.getElementById('consumer_rating').getAttribute('data-rating');                 
    //get min price change     
       $('.noUi-handle-lower').on('mouseup',function(event){
          event.preventDefault();

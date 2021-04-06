@@ -23,7 +23,11 @@ class DatabaseSeeder extends Seeder
             Consumer_Fake_Table_Seeder::class,
             Completed_sale_Fake_Table_Seeder::class,
             Reating_Fake_Table_Seeder::class,
-            Discount_Fake_Table_Seeder::class
+            setting_table_seeder::class,
+            About_Us_Table_Seeder::class,
+            Contra_Table_Seeder::class,
+            How_To_Ship_Table_Seeder::class
+            // Discount_Fake_Table_Seeder::class
         ]);
     }
 }
