@@ -35,6 +35,7 @@
                 <form class="review-form" method="POST" action="{{ route('consumer.login.submit') }}">
                     @csrf
                     <div class="form-group">
+                        <input type="hidden" name="previous_url" value="{{url()->previous()}}">
                         <input class="input" id="email" type="email" name="email" placeholder="بريدك الإلكتروني" />
                     </div>
                     <div class="form-group">

@@ -44,7 +44,7 @@
           </div>
           <div class="form-group {{$errors->has('daitels')? 'has-error':''}}">
             <label for="daitels">تفاصيل العرض</label>
-            <textarea placeholder="أكتب تفاصيل العرض هنا" name="daitels" class="form-control" name="daitels" rows="4"></textarea>
+            <textarea placeholder="أكتب تفاصيل العرض هنا" name="daitels" class="form-control" id="article-ckeditor" rows="4"></textarea>
             @if($errors->has('daitels'))
             <span class="help-block">
               {{ $errors->first('daitels')}}

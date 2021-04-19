@@ -26,6 +26,20 @@ class setting_table_seeder extends Seeder
             'value'=>'saouradelivery@gmail.com'                
         ]);
         
+        $address = setting::create([
+            'var' =>'address',
+            'display_var'=>'العنوان',                        
+            'type' =>1,
+            'value'=>'حي البدر بشار-الجزائر'                
+        ]);
+
+        $phone = setting::create([
+            'var' =>'phone',
+            'display_var'=>'رقم الهاتف',                        
+            'type' =>1,
+            'value'=>'0661752052'                
+        ]);
+
         $facebook = setting::create([
                 'var' =>'facebook',
                 'display_var'=>'صفحة الفيسبوك',                        

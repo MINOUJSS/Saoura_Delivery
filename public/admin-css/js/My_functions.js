@@ -1226,6 +1226,105 @@ $('body').on('click','#delete_discount',function(event){
     });
 
 });
+//confirm order
+$('body').on('click','#confirm_order',function(event){
+    event.preventDefault();
+    var me=$(this),
+    order_id=me.attr('data-order'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد تأكيد الطلب  ؟',
+        text:'لا يمكنك التراجع عن هذه العملية لاحقاً',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , تأكيد الطلب!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            confirm_order(order_id);
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية التأكيد",
+                text:"تم إلغاء تأكيد الطلب",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+//ship order
+$('body').on('click','#ship_order',function(event){
+    event.preventDefault();
+    var me=$(this),
+    order_id=me.attr('data-order'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد إرسال الطلب  ؟',
+        text:'لا يمكنك التراجع عن هذه العملية لاحقاً',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إرسال الطلب!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            ship_order(order_id);
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الإرسال",
+                text:"تم إلغاء إرسال الطلب",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+//ship order
+$('body').on('click','#complate_order',function(event){
+    event.preventDefault();
+    var me=$(this),
+    order_id=me.attr('data-order'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد تسليم الطلب  ؟',
+        text:'لا يمكنك التراجع عن هذه العملية لاحقاً',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , تسليم الطلب!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            complate_order(order_id);
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية التسليم",
+                text:"تم إلغاء تسليم الطلب",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
 //::::::::::::::::::::::end sweet alert:::::::::::::::::::::::::
 
 //redirecte to the right tabs
@@ -1239,3 +1338,149 @@ if (url.match('#')) {
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
     window.location.hash = e.target.hash;
 })
+//::::::::::::::ajax functions::::::::
+//confirm order
+function confirm_order(order_id)
+{
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    $.ajax({
+        url:"/admin/order/"+order_id+"/confirm",
+        method:"GET",
+        data:{
+            '_method':'GET','_token':csrf_token
+        },
+        //success message                
+        success:function(response){ 
+            // console.log(response);                   
+            swal.fire({
+                icon:'success',
+                title:"رائع",
+                text:"تم تأكيد الطلب"
+            });
+            window.location.reload();
+        },    
+        //error delete message
+        error:function(xhr){
+            swal.fire({
+                icon:'error',
+                title:'خطأ',
+                text:'لم يتم تأكيد الطلب  لسبب غير معروف',
+                confirmButtonText:"حسناً"
+            });
+
+        }
+
+    });
+}
+//ship order
+function ship_order(order_id)
+{
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    $.ajax({
+        url:"/admin/order/"+order_id+"/ship",
+        method:"GET",
+        data:{
+            '_method':'GET','_token':csrf_token
+        },
+        //success message                
+        success:function(response){ 
+            // console.log(response);                   
+            swal.fire({
+                icon:'success',
+                title:"رائع",
+                text:"تم إرسال الطلب"
+            });
+            window.location.reload();
+        },
+        //error delete message
+        error:function(xhr){
+            swal.fire({
+                icon:'error',
+                title:'خطأ',
+                text:'لم يتم إرسال الطلب  لسبب غير معروف',
+                confirmButtonText:"حسناً"
+            });
+
+        }
+
+    });
+}
+//complate order
+function complate_order(order_id)
+{
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    $.ajax({
+        url:"/admin/order/"+order_id+"/complate",
+        method:"GET",
+        data:{
+            '_method':'GET','_token':csrf_token
+        },
+        //success message                
+        success:function(response){ 
+            // console.log(response);                   
+            swal.fire({
+                icon:'success',
+                title:"رائع",
+                text:"تم يسليم الطلب"
+            });
+            window.location.reload();
+        },
+        //error delete message
+        error:function(xhr){
+            swal.fire({
+                icon:'error',
+                title:'خطأ',
+                text:'لم يتم تسليم الطلب  لسبب غير معروف',
+                confirmButtonText:"حسناً"
+            });
+
+        }                    
+
+    });
+}
+//deny order
+function deny_order(order_id)
+{
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    $.ajax({
+        url:"/admin/order/"+order_id+"/endy",
+        method:"GET",
+        data:{
+            '_method':'GET','_token':csrf_token
+        },
+        //success message                
+        success:function(response){ 
+            //console.log(response);                   
+            swal.fire({
+                icon:'success',
+                title:"رائع",
+                text:"تم إلغاء الطلب"
+            });
+            window.location.reload();
+        }                    
+
+    });
+}
+//return order
+function return_order(order_id)
+{
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    $.ajax({
+        url:"/admin/order/"+order_id+"/return",
+        method:"GET",
+        data:{
+            '_method':'GET','_token':csrf_token
+        },
+        //success message                
+        success:function(response){ 
+            //console.log(response);                   
+            swal.fire({
+                icon:'success',
+                title:"رائع",
+                text:"تم إرجاع الطلب"
+            });
+            window.location.reload();
+        }                    
+
+    });
+}

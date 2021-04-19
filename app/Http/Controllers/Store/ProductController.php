@@ -403,8 +403,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
     public function product($id)
     {
         $product=product::findOrfail($id);
+        $piked_products=product::inRandomOrder()->paginate(4);
         $reviews=reating::where('product_id',$product->id)->paginate(5);
-        return view('store.product-page',compact('product','reviews'));
+        return view('store.product-page',compact('product','reviews','piked_products'));
     }
 
     public function addToCart(product $product)

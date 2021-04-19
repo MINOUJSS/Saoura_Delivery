@@ -3,7 +3,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="{{route('store')}}">الرئيسية</a></li>
-            <li class="active">عربة التسوق</li>
+            <li class="active">السلة</li>
         </ul>
     </div>
 </div>
@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="order-summary clearfix">
                         <div class="section-title">
-                            <h3 class="title">محتوى العربة</h3>
+                            <h3 class="title">محتوى السلة</h3>
                         </div>
                         @if(session()->has('cart'))
                         <table class="shopping-cart-table table">

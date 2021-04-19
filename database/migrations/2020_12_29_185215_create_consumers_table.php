@@ -24,6 +24,7 @@ class CreateConsumersTable extends Migration
             $table->text('telephone');
             $table->text('address')->nullable();
             $table->text('googl_map_address')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

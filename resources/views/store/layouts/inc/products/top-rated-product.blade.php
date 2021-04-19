@@ -28,8 +28,8 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o empty"></i> --}}
-                <div name="products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
-                <div class='product-star-{{$index}} starrr'></div>
+                <div name="sid_products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
+                <div class='sid-product-star-{{$index}} starrr'></div>
             </div>
         </div>
     </div>

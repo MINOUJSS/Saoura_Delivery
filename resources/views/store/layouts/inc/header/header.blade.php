@@ -3,14 +3,15 @@
     <div id="top-header">
         <div class="container">
             <div class="pull-left">
+                <img src="{{url('store/img/drapo.png')}}" height="20">
                 <span>مرحباً بكم في ساورة دليفري!</span>
             </div>
             <div class="pull-right">
                 <ul class="header-top-links">
-                    <li><a href="#">المتجر</a></li>
-                    <li><a href="#">النشرة الإخبارية</a></li>
-                    <li><a href="#">أسئلة شائعة</a></li>
-                    <li class="dropdown default-dropdown">
+                    {{-- <li><a href="#">المتجر</a></li>
+                    <li><a href="#">النشرة الإخبارية</a></li> --}}
+                    <li><a href="{{route('faq')}}">أسئلة شائعة</a></li>
+                    {{-- <li class="dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">ع <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
                             <li><a href="#">العربية (ع)</a></li>
@@ -18,7 +19,7 @@
                             <li><a href="#">الفرنسية (FR)</a></li>
                             <li><a href="#">الإسبانية (Es)</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">دج <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
@@ -71,9 +72,9 @@
                             <div class="header-btns-icon">
                                 <i class="fa fa-user-o"></i>
                             </div>
-                            <strong class="text-uppercase">حسابي <i class="fa fa-caret-down"></i></strong>
+                            {{-- <strong class="text-uppercase">حسابي <i class="fa fa-caret-down"></i></strong> --}}
                         </div>
-                        <a href="#" class="text-uppercase">دخول</a> / <a href="#" class="text-uppercase">انضم</a>
+                        {{-- <a href="#" class="text-uppercase">دخول</a> / <a href="#" class="text-uppercase">انضم</a> --}}
                         <ul class="custom-menu">
                             @if(Auth::guard('consumer')->check())
                             <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>
@@ -98,7 +99,7 @@
                                 <i class="fa fa-shopping-cart"></i>
                                 <span class="qty">{{session()->has('cart')?session()->get('cart')->totalQty:'0'}}</span>
                             </div>
-                            <strong class="text-uppercase">عربة التسوق:</strong>
+                            <strong class="text-uppercase">السلة:</strong>
                             <br>
                             <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                         </a>
@@ -137,7 +138,7 @@
                                 </div>
                                 @if(session()->has('cart'))
                                 <div class="shopping-cart-btns">
-                                    <a href="{{route('cart.show')}}"><button class="main-btn">عرض عربة التسوق</button></a>
+                                    <a href="{{route('cart.show')}}"><button class="main-btn">عرض محتوى السلة</button></a>
                                     <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
                                 </div>
                                 @endif

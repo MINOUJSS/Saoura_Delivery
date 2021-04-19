@@ -3,7 +3,7 @@
     <div class="container">
         <ul class="breadcrumb">
         <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}">حسابي</a></li>
-            <li class="active">تعديل الحساب</li>
+            <li class="active">طلباتي</li>
         </ul>
     </div>
 </div>
@@ -44,27 +44,34 @@
                               <table class="table table-hover">
                                 <tbody><tr>
                                   <th>#</th>
-                                  <th style="text-align:right !important;">رقم الطلب</th>
-                                  <th style="text-align:right !important;">صورة المنتج</th>
-                                  <th style="text-align:right !important;">إسم المنتج</th>
-                                  <th style="text-align:right !important;">سعر المنتج</th>
-                                  <th style="text-align:right !important;">التخفيض</th>
-                                  <th style="text-align:right !important;">السعر النهائي</th>
+                                  <th style="text-align:right !important;">رقم الطلب</th>                                
+                                  <th style="text-align:right !important;">الاسم</th>
+                                  <th style="text-align:right !important;">البريد الالكتروني</th>
+                                  <th style="text-align:right !important;">العنوان</th>
+                                  <th style="text-align:right !important;">التاريخ</th>
                                   <th style="text-align:right !important;">حالة الطلب</th>
                                 </tr>
-                                @foreach($products as $index=>$product)
+                                @if(count($orders)>0)
+                                @foreach($orders as $index=>$order)
                                 <tr>
                                   <td>{{$index+1}}</td>
-                                  <td>{{$product->order_id}}</td>
-                                  <td><img src="{{url('/admin-css/uploads/images/products/'.$product->product->image)}}" width="50" height="50"></td>
-                                  <td>{{$product->product->name}}</td>
-                                  {{-- <td><span class="label label-success">Approved</span></td> --}}
-                                  <td>{{$product->product->selling_price}} د.ج</td>
-                                  <td>@if(has_discount($product->product_id)){{get_product_discount($product->product->id)}}@else {{'0'}} @endif %</td>                                  
-                                  <td>@if(has_discount($product->product_id)){{price_with_discount($product->product->selling_price,get_product_discount($product->product->id))}}@else {{$product->product->selling_price}}@endif د.ج</td>
-                                  <td></td>
+                                  <td><a href="{{route('consumer.order-details',$order->id)}}">#{{$order->id}}</a></td>
+                                  <td>{{$order->billing_name}}</td>
+                                  <td>{{$order->billing_email}}</td>
+                                  <td>{{$order->billing_address}}</td>
+                                  <td>{{$order->created_at->format('Y-m-d')}}</td>
+                                  <td>{!!order_status($order->status)!!}</td>
                                 </tr>     
-                                @endforeach                           
+                                @endforeach      
+                                @else 
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>لاتوجد لديك أي طلبات</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                @endif
                               </tbody></table>
                             </div><!-- /.box-body -->
                           </div>

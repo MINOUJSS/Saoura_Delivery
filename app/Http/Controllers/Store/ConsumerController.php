@@ -10,6 +10,7 @@ use App\compar_list;
 use App\product;
 use App\consumer;
 use App\order_product;
+use App\order;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -31,7 +32,8 @@ class ConsumerController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {         
+    {  
+        //dd(request()->root());        
         return view('store.consumer.index');
     }
     public function edit_account($consumer_id)
@@ -112,8 +114,19 @@ class ConsumerController extends Controller
     }
     public function orders($consumer_id)
     {
-        $products=order_product::where('consumer_id',$consumer_id)->get();
-        return view('store.consumer.orders',compact('products'));
+        if(Auth::guard('consumer')->user()->id==$consumer_id){
+        //$products=order_product::where('consumer_id',$consumer_id)->get();
+        $orders=order::where('consumer_id',$consumer_id)->paginate(10);
+        return view('store.consumer.orders',compact('orders'));
+        }else
+        {
+            return redirect(route('consumer.orders',Auth::guard('consumer')->user()->id));
+        }
+    }
+    public function order_details($id)
+    {
+        $products=order_product::where('order_id',$id)->get();
+        return view('store.consumer.order-details',compact('products'));
     }
     public function add_to_wish_list($product_id)
     {        

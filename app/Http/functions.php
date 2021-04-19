@@ -648,6 +648,64 @@ function active_orders_links_group()
         return '';
     }      
 }
+//:::::::::::function to active pages links and add css class to pages nav
+function active_pages_links_group()
+{ 
+    $about_url=route('admin.about_us'); 
+    $contra_url=route('admin.contra'); 
+    $how_to_ship_url=route('admin.how_to_ship');     
+    $current_url=Request::url();
+    if($current_url==$about_url || $current_url==$contra_url || $current_url==$how_to_ship_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active categories links
+function active_about_us_link()
+{ 
+    $about_us_url=route('admin.about_us');    
+    $current_url=Request::url();
+    if($current_url==$about_us_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active contra links
+function active_contra_link()
+{ 
+    $contra_url=route('admin.contra');    
+    $current_url=Request::url();
+    if($current_url==$contra_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active how_to_ship links
+function active_how_to_ship_link()
+{ 
+    $how_to_ship_url=route('admin.how_to_ship');    
+    $current_url=Request::url();
+    if($current_url==$how_to_ship_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
 //global_Purchasing_price function
 function global_Purchasing_price()
 {
@@ -828,6 +886,173 @@ function get_no_reading_note_data()
 {
     $note=App\admin_notefication::where('status',0)->get();
     return $note;
+}
+//function store_name_label()
+function store_name_label()
+{
+    $setting=App\setting::where('var','store_name')->first();
+    return $setting->display_var;    
+}
+//function store_name_value()
+function store_name_value()
+{
+    $setting=App\setting::where('var','store_name')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function store_email_label()
+function store_email_label()
+{
+    $setting=App\setting::where('var','email')->first();
+    return $setting->display_var;    
+}
+//function store_email_value()
+function store_email_value()
+{
+    $setting=App\setting::where('var','email')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function facebook_account_label()
+function facebook_account_label()
+{
+    $setting=App\setting::where('var','facebook')->first();
+    return $setting->display_var;    
+}
+//function facebook_account_value()
+function facebook_account_value()
+{
+    $setting=App\setting::where('var','facebook')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function youtube_account_label()
+function youtube_account_label()
+{
+    $setting=App\setting::where('var','youtube')->first();
+    return $setting->display_var;    
+}
+//function youtube_account_value()
+function youtube_account_value()
+{
+    $setting=App\setting::where('var','youtube')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function twitter_account_label()
+function twitter_account_label()
+{
+    $setting=App\setting::where('var','twitter')->first();
+    return $setting->display_var;    
+}
+//function twitter_account_value()
+function twitter_account_value()
+{
+    $setting=App\setting::where('var','twitter')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function instagram_account_label()
+function instagram_account_label()
+{
+    $setting=App\setting::where('var','instagram')->first();
+    return $setting->display_var;    
+}
+//function instagram_account_value()
+function instagram_account_value()
+{
+    $setting=App\setting::where('var','instagram')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//get store address
+function store_address_value()
+{
+    $setting=App\setting::where('var','address')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//get store address
+function store_phone_value()
+{
+    $setting=App\setting::where('var','phone')->first();
+    if($setting!=null)
+    {
+        return $setting->value; 
+    }else
+    {
+        return null;    
+    }
+}
+//function order Status
+function order_status($type)
+{
+    if($type==1)
+    {
+        return '<span class="label label-primary">تم تأكيد الطلب</span>';
+    }elseif($type==2)
+    {
+        return '<span class="label label-info">تم إرسال الطلب</span>';
+    }elseif($type==3)
+    {
+        return '<span class="label label-success">تم تسليم الطلب</span>';
+    }elseif($type==4)
+    {
+        return '<span class="label label-danger">تم إلغاء الطلب</span>';
+    }elseif($type==5)
+    {
+        return '<span class="label label-danger">تم إرجاع الطلب</span>';
+    }else
+    {
+        return '<span class="label label-warning">قيد الانتظار</span>';
+    }
+}
+// function consumer_is_register
+function consumer_is_register($consumer_id)
+{
+    $consumer=App\consumer::find($consumer_id);
+    if($consumer==null)
+    {
+        return '<span class="label label-danger">زبون غير مسجل</span>';
+    }else
+    {
+        return '<span class="label label-success">زبون مسجل</span>';
+    }
 }
 /*---------------------------------------------------------
     //        Store Functions                //
@@ -1079,12 +1304,33 @@ function is_new_product($date)
 //is product has discount
 function has_discount($product_id)
 {
-    $discount=App\discount::where('product_id',$product_id)->where('exp_date','>=',date('Y-m-d H:i:s'))->first();
+    $discount=App\discount::where('product_id',$product_id)->where('exp_date','>=',date('Y-m-d H:i:s'))->first();    
     if($discount!=null)
     {
         return true;
     }
     else
+    {
+        return false;
+    }
+}
+//is product has discount in this date
+function has_discount_in_this_order_date($product_id,$date)
+{
+    $discount=App\discount::where('product_id',$product_id)->first();
+    if($discount!=null)
+    {
+        $exp_date=strtotime(date($discount->exp_date));
+        $order_date=strtotime(date($date));
+        if($order_date<=$exp_date)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }    
+    }else
     {
         return false;
     }
@@ -1107,6 +1353,39 @@ function get_product_discount($product_id)
         return 0;
     }
 }
+//get_product_binifis
+function get_product_binifis($product_id)
+{
+    $product=App\product::find($product_id);
+    $binifis=$product->selling_price-($product->Purchasing_price+$product->to_magazin_price+$product->to_consumer_price+$product->ombalage_price+$product->adds_price);
+    return $binifis;
+}
+//get_product_binifis_with_discount
+function get_product_binifis_with_discount($product_id)
+{
+    $product=App\product::find($product_id);
+    $binifis=price_with_discount($product->selling_price,get_product_discount($product_id))-($product->Purchasing_price+$product->to_magazin_price+$product->to_consumer_price+$product->ombalage_price+$product->adds_price);
+    return $binifis;
+}
+//function is_invoice_exist
+function is_invoice_exist($order_id)
+{
+    $invoice=App\invoice::where('order_id',$order_id)->first();
+    if($invoice!=null)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+//get_product_charge
+function get_product_charge($product_id)
+{
+    $product=App\product::find($product_id);
+    $charge=$product->Purchasing_price+$product->to_magazin_price+$product->to_consumer_price+$product->ombalage_price+$product->adds_price;
+    return $charge;
+}
 //get product price
 function get_product_price_by_id($product_id)
 {
@@ -1128,8 +1407,25 @@ function get_color_code_from_id($color_id)
 //function get color name from color id
 function get_color_name_from_id($color_id)
 {
-    $color=App\color::findOrFail($color_id);
+    $color=App\color::find($color_id);
+    if($color!=null)
+    {
     return $color->name;
+    }else
+    {
+        return 'إفتراضي';
+    }
+}
+function get_size_name_from_id($size_id)
+{
+    $size=App\color::find($size_id);
+    if($size!=null)
+    {
+    return $size->name;
+    }else
+    {
+        return 'إفتراضي';
+    }
 }
 //function get_product_color_name_form_id_color
 function get_product_brand_name_form_id_brand($id)

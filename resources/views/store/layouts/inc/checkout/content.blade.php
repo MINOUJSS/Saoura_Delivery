@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="order-summary clearfix">
                     <div class="section-title">
-                        <h3 class="title">محتوى العربة</h3>
+                        <h3 class="title">محتوى السلة</h3>
                     </div>
                     @if(session()->has('cart'))
                     <table class="shopping-cart-table table">
@@ -99,14 +99,18 @@
                     @endforeach
                 @endif
                 <!---->
+                @if(session()->has('cart'))
                 <div class="col-md-6">
                     <div class="billing-details">
+                        @if(!Auth::guard('consumer')->check())
                         <p>زبون في المتجر ؟ <a href="{{route('consumer.login')}}">تسجيل الدخول</a></p>
+                        @endif
                         <div class="section-title">
                             <h3 class="title">معلومات الفاتورة</h3>
                         </div>
                         <div class="form-group" {{$errors->has('first-name')? 'has-error':''}}>
-                            <input class="input" type="text" name="first-name" placeholder="الإسم" value="{{old('first-name')}}">
+                            <input class="input" type="hidden" name="first-name" placeholder="الإسم" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->name}}@else{{old('first-name')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
+                            <input class="input" type="text" name="first-name" placeholder="الإسم" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->name}}@else{{old('first-name')}}@endif" @if(Auth::guard('consumer')->check())disabled @endif>
                             @if($errors->has('first-name'))
                             <span class="help-block">
                             {{ $errors->first('first-name')}}
@@ -122,7 +126,8 @@
                             @endif
                         </div> --}}
                         <div class="form-group {{$errors->has('email')? 'has-error':''}}">
-                            <input class="input" type="email" name="email" placeholder="البريد الإلكتروني" value="{{old('email')}}">
+                            <input class="input" type="hidden" name="email" placeholder="البريد الإلكتروني" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->email}}@else{{old('email')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
+                            <input class="input" type="email" name="email" placeholder="البريد الإلكتروني" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->email}}@else{{old('email')}}@endif" @if(Auth::guard('consumer')->check())disabled @endif>
                             @if($errors->has('email'))
                             <span class="help-block">
                             {{ $errors->first('email')}}
@@ -130,7 +135,8 @@
                             @endif
                         </div>
                         <div class="form-group {{$errors->has('address')? 'has-error':''}}">
-                            <input class="input" type="text" name="address" placeholder="عنوان إستلام المنتجات" value="{{old('address')}}">
+                            <input class="input" type="hidden" name="address" placeholder="عنوان إستلام المنتجات" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->address}}@else{{old('address')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
+                            <input class="input" type="text" name="address" placeholder="عنوان إستلام المنتجات" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->address}}@else{{old('address')}}@endif" @if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->address!='')disabled @endif>
                             @if($errors->has('address'))
                             <span class="help-block">
                             {{ $errors->first('address')}}
@@ -165,13 +171,15 @@
                             @endif
                         </div> --}}
                         <div class="form-group {{$errors->has('tel')? 'has-error':''}}">
-                            <input class="input" type="tel" name="tel" placeholder="رقم الجوال" value="{{old('tel')}}">
+                            <input class="input" type="hidden" name="tel" placeholder="رقم الجوال" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->telephone}}@else{{old('tel')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
+                            <input class="input" type="tel" name="tel" placeholder="رقم الجوال" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->telephone}}@else{{old('tel')}}@endif" @if(Auth::guard('consumer')->check())disabled @endif>
                             @if($errors->has('tel'))
                             <span class="help-block">
                             {{ $errors->first('tel')}}
                             </span>
                             @endif
                         </div>
+                        @if(!Auth::guard('consumer')->check())
                         <div class="form-group {{$errors->has('password')? 'has-error':''}}">
                             <div class="input-checkbox">
                                 <input type="checkbox" id="register" name="create_account" >
@@ -188,6 +196,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
 
@@ -249,6 +258,7 @@
                         </div>
                     </form>
                 </div>            
+                @endif
                 {{--  --}}
         </div>    
         <!-- /row -->

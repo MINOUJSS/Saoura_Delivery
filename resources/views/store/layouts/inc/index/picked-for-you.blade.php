@@ -13,8 +13,8 @@
         <div class="product product-single">
 
             <div class="product-rating pull-left">
-                <div name="products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
-                <div class='product-star-{{$index}} starrr'></div>
+                <div name="piked_products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
+                <div class='piked-product-star-{{$index}} starrr'></div>
             </div>
 
             <div class="product-thumb">

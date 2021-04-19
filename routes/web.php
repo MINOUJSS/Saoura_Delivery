@@ -146,6 +146,14 @@ Route::prefix('admin')->group(function(){
     Route::get('/searsh-words','Admin\SearshWordsController@index')->name('admin.searsh-words');
     //orders
     Route::get('/Orders','Admin\OrderController@index')->name('admin.orders');
+    Route::get('/order/{id}','Admin\OrderController@order_details')->name('admin.order.details');
+    Route::get('/order/{order_id}/confirm','Admin\OrderController@order_confirm')->name('admin.order.confirm');
+    Route::get('/order/{order_id}/ship','Admin\OrderController@order_ship')->name('admin.order.ship');
+    Route::get('/order/{order_id}/complate','Admin\OrderController@order_complate')->name('admin.order.complate');
+    Route::get('/order/{order_id}/deny','Admin\OrderController@order_deny')->name('admin.order.deny');
+    //invoice
+    Route::get('/{order_id}/invoice','Admin\InvoiceController@invoice')->name('admin.invoice');
+    Route::get('/{order_id}/print-invoice','Admin\InvoiceController@print_invoice')->name('admin.print.invoice');
     //notifications
     Route::get('/notifications','Admin\NotificationController@index')->name('admin.notifications');
     //discounts
@@ -160,11 +168,20 @@ Route::prefix('admin')->group(function(){
     Route::post('/سياسة-خصوصية/update','Admin\PagesController@contra_update')->name('admin.contra.update');
     Route::get('/طريقة-تسليم-الطلبات','Admin\PagesController@how_to_ship')->name('admin.how_to_ship');
     Route::post('/طريقة-تسليم-الطلبات/update','Admin\PagesController@how_to_ship_update')->name('admin.how_to_ship.update');
+    //setting route
+    Route::get('setting','Admin\SettingController@index')->name('admin.setting');
+    Route::post('setting/update','Admin\SettingController@update')->name('admin.setting.update');
 });
 //--------------------------------------------
 //              user routes
 //--------------------------------------------
-//home
+Route::prefix('seller')->group(function(){
+//logout
+Route::post('/logout','Auth\LoginController@userlogout')->name('userlogout');
+//
+Route::get('/','Users\Seller\SellerController@index')->name('seller.index');
+});
+//-----------------home routes-----------------
 Route::get('/home', 'HomeController@index')->name('home');
 //--------------------------------------------
 //              store routes
@@ -251,8 +268,10 @@ Route::post('/consumer/update-account','Store\ConsumerController@update_account'
 Route::get('/consumer/{consumer_id}/edit-password','Store\ConsumerController@edit_password')->name('consumer.edit.password');
 //update consumer password
 Route::post('/consumer/update-password','Store\ConsumerController@update_password')->name('consumer.update.password');
-//edit consumer orders
+//consumer orders
 Route::get('/consumer/{consumer_id}/orders','Store\ConsumerController@orders')->name('consumer.orders');
+//consumer order-details
+Route::get('/consumer/order/{id}','Store\ConsumerController@order_details')->name('consumer.order-details');
 //load-dis-products
 Route::get('/load-dis-products/{id}','Store\StoreController@dis_products');
 //about us

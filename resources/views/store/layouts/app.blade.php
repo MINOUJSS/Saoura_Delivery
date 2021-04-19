@@ -194,18 +194,37 @@
 			var pathname=document.location.pathname.toString();
 			var path_array=document.location.pathname.split('/');
             var cat_or_sub_cat_name=path_array[path_array.length-1];
+			
 			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name)
 			{
-				//			
+				//products		
 				var product_ratings=document.getElementsByName('products_ratings');
-			for(var b=0 ;b<=product_ratings.length; b++)
+			for(var b=0 ;b<=product_ratings.length-1; b++)
 			{
 				$('.product-star-'+b).starrr({
 				readOnly:true,
 				rating:product_ratings[b].getAttribute('data-rating')
 			    });
 			}
-			}else{			
+			//sid products				
+			var product_ratings=document.getElementsByName('sid_products_ratings');
+			for(var b=0 ;b<=product_ratings.length-1; b++)
+			{
+				$('.sid-product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
+			//piked for you products
+			var product_ratings=document.getElementsByName('piked_products_ratings');
+			for(var b=0 ;b<=product_ratings.length-1; b++)
+			{
+				$('.piked-product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
+			}else{
 			//get product ratings
 			var product_rating=document.getElementById('product_ratings');
 			$('.product-star').starrr({

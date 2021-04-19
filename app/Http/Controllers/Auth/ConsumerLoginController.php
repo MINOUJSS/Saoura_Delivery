@@ -29,8 +29,15 @@ class ConsumerLoginController extends Controller
         if(Auth::guard('consumer')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember))
         {
             //if successful ,redirect to dashboard
-            return redirect()->intended(route('consumer.dashboard',Auth::guard('consumer')->user()->id));
-            //return redirect()->back();
+            $previous_url=$request->previous_url;
+            // $checkout_url=request()->root().'/checkout';
+            $checkout_url=route('checkout');
+            if($previous_url==$checkout_url){
+                return redirect()->intended(route('checkout'));
+            }else
+            {
+            return redirect()->intended(route('consumer.dashboard',Auth::guard('consumer')->user()->id));            
+            }
         }        
             
         //if unsuccessful redirect back to login form with data
@@ -40,6 +47,7 @@ class ConsumerLoginController extends Controller
     public function logout()
     { 
         Auth::guard('consumer')->logout();
-        return redirect(route('consumer.login'));
+        //return redirect(route('consumer.login'));        
+        return redirect()->back();
     }
 }

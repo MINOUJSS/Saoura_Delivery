@@ -45,7 +45,7 @@
         <ul class="sidebar-menu">
           {{-- <li class="header">محتوى القائمة</li> --}}
           <!-- Optionally, you can add icons to the links -->
-        <li><a href="#"><i class="fa fa-cog"></i> <span>إعدادت الموقع</span></a></li>      
+        <li><a href="{{route('admin.setting')}}"><i class="fa fa-cog"></i> <span>إعدادت الموقع</span></a></li>      
         </ul>
         {{-- <form method="post">
           <h3 class="control-sidebar-heading">إعداد عامة</h3>

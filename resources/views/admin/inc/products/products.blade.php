@@ -76,11 +76,12 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>رقم المنتج</th>
+                <th>صورة المنتج</th>
                 <th>إسم المنتج</th>
                 <th>العلامة التجارية</th>
                 <th>وصف موجز</th>
                 <th>وصف كامل</th>
-                <th>سعر الشراء</th>
+                <th>تكلفة المنتج</th>
                 <th>سعر البيع</th>
                 <th>هامش الربح</th>
                 <th>المبيعات في هذا الشهر</th>
@@ -97,6 +98,7 @@
               @foreach($products as $product)
               <tr>
                 <td>{{$product->id}}</td>
+                <td><img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="50" width="50"></td>
                 <td>{{$product->name}}</td>
                 @if($product->brand!=null)
                 <td>{{$product->brand->name}}</td>
@@ -105,9 +107,16 @@
                 @endif
                 <td>{{$product->short_description}}</td>
                 <td>{{$product->long_description}}</td>
-                <td class="text-danger">{{$product->Purchasing_price }}</td>
+                <td class="text-danger">{{get_product_charge($product->id) }}</td>
                 <td class="text-success">{{$product->selling_price }}</td>
-                <td class="text-info">{{$product->selling_price - $product->Purchasing_price }}</td>
+                <td class="text-info">
+                  @if(has_discount($product->id))
+                  {{get_product_binifis_with_discount($product->id)}}
+                  @else
+                  {{get_product_binifis($product->id)}}
+                  @endif
+                  {{-- {{$product->selling_price - $product->Purchasing_price }} --}}
+                </td>
                 <td>{{get_completed_sales_in_this_month($product->id)}}</td>                
                 <td>{{$product->sales->count()}}</td>
                 <td>{{get_product_reating_from_id($product->id)}}</td>

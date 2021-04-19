@@ -62,7 +62,7 @@
             </div>
             <div class="form-group {{$errors->has('product_long_description')? 'has-error':''}}">
               <label for="product_long_description">وصف كامل للمنتج</label>
-              <textarea class="form-control" name="product_long_description" id="short_description" cols="30" rows="5" placeholder="وصف كامل للمنتج">{{old('product_long_description')}}</textarea>            
+              <textarea class="form-control" name="product_long_description" id="article-ckeditor" cols="30" rows="5" placeholder="وصف كامل للمنتج">{{old('product_long_description')}}</textarea>            
               @if($errors->has('product_long_description'))
               <span class="help-block">
               {{ $errors->first('product_long_description')}}
