@@ -19,6 +19,7 @@ class CreateAdminNoteficationsTable extends Migration
             $table->string('icon');
             $table->integer('type');
             $table->string('link');
+            $table->string('image')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

@@ -78,9 +78,9 @@
                 <th>رقم المنتج</th>
                 <th>صورة المنتج</th>
                 <th>إسم المنتج</th>
-                <th>العلامة التجارية</th>
+                {{-- <th>العلامة التجارية</th>
                 <th>وصف موجز</th>
-                <th>وصف كامل</th>
+                <th>وصف كامل</th> --}}
                 <th>تكلفة المنتج</th>
                 <th>سعر البيع</th>
                 <th>هامش الربح</th>
@@ -89,26 +89,26 @@
                 <th>التقييم</th>
                 <th>الكمية</th>
                 <th>الصنف</th>
-                <th>تحت الصنف</th>
+                {{-- <th>تحت الصنف</th>
                 <th>تحت تحت الصنف</th>
                 <th>المورد</th>
-                <th>صاحب السلعة</th>
+                <th>صاحب السلعة</th> --}}
                 <th>العمليات</th>
               </tr>
               @foreach($products as $product)
               <tr>
                 <td>{{$product->id}}</td>
                 <td><img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="50" width="50"></td>
-                <td>{{$product->name}}</td>
-                @if($product->brand!=null)
+                <td><a href="{{route('admin.product.details',$product->id)}}">{{$product->name}}</a></td>
+                {{-- @if($product->brand!=null)
                 <td>{{$product->brand->name}}</td>
                 @else
                 <td>بدون علامة تجارية</td>
                 @endif
-                <td>{{$product->short_description}}</td>
-                <td>{{$product->long_description}}</td>
+                <td>{!!$product->short_description!!}</td>
+                <td>{!!$product->long_description!!}</td> --}}
                 <td class="text-danger">{{get_product_charge($product->id) }}</td>
-                <td class="text-success">{{$product->selling_price }}</td>
+                <td class="text-success">{{price_with_discount($product->id) }}</td>
                 <td class="text-info">
                   @if(has_discount($product->id))
                   {{get_product_binifis_with_discount($product->id)}}
@@ -126,7 +126,7 @@
                 @else 
                 <td>بدون تصنيف</td>
                 @endif
-                @if($product->category->id!=null)
+                {{-- @if($product->category->id!=null)
                 <td>{{$product->sub_category->name}}</td>
                 @else 
                 <td>بدون تحت التصنيف</td>
@@ -141,7 +141,7 @@
                 @else 
                 <td>بدون مزود</td>
                 @endif
-                <td>{{$product->user->name}}</td>
+                <td>{{$product->user->name}}</td> --}}
                 <td>
                   <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
                   <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>

@@ -710,12 +710,21 @@ function active_how_to_ship_link()
 function global_Purchasing_price()
 {
     $all_products=App\product::all();
-        $x=0;
+        $Purchasing_price=0;
+        $to_magazin_price=0;
+        $to_consumer_price=0;
+        $ombalage_price=0;
+        $adds_price=0;
         foreach($all_products as $product)
         {
-            $x+=($product->Purchasing_price * $product->qty);
+            $Purchasing_price+=($product->Purchasing_price * $product->qty);
+            $to_magazin_price+=($product->to_magazin_price * $product->qty);
+            $to_consumer_price+=($product->to_consumer_price * $product->qty);
+            $ombalage_price+=($product->ombalage_price * $product->qty);
+            $adds_price+=($product->adds_price * $product->qty);
         }
-        return $x;
+         $total=$Purchasing_price+$to_magazin_price+$to_consumer_price+$ombalage_price+$adds_price;
+        return $total;
 }
 //global_selling_price function
 function global_selling_price()
@@ -724,7 +733,7 @@ function global_selling_price()
         $x=0;
         foreach($all_products as $product)
         {
-            $x+=($product->selling_price * $product->qty);
+            $x+=(price_with_discount($product->id) * $product->qty);
         }
         return $x;
 }
@@ -833,7 +842,7 @@ function get_all_product_images($product_id)
 {    
     // $product=App\product::findOrFail($product_id);
     $product_images=App\product_images::where('product_id',$product_id)->get();
-    $product_colors=App\product_colors::where('product_id',$product_id)->get();    
+    $product_colors=App\product_colors::where('product_id',$product_id)->where('color_image','!=','/')->get();    
     // $first_image=url("admin-css/uploads/images/products/".$product->image);
     $images=[]; 
     if($product_images->count() > 0)
@@ -858,6 +867,46 @@ function get_no_read_notification_count()
 {
     $note=App\admin_notefication::where('status',0)->get();
     return $note->count();
+}
+// get_contact_count_rows
+function get_contact_count_rows()
+{
+    $contacts=App\contact_us::all();
+    return count($contacts);
+}
+//get_no_read_contatc_data
+function get_no_read_contact_data()
+{
+    $contacts=App\contact_us::where('status',0)->get();
+    return $contacts;
+}
+//get_no_read_contatc
+function get_no_read_contact()
+{
+    $contacts=App\contact_us::where('status',0)->get();
+    return count($contacts);
+}
+// print note nember no read in string
+function print_message_nember_string($num)
+{
+    //لديك 10 إخطارات
+    if($num==0)
+    {
+        return 'ليس لديك أي رسالة جديدة';
+    }elseif($num==1)
+    {
+        return 'لديك رسالة واحدة جديدة';
+    }elseif($num==2)
+    {
+        return 'لديك رسالتين جديدتين';
+    }elseif($num >=3 && $num<=20)
+    {
+        return 'لديك'.$num.'رسائل جديدة';
+    }else
+    {
+        return 'لديك'.$num.'رسالة جديدة';
+    }
+
 }
 // print note nember no read in string
 function print_note_nember_string($num)
@@ -1046,7 +1095,7 @@ function order_status($type)
 function consumer_is_register($consumer_id)
 {
     $consumer=App\consumer::find($consumer_id);
-    if($consumer==null)
+    if($consumer==null || $consumer->id==1)
     {
         return '<span class="label label-danger">زبون غير مسجل</span>';
     }else
@@ -1336,20 +1385,34 @@ function has_discount_in_this_order_date($product_id,$date)
     }
 }
 //print final price
-function price_with_discount($price,$discount)
+function price_with_discount($product_id)
 {
-    $price_discount=($discount * $price) /100;
-    $new_price=$price - $price_discount;
+    $product=App\product::find($product_id);
+    $discount_data=App\discount::where('product_id',$product_id)->first();
+    if($discount_data!=null){
+    $new_price=$discount_data->discount;
     return $new_price;
-}
-//get product discount
-function get_product_discount($product_id)
-{
-    $discount=App\discount::where('product_id',$product_id)->first();
-    if($discount!=null){
-        return $discount->discount;
     }else
     {
+        return $product->selling_price;
+    }
+}
+// function price_with_discount($price,$discount)
+// {
+//     $price_discount=($discount * $price) /100;
+//     $new_price=$price - $price_discount;
+//     return $new_price;
+// }
+//get product discount
+function get_product_discount($product_id)
+{    
+    $product=App\product::find($product_id);
+    $discount=App\discount::where('product_id',$product_id)->first();
+    if($discount!=null && $discount->exp_date>=date('Y-m-d h:i:s'))
+    {                
+        return round(100-(($discount->discount * 100)/$product->selling_price));        
+    }else
+    {        
         return 0;
     }
 }
@@ -1364,7 +1427,7 @@ function get_product_binifis($product_id)
 function get_product_binifis_with_discount($product_id)
 {
     $product=App\product::find($product_id);
-    $binifis=price_with_discount($product->selling_price,get_product_discount($product_id))-($product->Purchasing_price+$product->to_magazin_price+$product->to_consumer_price+$product->ombalage_price+$product->adds_price);
+    $binifis=price_with_discount($product->id)-($product->Purchasing_price+$product->to_magazin_price+$product->to_consumer_price+$product->ombalage_price+$product->adds_price);
     return $binifis;
 }
 //function is_invoice_exist
@@ -1426,6 +1489,18 @@ function get_size_name_from_id($size_id)
     {
         return 'إفتراضي';
     }
+}
+//function get_deny_order_obs_from_id
+function get_deny_order_obs_from_id($id)
+{
+    $deny_order_obs=App\deny_order_observation::find($id);
+    return $deny_order_obs->obs;
+}
+//function get_return_order_obs_from_id
+function get_return_order_obs_from_id($id)
+{
+    $return_order_obs=App\return_order_observation::find($id);
+    return $return_order_obs->obs;
 }
 //function get_product_color_name_form_id_color
 function get_product_brand_name_form_id_brand($id)

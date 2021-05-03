@@ -19,6 +19,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">إضافة تخفيض</h3>
         </div><!-- /.box-header -->
+        <h3>سعر المنتج الأصلي : {{$product->selling_price}} د.ج</h3>
         <!-- form start -->
         <form role="form" action="{{route('admin.discount.store')}}" method="POST" enctype="multipart/form-data">
           @csrf

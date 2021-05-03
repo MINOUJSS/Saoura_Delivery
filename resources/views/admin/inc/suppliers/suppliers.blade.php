@@ -58,6 +58,7 @@
             <td></td>
             @endif
           </tbody></table>
+          {{$suppliers->links()}}
         </div><!-- /.box-body -->
       </div>
       <!--End Page Content Here-->

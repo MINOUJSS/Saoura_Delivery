@@ -42,7 +42,7 @@
             </address>
           </div><!-- /.col -->
           <div class="col-sm-4 invoice-col">
-            إلى
+            إلى السيد
             <address>
               <strong>{{$order->billing_name}}</strong><br>
               {{$order->billing_address}}<br>
@@ -63,7 +63,7 @@
         <!-- Table row -->
         <div class="row">
           <div class="col-xs-12 table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="datatable">
               <thead>
                 <tr>
                   <th>الكمية</th>
@@ -75,7 +75,9 @@
                   <th style="width:90px;">السعر</th>
                   <th>التخفيض</th>
                   <th style="width:90px;">المبلغ</th>
+                  @if(count($products)>1)
                   <th style="width:90px;">العمليات</th>
+                  @endif
                 </tr>
               </thead>
               <tbody>
@@ -85,12 +87,12 @@
                   @foreach($products as $product)
                 <tr>
                   <td>{{$product->qty}}</td>
-                  <td>{{$product->product->id}}</td>
-                  <td><img src="{{url('admin-css/uploads/images/products/'.$product->product->image)}}" height="50" width="50"></td>                  
-                  <td>{{$product->product->name}}</td>
+                  <td>@if($product->product!=null){{$product->product->id}}@else / @endif</td>
+                  <td>@if($product->product!=null)<img src="{{url('admin-css/uploads/images/products/'.$product->product->image)}}" height="50" width="50">@else / @endif</td>                  
+                  <td>@if($product->product!=null){{$product->product->name}}@else / @endif</td>
                   <td>{{get_color_name_from_id($product->color_id)}}</td>
                   <td>{{get_size_name_from_id($product->size_id)}}</td>
-                  <td>{{$product->product->selling_price}} دج</td>
+                  <td>@if($product->product!=null){{$product->product->selling_price}} دج@else / @endif</td>
                   <td>
                     @if(has_discount_in_this_order_date($product->product_id,$product->order->created_at))
                     {{get_product_discount($product->product_id)}} %
@@ -99,11 +101,12 @@
                     @endif  
                   </td>
                   <td>
+                    @if($product->product!=null)
                       @if(has_discount_in_this_order_date($product->product_id,$product->order->created_at))
                       @php
-                          $total=$total+(price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty);
+                          $total=$total+(price_with_discount($product->product->id) * $product->qty);
                       @endphp
-                      {{price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty}}  
+                      {{price_with_discount($product->product->id) * $product->qty}}  
                       @else 
                     @php
                         $total=$total+($product->product->selling_price * $product->qty);
@@ -111,8 +114,17 @@
                       {{$product->product->selling_price * $product->qty}}  
                       @endif
                        دج                
+                       @else 
+                      /
+                       @endif
                   </td>
-                  <td><span class="badge bg-red"><i class="fa fa-trash"></i></span></td>
+                  @if($product->product!=null)
+                    @if(count($products)>1)
+                    <td><i id="delete_order_product" title="{{$product->product->name}}" url="{{url('/admin/order/'.$product->order_id.'/product/'.$product->product_id.'/delete')}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+                    @endif
+                  @else 
+                  <td>/</td>
+                  @endif
                 </tr>
                 @endforeach
               </tbody>
@@ -123,6 +135,7 @@
         <div class="row">
           <!-- accepted payments column -->
           <div class="col-md-6">
+            @if($order->status!=4 && $order->status!=5)
             <p class="lead">عمليات على الطلب:</p>
             @if($order->status==0)
             {{-- <button class="btn btn-primary" onclick="confirm_order({{$order->id}});"><i class="fa fa-thumbs-up"></i> تأكيد الطلب</button> --}}
@@ -130,14 +143,64 @@
             @endif
             @if($order->status==1)
             {{-- <button class="btn btn-info" onclick="ship_order({{$order->id}})"><i class="fa fa-truck"></i> تم إرسال الطلب</button> --}}
-            <a id="ship_order" data-order="{{$order->id}}"><button class="btn btn-info"><i class="fa fa-truck"></i> تم إرسال الطلب</button></a>
+            <a id="ship_order" data-order="{{$order->id}}"><button class="btn btn-info"><i class="fa fa-truck"></i> إرسال الطلب</button></a>
             @endif
             @if($order->status==2)
             {{-- <button class="btn btn-success" onclick="complate_order({{$order->id}})"><i class="fa fa-trophy"></i> تم تسليم الطلب</button> --}}
-            <a id="complate_order" data-order="{{$order->id}}"><button class="btn btn-success"><i class="fa fa-trophy"></i> تم تسليم الطلب</button></a>
+            <a id="complate_order" data-order="{{$order->id}}"><button class="btn btn-success"><i class="fa fa-trophy"></i> تسليم الطلب</button></a>
             @endif
             {{-- <button class="btn btn-danger" onclick="deny_order({{$order->id}})"><i class="fa fa-ban"></i> إلغاء الطلب</button> --}}
+            @if($order->status!=3 && $order->status!=5)
+            <a href="{{route('admin.deny.order.observation.create')}}"><button class="btn btn-success"><i class="fa fa-plus"></i>  إضافة سبب آخر</button></a>
+            <a href="{{route('admin.deny.order.observation')}}"><button class="btn btn-warning"><i class="fa fa-edit"></i>  تعديل وحذف الأسباب</button></a>
+            <form name="deny_order" action="{{route('admin.order.deny')}}" method="POST" enctype="multipart/form-data">
+              @csrf
+              <input type="hidden" name="order_id" value="{{$order->id}}">
+            <div class="form-group">
+              <label for="obs"></label>
+              <select name="obs" class="form-control">
+                <option value="0">إختر سبب إلغاء الطلب</option>
+                @foreach ($deny_obses as $obs)
+                <option value="{{$obs->id}}">{{$obs->obs}}</option>   
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
             <a id="deny_order" data-order="{{$order->id}}"><button class="btn btn-danger"><i class="fa fa-ban"></i> إلغاء الطلب</button></a>
+            </div>
+            </form>
+            @endif
+            <!---->
+            @if($order->status==3)
+            <a href="{{route('admin.return.order.observation.create')}}"><button class="btn btn-success"><i class="fa fa-plus"></i>  إضافة سبب آخر</button></a>
+            <a href="{{route('admin.return.order.observation')}}"><button class="btn btn-warning"><i class="fa fa-edit"></i>  تعديل وحذف الأسباب</button></a>
+            <form name="return_order" action="{{route('admin.order.return')}}" method="POST" enctype="multipart/form-data">
+              @csrf
+              <input type="hidden" name="order_id" value="{{$order->id}}">
+            <div class="form-group">
+              <label for="obs"></label>
+              <select name="obs" class="form-control">
+                <option value="0">إختر سبب إرجاع الطلب</option>
+                @foreach ($return_obses as $obs)
+                <option value="{{$obs->id}}">{{$obs->obs}}</option>   
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+            <a id="return_order" data-order="{{$order->id}}"><button class="btn btn-danger"><i class="fa fa-truck"></i> إرجاع الطلب</button></a>
+            </div>
+            </form>
+            @endif
+            <!---->
+            @else
+                @if($order->status==5)
+                <p class="lead">سبب إرجاع الطلب:</p>
+                  {{$order->obs}}
+                @else 
+                <p class="lead">سبب إلغاء الطلب:</p>
+                {{$order->obs}}
+                @endif
+            @endif
             {{-- <p class="lead">طرق الدفع:</p>
             <img src="../../dist/img/credit/visa.png" alt="Visa">
             <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">

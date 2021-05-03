@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="form-group {{$errors->has('message')? 'has-error' : ''}}">
                                         <label for="message">محتوى الرسالة</label>
-                                        <textarea class="form-control" name="message" placeholder="أكتب رسالتك هنا." rows="6">{{old('message')}}</textarea>
+                                        <textarea id="article-ckeditor" class="form-control" name="message" placeholder="أكتب رسالتك هنا." rows="6">{{old('message')}}</textarea>
                                         @if($errors->has('message'))
                                         <span class="help-block">
                                             {{$errors->first('message')}}

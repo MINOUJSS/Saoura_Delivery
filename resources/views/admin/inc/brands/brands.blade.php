@@ -46,6 +46,7 @@
             </tr>
             @endforeach
           </tbody></table>
+          {{$brands->links()}}
         </div><!-- /.box-body -->
       </div>
       <!--End Page Content Here-->

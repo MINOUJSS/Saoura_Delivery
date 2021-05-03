@@ -67,7 +67,7 @@ class PagesController extends Controller
          $consumer_id=$consumer->id;   
         }else{
         //else insert to emails list
-        $consumer_id=0;
+        $consumer_id=1;
         }
         //insert contact to database
         $contact = new contact_us;
@@ -76,6 +76,7 @@ class PagesController extends Controller
         $contact->email=$request->email;
         $contact->title=$request->title;
         $contact->message=$request->message;
+        $contact->status=0;
         $contact->save();
         // noteficate admin abou this contact
         $note=new admin_notefication;

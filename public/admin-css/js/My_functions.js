@@ -852,6 +852,69 @@ $('body').on('click','#delete_size',function(event){
     });
 
 });
+//delete consummer function
+$('body').on('click','#delete_consumer',function(event){
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    consumer_name=me.attr('title'),
+    consumer_id=me.attr('color_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف المستهلك  '+ consumer_name + ' ؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف المستهلك "+consumer_name
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف المستهلك  لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
 //delete supplier function
 $('body').on('click','#delete_supplier',function(event){
     event.preventDefault();
@@ -1208,6 +1271,193 @@ $('body').on('click','#delete_discount',function(event){
                         icon:'error',
                         title:'خطأ',
                         text:'لم يتم حذف التخفيض  لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+//delete product from order
+$('body').on('click','#delete_order_product',function(event){
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    product=me.attr('title'),
+    // color_id=me.attr('user_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف المنتج  '+ product + ' من الطلب؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف المنتج "+product
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف المنتج  لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+$('body').on('click','#delete_deny_order_obs',function(event){    
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    obs=me.attr('title'),
+    // color_id=me.attr('user_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف سبب إلغاء الطلب  '+ obs + '؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف السبب "+obs
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف السبب  لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+$('body').on('click','#delete_return_order_obs',function(event){    
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    obs=me.attr('title'),
+    // color_id=me.attr('user_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف سبب إرجاع الطلب  '+ obs + '؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف السبب "+obs
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف السبب  لسبب غير معروف',
                         confirmButtonText:"حسناً"
                     });
 

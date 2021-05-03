@@ -21,7 +21,7 @@ class SizeController extends Controller
 
     public function index()
     {
-        $sizes=size::orderBy('id','desc')->paginate(10);
+        $sizes=size::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.sizes',compact('sizes'));
     }
     public function create()
@@ -51,8 +51,13 @@ class SizeController extends Controller
 
     public function edit($id)
     {
+        if($id==1)
+        {
+            redirect()->back();
+        }else{
         $size=size::findOrFail($id);
         return view('admin.edit-size',compact('size'));
+        }
     }
 
     public function update(Request $request)
@@ -75,8 +80,17 @@ class SizeController extends Controller
                 return redirect()->back();
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-
+        if($id==1)
+        {
+            return redirect()->back();
+        }else
+        {
+            $size=size::findOrFail($id);
+            $size->delete();
+            //
+            return redirect()->back();
+        }
     }
 }

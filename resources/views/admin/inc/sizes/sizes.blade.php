@@ -43,7 +43,13 @@
               <td>{{$size->name}}</td>
               <td>{{$size->size}}</td>
               <td>{{$size->created_at->diffForHumans()}}</td>
-              <td><a href="{{url('admin/size').'/'.$size->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_size" title="{{$size->name}}" url="{{url('admin/size').'/'.$size->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+              <td>
+                @if($size->id!=1)
+                <a href="{{url('admin/size').'/'.$size->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_size" title="{{$size->name}}" url="{{url('admin/size').'/'.$size->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                @else 
+                لا يمكن التعديل أو الحذف
+                @endif                
+              </td>
             </tr>
             @endforeach
             @else 

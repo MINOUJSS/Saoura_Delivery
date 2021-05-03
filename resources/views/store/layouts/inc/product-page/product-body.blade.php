@@ -5,11 +5,13 @@
             <span>جديد</span>
             @endif
             @if(has_discount($product->id))
-            <span class="sale">- %{{$product->discount->discount}}</span>
+            {{-- <span class="sale">- %{{$product->discount->discount}}</span> --}}
+            <span class="sale">- %{{get_product_discount($product->id)}}</span>            
             @endif
         </div>
         <h2 class="product-name">{{$product->name}}</h2>
-        <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
+        {{-- <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3> --}}
+        <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->id)}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
         <div>
             {{-- <div class="product-rating">
                 <i class="fa fa-star"></i>

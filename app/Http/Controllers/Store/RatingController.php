@@ -16,7 +16,7 @@ class RatingController extends Controller
         $name="";
         $email="";
         //validation        
-        if(Auth::guard('consumer')->check())
+        if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->id != 1)
         {            
             //if is consumer validation
             $this->validate($request,[
@@ -35,7 +35,7 @@ class RatingController extends Controller
                 'rating_text' => 'required',
                 'rating' =>'required'
             ]);
-            $consumer_id=0;
+            $consumer_id=1;
             $name=$request->name;
             $email=$request->email;            
         }              

@@ -11,31 +11,34 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-envelope-o"></i>
-            <span class="label label-success">4</span>
+            <span class="label label-success">{{get_no_read_contact()}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">لديك 4 رسائل</li>
+            <li class="header">{{print_message_nember_string(get_no_read_contact())}}</li>
             <li>
               <!-- inner menu: contains the messages -->
               <ul class="menu">
+                {{-- @if() --}}
+                @foreach(get_no_read_contact_data() as $contact)
                 <li><!-- start message -->
-                  <a href="#">
+                  <a href="{{route('admin.contact.show',$contact->id)}}">
                     <div class="pull-left">
                       <!-- User Image -->
                       <img src="{{url('admin-css')}}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <!-- Message title and timestamp -->
                     <h4>
-                      فريق الدعم
-                      <small><i class="fa fa-clock-o"></i> 5 دقائق</small>
+                      {{$contact->name}}
+                      <small><i class="fa fa-clock-o"></i>{{$contact->created_at->diffForHumans()}}</small>
                     </h4>
                     <!-- The message -->
-                    <p>لماذا لا تشتري سمة جديدة رائعة؟</p>
+                    <p>{{$contact->title}}</p>
                   </a>
-                </li><!-- end message -->
+                </li><!-- end message -->                
+                @endforeach
               </ul><!-- /.menu -->
             </li>
-            <li class="footer"><a href="#">مشاهدة كل الرسائل</a></li>
+            <li class="footer"><a href="{{route('admin.all.contacts')}}">مشاهدة الكل </a></li>
           </ul>
         </li><!-- /.messages-menu -->
 

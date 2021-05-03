@@ -24,9 +24,9 @@ class CategoryController extends Controller
     
     public function index()
     {        
-        $categories=Category::all();
-        $sub_categories=Sub_Category::all();
-        $sub_sub_categories=Sub_Sub_category::all();
+        $categories=Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
+        $sub_categories=Sub_Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
+        $sub_sub_categories=Sub_Sub_category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.categories',compact('categories','sub_categories','sub_sub_categories'));
     }
 

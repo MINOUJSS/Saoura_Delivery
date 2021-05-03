@@ -48,7 +48,13 @@
               <td>{{$consumer->telephone}}</td>
               <td>{{$consumer->address}}</td>
               <td>{{$consumer->googl_map_address}}</td>
-              <td></td>
+              <td>
+                @if ($consumer->id==1)
+                    لا يمكن التعديل أو الحذف 
+                @else
+                <i id="delete_consumer" title="{{$consumer->name}}" url="{{url('admin/consumer').'/'.$consumer->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                @endif
+              </td>
             </tr>
             @endforeach
           </tbody></table>

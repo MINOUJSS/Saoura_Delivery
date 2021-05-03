@@ -54,9 +54,30 @@ class DiscountsController extends Controller
         $discount=discount::findOrFail($id);
         //delete
         $discount->delete();
-        //alert success 
-        //Alert::success('حذف تخفيض','تم حذف التخفيض بنجاح');
-        //redirect
-        //return redirect()->back();
+    }
+
+    public function edit($id)
+    {
+        $discount=discount::findOrFail($id);
+        $product=product::findOrfail($discount->product_id);
+        return view('admin.edit-discount',compact('product','discount'));
+    }
+
+    public function update(Request $request)
+    {
+        //validate
+        $this->validate($request,[
+            'discount' =>'required|numeric',
+            'exp_date' => 'required'
+        ]);
+        //save data
+        $discount=discount::where('product_id',$request->product_id)->first();
+        $discount->discount=$request->discount;
+        $discount->exp_date=$request->exp_date.' '.date('H:i:s');
+        $discount->update();
+        //Alert success message        
+        Alert::success('رائع', 'تم تعديل التخفيض بنجاح');
+        //redirect back();
+        return redirect()->back();
     }
 }

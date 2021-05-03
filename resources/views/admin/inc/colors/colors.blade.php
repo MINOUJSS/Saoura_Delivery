@@ -43,7 +43,13 @@
               <td>{{$color->name}}</td>
               <td>{{$color->code}}</td>
               <td>{{$color->created_at->diffForHumans()}}</td>
-              <td><a href="{{url('admin/color').'/'.$color->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_color" title="{{$color->name}}" url="{{url('admin/color').'/'.$color->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+              <td>
+                @if($color->id!=1)
+                <a href="{{url('admin/color').'/'.$color->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_color" title="{{$color->name}}" url="{{url('admin/color').'/'.$color->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                @else 
+                لا يمكن التعديل أو الحذف
+                @endif
+              </td>
             </tr>
             @endforeach
             @else 

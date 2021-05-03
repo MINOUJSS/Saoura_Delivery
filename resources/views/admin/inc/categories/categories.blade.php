@@ -60,7 +60,8 @@
                                 <td></td>
                               </tr>
                               @endif                       
-                      </tbody></table>                      
+                      </tbody></table>
+                      {{$categories->links()}}                      
                     </div><!-- /.box-body -->
                     {{-- <div class="box-footer clearfix">
                       <ul class="pagination pagination-sm no-margin pull-right">
@@ -108,7 +109,8 @@
                           <td></td>
                         </tr>
                         @endif               
-                      </tbody></table>                                            
+                      </tbody></table>     
+                      {{$sub_categories->links()}}                                       
                     </div><!-- /.box-body -->
                     {{-- <div class="box-footer clearfix">
                       <ul class="pagination pagination-sm no-margin pull-right">
@@ -154,6 +156,7 @@
                         </tr>
                         @endif              
                       </tbody></table>
+                      {{$sub_sub_categories->links()}}
                     </div><!-- /.box-body -->
                     {{-- <div class="box-footer clearfix">
                       <ul class="pagination pagination-sm no-margin pull-right">

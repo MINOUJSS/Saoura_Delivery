@@ -28,7 +28,7 @@ class Cart
   {
     if(has_discount($product->id))
     {
-      $price=price_with_discount($product->selling_price,get_product_discount($product->id));
+      $price=price_with_discount($product->id);
     }
     else
     {
@@ -66,7 +66,7 @@ class Cart
   {  
     if(has_discount($product->id))
     {
-      $price=price_with_discount($product->selling_price,get_product_discount($product->id));
+      $price=price_with_discount($product->id);
     }
     else
     {

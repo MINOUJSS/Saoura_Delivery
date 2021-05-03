@@ -15,7 +15,7 @@ class Contra_Table_Seeder extends Seeder
         $text="<h1>سياسة خصوصية</h1>";
         $text.="<p>السياسة الخصوصية تحدد من طرف صاحب المتجر</p>";
         $contra = contra::create([
-            'admin_id' =>0,
+            'admin_id' =>1,
             'content'=>$text,                        
             'image' =>'/'
         ]);

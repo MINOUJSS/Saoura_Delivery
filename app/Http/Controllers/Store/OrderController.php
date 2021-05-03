@@ -10,6 +10,7 @@ use App\Consumer;
 use App\order;
 use App\order_product;
 use App\admin_notefication;
+use App\product;
 use Auth;
 
 class OrderController extends Controller
@@ -18,13 +19,13 @@ class OrderController extends Controller
     {
         // 
         //check if is consumer or not var $consumer_id        
-        if(Auth::guard('consumer')->check())
+        if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->id!=1)
         {
             $consumer_id = Auth::guard('consumer')->user()->id;
         }
         else
         {
-            $consumer_id = 0;
+            $consumer_id = 1;
         }
        // return Auth::guard()-;
        
@@ -73,12 +74,28 @@ class OrderController extends Controller
         $order_product->product_id=$request->product_id[$x];
         $order_product->consumer_id=$consumer_id;
         $order_product->qty=$request->product_qty[$x];
-        $order_product->color_id=$request->product_color[$x];
-        $order_product->size_id=$request->product_size[$x];
+        if($request->product_color[$x]==0)
+        {
+            $order_product->color_id=1;
+        }else
+        {
+            $order_product->color_id=$request->product_color[$x];
+        }
+        if($request->product_color[$x]==0)
+        {
+            $order_product->size_id=1;
+        }else
+        {
+            $order_product->size_id=$request->product_size[$x];
+        }                        
         $order_product->save();
+        //modify the qty in magazin
+        $product=product::find($request->product_id[$x]);
+        $product->qty=($product->qty - $request->product_qty[$x]);
+        $product->update();
         }        
         //remove cart session
-        session()->forget('cart');
+        session()->forget('cart');        
         //notificate admin about this order
         $note=new admin_notefication;
         $note->title='لديك طلب جديد';

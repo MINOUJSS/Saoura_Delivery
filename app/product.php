@@ -56,6 +56,10 @@ class product extends Model
     {
         return $this->hasMany('App\product_sizes');
     }
+    // public function deals()
+    // {
+    //     return $this->hasMany('App\deal','product_id');
+    // }
 
     public function copleted_sales()
     {

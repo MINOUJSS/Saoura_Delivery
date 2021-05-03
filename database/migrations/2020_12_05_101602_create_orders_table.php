@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');            
-            $table->unsignedBigInteger('consumer_id');
+            $table->unsignedBigInteger('consumer_id')->index()->nullable();
             $table->foreign('consumer_id')
             ->references('id')
             ->on('consumers')
@@ -25,7 +25,8 @@ class CreateOrdersTable extends Migration
             $table->text('billing_address');
             $table->string('billing_mobile');
             $table->string('status');
-            $table->timestamps();
+            $table->text('obs')->nullable();
+            $table->timestamps();            
         });
     }
 

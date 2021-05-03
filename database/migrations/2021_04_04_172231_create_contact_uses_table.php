@@ -25,6 +25,7 @@ class CreateContactUsesTable extends Migration
             $table->string('title');
             $table->text('message');
             $table->string('image')->nullable();
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -14,9 +14,10 @@ use App\product_colors;
 use App\product_sizes;
 use App\color;
 use App\size;
+use App\reating;
 class ProductController extends Controller
 {
-        /**
+     /**
      * Create a new controller instance.
      *
      * @return void
@@ -34,9 +35,9 @@ class ProductController extends Controller
    
     public function create()
     {
-        $brands=brand::all();
-        $suppliers=supplier::all();
-        $categories=category::all();
+        $brands=brand::orderBy('id','desc')->where('id','!=',1)->get();
+        $suppliers=supplier::orderBy('id','desc')->where('id','!=',1)->get();
+        $categories=category::orderBy('id','desc')->where('id','!=',1)->get();
         return view('admin.create-product',compact('brands','suppliers','categories'));
     }
 
@@ -47,8 +48,8 @@ class ProductController extends Controller
             'product_name' =>'required|min:3',
             // 'product_brand' =>'required',
             // 'product_supplier' =>'required',
-            'product_short_description' => 'required|max:20',
-            'product_long_description' => 'required|min:50',
+            'product_short_description' => 'required',
+            'product_long_description' => 'required',
             'product_Purchasing_price' => 'required',
             'product_to_magazin_price' => 'required',
             'product_to_consumer_price' =>'required',
@@ -100,9 +101,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product=product::findOrfail($id);
-        $brands=brand::all();
-        $suppliers=supplier::all();
-        $categories=category::all();        
+        $brands=brand::orderBy('id','desc')->where('id','!=',1)->get();
+        $suppliers=supplier::orderBy('id','desc')->where('id','!=',1)->get();
+        $categories=category::orderBy('id','desc')->where('id','!=',1)->get();
         return view('admin.edit-product',compact('product','brands','suppliers','categories'));
     }
 
@@ -113,8 +114,8 @@ class ProductController extends Controller
             'product_name' =>'required|min:3',
             // 'product_brand' =>'required',
             // 'product_supplier' =>'required',
-            'product_short_description' => 'required|max:20',
-            'product_long_description' => 'required|min:50',
+            'product_short_description' => 'required',
+            'product_long_description' => 'required',
             'product_Purchasing_price' => 'required',
             'product_to_magazin_price' => 'required',
             'product_to_consumer_price' =>'required',
@@ -125,7 +126,7 @@ class ProductController extends Controller
             'product_category' => 'required',
             // 'product_sub_category' => 'required',
             // 'product_sub_sub_category' => 'required',
-            'product_image' =>'required|mimes:jpeg,bmp,png'
+            'product_image' =>'mimes:jpeg,bmp,png'
         ]);
         //save data
         $product=product::findOrfail($request->input('product_id'));
@@ -193,7 +194,7 @@ class ProductController extends Controller
         $product=product::findOrFail($id);
         $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();
-        $colors=color::all();
+        $colors=color::orderBy('id','desc')->where('id','!=',1)->get();
         return view('admin.add-color-to-product',compact('product','product_images','product_colors','colors'));
     }
 
@@ -228,7 +229,7 @@ class ProductController extends Controller
         {
             //validate form
             $this->validate($request,[
-                'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'image' =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
         //store color for this product
             $product_color=new product_colors;
@@ -344,7 +345,7 @@ class ProductController extends Controller
         $product=product::findOrFail($id);
         $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_sizes=product_sizes::orderBy('id','desc')->where('product_id',$product->id)->get();
-        $sizes=size::all();
+        $sizes=size::orderBy('id','desc')->where('id','!=',1)->get();;
         return view('admin.add-size-to-product',compact('product','product_images','product_sizes','sizes'));
     }
 
@@ -555,6 +556,13 @@ class ProductController extends Controller
         $product_image->delete();
         //redirect
         // return redirect()->url('/admin/product/'.$product_image->product_id.'/add-images');
+ }
+
+ public function product_details($id)
+ {
+    $product=product::findOrfail($id);
+    $reviews=reating::where('product_id',$product->id)->paginate(5);
+    return view('admin.inc.products.product-details',compact('product','reviews'));
  }
 
 }

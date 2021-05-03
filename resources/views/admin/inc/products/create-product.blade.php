@@ -36,18 +36,18 @@
             <div class="form-group col-lg-4 {{$errors->has('product_brand')? 'has-error':''}}">
               <label for="product_brand">العلامة التجارية</label>
               <select class="form-control" name="product_brand">
-                <option value="0">بدون علامة تجارية</option>
+                <option value="1">بدون علامة تجارية</option>
                 @foreach ($brands as $brand)
-                    <option value="{{$brand->id}}" @if(old('product_brand')==$brand->name) selected @endif>{{$brand->name}}</option>
+                    <option value="{{$brand->id}}" @if(old('product_brand')==$brand->id) {{'selected'}} @endif>{{$brand->name}}</option>
                 @endforeach                
               </select>              
             </div>
             <div class="form-group col-lg-4 {{$errors->has('product_supplier')? 'has-error':''}}">
               <label for="product_supplier">المزود</label>
               <select class="form-control" name="product_supplier">
-                <option value="0">لا مزود</option>
+                <option value="1">لا مزود</option>
                 @foreach ($suppliers as $supplier)
-                    <option value="{{$supplier->id}}" @if(old('product_supplier')==$supplier->name) selected @endif>{{$supplier->name}}</option>
+                    <option value="{{$supplier->id}}" @if(old('product_supplier')==$supplier->id) selected @endif>{{$supplier->name}}</option>
                 @endforeach                
               </select>              
             </div>
@@ -144,22 +144,22 @@
             <div class="form-group col-lg-4 {{$errors->has('product_category')? 'has-error':''}}">
               <label for="product_category">الصنف</label>
               <select class="form-control" name="product_category" id="product_category">
-                <option value="0">إختر الصنف</option>
+                <option value="1">إختر الصنف</option>
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}}" @if(old('product_category')==$category->name) selected @endif>{{$category->name}}</option>
+                    <option value="{{$category->id}}" @if(old('product_category')==$category->id) selected @endif>{{$category->name}}</option>
                 @endforeach                
               </select>              
             </div>
             <div class="form-group col-lg-4 {{$errors->has('product_sub_category')? 'has-error':''}}">
               <label for="product_sub_category1">تحت الصنف</label>
               <select class="form-control" name="product_sub_category" id="product_sub_category">
-                <option value="0">إختر تحت الصنف</option>
+                <option value="1">إختر تحت الصنف</option>
               </select>              
             </div>
             <div class="form-group col-lg-4 {{$errors->has('product_sub_sub_category')? 'has-error':''}}">
               <label for="product_sub_sub_category">تحت تحت الصنف</label>
               <select class="form-control" name="product_sub_sub_category" id="product_sub_sub_category">
-                <option value="0">إختر تحت تحت الصنف</option>               
+                <option value="1">إختر تحت تحت الصنف</option>               
               </select>              
             </div>
             <div class="form-group {{$errors->has('product_image')? 'has-error':''}}">

@@ -21,7 +21,7 @@ class SupplierController extends Controller
 
     public function index()
     {
-        $suppliers=supplier::orderBy('id','desc')->paginate(10);
+        $suppliers=supplier::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.suppliers',compact('suppliers'));
     }
     public function create()

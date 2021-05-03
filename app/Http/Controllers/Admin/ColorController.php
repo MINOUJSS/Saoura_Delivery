@@ -21,7 +21,7 @@ class ColorController extends Controller
 
     public function index()
     {
-        $colors=color::orderBy('id','desc')->paginate(10);
+        $colors=color::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.colors',compact('colors'));
     }
     public function create()
@@ -51,8 +51,14 @@ class ColorController extends Controller
 
     public function edit($id)
     {
+        //check if color is Default
+        if($id==1)
+        {
+            return redirect()->back();
+        }else{        
         $color=color::findOrFail($id);
         return view('admin.edit-color',compact('color'));
+        }
     }
 
     public function update(Request $request)
@@ -76,10 +82,15 @@ class ColorController extends Controller
 
     public function destroy($id)
     {
+        if($id==1)
+        {
+            return redirect()->back();
+        }else{
         $color=color::findOrFail($id);
         //delete color
         $color->delete();
         //redirect
         return redirect()->back();
+        }
     }
 }

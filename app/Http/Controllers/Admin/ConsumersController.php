@@ -20,7 +20,20 @@ class ConsumersController extends Controller
 
     public function index()
     {
-        $consumers=consumer::orderBy('id','desc')->paginate(10);
+        $consumers=consumer::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.consumers',compact('consumers'));
+    }
+    public function destroy($id)
+    {
+        if($id==1)
+        {
+            return redirect()->back();
+        }else
+        {
+            $consumer=consumer::findOrFail($id);
+            $consumer->delete();
+            //
+            return redirect()->back();
+        }
     }
 }

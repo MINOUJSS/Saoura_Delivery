@@ -37,7 +37,7 @@
             <div class="form-group col-lg-4 {{$errors->has('product_brand')? 'has-error':''}}">
               <label for="product_brand">العلامة التجارية</label>
               <select class="form-control" name="product_brand">
-                <option value="0">بدون علامة تجارية</option>
+                <option value="1">بدون علامة تجارية</option>
                 @foreach ($brands as $brand)
                     <option value="{{$brand->id}}" @if(old('product_brand')==$brand->name || $brand->name ==$product->brand->name) selected @endif>{{$brand->name}}</option>
                 @endforeach                
@@ -46,7 +46,7 @@
             <div class="form-group col-lg-4 {{$errors->has('product_supplier')? 'has-error':''}}">
               <label for="product_supplier">المزود</label>
               <select class="form-control" name="product_supplier">
-                <option value="0">لا مزود</option>
+                <option value="1">لا مزود</option>
                 @foreach ($suppliers as $supplier)
                     <option value="{{$supplier->id}}" @if(old('product_supplier')==$supplier->name || $supplier->name==$product->supplier->name) selected @endif>{{$supplier->name}}</option>
                 @endforeach                
@@ -145,7 +145,7 @@
             <div class="form-group col-lg-4 {{$errors->has('product_category')? 'has-error':''}}">
               <label for="product_category">الصنف</label>
               <select class="form-control" name="product_category" id="product_category">
-                <option value="0">إختر الصنف</option>
+                <option value="1">إختر الصنف</option>
                 @foreach ($categories as $category)
                     <option value="{{$category->id}}" @if(old('product_category')==$category->name || $category->name ==$product->category->name) selected @endif>{{$category->name}}</option>
                 @endforeach                
@@ -157,7 +157,7 @@
                 @if($product->sub_category!=null)
                 <option value="{{$product->sub_category->id}}">{{$product->sub_category->name}}</option>
                 @else 
-                <option value="0">إختر تحت الصنف</option>
+                <option value="1">إختر تحت الصنف</option>
                 @endif
               </select>              
             </div>
@@ -167,7 +167,7 @@
                 @if($product->sub_sub_category!=null)
                 <option value="{{$product->sub_sub_category->id}}">{{$product->sub_sub_category->name}}</option>
                 @else 
-                <option value="0">إختر تحت تحت الصنف</option>               
+                <option value="1">إختر تحت تحت الصنف</option>               
                 @endif
               </select>              
             </div>

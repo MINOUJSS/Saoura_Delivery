@@ -103,6 +103,21 @@ Route::prefix('admin')->group(function(){
     Route::get('/product/{id}/edit-image','Admin\ProductController@edit_image');
     Route::post('/product/edit-image/update','Admin\ProductController@update_image')->name('admin.edit-image-to-product.update');
     Route::get('/product/{id}/delete-image','Admin\ProductController@delete_image');    
+    //
+    Route::get('/product/{id}','Admin\ProductController@product_details')->name('admin.product.details');
+    //reating
+    Route::get('/reating/{id}/delete','Admin\ReatingController@destroy')->name('admin.reating.delete');
+    //contact us
+    Route::get('/all-contact','Admin\ContactController@index')->name('admin.all.contacts');
+    Route::get('/contact/create','Admin\ContactController@create')->name('admin.create.contact');
+    Route::post('/contact/store','Admin\ContactController@store')->name('admin.store.contact');
+    Route::get('/contact/{id}/show','Admin\ContactController@show')->name('admin.contact.show');
+    Route::get('/contact/{id}/create-reply','Admin\ContactController@create_reply')->name('admin.contact.reply');
+    Route::post('/contact/{id}/store-reply','Admin\ContactController@store_reply')->name('admin.contact.reply.store');
+    Route::get('/contact/{id}/delete','Admin\ContactController@destroy')->name('admin.contact.destroy');
+    //deleted contact
+    Route::get('/all-deleted-contact','Admin\DeletedContactController@index')->name('admin.all.deleted.contacts');
+
     //brands
     Route::get('/brands','Admin\BrandController@index')->name('admin.brands');    
     Route::get('/brand/{id}/delete','Admin\BrandController@destroy');
@@ -142,6 +157,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/sales','Admin\CompletedSaleController@index')->name('admin.sales');
     //consumers
     Route::get('/consumers','Admin\ConsumersController@index')->name('admin.consumers');
+    Route::get('/consumer/{id}/delete','Admin\ConsumersController@destroy')->name('admin.consumer.delete');
     //searsh-words
     Route::get('/searsh-words','Admin\SearshWordsController@index')->name('admin.searsh-words');
     //orders
@@ -150,7 +166,21 @@ Route::prefix('admin')->group(function(){
     Route::get('/order/{order_id}/confirm','Admin\OrderController@order_confirm')->name('admin.order.confirm');
     Route::get('/order/{order_id}/ship','Admin\OrderController@order_ship')->name('admin.order.ship');
     Route::get('/order/{order_id}/complate','Admin\OrderController@order_complate')->name('admin.order.complate');
-    Route::get('/order/{order_id}/deny','Admin\OrderController@order_deny')->name('admin.order.deny');
+    Route::post('/order/deny','Admin\OrderController@order_deny')->name('admin.order.deny');
+    Route::post('/order/return','Admin\OrderController@order_return')->name('admin.order.return');
+    Route::get('/order/{order_id}/product/{product_id}/delete','Admin\OrderController@delete_product_from_order')->name('admin.delete.product.from.order');
+    Route::get('/order/deny-order-observation/index','Admin\OrderController@deny_order_observation')->name('admin.deny.order.observation');
+    Route::get('/order/return-order-observation/index','Admin\OrderController@return_order_observation')->name('admin.return.order.observation');
+    Route::get('/order/deny-order-observation/create','Admin\OrderController@create_deny_order_observation')->name('admin.deny.order.observation.create');
+    Route::post('/order/deny-order-observation/store','Admin\OrderController@store_deny_order_observation')->name('admin.deny.order.observation.store');
+    Route::get('/order/return-order-observation/create','Admin\OrderController@create_return_order_observation')->name('admin.return.order.observation.create');
+    Route::post('/order/return-order-observation/store','Admin\OrderController@store_return_order_observation')->name('admin.return.order.observation.store');
+    Route::get('/order/deny-order-observation/{id}/edit','Admin\OrderController@edit_deny_order_observation')->name('admin.deny.order.observation.edit');
+    Route::get('/order/deny-order-observation/{id}/delete','Admin\OrderController@destroy_deny_order_observation')->name('admin.deny.order.observation.delete');
+    Route::post('/order/deny-order-observation/update','Admin\OrderController@update_deny_order_observation')->name('admin.deny.order.observation.update');
+    Route::get('/order/return-order-observation/{id}/edit','Admin\OrderController@edit_return_order_observation')->name('admin.return.order.observation.edit');
+    Route::get('/order/return-order-observation/{id}/delete','Admin\OrderController@destroy_return_order_observation')->name('admin.return.order.observation.delete');
+    Route::post('/order/return-order-observation/update','Admin\OrderController@update_return_order_observation')->name('admin.return.order.observation.update');
     //invoice
     Route::get('/{order_id}/invoice','Admin\InvoiceController@invoice')->name('admin.invoice');
     Route::get('/{order_id}/print-invoice','Admin\InvoiceController@print_invoice')->name('admin.print.invoice');
@@ -160,6 +190,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/products/discounts','Admin\DiscountsController@index')->name('admin.discounts');
     Route::get('/product/{id}/discount/create','Admin\DiscountsController@create')->name('admin.create.discount');
     Route::post('/product/discount/store','Admin\DiscountsController@store')->name('admin.discount.store');
+    Route::get('/product/discount/{id}/edit','Admin\DiscountsController@edit')->name('admin.discount.edit');
+    Route::post('/product/discount/update','Admin\DiscountsController@update')->name('admin.discount.update');
     Route::get('/product/discount/{id}/delete','Admin\DiscountsController@destroy')->name('admin.discount.destroy');
     //pages
     Route::get('/من-نحن','Admin\PagesController@about_us')->name('admin.about_us');
