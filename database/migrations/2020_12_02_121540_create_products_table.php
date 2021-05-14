@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             ->on('suppliers')
             ->onDelete('cascade');
             $table->string('name')->unique();
+            $table->string('slug')->unique();
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')
             ->references('id')

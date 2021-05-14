@@ -15,6 +15,7 @@
     <div class="container">
         <!-- row -->
         <div class="row">
+            <div class="container">
             <!-- ASIDE -->
             <div id="aside" class="col-md-3">
                 <!-- aside widget -->
@@ -66,6 +67,7 @@
                 <!-- /store bottom filter -->
             </div>
             <!-- /MAIN -->
+            </div>
         </div>
         <!-- /row -->
     </div>

@@ -6,10 +6,12 @@ use App\product;
 use Faker\Generator as Faker;
 
 $factory->define(product::class, function (Faker $faker) {
+   $name=$faker->unique()->sentence;
     return [
        'user_id'=>1,
        'supplier_id'=>random_int(1,5),
-       'name'=> $faker->unique()->sentence,
+       'name'=> $name,
+       'slug'=>make_slug($name),
        'brand_id'=> random_int(1,5),
        'image'=>'main-product0'.random_int(1,8).'.jpg',       
        'short_description'=> $faker->sentence,

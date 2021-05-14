@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDraftContactsTable extends Migration
+class CreateOrdersNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateDraftContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('draft_contacts', function (Blueprint $table) {
+        Schema::create('orders_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('consumer_id');
-            $table->foreign('consumer_id')
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')
             ->references('id')
-            ->on('consumers')
+            ->on('orders')
             ->onDelete('cascade');
-            $table->string('name');
-            $table->string('email');
             $table->string('title');
-            $table->text('message');
-            $table->string('image')->nullable();
-            $table->integer('status');
+            $table->string('icon');
+            $table->integer('type')->default(0);
+            $table->string('link');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ class CreateDraftContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('draft_contacts');
+        Schema::dropIfExists('orders_notifications');
     }
 }

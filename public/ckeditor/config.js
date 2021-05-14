@@ -7,7 +7,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
+	//----start my config------
+	config.contentsLangDirection = 'rtl';
+	config.contentsLanguage = 'ar';
+	// config.font_names = 'Cairo;sans-serif;Arial;Times New Roman;Verdana';
+	// config.font_defaultLabel = 'Cairo';
 
+	//------end my config---
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },

@@ -88,9 +88,15 @@
                       <tr>
                         <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                         <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                        <td class="mailbox-name"><a href="{{route('admin.contact.show',$contact->id)}}">{{$contact->name}}</a></td>
+                        <td class="mailbox-name">@if(has_reply($contact->id))<a href="{{route('admin.contact.reply',$contact->id)}}">@else<a href="{{route('admin.contact.show',$contact->id)}}">@endif{{$contact->name}}</a></td>
                         <td class="mailbox-subject">@if(get_no_read_contact()>0)<b>{!!$contact->title!!}</b>@else {!!$contact->title!!} @endif - {!!substr($contact->message,0,50)!!}...</td>
-                        <td class="mailbox-attachment"></td>
+                        <td class="mailbox-attachment">
+                          @if(has_reply($contact->id))
+                          <span class="label label-success">تم الرد</span>
+                          @else 
+                          <span class="label label-danger">لم يتم الرد</span>
+                          @endif
+                        </td>
                         <td class="mailbox-date">{{$contact->created_at->diffForHumans()}}</td>
                       </tr>
                       @endforeach                    

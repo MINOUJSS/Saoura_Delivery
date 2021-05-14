@@ -15,6 +15,7 @@ class CreateDeletedContactsTable extends Migration
     {
         Schema::create('deleted_contacts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('contact_id')->unique();
             $table->unsignedBigInteger('consumer_id');
             $table->foreign('consumer_id')
             ->references('id')

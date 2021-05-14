@@ -731,7 +731,7 @@ textarea.input {
     max-height: calc(100vh - 100px);
   }
   .category-nav .category-list.open, .menu-nav .menu-list.open {
-    display: block;
+    display: block;    
   }
   .menu-nav .menu-header, .category-nav .category-header {
     cursor: pointer;

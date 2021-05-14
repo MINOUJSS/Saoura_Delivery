@@ -13,6 +13,7 @@ class Default_Sub_Category_Table_Seeder extends Seeder
     {
         $sub_category=Sub_Category::create([
             'name'=>'بدون تصنيف',
+            'slug'=>'بدون-تصنيف',
             'category_id'=>1,
             'icon'=>'/'
         ]);

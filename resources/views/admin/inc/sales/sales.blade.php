@@ -31,20 +31,61 @@
           <table class="table table-hover">
             <tbody><tr>
               <th>#</th>
+              <th>رقم الطلب</th>
               <th>اسم المستهلك</th>
+              <th>رقم المنتج</th>
               <th>اسم المنتج</th>
+              <th>تكلفة المنتج</th>
+              <th>سعر المنتج</th>
               <th>الكمية</th>
-              <th>العمليات</th>
+              <th>صافي الربح</th>              
             </tr>
+            @if($sales->count()>0)
+            @php
+                $total_charge_price=0;
+                $total_selling_price=0;
+                $total_qty=0;
+                $total_benifis=0;
+            @endphp
             @foreach($sales as $index=>$sale)
             <tr>
               <td>{{$index + 1}}</td>
+              <td>{{$sale->order_id}}</td>
               <td>{{$sale->consumer->name}}</td>
+              <td>{{$sale->product->id}}</td>
               <td>{{$sale->product->name}}</td>
+              <td><span class="text-danger">{{$sale->charge_price}}</span></td>
+              <td><span class="text-success">{{$sale->selling_price}}</span></td>
               <td>{{$sale->qty}}</td>
-              <td></td>
+              <td><span @if($sale->selling_price > $sale->charge_price) class="text-primary" @else class="text-danger" @endif>{{($sale->selling_price - $sale->charge_price) * $sale->qty}}</span></td>
             </tr>
+            @php
+                $total_charge_price=$total_charge_price + $sale->charge_price;
+                $total_selling_price=$total_selling_price + $sale->selling_price;
+                $total_qty=$total_qty + $sale->qty;
+                $total_benifis=$total_benifis + (($sale->selling_price - $sale->charge_price) * $sale->qty);
+            @endphp
             @endforeach
+            <th>
+              <td></td>              
+              <td></td>
+              <td></td>
+              <td>المجموع</td>
+              <td>{{$total_charge_price}}</td>
+              <td>{{$total_selling_price}}</td>
+              <td>{{$total_qty}}</td>
+              <td>{{$total_benifis}}</td>
+            </th>
+            @else 
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>لا توجد مبيعات</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            @endif
           </tbody></table>
           {{$sales->links()}}          
         </div><!-- /.box-body -->        

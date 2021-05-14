@@ -14,6 +14,7 @@ class Default_Category_Table_Seeder extends Seeder
     {
         $category=category::create([
             'name'=>'بدون تصنيف',
+            'slug'=>'بدون-تصنيف',
             'image'=>'/',
             'icon'=>'/'
         ]);

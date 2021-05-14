@@ -35,7 +35,7 @@
             <div id="main" class="col-md-9">
 
                 <!-- DASHBOARD -->
-                {{-- <div class="container"> --}}
+                <div class="container">
                     <div class="row">                                            
                         <!---->
                         <form class="review-form" method="POST" action="{{ route('contact_us.store') }}">
@@ -87,7 +87,7 @@
                         </form>
                         <!---->
                     </div>
-                {{-- </div> --}}
+                </div>
                 <!-- /DASHBOARD -->
             </div>
             <!-- /MAIN -->

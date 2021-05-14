@@ -2,6 +2,12 @@
 /*---------------------------------------------------------
     //        Admen Functions                //
 ---------------------------------------------------------*/
+//function get_admin data
+function get_admin_data($id)
+{
+    $admin=App\admin::findOrFail($id);
+    return $admin;
+}
 //:::::::::::function to active dashboard links and add css class to category nav
 function active_dashboard_link()
 { 
@@ -560,6 +566,57 @@ function active_create_product_link()
         return '';
     }      
 }
+//:::::::::::function to active upsales links group
+function active_upsales_links_group()
+{ 
+    $products_url=url('/admin/up-sales'); 
+    $create_product_url=url('/admin/up-sale/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/up-sale/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$products_url || $current_url==$create_product_url || $current_url==$edit_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active upsales links
+function active_upsales_link()
+{ 
+    $products_url=url('/admin/up-sales'); 
+    $current_url=Request::url();
+    if($current_url==$products_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create upsales link
+function active_create_upsale_link()
+{ 
+    $create_product_url=url('/admin/up-sale/create');
+    $current_url=Request::url();
+    if($current_url==$create_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
 //:::::::::::function to active sales links group
 function active_sales_links_group()
 { 
@@ -705,6 +762,12 @@ function active_how_to_ship_link()
     {
         return '';
     }      
+}
+// get_product_data_from_id
+function get_product_data_from_id($id)
+{
+    $product_data=App\product::findOrFail($id);
+    return $product_data;
 }
 //global_Purchasing_price function
 function global_Purchasing_price()
@@ -862,10 +925,23 @@ function get_all_product_images($product_id)
     // dd($images);
     return $images;
 }
+//get make slug
+function make_slug($string)
+{
+    $text=explode(' ',$string);
+    $text=implode('-',$text);
+    return $text;
+}
 //get no read notification
 function get_no_read_notification_count()
 {
     $note=App\admin_notefication::where('status',0)->get();
+    return $note->count();
+}
+//get no read notification
+function get_no_read_order_notification_count()
+{
+    $note=App\orders_notification::where('status',0)->get();
     return $note->count();
 }
 // get_contact_count_rows
@@ -885,6 +961,36 @@ function get_no_read_contact()
 {
     $contacts=App\contact_us::where('status',0)->get();
     return count($contacts);
+}
+//has reply
+function has_reply($contact_us_id)
+{
+    $reply=App\reply_contact::where('contact_us_id',$contact_us_id)->first();
+    if($reply==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//has deleted reply
+function has_deleted_reply($contact_us_id)
+{
+    $reply=App\deleted_reply::where('contact_us_id',$contact_us_id)->first();
+    if($reply==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//
+function get_deleted_contact_data()
+{
+    $deleted_contacts=App\deleted_contact::all();
+    return $deleted_contacts;
 }
 // print note nember no read in string
 function print_message_nember_string($num)
@@ -930,10 +1036,38 @@ function print_note_nember_string($num)
     }
 
 }
+// print note nember no read order note in string
+function print_order_note_nember_string($num)
+{
+    //لديك 10 إخطارات
+    if($num==0)
+    {
+        return 'ليس لديك أي طلب جديد';
+    }elseif($num==1)
+    {
+        return 'لديك طلب واحد جديد';
+    }elseif($num==2)
+    {
+        return 'لديك طلبين جديدين';
+    }elseif($num >=3 && $num<=20)
+    {
+        return 'لديك'.$num.'طلبات جديدة';
+    }else
+    {
+        return 'لديك'.$num.'طلب جديد';
+    }
+
+}
 //get_no_reading_note_data
 function get_no_reading_note_data()
 {
     $note=App\admin_notefication::where('status',0)->get();
+    return $note;
+}
+//get_no_reading_order_note_data
+function get_no_reading_order_note_data()
+{
+    $note=App\orders_notification::where('status',0)->get();
     return $note;
 }
 //function store_name_label()
@@ -1124,7 +1258,7 @@ function is_home()
 //::::::::::::get all categories function:::::::::
 function get_all_categories()
 {
-    $Categories=App\category::all();
+    $Categories=App\category::where('id','!=',1)->get();
     return $Categories;
 }
 //::::::::: has_sub_categories function :::::::::::

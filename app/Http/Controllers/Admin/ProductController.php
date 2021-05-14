@@ -78,6 +78,7 @@ class ProductController extends Controller
         $product->user_id=$request->input('user_id');
         $product->supplier_id=$request->input('product_supplier');
         $product->name=$request->input('product_name');
+        $product->slug=make_slug($request->input('product_name'));
         $product->brand_id=$request->input('product_brand');
         $product->short_description=$request->input('product_short_description');
         $product->long_description=$request->input('product_long_description');
@@ -150,6 +151,7 @@ class ProductController extends Controller
         $product->user_id=$request->input('user_id');
         $product->supplier_id=$request->input('product_supplier');
         $product->name=$request->input('product_name');
+        $product->slug=make_slug($request->input('product_name'));
         $product->brand_id=$request->input('product_brand');
         $product->short_description=$request->input('product_short_description');
         $product->long_description=$request->input('product_long_description');
@@ -564,5 +566,18 @@ class ProductController extends Controller
     $reviews=reating::where('product_id',$product->id)->paginate(5);
     return view('admin.inc.products.product-details',compact('product','reviews'));
  }
-
+  public function generate_slug_for_all_products()
+  {
+      $products=product::all();
+      foreach($products as $product)
+      {
+        $pro_data=product::find($product->id);
+        $pro_data->slug=make_slug($product->name);
+        $pro_data->update();
+      }
+      //success alert
+      Alert::success('رائع','تم إنشاء slug لجميع المنتجات.');
+      //redirect
+      return redirect()->back();
+  }
 }

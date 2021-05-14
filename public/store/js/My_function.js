@@ -1,5 +1,5 @@
 //
-$(document).ready(function(){                                                              
+$(document).ready(function(){                                                                 
    //get min price change     
       $('.noUi-handle-lower').on('mouseup',function(event){
          event.preventDefault();
@@ -255,6 +255,7 @@ function add_to_cart(product_id)
       method:'GET',
       success:function(data){
          $('#cart_section').fadeIn(500).html(data);  
+         $('#xs_cart_section').fadeIn(500).html(data);  
          //alert success
          Swal.fire({
             //position: 'top-end',
@@ -374,3 +375,11 @@ document.getElementById("seconds"+index).textContent=s+" ثا";
 }
 setTimeout(alert('1000'),1000);
 }
+   // fix nav bar whenn scrolling
+   $(window).scroll(function(){
+      $('nav').toggleClass('navbar-fixed-top',$(this).scrollTop() >50);
+   });
+   //show and hid search form
+   $('.xs-search-btn').click(function(){
+         $('#xs-search-form').toggle(); 
+   });

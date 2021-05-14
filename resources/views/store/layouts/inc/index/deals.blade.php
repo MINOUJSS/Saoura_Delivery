@@ -55,7 +55,7 @@
                                         <span>جديد</span>
                                         @endif
                                         @if(has_discount($product->id))
-                                        <span class="sale">- %{{$product->discount->discount}}</span>
+                                        <span class="sale">- %{{get_product_discount($product->id)}}</span>
                                         @endif
                                     </div>                                   
                                     {{-- <input type="hidden" id="dis_prod_ids" value="{{print_r($dis_product_ids)}}"> --}}
@@ -68,7 +68,7 @@
                                     <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}" height="350" width="262">
                                 </div>
                                 <div class="product-body"> 
-                                    <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <br><del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
+                                    <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->id)}} د.ج <br><del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
                                     
                                 <h2 class="product-name"><a href="#">{{substr($product->name,0,20)}}</a></h2>
                                     <div class="product-btns">

@@ -42,6 +42,17 @@
               </span>
               @endif
             </div>
+            <!---->
+            <div class="form-group">
+              <label>Color picker with addon:</label>
+              <div class="input-group my-colorpicker2 colorpicker-element">
+                <input type="text" class="form-control">
+                <div class="input-group-addon">
+                  <i style="background-color: rgb(0, 0, 0);"></i>
+                </div>
+              </div><!-- /.input group -->
+            </div>
+            <!---->
           </div><!-- /.box-body -->
 
           <div class="box-footer">
@@ -53,3 +64,10 @@
 
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->
+
+  @section('javascript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
+    <script>
+        $('.colorpicker').colorpicker();
+    </script>
+@stop

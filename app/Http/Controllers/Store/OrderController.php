@@ -9,7 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Consumer;
 use App\order;
 use App\order_product;
-use App\admin_notefication;
+use App\orders_notification;
 use App\product;
 use Auth;
 
@@ -57,12 +57,19 @@ class OrderController extends Controller
             //get consumer id
             $consumer_id=$consumer->id;
         }
+        //chick if auth has adderess
+        if((Auth::guard('consumer')->check()) && (Auth::guard('consumer')->user()->address)==null)
+        {
+            $consumer=consumer::find(Auth::guard('consumer')->user()->id);
+            $consumer->address=$request->address;
+            $consumer->update();
+        }
         //create Order
         $order=new order;
         $order->consumer_id=$consumer_id;
         $order->billing_name=$request->input('first-name');
         $order->billing_email=$request->email;
-        $order->billing_address=$request->address;
+        $order->billing_address=$request->address;        
         $order->billing_mobile=$request->tel;
         $order->status=0;
         $order->save();
@@ -97,10 +104,11 @@ class OrderController extends Controller
         //remove cart session
         session()->forget('cart');        
         //notificate admin about this order
-        $note=new admin_notefication;
+        $note=new orders_notification;
+        $note->order_id=$order->id;
         $note->title='لديك طلب جديد';
         $note->icon ='fa fa-cart-plus';
-        $note->type=2;
+        $note->type=1;
         $note->link="/admin/order/".$order->id;
         $note->save();
         //notifucate user about  this order

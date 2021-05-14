@@ -22,6 +22,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{url('admin-css')}}/css/_all-skins.min.css">
     <link rel="stylesheet" href="{{url('admin-css')}}/css/_all-skins-rtl.min.css">
     <link rel="stylesheet" href="{{url('admin-css')}}/css/style.css">
+    <!--colorpicker-->
+    <link rel="stylesheet" href="{{url('colorpicker')}}/bootstrap-colorpicker.min.css">
+    {{-- <link rel="stylesheet" href="{{url('colorpicker')}}/bootstrap-colorpicker.css"> --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/css/bootstrap-colorpicker.min.css" rel="stylesheet"> --}}
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cairo:600&display=swap" rel="stylesheet">
@@ -35,10 +39,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-    <link rel="stylesheet" href="{{url('admin-css')}}/dist/css/skins/skin-blue.min.css">
-
+    <link rel="stylesheet" href="{{url('admin-css')}}/dist/css/skins/skin-blue.min.css">    
     <!-- sweet alert link-->
     <script src="{{url('vendor')}}/sweetalert/sweetalert.all.js"></script>    
+    <!--colorpicker-->
+    <script src="{{url('colorpicker')}}/bootstrap-colorpicker.min.js"></script>  
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="{{url('admin-css')}}/js/jQuery-2.1.4.min.js"></script>
+    <script src="{{url('admin-css')}}/js/jQuery-2.1.4.min.js"></script>    
     <!-- Bootstrap 3.3.5 -->
     <script src="{{url('admin-css')}}/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
@@ -101,8 +106,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{url('admin-css')}}/js/My_functions.js"></script>
     <!--ckeditor-->
     <script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
-    <script>CKEDITOR.replace('article-ckeditor');</script>
+    <script>CKEDITOR.replace('article-ckeditor');</script>    
+    <!--colorpicker-->
+    {{-- <script src="{{url('colorpicker')}}/bootstrap-colorpicker.min.js"></script> --}}
+    {{-- <script src="{{url('colorpicker')}}/bootstrap-colorpicker.js"></script>     --}}
+    <script type="text/javascript">
 
+      $('.colorpicker').colorpicker();
+    
+    </script>
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the

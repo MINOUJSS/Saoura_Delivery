@@ -1414,6 +1414,7 @@ $('body').on('click','#delete_deny_order_obs',function(event){
     });
 
 });
+//delete return order obs
 $('body').on('click','#delete_return_order_obs',function(event){    
     event.preventDefault();
     var me=$(this),
@@ -1458,6 +1459,69 @@ $('body').on('click','#delete_return_order_obs',function(event){
                         icon:'error',
                         title:'خطأ',
                         text:'لم يتم حذف السبب  لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
+//delete upsale
+$('body').on('click','#delete_up_sale',function(event){    
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    obs=me.attr('title'),
+    // color_id=me.attr('user_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف العلاقة بين المنتجين ؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف العلاقة "
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف العلاقة  لسبب غير معروف',
                         confirmButtonText:"حسناً"
                     });
 

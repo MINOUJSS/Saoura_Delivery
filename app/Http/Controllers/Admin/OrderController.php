@@ -10,6 +10,8 @@ use App\order_product;
 use App\deny_order_observation;
 use App\return_order_observation;
 use App\product;
+use App\orders_notification;
+use App\Completed_Sale;
 
 class OrderController extends Controller
 {
@@ -30,6 +32,11 @@ class OrderController extends Controller
     } 
     public function order_details($id)
     {
+        //update status in adminnotification
+        $order_note=orders_notification::where('order_id',$id)->first();
+        $order_note->status=1;
+        $order_note->update();
+        //
         $deny_obses=deny_order_observation::all();
         $return_obses=return_order_observation::all();
         $order=Order::findOrfail($id);
@@ -39,6 +46,7 @@ class OrderController extends Controller
 
     public function order_confirm($order_id)
     {
+        //find order
         $order=Order::findOrfail($order_id);
         //update status
         $order->status=1;
@@ -63,8 +71,20 @@ class OrderController extends Controller
         //update status
         $order->status=3;
         $order->update();
-        //redirect 
-        // return redirect()->back();
+        //insert in compladed sales table
+        $order_products=order_product::where('order_id',$order_id)->get();
+        foreach($order_products as $product)
+        {
+            $completed_sale=new Completed_Sale;
+            $completed_sale->consumer_id=$product->order->consumer_id;
+            $completed_sale->order_id=$order_id;
+            $completed_sale->product_id=$product->product_id;
+            $completed_sale->product_name=$product->product->name;
+            $completed_sale->charge_price=get_product_charge($product->product->id);
+            $completed_sale->selling_price=price_with_discount($product->product->id);
+            $completed_sale->qty=$product->qty;
+            $completed_sale->save();
+        }         
     }
 
     public function order_deny(Request $request)
@@ -115,6 +135,12 @@ class OrderController extends Controller
             $product_data=product::find($product->product_id);
             $product_data->qty=$product_data->qty + $product->qty;
             $product_data->update();
+        }
+        // deleted from complate sales
+        $completed_sales=Completed_Sale::where('order_id',$order->id)->get();
+        foreach($completed_sales as $sale)
+        {
+            $sale->delete();
         }
         //alert success
             Alert::success('رائع','تم إعادة الطلب');

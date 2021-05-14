@@ -26,7 +26,7 @@
                     <span class="sale">- %{{$product->discount->discount}}</span>
                     @endif
                 </div>
-                <a href="{{url('/product/'.$product->id)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
+                <a href="{{route('store.product.details',$product->slug)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
                 {{-- <img src="{{url('store')}}/img/product01.jpg" alt=""> --}}
                 <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}" height="350" width="262">
             </div>

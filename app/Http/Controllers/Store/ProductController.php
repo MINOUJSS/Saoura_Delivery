@@ -400,9 +400,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.products',compact('products','min_price','max_price','colors','sizes','brands')); 
     }
 
-    public function product($id)
+    public function product($slug)
     {
-        $product=product::findOrfail($id);
+        $product=product::where('slug',$slug)->first();
         $piked_products=product::inRandomOrder()->paginate(4);
         $reviews=reating::where('product_id',$product->id)->paginate(5);
         return view('store.product-page',compact('product','reviews','piked_products'));
@@ -537,9 +537,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.cart');
     }
 
-    public function products_by_category($name)
+    public function products_by_category($slug)
     {
-        $category=category::where('name',$name)->first();        
+        $category=category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
         $brands=brand::all();
@@ -549,9 +549,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 
-    public function products_by_sub_category($name)
+    public function products_by_sub_category($slug)
     {
-        $sub_category=Sub_Category::where('name',$name)->first();        
+        $sub_category=Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
         $brands=brand::all();
@@ -561,9 +561,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 
-    public function products_by_sub_sub_category($name)
+    public function products_by_sub_sub_category($slug)
     {
-        $sub_sub_category=Sub_Sub_Category::where('name',$name)->first();        
+        $sub_sub_category=Sub_Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
         $brands=brand::all();
@@ -580,13 +580,13 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
             'query'=>'required'
         ]);
         //get consumer id
-            if(Auth::guard('consumer')->check())
+            if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->id != 1)
             {
                 $consumer_id=Auth::guard('consumer')->user()->id;
             }
             else
             {
-                $consumer_id=0;
+                $consumer_id=1;
             }
         //
         $query=$request->input('query');         

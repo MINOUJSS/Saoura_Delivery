@@ -74,7 +74,14 @@
             <li class="{{active_create_product_link()}}"><a href="{{route('admin.create.product')}}">إضافة منتج</a></li>
           </ul>
         </li>
-        <li class=""><a href="#"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>      
+        <li class="treeview {{active_upsales_links_group()}}">
+          <a href="{{route('admin.upsales')}}"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li class="{{active_upsales_link()}}"><a href="{{route('admin.upsales')}}">الكل</a></li>
+            <li class="{{active_create_upsale_link()}}"><a href="{{route('admin.upsale.create')}}">إضافة علاقة بين منتجين</a></li>
+          </ul>
+        </li>
+        {{-- <li class=""><a href="{{route('admin.upsales')}}"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>       --}}
       <li class="treeview {{active_slider_deals_links_group()}}">
           <a href="#"><i class="fa fa-bullhorn"></i> <span>عروض السلايدر</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">

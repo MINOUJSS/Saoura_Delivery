@@ -4,26 +4,30 @@
         <div id="responsive-nav">
             <!-- category nav -->
         <div class="category-nav {{is_home()}}">
-                <span class="category-header">الأقسام <i class="fa fa-list"></i></span>
+                <span class="category-header"> الأقسام <i class="fa fa-list"></i></span>
                 <ul class="category-list">
                     @foreach(get_all_categories() as $category)
                     <li class="dropdown side-dropdown">
-                        <a href="{{url('products/category/'.$category->name)}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} @if(has_sub_categories($category->id))<i class="fa fa-angle-left"></i>@endif</a>
+                        @if(has_sub_categories($category->id))
+                        <a href="{{route('store.products.by.category',$category->slug)}}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">{{$category->name}} <i class="fa fa-angle-left"></i></a>
+                        @else 
+                        <a href="{{route('store.products.by.category',$category->slug)}}" class="dropdown-toggle" aria-expanded="true">{{$category->name}}</a>
+                        @endif
                         @if(has_sub_categories($category->id))
                         <div class="custom-menu">
                             <div class="row">
                                 <div class="col-md-12">
-                                <a href="{{url('products/category/'.$category->name)}}"><h3>{{$category->name}}</h3></a>
+                                <a href="{{route('store.products.by.category',$category->slug)}}"><h3>{{$category->name}}</h3></a>
                                     <hr>
                                 </div>
                                 @foreach(get_sub_gategories($category->id) as $sub_category)
                                 <div class="col-md-4">
                                     <ul class="list-links">
                                         <li>
-                                            <a href="{{url('products/sub-category/'.$sub_category->name)}}"><h3 class="list-links-title">{{$sub_category->name}}</h3></a></li>
+                                            <a href="{{route('store.products.by.sub.category',$sub_category->slug)}}"><h3 class="list-links-title">{{$sub_category->name}}</h3></a></li>
                                             @if(has_sub_sub_categories($sub_category->id))
                                             @foreach(get_sub_sub_categories($sub_category->id) as $sub_sub_category)
-                                        <li><a href="{{url('products/sub-sub-category/'.$sub_sub_category->name)}}">{{$sub_sub_category->name}}</a></li>
+                                        <li><a href="{{route('store.products.by.sub.sub.category',$sub_sub_category->slug)}}">{{$sub_sub_category->name}}</a></li>
                                             @endforeach
                                         {{-- <li><a href="#">Women’s Clothing</a></li>
                                         <li><a href="#">Men’s Clothing</a></li>
@@ -219,7 +223,7 @@
 
             <!-- menu nav -->
             <div class="menu-nav">
-                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <span class="menu-header"> القائمة <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                 <li><a href="{{url('/')}}">الرئيسية</a></li>                
                 <li><a href="{{route('products')}}">منتجاتنا</a></li>
@@ -376,6 +380,25 @@
                 </ul>
             </div>
             <!-- menu nav -->
+            <!--start account menu-->
+            <div class="hidden-lg hidden-md account-nav">
+                <span class="account-header">حسابي <i class="fa fa-bars"></i></span>
+                <ul class="account-list">            
+                @if(Auth::guard('consumer')->check())
+                <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>
+                <li><a href="{{route('consumer.wish_list')}}"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
+                <li><a href="{{route('consumer.compar_list')}}"><i class="fa fa-exchange"></i> مقارنة</a></li>
+                @if(session()->has('cart'))
+                <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> الدفع</a></li>                                                        
+                @endif
+                <li><a href="{{route('consumer.logout')}}"><i class="fa fa-sign-out"></i></i> تسجيل الخروج</a></li>                                 
+                @else 
+                <li><a href="{{route('consumer.login')}}"><i class="fa fa-sign-in"></i> تسجيل الدخول</a></li>
+                <li><a href="{{route('consumer.register')}}"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
+                @endif
+            </ul>
+        </div>
+            <!--end account menu-->
         </div>
     </div>
     <!-- /container -->

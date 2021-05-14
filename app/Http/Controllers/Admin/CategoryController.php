@@ -67,7 +67,8 @@ class CategoryController extends Controller
                 $category->image=$imagename;
             }
         }                    
-        $category->name=$request->input('category');        
+        $category->name=$request->input('category');
+        $category->slug=make_slug($request->input('category'));
         $category->icon="/";
         $category->update();
         //alert success message
@@ -96,7 +97,8 @@ class CategoryController extends Controller
                 $category->image=$imagename;
             }
         }                    
-        $category->name=$request->input('category');        
+        $category->name=$request->input('category');
+        $category->slug=make_slug($request->input('category'));
         $category->icon="/";
         $category->save();
         //alert success message

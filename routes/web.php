@@ -14,22 +14,17 @@ use Illuminate\Support\Facades\DB;
 |
 */
 Route::get('/test',function(){
-    $date="2021-03-30 13:33:00";
-    //function get_dis_product_exp_day
-// function get_dis_product_exp_day($date)
+// function make_slug($string)
 // {
-//     $to_date=new DateTime($date);
-//     $from_now=new DateTime();
-//     $interval=$to_date->diff($from_now);
-//         return $interval->format('%d');
-// }    
-    dd(get_dis_product_exp_sec($date));
-//     echo '<pre>';
-//    print_r($r);
-//    echo"</pre>";
+//     $text=explode(' ',$string);
+//     $text=implode('-',$text);
+//     return $text;
+// }
+$name="ساعة";
+dd(make_slug($name));
 });
 // Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 //--------------------------------------------
 //              admine routes
@@ -105,6 +100,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/product/{id}/delete-image','Admin\ProductController@delete_image');    
     //
     Route::get('/product/{id}','Admin\ProductController@product_details')->name('admin.product.details');
+    // generate slug generate_slug_for_all_products
+    Route::get('/product/slug/generate','Admin\ProductController@generate_slug_for_all_products')->name('admin.product.generate.slugs');
     //reating
     Route::get('/reating/{id}/delete','Admin\ReatingController@destroy')->name('admin.reating.delete');
     //contact us
@@ -113,11 +110,16 @@ Route::prefix('admin')->group(function(){
     Route::post('/contact/store','Admin\ContactController@store')->name('admin.store.contact');
     Route::get('/contact/{id}/show','Admin\ContactController@show')->name('admin.contact.show');
     Route::get('/contact/{id}/create-reply','Admin\ContactController@create_reply')->name('admin.contact.reply');
-    Route::post('/contact/{id}/store-reply','Admin\ContactController@store_reply')->name('admin.contact.reply.store');
-    Route::get('/contact/{id}/delete','Admin\ContactController@destroy')->name('admin.contact.destroy');
+    Route::post('/contact/store-reply','Admin\ContactController@store_reply')->name('admin.contact.reply.store');
+    Route::get('/contact/{id}/delete','Admin\ContactController@destroy')->name('admin.contact.destroy');    
+    //replys
+    Route::get('/all-replys','Admin\ReplyController@index')->name('admin.all.replys');
+    Route::get('/reply/{id}/show','Admin\ReplyController@show')->name('admin.reply.show');
+    Route::get('/reply/{id}/delete','Admin\ReplyController@destroy')->name('admin.reply.destroy');
     //deleted contact
     Route::get('/all-deleted-contact','Admin\DeletedContactController@index')->name('admin.all.deleted.contacts');
-
+    Route::get('/deleted-contact/{id}/delete','Admin\DeletedContactController@destroy')->name('admin.deleted.contact.delete');
+    Route::get('/deleted-contact/{id}/recovery','Admin\DeletedContactController@recovery')->name('admin.deleted.contact.recovery');
     //brands
     Route::get('/brands','Admin\BrandController@index')->name('admin.brands');    
     Route::get('/brand/{id}/delete','Admin\BrandController@destroy');
@@ -181,6 +183,13 @@ Route::prefix('admin')->group(function(){
     Route::get('/order/return-order-observation/{id}/edit','Admin\OrderController@edit_return_order_observation')->name('admin.return.order.observation.edit');
     Route::get('/order/return-order-observation/{id}/delete','Admin\OrderController@destroy_return_order_observation')->name('admin.return.order.observation.delete');
     Route::post('/order/return-order-observation/update','Admin\OrderController@update_return_order_observation')->name('admin.return.order.observation.update');
+    //up_sales
+    Route::get('/up-sales','Admin\UpSaleController@index')->name('admin.upsales');
+    Route::get('/up-sale/create','Admin\UpSaleController@create')->name('admin.upsale.create');
+    Route::post('/up-sale/store','Admin\UpSaleController@store')->name('admin.upsale.store');
+    Route::get('/up-sales/{id}/edit','Admin\UpSaleController@edit')->name('admin.upsale.edit');
+    Route::post('/up-sale/update','Admin\UpSaleController@update')->name('admin.upsale.update');
+    Route::get('/up-sales/{id}/delete','Admin\UpSaleController@destroy')->name('admin.upsale.delete');
     //invoice
     Route::get('/{order_id}/invoice','Admin\InvoiceController@invoice')->name('admin.invoice');
     Route::get('/{order_id}/print-invoice','Admin\InvoiceController@print_invoice')->name('admin.print.invoice');
@@ -238,7 +247,7 @@ Route::get('/products/search', 'Store\ProductController@find_products')->name('s
 //shop by result
 Route::get('/shop-by', 'Store\ProductController@shop_bay_result')->name('shop_by');
 //
-Route::get('/product/{id}', 'Store\ProductController@product');
+Route::get('/product/{slug}', 'Store\ProductController@product')->name('store.product.details');
 //add to cart
 Route::get('product/{product}/add-to-cart','Store\ProductController@addToCart')->name('cart.add');
 Route::post('product/{product}/add-with-qty','Store\ProductController@addWithQty')->name('cart.addwithqty');
@@ -253,11 +262,11 @@ Route::get('cart/','Store\ProductController@showCart')->name('cart.show');
 //order
 Route::post('order/create','Store\OrderController@create_order')->name('store.create.order');
 //categories
-Route::get('/products/category/{name}', 'Store\ProductController@products_by_category');
+Route::get('/products/category/{slug}', 'Store\ProductController@products_by_category')->name('store.products.by.category');
 //sub categories
-Route::get('/products/sub-category/{name}', 'Store\ProductController@products_by_sub_category');
+Route::get('/products/sub-category/{slug}', 'Store\ProductController@products_by_sub_category')->name('store.products.by.sub.category');;
 //sub sub categories
-Route::get('/products/sub-sub-category/{name}', 'Store\ProductController@products_by_sub_sub_category');
+Route::get('/products/sub-sub-category/{slug}', 'Store\ProductController@products_by_sub_sub_category')->name('store.products.by.sub.sub.category');;
 //rating a product
 Route::post('/rating/create','Store\RatingController@create')->name('store.create.rating');
 //remove color from searcher session

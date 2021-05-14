@@ -8,6 +8,7 @@ use App\Consumer;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class ConsumerRegisterController extends Controller
@@ -55,7 +56,9 @@ class ConsumerRegisterController extends Controller
         $consumer->telephone=$request->tel;
         $consumer->password=Hash::make($request->password);
         $consumer->save();
+        //alert success
+        Alert::success('رائع','تم تسجيلك في الموقع بنجاح,تفقد بريدك لإلكتروني لتفعيل حسابك');
         //redirect
-        return redirect()->route('consumer.dashboard',$consumer->id);
+        return redirect()->intended(route('consumer.dashboard',$consumer->id));
     }
 }

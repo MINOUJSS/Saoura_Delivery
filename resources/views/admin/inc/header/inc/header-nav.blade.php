@@ -75,33 +75,28 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-flag-o"></i>
-            <span class="label label-danger">9</span>
+            <span class="label label-danger">{{get_no_read_order_notification_count()}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">لديك 9 مهام</li>
+            <li class="header">{{print_order_note_nember_string(get_no_read_order_notification_count())}}</li>
             <li>
               <!-- Inner menu: contains the tasks -->
               <ul class="menu">
-                <li><!-- Task item -->
-                  <a href="#">
-                    <!-- Task title and progress text -->
-                    <h3>
-                      صمم بعض الأزرار
-                      <small class="pull-right">20%</small>
-                    </h3>
-                    <!-- The progress bar -->
-                    <div class="progress xs">
-                      <!-- Change the css width attribute to simulate progress -->
-                      <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">20٪ اكتمل</span>
-                      </div>
-                    </div>
+                @if(count(get_no_reading_order_note_data())>0)
+                <!-- start order notification -->
+                @foreach(get_no_reading_order_note_data() as $note)
+                <li>
+                  <a href="{{url($note->link)}}">
+                    <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
                   </a>
-                </li><!-- end task item -->
+                </li>
+                @endforeach
+                <!-- end order item -->
+                @endif
               </ul>
             </li>
             <li class="footer">
-              <a href="#">اعرض جميع المهام</a>
+              <a href="{{route('admin.orders')}}">كل الطلبات</a>
             </li>
           </ul>
         </li>

@@ -20,11 +20,15 @@ class CreateCompletedSalesTable extends Migration
             ->references('id')
             ->on('consumers')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')
             ->references('id')
-            ->on('products')
+            ->on('orders')
             ->onDelete('cascade');
+            $table->bigInteger('product_id');
+            $table->string('product_name');
+            $table->decimal('charge_price',6,2);
+            $table->decimal('selling_price',6,2);
             $table->Integer('qty');
             $table->timestamps();
         });

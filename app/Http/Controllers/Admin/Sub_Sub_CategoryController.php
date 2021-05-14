@@ -52,6 +52,7 @@ class Sub_Sub_CategoryController extends Controller
         $sub_sub_category=Sub_Sub_category::findOrFail($request->input('sub_sub_category_id'));
         $sub_sub_category->sub_category_id=$request->input('sub_category');
         $sub_sub_category->name=$request->input('sub_sub_category');
+        $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
         $sub_sub_category->update();
         Alert::success('تعديل تحت تحت الصنف', 'تم تعديل تحت تحت الصنف بنجاح');
         return redirect()->back();
@@ -75,6 +76,7 @@ class Sub_Sub_CategoryController extends Controller
                 $sub_sub_category=new Sub_Sub_category;
                 $sub_sub_category->sub_category_id=$request->input('sub_category');
                 $sub_sub_category->name=$request->input('sub_sub_category');
+                $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
                 $sub_sub_category->save();
                 Alert::success('إضافة تحت تحت الصنف', 'تم إضافة تحت تحت الصنف بنجاح');
                 return redirect(route('admin.create.sub_sub_categories'));

@@ -23,7 +23,7 @@ class ConsumerController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:consumer');
+        $this->middleware(['auth:consumer','verified']);
     }
 
     /**

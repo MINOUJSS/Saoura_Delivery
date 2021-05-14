@@ -3,10 +3,12 @@
     <!-- container -->
     <div class="container">
         <!-- home wrap -->
-        <div class="home-wrap">
+        <div class="row">
+        <div class="col-xs-12 col-lg-9 home-wrap">
             <!-- home slick -->
             @include('store.layouts.inc.index.home-slick')
             <!-- /home slick -->
+        </div>
         </div>
         <!-- /home wrap -->
     </div>

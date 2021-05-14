@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             Product_Fake_Table_Seeder::class,            
             Deal_Fake_Table_Seeder::class,            
             Consumer_Fake_Table_Seeder::class,
-            Completed_sale_Fake_Table_Seeder::class,
+           // Completed_sale_Fake_Table_Seeder::class,
             Reating_Fake_Table_Seeder::class,            
             About_Us_Table_Seeder::class,
             Contra_Table_Seeder::class,
