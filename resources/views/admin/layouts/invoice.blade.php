@@ -68,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |---------------------------------------------------------|
   -->
   <body class="hold-transition skin-blue sidebar-mini" onload="window.print();">
-    <div class="wrapper">
+    {{-- <div class="wrapper">
 
       <!-- Main Header -->
       @yield('header')
@@ -107,6 +107,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. --> 
-         @include('sweetalert::alert')        
+         @include('sweetalert::alert')         --}}
   </body>
 </html>
