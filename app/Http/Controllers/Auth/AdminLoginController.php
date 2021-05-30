@@ -23,7 +23,7 @@ class AdminLoginController extends Controller
         //vlidate data
         $this->validate($request,[
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:4'
         ]);
         //atempt to log user in        
         if(Auth::guard('admin')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember))

@@ -9,6 +9,6 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('Store.checkout');
+        return view('store.checkout');
     }
 }

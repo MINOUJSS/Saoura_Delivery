@@ -9,7 +9,7 @@ use App\size;
 
 class SizeController extends Controller
 {
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void

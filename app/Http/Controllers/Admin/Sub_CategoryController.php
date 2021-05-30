@@ -8,6 +8,9 @@ use App\Category;
 use App\Sub_Category;
 use App\Sub_Sub_Category;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class Sub_CategoryController extends Controller
 {
@@ -61,6 +64,19 @@ class Sub_CategoryController extends Controller
         $sub_category->name=$request->input('sub_category');
         $sub_category->slug=make_slug($request->input('sub_category'));
         $sub_category->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل تحت الصنف '.$sub_category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //success alert
         Alert::success('تعديل تحت الصنف', 'تم تعديل تحت الصنف بنجاح');
         return redirect()->back();
                 }
@@ -85,6 +101,19 @@ class Sub_CategoryController extends Controller
         $sub_category->name=$request->input('sub_category');
         $sub_category->slug=make_slug($request->input('sub_category'));
         $sub_category->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة تحت الصنف '.$sub_category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //success alert
         Alert::success('إضافة تحت الصنف', 'تم إضافة تحت الصنف بنجاح');
         return redirect(route('admin.create.sub_categories'));
                 }
@@ -92,6 +121,7 @@ class Sub_CategoryController extends Controller
     public function destroy($id)
     {
         $sub_category=Sub_Category::find($id);
+        $sub_category_name=$sub_category->name;
         if(has_sub_sub_category($sub_category->id))
                 {
                     $sub_sub_categorys=Sub_Sub_Category::where('sub_category_id',$sub_category->id)->get();
@@ -106,6 +136,19 @@ class Sub_CategoryController extends Controller
                     $sub_category->delete();
                     // return redirect()->back();
                 }
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف تحت الصنف '.$sub_category_name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //redirect
                 return redirect(url('/admin/categories#sub_category'));
     }
 

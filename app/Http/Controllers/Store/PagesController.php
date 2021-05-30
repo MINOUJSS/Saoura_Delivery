@@ -10,7 +10,7 @@ use App\contra;
 use App\how_to_ship;
 use App\faq;
 use App\contact_us;
-use App\consumer;
+use App\Consumer;
 use App\email_list;
 use App\admin_notefication;
 use Auth;
@@ -60,7 +60,7 @@ class PagesController extends Controller
         }        
         //check if email exist
         $email=$request->email;
-        $consumer=consumer::where('email',$email)->first();        
+        $consumer=Consumer::where('email',$email)->first();        
         //if exit get consumer id
         if($consumer!=null)
         {
@@ -116,7 +116,7 @@ class PagesController extends Controller
         }       
         //check if email exist
         $email=$request->email;
-        $consumer=consumer::where('email',$email)->first();        
+        $consumer=Consumer::where('email',$email)->first();        
         //if exit get consumer id
         if($consumer!=null)
         {

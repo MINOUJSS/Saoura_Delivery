@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\color;
+use App\brand;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class ColorController extends Controller
 {
@@ -42,6 +46,18 @@ class ColorController extends Controller
         $color->name=$request->input('color_name');
         $color->code=$request->input('color_code');
         $color->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة اللون '.$color->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('إضافة لون', 'تم إضافة لون بنجاح');
 
@@ -73,6 +89,18 @@ class ColorController extends Controller
                 $color->name=$request->input('color_name');
                 $color->code=$request->input('color_code');
                 $color->update();
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل اللون '.$color->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
                 //alert success message
                 Alert::success('تعديل لون', 'تم تعديل لون بنجاح');
         
@@ -87,8 +115,21 @@ class ColorController extends Controller
             return redirect()->back();
         }else{
         $color=color::findOrFail($id);
+        $color_name=$color->name;
         //delete color
         $color->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف اللون '.$color_name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //redirect
         return redirect()->back();
         }

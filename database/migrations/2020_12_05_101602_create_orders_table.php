@@ -24,6 +24,7 @@ class CreateOrdersTable extends Migration
             $table->string('billing_email');
             $table->text('billing_address');
             $table->string('billing_mobile');
+            $table->decimal('total',6,2);
             $table->string('status');
             $table->text('obs')->nullable();
             $table->timestamps();            

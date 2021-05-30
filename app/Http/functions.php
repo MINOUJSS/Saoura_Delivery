@@ -904,7 +904,7 @@ function user_is_active($code)
 function get_all_product_images($product_id)
 {    
     // $product=App\product::findOrFail($product_id);
-    $product_images=App\product_images::where('product_id',$product_id)->get();
+    $product_images=App\Product_Images::where('product_id',$product_id)->get();
     $product_colors=App\product_colors::where('product_id',$product_id)->where('color_image','!=','/')->get();    
     // $first_image=url("admin-css/uploads/images/products/".$product->image);
     $images=[]; 
@@ -933,10 +933,12 @@ function make_slug($string)
     return $text;
 }
 //get no read notification
-function get_no_read_notification_count()
+function get_no_read_notification_count($admin_id)
 {
-    $note=App\admin_notefication::where('status',0)->get();
-    return $note->count();
+    $all_note=App\admin_notefication::orderBy('id','desc')->get();
+    $readin_note=App\reading_notification::where('admin_id',$admin_id)->get();
+    $no_reading_not=count($all_note) - count($readin_note);
+    return $no_reading_not;
 }
 //get no read notification
 function get_no_read_order_notification_count()
@@ -1059,9 +1061,23 @@ function print_order_note_nember_string($num)
 
 }
 //get_no_reading_note_data
-function get_no_reading_note_data()
+function get_no_reading_note_data($admin_id)
 {
-    $note=App\admin_notefication::where('status',0)->get();
+    $all_note=App\admin_notefication::orderBy('id','desc')->get();
+    $all_reading_note=App\reading_notification::orderBy('id','desc')->get();    
+    //create $no_reading_id_array variable
+    $no_reading_id_array=[];
+    foreach($all_reading_note as $r_note)
+    { 
+        foreach ($all_note as $note) 
+        {
+            if (App\reading_notification::where('admin_id',$admin_id)->where('note_id',$note->id)->first()==null) 
+            {
+                $no_reading_id_array[]=$note->id;
+            }
+        }
+    }
+        $note=App\admin_notefication::whereIn('id',$no_reading_id_array)->get(); 
     return $note;
 }
 //get_no_reading_order_note_data
@@ -1228,13 +1244,23 @@ function order_status($type)
 // function consumer_is_register
 function consumer_is_register($consumer_id)
 {
-    $consumer=App\consumer::find($consumer_id);
+    $consumer=App\Consumer::find($consumer_id);
     if($consumer==null || $consumer->id==1)
     {
         return '<span class="label label-danger">زبون غير مسجل</span>';
     }else
     {
         return '<span class="label label-success">زبون مسجل</span>';
+    }
+}
+//function product_has_seo
+function product_has_seo($product_id)
+{
+    $seo=App\Product_seo::where('product_id',$product_id)->first();    
+    if ($seo==null) {
+        return false;
+    }else {
+        return true;
     }
 }
 /*---------------------------------------------------------
@@ -1773,4 +1799,23 @@ function get_instagram_data()
 {
     $setting=App\setting::where('var','instagram')->first();
     return $setting;
+}
+//function google_analitycs_code_is_avtive()
+function google_analitycs_code_is_avtive()
+{
+    $g_a_code=App\google_analytic::find(1);
+    if($g_a_code->active == 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+//function print_google_analytics_code()
+function print_google_analytics_code()
+{
+    $g_a_code=App\google_analytic::find(1);
+    return $g_a_code->code;
 }

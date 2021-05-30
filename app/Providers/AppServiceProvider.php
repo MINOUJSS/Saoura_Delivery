@@ -7,6 +7,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\UrlWindow;
 use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
        //Paginator::defaultSimpleView('vendor.pagination.store-pagination');
 
         //Paginator::useTailwind();
+        Schema::defaultStringLength(191);
     }
 }

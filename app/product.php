@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     protected $fillable = [
-        'user_id','supplier_id','name','brand_id','short_description','long_description','image','Purchasing_price','to_magazin_price','to_consumer_price','ombalage_price','adds_price','selling_price','qty','category_id','sub_category_id','sub_sub_category_id'
+        'user_id','supplier_id','name','slug','brand_id','short_description','long_description','image','Purchasing_price','to_magazin_price','to_consumer_price','ombalage_price','adds_price','selling_price','qty','category_id','sub_category_id','sub_sub_category_id','statu'
     ];
     public function sales()
     {
@@ -73,6 +73,11 @@ class product extends Model
     public function discount()
     {
         return $this->hasOne('App\discount');
+    }
+
+    public function seo()
+    {
+        return $this->hasOne('App\product_seo');
     }
     
 }

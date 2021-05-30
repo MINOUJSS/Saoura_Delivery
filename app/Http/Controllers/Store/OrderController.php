@@ -71,6 +71,7 @@ class OrderController extends Controller
         $order->billing_email=$request->email;
         $order->billing_address=$request->address;        
         $order->billing_mobile=$request->tel;
+        $order->total=$request->total;
         $order->status=0;
         $order->save();
         //create order product

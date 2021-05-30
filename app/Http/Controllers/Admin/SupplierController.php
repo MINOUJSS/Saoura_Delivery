@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\supplier;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class SupplierController extends Controller
 {
@@ -45,9 +48,20 @@ class SupplierController extends Controller
         $supplier->mobile=$request->input('supplier_mobile');        
         $supplier->address=$request->input('supplier_address');
         $supplier->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة المورّد '.$supplier->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.suppliers');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
-        Alert::success('إضافة مورد', 'تم إضافة المورد بنجاح');
-
+        Alert::success('رائع', 'تم إضافة المورد بنجاح');
         //redirecte to category page
         return redirect()->back();
     }
@@ -74,8 +88,20 @@ class SupplierController extends Controller
         $supplier->mobile=$request->input('supplier_mobile');        
         $supplier->address=$request->input('supplier_address');
         $supplier->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل معلومات المورّد '.$supplier->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.suppliers');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
-        Alert::success('تعديل مورد', 'تم تعديل المورد بنجاح');
+        Alert::success('رائع', 'تم تعديل المورد بنجاح');
 
         //redirecte to category page
         return redirect()->back();
@@ -84,7 +110,20 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         $supplier=supplier::findOrFail($id);
+        $supplier_name=$supplier->name;
         //delete supplier data
         $supplier->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف المورّد '.$supplier_name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.suppliers');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
     }
 }

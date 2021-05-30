@@ -8,29 +8,27 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <h3 class="control-sidebar-heading">إشهار و تتبع المتجر</h3>
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript::;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <a href="{{route('admin.edit.google.analytic')}}">
+              <i class="menu-icon fa fa-line-chart bg-red"></i>
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-                <p>Will be 23 on April 24th</p>
+                <h4 class="control-sidebar-subheading">Google Analytics</h4>
+                <p>إدخال كود التتبع و تفعيله</p>
               </div>
             </a>
           </li>
         </ul><!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <h3 class="control-sidebar-heading">الكلمات المفتاحية للمنتجات</h3>
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript::;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+            <a href="{{route('admin.products.seo')}}">
+              <i class="menu-icon fa fa-search bg-red"></i>
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">جدول الكلمات المفتاحية</h4>
+                <p>المنتجات التي تم إضافة كلمات مفتاحية إليها</p>
               </div>
             </a>
           </li>

@@ -47,18 +47,18 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">{{get_no_read_notification_count()}}</span>
+            <span class="label label-warning">{{get_no_read_notification_count(Auth::guard('admin')->user()->id)}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">{{print_note_nember_string(get_no_read_notification_count())}}</li>
+            <li class="header">{{print_note_nember_string(get_no_read_notification_count(Auth::guard('admin')->user()->id))}}</li>
             <li>
               <!-- Inner Menu: contains the notifications -->
               <ul class="menu">
-                @if(count(get_no_reading_note_data())>0)
+                @if(count(get_no_reading_note_data(Auth::guard('admin')->user()->id))>0)
                 <!-- start notification -->
-                @foreach(get_no_reading_note_data() as $note)
+                @foreach(get_no_reading_note_data(Auth::guard('admin')->user()->id) as $note)
                 <li>
-                  <a href="{{url($note->link)}}">
+                  <a href="{{route('admin.notification.read.note.and.redirect',$note->id)}}">
                     <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
                   </a>
                 </li>
@@ -118,7 +118,7 @@
                 <small>عضو منذ نوفمبر 2012</small>
               </p>
             </li>
-            <!-- Menu Body -->
+            {{-- <!-- Menu Body -->
             <li class="user-body">
               <div class="col-xs-4 text-center">
                 <a href="#">متابعون</a>
@@ -130,7 +130,7 @@
                 <a href="#">اصحاب</a>
               </div>
             </li>
-            <!-- Menu Footer-->
+            <!-- Menu Footer--> --}}
             <li class="user-footer">
               <div class="pull-left">
                 <a href="#" class="btn btn-default btn-flat">الملف الشخصي</a>

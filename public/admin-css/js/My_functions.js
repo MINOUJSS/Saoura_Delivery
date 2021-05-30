@@ -663,6 +663,69 @@ $('body').on('click','#delete_product',function(event){
     });
 
 });
+//delete product_seo function
+$('body').on('click','#delete_product_seo',function(event){
+    event.preventDefault();
+    var me=$(this),
+    url=me.attr('url'),
+    product_name=me.attr('title'),
+    product_id=me.attr('deal_id'),
+    csrf_token=$('meta[name="csrf_token"]').attr('content');   
+    swal.fire({
+        title:'هل تريد حذف الكلمات المفتاحية للمنتج '+ product_name + ' ؟',
+        text:'لا يمكنك إستعادت هذه المعلومات بعد الحذف',
+        icon: 'warning',
+        showCancelButton:true,
+        confirmButtonColor:'#d33',
+        cancelButtonColor:'#3085d6',
+        confirmButtonText:'نعم , إحذفه!',
+        cancelButtonText:'لا'
+    }).then((result)=>{
+        if(result.value)
+        {
+            //send data to delete page
+            $.ajax({
+                url:url,
+                type:"GET",
+                data:{
+                    '_method':'GET','_token':csrf_token
+                },
+                //success delete message                
+                success:function(response){
+                    $('#datatable').ready(function(){
+                        window.location.reload(true);
+                    });                    
+                    swal.fire({
+                        icon:'success',
+                        title:"رائع",
+                        text:"تم حذف الكلمات المفتاحية للمنتج"+product_name
+                    });                    
+                },
+                //error delete message
+                error:function(xhr){
+                    console.log(xhr);
+                    swal.fire({
+                        icon:'error',
+                        title:'خطأ',
+                        text:'لم يتم حذف الكلمات المفتاحية للمنتج لسبب غير معروف',
+                        confirmButtonText:"حسناً"
+                    });
+
+                }
+            });            
+        }else
+        {
+            //cancel message
+            swal.fire({
+                icon:'info',
+                title:"إلغاء عملية الحذف",
+                text:"تم إلغاء الحذف ... جميع المعلومات محفوظة",
+                confirmButtonText:"حسناً"
+            });
+        }
+    });
+
+});
 //delete brand function
 $('body').on('click','#delete_brand',function(event){
     event.preventDefault();

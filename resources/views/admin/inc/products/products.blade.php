@@ -153,6 +153,11 @@
                   {{-- <i id="delete_descount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i> --}}
                   {{-- <a href="{{url('admin/product/discount/'.$product->discount->id.'/delete')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button></a> --}}
                   @endif
+                  @if (product_has_seo($product->id))
+                  <a href="{{route('admin.edit.product.seo',$product->id)}}"><button class="btn btn-block btn-success btn-xs"><i class="fa fa-search"> تعديل سيو</i></button></a>        
+                  @else
+                  <a href="{{route('admin.create.product.seo',$product->id)}}"><button class="btn btn-block btn-info btn-xs"><i class="fa fa-search"> إضافة سيو</i></button></a>    
+                  @endif
                   <a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
                   <i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
               </tr> 

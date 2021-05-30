@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             Contra_Table_Seeder::class,
             How_To_Ship_Table_Seeder::class,
             Deny_Order_Observation_Table_Seeder::class,
-            Return_Order_Observation_Table_Seeder::class
+            Return_Order_Observation_Table_Seeder::class,
+            Google_Analytic_Table_Seeder::class
 
             // Discount_Fake_Table_Seeder::class
         ]);

@@ -20,7 +20,7 @@
           <h3 class="box-title">إضافة علامة تجارية</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="{{route('admin.brand.store')}}" method="POST" enctype="multipart/form-data">
+        <form role="form" action="{{route('admin.brand.update')}}" method="POST" enctype="multipart/form-data">
         @csrf 
         <input type="hidden" name="brand_brand_id" id="brand_brand_id" value="{{$brand->id}}"> 
         <input type="hidden" name="brand_user_id" id="brand_user_id" value="{{Auth::user()->id}}">

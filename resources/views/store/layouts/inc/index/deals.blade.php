@@ -288,7 +288,7 @@
            var target=document.getElementsByName('product-countdown'+element);
         $(target).load('/load-dis-products/'+element);
     //    },2000);    
-   }, 3000);
+   }, 1000);
     
 
              }); 

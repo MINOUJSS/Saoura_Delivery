@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Sub_category;
 use App\Sub_Sub_Category;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class Sub_Sub_CategoryController extends Controller
 {
@@ -22,15 +25,15 @@ class Sub_Sub_CategoryController extends Controller
 
     public function create()
     {
-        $sub_categories=Sub_Category::all();
-        $sub_sub_categories=Sub_Sub_Category::OrderBy('id','desc')->paginate(10);
+        $sub_categories=Sub_Category::orderBy('id','desc')->where('id','!=',1)->get();
+        $sub_sub_categories=Sub_Sub_Category::OrderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.create-sub-sub-category',compact('sub_categories','sub_sub_categories'));
     }
 
     public function edite($id)
     {
-        $sub_categories=Sub_Category::all();
-        $sub_sub_categories=Sub_Sub_Category::OrderBy('id','desc')->paginate(10);
+        $sub_categories=Sub_Category::orderBy('id','desc')->where('id','!=',1)->get();
+        $sub_sub_categories=Sub_Sub_Category::OrderBy('id','desc')->where('id','!=',1)->paginate(10);
         $sub_sub_category=Sub_Sub_Category::findOrFail($id);
         return view('admin.edit-sub-sub-category',compact('sub_categories','sub_sub_categories','sub_sub_category'));
     }
@@ -54,6 +57,19 @@ class Sub_Sub_CategoryController extends Controller
         $sub_sub_category->name=$request->input('sub_sub_category');
         $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
         $sub_sub_category->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل تحت تحت الصنف '.$sub_sub_category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //success alert
         Alert::success('تعديل تحت تحت الصنف', 'تم تعديل تحت تحت الصنف بنجاح');
         return redirect()->back();
         }
@@ -78,6 +94,19 @@ class Sub_Sub_CategoryController extends Controller
                 $sub_sub_category->name=$request->input('sub_sub_category');
                 $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
                 $sub_sub_category->save();
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة تحت تحت الصنف '.$sub_sub_category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //success alert
                 Alert::success('إضافة تحت تحت الصنف', 'تم إضافة تحت تحت الصنف بنجاح');
                 return redirect(route('admin.create.sub_sub_categories'));
                 }
@@ -86,7 +115,21 @@ class Sub_Sub_CategoryController extends Controller
     public function destroy($id)
     {
         $sub_sub_category=Sub_Sub_Category::find($id);
+        $sub_sub_category_name=$sub_sub_category->name;
         $sub_sub_category->delete();
+                //noteficte admin
+                $note=new admin_notefication;
+                $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف تحت تحت الصنف '.$sub_sub_category_name;
+                $note->icon ='fa fa-info-circle';
+                $note->type=1;
+                $note->link=route('admin.categories');
+                $note->save();
+                //insert reading note for this admin
+                $r_note=new reading_notification;
+                $r_note->admin_id=Auth::guard('admin')->user()->id;
+                $r_note->note_id=$note->id;
+                $r_note->save();
+                //success alert
         return redirect(url('/admin/categories#sub_sub_category'));
     }
 

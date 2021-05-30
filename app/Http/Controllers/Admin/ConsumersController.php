@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\consumer;
+use App\Consumer;
 
 class ConsumersController extends Controller
 {
@@ -20,7 +20,7 @@ class ConsumersController extends Controller
 
     public function index()
     {
-        $consumers=consumer::orderBy('id','desc')->where('id','!=',1)->paginate(10);
+        $consumers=Consumer::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.consumers',compact('consumers'));
     }
     public function destroy($id)
@@ -30,7 +30,7 @@ class ConsumersController extends Controller
             return redirect()->back();
         }else
         {
-            $consumer=consumer::findOrFail($id);
+            $consumer=Consumer::findOrFail($id);
             $consumer->delete();
             //
             return redirect()->back();

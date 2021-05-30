@@ -74,7 +74,7 @@
                             </tr>
                             <tr>                                    
                                 <th>المبلغ المستحق</th>
-                                <th colspan="2" class="total">{{$subTotal + $shepPrice}} دج</th>
+                                <th colspan="2" class="total">{{$total=$subTotal + $shepPrice}} دج</th>
                                 <th class="empty" colspan="3"></th>
                             </tr>
                         </tfoot>                            
@@ -108,8 +108,9 @@
                         <div class="section-title">
                             <h3 class="title">معلومات الفاتورة</h3>
                         </div>
+                        <input type="hidden" name="total" value="{{$total}}">
                         <div class="form-group" {{$errors->has('first-name')? 'has-error':''}}>
-                            <input class="input" type="hidden" name="first-name" placeholder="الإسم" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->name}}@else{{old('first-name')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
+                            <input class="input" type="hidden" name="first-name" placeholder="الإسم" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->name}}@else{{old('first-name')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>                            
                             <input class="input" type="text" name="first-name" placeholder="الإسم" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->name}}@else{{old('first-name')}}@endif" @if(Auth::guard('consumer')->check())disabled @endif>
                             @if($errors->has('first-name'))
                             <span class="help-block">

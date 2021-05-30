@@ -66,13 +66,13 @@ li
   color: #F8694A;
 }
 
-.category-nav .category-list, .account-nav .account-list {
+.account-nav .account-list, .account-nav .account-list {
   display: none;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: calc(100vh - 100px);
 }
-.category-nav .category-list.open, .account-nav .account-list.open {
+.account-nav .account-list.open, .account-nav .account-list.open {
   display: block;    
 }
 
@@ -94,16 +94,16 @@ li
   color: #30323A;
 }
 
-.category-nav .category-list, .account-nav .account-list {
+.account-nav .account-list, .account-nav .account-list {
   display: none;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: calc(100vh - 100px);
 }
-.category-nav .category-list.open, .account-nav .account-list.open {
+.account-nav .account-list.open, .account-nav .account-list.open {
   display: block;    
 }
-.account-nav .account-header, .category-nav .category-header {
+.account-nav .account-header, .account-nav .category-header {
   cursor: pointer;
 }
 
@@ -121,7 +121,7 @@ li
   line-height: 20px;
 }
 
-.account-nav .account-header, .category-nav .category-header {
+.account-nav .account-header, .account-nav .category-header {
   cursor: pointer;
 }
 

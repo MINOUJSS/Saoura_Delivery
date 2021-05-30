@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\completed_sale;
+use App\Completed_Sale;
 
 class CompletedSaleController extends Controller
 {
@@ -20,7 +20,7 @@ class CompletedSaleController extends Controller
 
     public function index()
     {
-        $sales=completed_sale::orderBy('id','desc')->paginate(10);
+        $sales=Completed_Sale::orderBy('id','desc')->paginate(10);
         return view('admin.sales',compact('sales'));
     }
 }

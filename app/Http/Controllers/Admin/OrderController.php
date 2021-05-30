@@ -27,8 +27,9 @@ class OrderController extends Controller
 
     public function index()
     {
+        $global_sheeping_orders=order::where('status',2)->get();
         $orders=Order::orderBy('id','desc')->paginate(10);
-        return view('admin.orders',compact('orders'));
+        return view('admin.orders',compact('orders','global_sheeping_orders'));
     } 
     public function order_details($id)
     {

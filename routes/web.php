@@ -183,6 +183,19 @@ Route::prefix('admin')->group(function(){
     Route::get('/order/return-order-observation/{id}/edit','Admin\OrderController@edit_return_order_observation')->name('admin.return.order.observation.edit');
     Route::get('/order/return-order-observation/{id}/delete','Admin\OrderController@destroy_return_order_observation')->name('admin.return.order.observation.delete');
     Route::post('/order/return-order-observation/update','Admin\OrderController@update_return_order_observation')->name('admin.return.order.observation.update');
+    //delivery list
+    Route::get('/delivery/list','Admin\DeliveryController@index')->name('admin.delivery.list');
+    Route::get('/delivery/list/print','Admin\DeliveryController@print')->name('admin.delivery.list.print');
+    //SEO
+    Route::get('/products/seo','Admin\SeoController@products_seo_index')->name('admin.products.seo');
+    Route::get('/product/{id}/seo/create','Admin\SeoController@product_seo_create')->name('admin.create.product.seo');
+    Route::post('/product/seo/store','Admin\SeoController@product_seo_store')->name('admin.store.product.seo');
+    Route::get('/product/{id}/seo/edit','Admin\SeoController@product_seo_edit')->name('admin.edit.product.seo');
+    Route::post('/product/seo/update','Admin\SeoController@product_seo_update')->name('admin.update.product.seo');
+    Route::get('/product/seo/{id}/delete','Admin\SeoController@product_seo_destroy')->name('admin.delete.product.seo');
+    //Google analytics
+    Route::get('google-analytic/edit','Admin\GoogleAnalyticsController@edit')->name('admin.edit.google.analytic');
+    Route::post('google-analytic/update','Admin\GoogleAnalyticsController@update')->name('admin.update.google.analytic');
     //up_sales
     Route::get('/up-sales','Admin\UpSaleController@index')->name('admin.upsales');
     Route::get('/up-sale/create','Admin\UpSaleController@create')->name('admin.upsale.create');
@@ -195,6 +208,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/{order_id}/print-invoice','Admin\InvoiceController@print_invoice')->name('admin.print.invoice');
     //notifications
     Route::get('/notifications','Admin\NotificationController@index')->name('admin.notifications');
+    Route::get('/notification/{id}/read-note-and-redirect','Admin\NotificationController@read_note_and_redirect')->name('admin.notification.read.note.and.redirect');
     //discounts
     Route::get('/products/discounts','Admin\DiscountsController@index')->name('admin.discounts');
     Route::get('/product/{id}/discount/create','Admin\DiscountsController@create')->name('admin.create.discount');

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\brand;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class BrandController extends Controller
 {
@@ -50,10 +53,25 @@ class BrandController extends Controller
             {
                 $brand->image='/';
             }
+        }else
+        {
+            $brand->image='/';  
         } 
         $brand->user_id=$request->input('brand_user_id');                           
         $brand->name=$request->input('brand_name');
         $brand->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة العلامة التجارية '.$brand->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.brands');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('إضافة علامة تجارية', 'تم إضافة علامة تجارية بنجاح');
 
@@ -98,7 +116,19 @@ class BrandController extends Controller
                 } 
                 $brand->user_id=$request->input('brand_user_id');                           
                 $brand->name=$request->input('brand_name');
-                $brand->save();
+                $brand->update();
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل العلامة التجارية '.$brand->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.brands');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
                 //alert success message
                 Alert::success('تعديل علامة تجارية', 'تم تعديل علامة تجارية بنجاح');
                 //redirecte to category page
@@ -108,6 +138,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $brand=brand::findOrFail($id);
+        $brand_name=$brand->name;
         //delete old image from categories folder
         $old_image=$brand->image;
         if(\File::exists(public_path('admin-css/uploads/images/brands/'.$old_image)))
@@ -116,6 +147,18 @@ class BrandController extends Controller
         } 
         //delete brand data
         $brand->delete();
+                //noteficte admin
+                $note=new admin_notefication;
+                $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف العلامة التجارية '.$brand_name;
+                $note->icon ='fa fa-info-circle';
+                $note->type=1;
+                $note->link=route('admin.brands');
+                $note->save();
+                //insert reading note for this admin
+                $r_note=new reading_notification;
+                $r_note->admin_id=Auth::guard('admin')->user()->id;
+                $r_note->note_id=$note->id;
+                $r_note->save();
         //redirect
         return redirect()->back();
     }

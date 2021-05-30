@@ -19,5 +19,13 @@ class Admin_table_seeder extends Seeder
             'password'=>hash::make('MINOU1984'),
             'type' =>1
         ]);
+
+        DB::table('admins')->insert([
+            'name' =>'Abdelbari',
+            'email'=>'admin@admin.com',            
+            'password'=>hash::make('admin'),
+            'type' =>1
+        ]);
+
     }
 }

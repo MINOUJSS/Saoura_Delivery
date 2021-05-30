@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Sub_category;
-use App\Sub_Sub_category;
+use App\category;
+use App\Sub_Category;
+use App\Sub_Sub_Category;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -24,20 +26,20 @@ class CategoryController extends Controller
     
     public function index()
     {        
-        $categories=Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
+        $categories=category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         $sub_categories=Sub_Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
-        $sub_sub_categories=Sub_Sub_category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
+        $sub_sub_categories=Sub_Sub_Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.categories',compact('categories','sub_categories','sub_sub_categories'));
     }
 
     public function create()
     {
-        $categories=Category::OrderBy('id','desc')->paginate(10);
+        $categories=Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         return view('admin.create-category',compact('categories'));
     }
     public function edite($id)
     {
-        $categories=Category::OrderBy('id','desc')->paginate(10);
+        $categories=Category::orderBy('id','desc')->where('id','!=',1)->paginate(10);
         $category=Category::findOrFail($id);
         return view('admin.edit-category',compact('categories','category'));
     }
@@ -71,6 +73,18 @@ class CategoryController extends Controller
         $category->slug=make_slug($request->input('category'));
         $category->icon="/";
         $category->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل الصنف '.$category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('تعديل صنف', 'تم تعديل الصنف بنجاح');
 
@@ -101,6 +115,18 @@ class CategoryController extends Controller
         $category->slug=make_slug($request->input('category'));
         $category->icon="/";
         $category->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة الصنف '.$category->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('إضافة صنف', 'تم إضافة الصنف بنجاح');
 
@@ -110,6 +136,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {        
         $category=Category::findOrfail($id); 
+        $category_name=$category->name;
         //delete the image uploaded from categories folder
            if(\File::exists(public_path('admin-css/uploads/images/categories/'.$category->image)))
            {
@@ -144,6 +171,19 @@ class CategoryController extends Controller
             $category->delete();
             // return redirect()->back();
         }
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف الصنف '.$category_name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.categories');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+
         return redirect(url('/admin/categories#category'));
     }
 }

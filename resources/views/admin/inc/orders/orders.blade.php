@@ -15,6 +15,12 @@
     <section class="content">
 
       <!-- Your Page Content Here -->
+      <!---->
+      <a class="btn btn-app" href="{{route('admin.delivery.list')}}">
+        <span class="badge bg-teal">{{$global_sheeping_orders->count()}}</span>
+        <i class="fa fa-truck"></i> قائمة التوصيل
+      </a>
+      <!--/-->
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">جدول الطلبات</h3>
