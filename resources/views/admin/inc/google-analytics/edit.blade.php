@@ -47,7 +47,7 @@
             @endif
             </div>
             <div class="form-group {{$errors->has('code')? 'has-error' : ''}}">
-            <textarea id="article-ckeditor" name="code" rows="10" cols="80">
+            <textarea name="code" rows="10" cols="80">
                 @if(!old('code'))
                 {{$analytic->code}}
                 @else
