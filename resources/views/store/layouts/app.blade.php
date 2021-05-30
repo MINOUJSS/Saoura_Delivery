@@ -9,7 +9,7 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<!--Google Analytics Code here-->
 	@if(google_analitycs_code_is_avtive())
-	{{print_google_analytics_code() }}
+	{!!print_google_analytics_code() !!}
 	@endif
 	<title>الساورة دليفري</title>
 
