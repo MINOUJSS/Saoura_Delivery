@@ -36,6 +36,7 @@
           <form action="{{route('admin.update.google.analytic')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group {{$errors->has('avtive')? 'has-error': ''}}">
+              <label for="active">التفعيل</label>
                 <select name="active" class="form-control">
                     <option value="0" @if(old('active')==0 || $analytic->active==0){{'selected'}}@endif>غير مفعل</option>
                     <option value="1" @if(old('active')==1 || $analytic->active==1){{'selected'}}@endif>مفعل</option>
@@ -47,7 +48,8 @@
             @endif
             </div>
             <div class="form-group {{$errors->has('code')? 'has-error' : ''}}">
-            <textarea name="code" rows="10" cols="80">
+              <label for="code">الكود</label>
+            <textarea class="form-control" name="code" rows="10" cols="80">
                 @if(!old('code'))
                 {{$analytic->code}}
                 @else
