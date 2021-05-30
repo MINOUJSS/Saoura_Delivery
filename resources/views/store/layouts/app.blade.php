@@ -47,6 +47,7 @@
 </head>
 
 <body>
+	hi
 	<!-- HEADER -->
 	@yield('header')
 	<!-- /HEADER -->
