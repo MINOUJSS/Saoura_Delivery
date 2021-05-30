@@ -21,7 +21,8 @@ class InvoiceController extends Controller
     }
 
     public function invoice($order_id)
-    {        
+    { 
+        $title='طباعة فاتورة';        
         $order=Order::findOrfail($order_id);
         $products=order_product::where('order_id',$order_id)->get();
         //
@@ -50,7 +51,7 @@ class InvoiceController extends Controller
         $invoice->total=$total;
         $invoice->benifis=$binifis;
         $invoice->save();
-        return view('admin.inc.invoice.invoice-print',compact('order','products','invoice'));
+        return view('admin.inc.invoice.invoice-print',compact('order','products','invoice','title'));
     }
 
     public function print_invoice($order_id)
