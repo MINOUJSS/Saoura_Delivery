@@ -256,6 +256,7 @@ function add_to_cart(product_id)
       success:function(data){
          $('#cart_section').fadeIn(500).html(data);  
          $('#xs_cart_section').fadeIn(500).html(data);  
+         // $('#xs_cart_section1').fadeIn(500).html(data);  
          //alert success
          Swal.fire({
             //position: 'top-end',

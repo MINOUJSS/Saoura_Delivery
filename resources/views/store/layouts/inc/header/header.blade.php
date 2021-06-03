@@ -156,7 +156,7 @@
             </div>
             <!--end show this in col-lg-->
             <!--show this in col-xs -->
-            <nav class="hidden-lg hidden-md navbar navbar-default">
+            {{-- <nav class="hidden-lg hidden-md navbar navbar-default">
                 <div class="container">
                     <div class="pull-right">
                         <ul class="header-btns">
@@ -165,27 +165,7 @@
                                 <button class="header-btns-icon"><i class="fa fa-search"></i></button>
                             </li>
                             <!-- Account -->
-                            {{-- <li class="header-account dropdown default-dropdown">
-                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-                                    <div class="header-btns-icon">
-                                        <i class="fa fa-user-o"></i>
-                                    </div>
-                                </div>
-                                <ul class="custom-menu">
-                                    @if(Auth::guard('consumer')->check())
-                                    <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>
-                                    <li><a href="{{route('consumer.wish_list')}}"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
-                                    <li><a href="{{route('consumer.compar_list')}}"><i class="fa fa-exchange"></i> مقارنة</a></li>
-                                    @if(session()->has('cart'))
-                                    <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> الدفع</a></li>                                                        
-                                    @endif
-                                    <li><a href="{{route('consumer.logout')}}"><i class="fa fa-sign-out"></i></i> تسجيل الخروج</a></li>                                 
-                                    @else 
-                                    <li><a href="{{route('consumer.login')}}"><i class="fa fa-sign-in"></i> تسجيل الدخول</a></li>
-                                    <li><a href="{{route('consumer.register')}}"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
-                                    @endif
-                                </ul>
-                            </li> --}}
+                            
                             <!-- /Account -->
         
                             <!-- Cart -->
@@ -203,8 +183,7 @@
                                     <div id="shopping-cart">
                                         <div class="shopping-cart-list">
                                             @if(session()->has('cart'))
-                                            @foreach(session()->get('cart')->items as $item)
-                                            {{-- {{dd($item['title'])}} --}}
+                                            @foreach(session()->get('cart')->items as $item)                                            
                                             <div class="product product-widget">
                                                 <div class="product-thumb">
                                                     <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">
@@ -220,17 +199,7 @@
                                            <div class="product product-widget">
                                            السلة فارغة
                                             </div>              
-                                            @endif
-                                            {{-- <div class="product product-widget">
-                                                <div class="product-thumb">
-                                                    <img src="{{url('store')}}/img/thumb-product01.jpg" alt="">
-                                                </div>
-                                                <div class="product-body">
-                                                    <h3 class="product-price"> 32.50 دج<span class="qty">x3</span></h3>
-                                                    <h2 class="product-name"><a href="#">اسم المنتج هنا</a></h2>
-                                                </div>
-                                                <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                            </div> --}}
+                                            @endif                                            
                                         </div>
                                         @if(session()->has('cart'))
                                         <div class="shopping-cart-btns">
@@ -264,8 +233,6 @@
                             @foreach(get_all_categories() as $index => $category)
                         <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
                             @endforeach
-                            {{-- <option value="1">التصنيف 01</option>
-                            <option value="1">التصنيف 02</option> --}}
                         </select>
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
@@ -275,7 +242,7 @@
                 </div>
                     <!---->
                 </div>
-              </nav>
+              </nav> --}}
             <!--end show this in col-xs-->
         </div>
         <!--/container in lg-->
@@ -310,7 +277,7 @@
                 <!-- /Search -->
             </div>
             <!--show this in col-lg -->
-            <div class="hidden-xs hidden-sm pull-right">
+            {{-- <div class="hidden-xs hidden-sm pull-right">
                 <ul class="header-btns">
                     <!-- Account -->
                     <li class="header-account dropdown default-dropdown">
@@ -337,7 +304,7 @@
                     <!-- /Account -->
 
                     <!-- Cart -->
-                    <li id="cart_section" class="header-cart dropdown default-dropdown">
+                    <li id="cart_section1" class="header-cart dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>
@@ -352,7 +319,6 @@
                                 <div class="shopping-cart-list">
                                     @if(session()->has('cart'))
                                     @foreach(session()->get('cart')->items as $item)
-                                    {{-- {{dd($item['title'])}} --}}
                                     <div class="product product-widget">
                                         <div class="product-thumb">
                                             <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">
@@ -368,17 +334,7 @@
                                    <div class="product product-widget">
                                    السلة فارغة     
                                     </div>              
-                                    @endif
-                                    {{-- <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="{{url('store')}}/img/thumb-product01.jpg" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price"> 32.50 دج<span class="qty">x3</span></h3>
-                                            <h2 class="product-name"><a href="#">اسم المنتج هنا</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div> --}}
+                                    @endif                                    
                                 </div>
                                 @if(session()->has('cart'))
                                 <div class="shopping-cart-btns">
@@ -397,7 +353,7 @@
                     </li>
                     <!-- / Mobile nav toggle -->
                 </ul>
-            </div>
+            </div> --}}
             <!--end show this in col-lg-->
             <!--show this in col-xs -->
             <nav class="hidden-lg hidden-md navbar navbar-default">
@@ -409,31 +365,11 @@
                                 <button class="header-btns-icon"><i class="fa fa-search"></i></button>
                             </li>
                             <!-- Account -->
-                            {{-- <li class="header-account dropdown default-dropdown">
-                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-                                    <div class="header-btns-icon">
-                                        <i class="fa fa-user-o"></i>
-                                    </div>
-                                </div>
-                                <ul class="custom-menu">
-                                    @if(Auth::guard('consumer')->check())
-                                    <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>
-                                    <li><a href="{{route('consumer.wish_list')}}"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
-                                    <li><a href="{{route('consumer.compar_list')}}"><i class="fa fa-exchange"></i> مقارنة</a></li>
-                                    @if(session()->has('cart'))
-                                    <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> الدفع</a></li>                                                        
-                                    @endif
-                                    <li><a href="{{route('consumer.logout')}}"><i class="fa fa-sign-out"></i></i> تسجيل الخروج</a></li>                                 
-                                    @else 
-                                    <li><a href="{{route('consumer.login')}}"><i class="fa fa-sign-in"></i> تسجيل الدخول</a></li>
-                                    <li><a href="{{route('consumer.register')}}"><i class="fa fa-user-plus"></i> إنشاء حساب</a></li>
-                                    @endif
-                                </ul>
-                            </li> --}}
+                            
                             <!-- /Account -->
         
                             <!-- Cart -->
-                            <li id="xs_cart_section" class="header-cart dropdown default-dropdown">
+                            <li id="xs_cart_section1" class="header-cart dropdown default-dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <div class="header-btns-icon">
                                         <i class="fa fa-shopping-cart"></i>
@@ -448,7 +384,7 @@
                                         <div class="shopping-cart-list">
                                             @if(session()->has('cart'))
                                             @foreach(session()->get('cart')->items as $item)
-                                            {{-- {{dd($item['title'])}} --}}
+                                            
                                             <div class="product product-widget">
                                                 <div class="product-thumb">
                                                     <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">
@@ -465,16 +401,7 @@
                                            السلة فارغة
                                             </div>              
                                             @endif
-                                            {{-- <div class="product product-widget">
-                                                <div class="product-thumb">
-                                                    <img src="{{url('store')}}/img/thumb-product01.jpg" alt="">
-                                                </div>
-                                                <div class="product-body">
-                                                    <h3 class="product-price"> 32.50 دج<span class="qty">x3</span></h3>
-                                                    <h2 class="product-name"><a href="#">اسم المنتج هنا</a></h2>
-                                                </div>
-                                                <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                            </div> --}}
+                                            
                                         </div>
                                         @if(session()->has('cart'))
                                         <div class="shopping-cart-btns">
@@ -507,9 +434,7 @@
                             <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل التصنيفات</option>
                             @foreach(get_all_categories() as $index => $category)
                         <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
-                            @endforeach
-                            {{-- <option value="1">التصنيف 01</option>
-                            <option value="1">التصنيف 02</option> --}}
+                            @endforeach                            
                         </select>
                         <button class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
