@@ -2,7 +2,7 @@
     @if($products->count()>0)
     @foreach($products as $index => $product)
     <!-- Product Single -->
-    <div class="col-md-4 col-sm-6 col-xs-6">
+    <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
         <div class="product product-single">
 
             <div class="product-rating pull-left">
@@ -39,7 +39,7 @@
         </div>
     </div>
     <!-- /Product Single -->
-    <div class="clearfix visible-sm visible-xs"></div>    
+    {{-- <div class="clearfix visible-lg visible-md"></div>     --}}
     @endforeach
     @else 
     <p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i>  ما تبحث عنة غير موجود!</p>

@@ -17,8 +17,8 @@
         <div class="row">
             <div class="container">
                 <div class="row">
-            <!-- ASIDE -->
-            <div id="aside" class="col-md-3">
+            <!-- ASIDE IN LG SCEEN-->
+            <div id="aside" class="col-md-3 hidden-xs hidden-sm">
                 <!-- aside widget -->
                 @include('store.layouts.inc.products.shop-by')
                 <!-- /aside widget -->
@@ -47,7 +47,7 @@
                 @include('store.layouts.inc.products.top-rated-product')
                 <!-- /aside widget -->
             </div>
-            <!-- /ASIDE -->
+            <!-- /ASIDE IN LG SCEEN-->
 
             <!-- MAIN -->
             <div id="main" class="col-md-9">
@@ -68,6 +68,37 @@
                 <!-- /store bottom filter -->
             </div>
             <!-- /MAIN -->
+            <!-- ASIDE IN SM SCREEN-->
+            <div id="aside" class="col-md-3 hidden-lg">
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.shop-by')
+                <!-- /aside widget -->
+
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.filter-by-price')
+                <!-- aside widget -->
+
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.filter-by-color')
+                <!-- /aside widget -->
+
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.filter-by-size')
+                <!-- /aside widget -->
+
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.filter-by-brand')
+                <!-- /aside widget -->
+
+                <!-- aside widget -->
+                {{-- @include('store.layouts.inc.products.filter-by-gender') --}}
+                <!-- /aside widget -->
+
+                <!-- aside widget -->
+                @include('store.layouts.inc.products.top-rated-product')
+                <!-- /aside widget -->
+            </div>
+            <!-- /ASIDE IN SM SCREEN-->
                 </div>
             </div>
         </div>

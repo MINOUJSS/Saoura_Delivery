@@ -8,7 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\wish_list;
 use App\compar_list;
 use App\product;
-use App\consumer;
+use App\Consumer;
 use App\order_product;
 use App\order;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +40,7 @@ class ConsumerController extends Controller
     {
         if(Auth::guard('consumer')->user()->id==$consumer_id)
         {
-        $consumer=consumer::find($consumer_id);
+        $consumer=Consumer::find($consumer_id);
         return view('store.consumer.edit-account',compact('consumer'));
         }
         else
@@ -60,7 +60,7 @@ class ConsumerController extends Controller
             'googl_map_address'=>'min:25'
         ]);
         //update data
-            $consumer=consumer::findOrfail($request->consumer_id);
+            $consumer=Consumer::findOrfail($request->consumer_id);
             $consumer->name=$request->name;
             $consumer->lastname=$request->lastname;
             $consumer->email=$request->email;
@@ -91,7 +91,7 @@ class ConsumerController extends Controller
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
         ]);
-        $consumer=consumer::findOrFail($request->consumer_id);
+        $consumer=Consumer::findOrFail($request->consumer_id);
         //if old password is corect
         $old_password=$request->input('old_password');
         //dd($old_password);

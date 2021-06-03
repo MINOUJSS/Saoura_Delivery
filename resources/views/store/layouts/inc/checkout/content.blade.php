@@ -21,7 +21,8 @@
                         <h3 class="title">محتوى السلة</h3>
                     </div>
                     @if(session()->has('cart'))
-                    <table class="shopping-cart-table table">
+                    <!--start show this table in large screen -->
+                    <table class="shopping-cart-table table hidden-sm hidden-xs">
                         <thead>
                             <tr>
                                 <th>المنتج</th>
@@ -79,6 +80,58 @@
                             </tr>
                         </tfoot>                            
                     </table>
+                    <!--end show this table in large screen -->
+
+                    <!--start show this table in small screen -->
+                    <table class="shopping-cart-table table hidden-lg hidden-md">
+                        <thead>
+                            <th>تفاصيل المنتج</th>
+                            <th>المجموع</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            @if(session()->has('cart'))
+                            @foreach(session()->get('cart')->items as $item)
+                            <form name="form{{$item['id']}}" action="{{route('cart.update',$item['id'])}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                            <tr>
+                            <td class="details thumb">
+                                <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">                        
+                                    <a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a>                                    
+                                    {!!print_product_colors_html($item['id'])!!}
+                                    {!!print_product_sizes_html($item['id'])!!}
+                                    <br>
+                                    السعر: @if(has_discount($item['id']))<strong>{{$item['price']}} د.ج</strong><br><del class="font-weak"><small>{{get_product_price_by_id($item['id'])}}</small></del>@else <strong>{{get_product_price_by_id($item['id'])}} </strong>@endif د.ج
+                                    <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
+                                    <input style="margin-top:5px;" class="btn btn-primary" type="submit" name="submit" value="حفظ">                                        
+
+                                </form>
+                                <td class="total text-center"><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></td>
+                                <td class="text-right"><a href="{{route('cart.remove',$item['id'])}}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
+                            </tr>                             
+                            @endforeach
+                            @endif                                
+                        </tbody>
+                        <tfoot>
+                            <tr>                                    
+                                <th>المبلغ بدون إحتساب التوصيل</th>
+                                <th colspan="2" class="sub-total">{{$subTotal=session()->get('cart')->totalPrice}} دج</th>
+                                <th class="empty" colspan="3"></th>
+                            </tr>
+                            <tr>                                    
+                                <th>سعر التوصيل</th>
+                                <td colspan="2">{{$shepPrice=0}} دج</td>
+                                <th class="empty" colspan="3"></th>
+                            </tr>
+                            <tr>                                    
+                                <th>المبلغ المستحق</th>
+                                <th colspan="2" class="total">{{$total=$subTotal + $shepPrice}} دج</th>
+                                <th class="empty" colspan="3"></th>
+                            </tr>
+                        </tfoot>
+                        </tfoot>
+                    </table>
+                    <!--end show this table in small screen -->
                     @else
                     <div class="text-center"> 
                     <h2>العربة فارغة</h2>

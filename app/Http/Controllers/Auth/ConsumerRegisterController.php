@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use Auth;
 
 class ConsumerRegisterController extends Controller
 {
@@ -31,7 +32,7 @@ class ConsumerRegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:consumer');
     }
 
     public function ShowRegisterForm()
@@ -44,7 +45,7 @@ class ConsumerRegisterController extends Controller
         //validate
         $this->validate($request,[
             'name' =>'required|min:3|max:25',
-            'email' =>'required|email',
+            'email' =>'required|email|unique:consumers',
             'tel' =>'required|numeric', 
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
@@ -58,7 +59,10 @@ class ConsumerRegisterController extends Controller
         $consumer->save();
         //alert success
         Alert::success('رائع','تم تسجيلك في الموقع بنجاح,تفقد بريدك لإلكتروني لتفعيل حسابك');
+        //function to login($email,$password)
+        Auth::guard('consumer')->attempt(['email'=>$request->email,'password'=>$request->password],$request->remember);
         //redirect
-        return redirect()->intended(route('consumer.dashboard',$consumer->id));
+        return redirect()->intended(url('consumer/'.$consumer->id.'/dashboard'));    
+        //return redirect()->intended(route('consumer.dashboard',$consumer->id));
     }
 }

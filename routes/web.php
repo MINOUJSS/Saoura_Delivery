@@ -14,14 +14,8 @@ use Illuminate\Support\Facades\DB;
 |
 */
 Route::get('/test',function(){
-// function make_slug($string)
-// {
-//     $text=explode(' ',$string);
-//     $text=implode('-',$text);
-//     return $text;
-// }
-$name="ساعة";
-dd(make_slug($name));
+    
+    return redirect()->intended(url('consumer/login'));    
 });
 // Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes(['verify'=>true]);
