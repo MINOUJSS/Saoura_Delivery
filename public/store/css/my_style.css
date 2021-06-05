@@ -157,6 +157,7 @@ li
   .dropdown-backdrop
   {
     position: relative;
+    z-index: 1;
   }
   #aside .aside {
     margin-bottom: 30px;
