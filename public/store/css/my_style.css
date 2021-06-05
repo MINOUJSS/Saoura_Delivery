@@ -156,7 +156,7 @@ li
   }
   .dropdown-backdrop
   {
-    z-index:1;
+    position: relative;
   }
   #aside .aside {
     margin-bottom: 30px;
