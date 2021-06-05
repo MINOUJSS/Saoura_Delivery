@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-price">{{$item['price']}} دج<span class="qty"> الكمية:{{$item['qty']}}</span></h3>
-                                            <h2 class="product-name"><a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a></h2>
+                                            <h2 class="product-name"><a href="{{url('product/'.get_product_data_from_id($item['id'])->slug)}}">{{$item['title']}}</a></h2>
                                         </div>
                                         <a href="{{route('cart.remove',$item['id'])}}"><button class="cancel-btn"><i class="fa fa-trash"></i></button></a>
                                     </div>
@@ -391,7 +391,7 @@
                                                 </div>
                                                 <div class="product-body">
                                                     <h3 class="product-price">{{$item['price']}} دج<span class="qty"> الكمية:{{$item['qty']}}</span></h3>
-                                                    <h2 class="product-name"><a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a></h2>
+                                                    <h2 class="product-name"><a href="{{url('product/'.get_product_data_from_id($item['id'])->slug)}}">{{$item['title']}}</a></h2>
                                                 </div>
                                                 <a href="{{route('cart.remove',$item['id'])}}"><button class="cancel-btn"><i class="fa fa-trash"></i></button></a>
                                             </div>

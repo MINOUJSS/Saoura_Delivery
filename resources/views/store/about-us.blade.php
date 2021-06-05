@@ -35,7 +35,6 @@
             <div id="main" class="col-md-9">
 
                 <!-- DASHBOARD -->
-                <div class="container">
                     <div class="row">                    
                         <!---->
                       @if ($about!=null)
@@ -45,7 +44,6 @@
                       @endif
                         <!---->
                     </div>
-                </div>
                 <!-- /DASHBOARD -->
             </div>
             <!-- /MAIN -->

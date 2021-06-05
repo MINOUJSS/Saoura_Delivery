@@ -55,9 +55,9 @@
               <!-- Inner Menu: contains the notifications -->
               <ul class="menu">
                 @if(count(get_no_reading_note_data(Auth::guard('admin')->user()->id))>0)
-                <!-- start notification -->
+                <!-- start notification -->                
                 @foreach(get_no_reading_note_data(Auth::guard('admin')->user()->id) as $note)
-                <li>
+                <li>                  
                   <a href="{{route('admin.notification.read.note.and.redirect',$note->id)}}">
                     <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
                   </a>

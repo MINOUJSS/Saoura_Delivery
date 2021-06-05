@@ -1067,18 +1067,28 @@ function get_no_reading_note_data($admin_id)
     $all_reading_note=App\reading_notification::orderBy('id','desc')->get();    
     //create $no_reading_id_array variable
     $no_reading_id_array=[];
-    foreach($all_reading_note as $r_note)
+    foreach($all_note as $note)
     { 
-        foreach ($all_note as $note) 
+        if(count($all_reading_note)>0)
         {
-            if (App\reading_notification::where('admin_id',$admin_id)->where('note_id',$note->id)->first()==null) 
+            foreach ($all_reading_note as $r_note) 
             {
-                $no_reading_id_array[]=$note->id;
+                
+                if (App\reading_notification::where('admin_id',$admin_id)->where('note_id',$note->id)->first()==null) 
+                {
+                    $no_reading_id_array[]=$note->id;
+                }
             }
         }
-    }
-        $note=App\admin_notefication::whereIn('id',$no_reading_id_array)->get(); 
-    return $note;
+    } 
+        if(count($all_reading_note)==0 && empty($no_reading_id_array))
+        {
+            $nots=App\admin_notefication::orderBy('id','desc')->get();                    
+        }else
+        {
+            $nots=App\admin_notefication::whereIn('id',$no_reading_id_array)->get();                    
+        }              
+    return $nots;
 }
 //get_no_reading_order_note_data
 function get_no_reading_order_note_data()

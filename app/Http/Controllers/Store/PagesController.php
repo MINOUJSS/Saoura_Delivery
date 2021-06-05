@@ -123,7 +123,7 @@ class PagesController extends Controller
          $consumer_id=$consumer->id;   
         }else{
         //else insert to emails list
-        $consumer_id=0;
+        $consumer_id=1;
         }
         //insert contact to database
         $faq = new faq;
@@ -136,7 +136,7 @@ class PagesController extends Controller
         $note=new admin_notefication;
         $note->title='لديك سؤال جديد(أسئلة شائعة)';
         $note->icon='fa fa-question-circle';
-        $note->type=3;
+        $note->type=1;
         $note->link="/admin/contact/".$faq->id;
         $note->save();
         //send mail to this consumer

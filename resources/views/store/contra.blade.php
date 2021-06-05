@@ -35,7 +35,6 @@
             <div id="main" class="col-md-9">
 
                 <!-- DASHBOARD -->
-                <div class="container">
                     <div class="row">                    
                         @if ($contra!=null)
                         {!!$contra->content!!}  
@@ -43,7 +42,6 @@
                           <h1>لا يوجد محتوى في هذه الصفحة</h1>
                       @endif
                     </div>
-                </div>
                 <!-- /DASHBOARD -->
             </div>
             <!-- /MAIN -->
