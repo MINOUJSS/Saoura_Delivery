@@ -1,8 +1,8 @@
 <div class="product-tab">
     <ul class="tab-nav">
-        <li><a data-toggle="tab" href="#tab0">وصف المنتج</a></li>
-        <li><a data-toggle="tab" href="#tab1">تفاصيل المنتج</a></li>
-        <li class="active"><a data-toggle="tab" href="#tab2">المراجعات ({{count($product->reatings)}})</a></li>
+        <li><a data-toggle="tab" href="#tab0">الوصف </a></li>
+        <li><a data-toggle="tab" href="#tab1"> التفاصيل </a></li>
+        <li class="active"><a data-toggle="tab" href="#tab2"> المراجعات ({{count($product->reatings)}})</a></li>
     </ul>
     <div class="tab-content">
         <div id="tab0" class="tab-pane fade in ">
