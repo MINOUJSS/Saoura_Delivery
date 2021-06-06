@@ -63,7 +63,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><i class="fa fa-frown-o text-danger"> لا يوجد كلمات بحث مسجلة</i></td>
+                <td><i class="fa fa-frown-o text-danger"> لا يوجد طلبات مسجلة</i></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

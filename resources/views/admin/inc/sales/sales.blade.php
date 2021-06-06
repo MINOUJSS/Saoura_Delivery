@@ -85,6 +85,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             @endif
           </tbody></table>
           {{$sales->links()}}          

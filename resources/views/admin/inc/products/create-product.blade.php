@@ -24,12 +24,12 @@
           @csrf
           <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
           <div class="box-body">
-            <div class="form-group col-lg-4 {{$errors->has('product_name')? 'has-error':''}}">
-              <label for="product_name">إسم المنتج</label>
-              <input type="text" class="form-control" name="product_name" id="product_name" placeholder="اسم المنتج" value="{{old('product_name')}}">
-              @if($errors->has('product_name'))
+            <div class="form-group col-lg-4 {{$errors->has('name')? 'has-error':''}}">
+              <label for="name">إسم المنتج</label>
+              <input type="text" class="form-control" name="name" id="product_name" placeholder="اسم المنتج" value="{{old('name')}}">
+              @if($errors->has('name'))
               <span class="help-block">
-              {{ $errors->first('product_name')}}
+              {{ $errors->first('name')}}
               </span>
               @endif
             </div>
@@ -163,7 +163,7 @@
               </select>              
             </div>
             <div class="form-group {{$errors->has('product_image')? 'has-error':''}}">
-              <label for="product_image">صورة المنتج الرئيسية</label>
+              <label for="product_image">صورة المنتج الرئيسية ( 360x555)</label>
               <input type="file" name="product_image" id="product_image">
               @if($errors->has('product_image'))
               <span class="help-block">

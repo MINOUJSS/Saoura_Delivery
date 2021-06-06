@@ -25,12 +25,12 @@
           <input type="hidden" name="product_id" value="{{$product->id}}">
           <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
           <div class="box-body">
-            <div class="form-group col-lg-4 {{$errors->has('product_name')? 'has-error':''}}">
-              <label for="product_name">إسم المنتج</label>
-              <input type="text" class="form-control" name="product_name" id="product_name" placeholder="اسم المنتج" value="@if(old('product_name')){{old('product_name')}}@else {{$product->name}}@endif">
-              @if($errors->has('product_name'))
+            <div class="form-group col-lg-4 {{$errors->has('name')? 'has-error':''}}">
+              <label for="name">إسم المنتج</label>
+              <input type="text" class="form-control" name="name" id="product_name" placeholder="اسم المنتج" value="@if(old('name')){{old('name')}}@else {{$product->name}}@endif">
+              @if($errors->has('name'))
               <span class="help-block">
-              {{ $errors->first('product_name')}}
+              {{ $errors->first('name')}}
               </span>
               @endif
             </div>

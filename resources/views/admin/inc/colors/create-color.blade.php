@@ -43,7 +43,7 @@
               @endif
             </div>
             <!---->
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>Color picker with addon:</label>
               <div class="input-group my-colorpicker2 colorpicker-element">
                 <input type="text" class="form-control">
@@ -51,7 +51,7 @@
                   <i style="background-color: rgb(0, 0, 0);"></i>
                 </div>
               </div><!-- /.input group -->
-            </div>
+            </div> --}}
             <!---->
           </div><!-- /.box-body -->
 
@@ -65,9 +65,9 @@
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->
 
-  @section('javascript')
+  {{-- @section('javascript')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.5.3/js/bootstrap-colorpicker.min.js"></script>
     <script>
         $('.colorpicker').colorpicker();
     </script>
-@stop
+@stop --}}

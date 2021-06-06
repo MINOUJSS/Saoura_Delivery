@@ -47,7 +47,12 @@
               <td>{{get_user_type_name($user->type)}}</td>
               <td>{!!user_is_active($user->active)!!}</td>
               <td>{{$user->created_at->diffForHumans()}}</td>
-              <td><a href="{{url('admin/user').'/'.$user->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a><i id="delete_user" title="{{$user->name}}" url="{{url('admin/user').'/'.$user->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+              <td>
+                <a href="{{url('admin/user').'/'.$user->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
+                @if($user->type !==1)
+                <i id="delete_user" title="{{$user->name}}" url="{{url('admin/user').'/'.$user->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                @endif
+              </td>
             </tr>
             @endforeach
             @else 

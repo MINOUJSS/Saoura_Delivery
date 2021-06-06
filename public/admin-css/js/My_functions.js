@@ -35,7 +35,7 @@ $('select[name="product_category"]').on('change',function(){
         dataType:'json',
         success:function(data)
         {
-                if(data!='<option value="0">إختر تحت الصنف</option>')
+                if(data!='<option value="1">إختر تحت الصنف</option>')
                 {
                     document.getElementById('product_sub_category').innerHTML=data;                        
                 }                            
@@ -53,7 +53,7 @@ $('select[name="product_sub_category"]').on('change',function(){
         dataType:'json',
         success:function(data)
         {
-                if(data!='<option value="0">إختر تحت تحت الصنف</option>')
+                if(data!='<option value="1">إختر تحت تحت الصنف</option>')
                 {
                     document.getElementById('product_sub_sub_category').innerHTML=data;                        
                 }                            

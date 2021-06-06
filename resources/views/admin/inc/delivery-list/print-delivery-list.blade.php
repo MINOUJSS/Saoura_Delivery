@@ -40,7 +40,7 @@
                 <td>{{$order->billing_name}}</td>
                 <td>{{$order->billing_mobile}}</td>
                 <td>{{$order->billing_address}}</td>                
-                <td>{{$order->total}}</td>
+                <td>{{$order->total}} د.ج</td>
               </tr>      
               @php
                   $global=$global+$order->total;

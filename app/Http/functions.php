@@ -1086,7 +1086,7 @@ function get_no_reading_note_data($admin_id)
             $nots=App\admin_notefication::orderBy('id','desc')->get();                    
         }else
         {
-            $nots=App\admin_notefication::whereIn('id',$no_reading_id_array)->get();                    
+            $nots=App\admin_notefication::whereIn('id',$no_reading_id_array)->orderBy('id','desc')->get();                    
         }              
     return $nots;
 }

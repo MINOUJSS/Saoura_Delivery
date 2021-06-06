@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         //validate data
         $this->validate($request,[
-            'product_name' =>'required|min:3',
+            'name' =>'required|min:3|unique:products',
             // 'product_brand' =>'required',
             // 'product_supplier' =>'required',
             'product_short_description' => 'required',
@@ -77,8 +77,8 @@ class ProductController extends Controller
         }                    
         $product->user_id=$request->input('user_id');
         $product->supplier_id=$request->input('product_supplier');
-        $product->name=$request->input('product_name');
-        $product->slug=make_slug($request->input('product_name'));
+        $product->name=$request->input('name');
+        $product->slug=make_slug($request->input('name'));
         $product->brand_id=$request->input('product_brand');
         $product->short_description=$request->input('product_short_description');
         $product->long_description=$request->input('product_long_description');
@@ -112,7 +112,7 @@ class ProductController extends Controller
     {
         //validate data
         $this->validate($request,[
-            'product_name' =>'required|min:3',
+            'name' =>'required|min:3',
             // 'product_brand' =>'required',
             // 'product_supplier' =>'required',
             'product_short_description' => 'required',
@@ -150,8 +150,8 @@ class ProductController extends Controller
         }
         $product->user_id=$request->input('user_id');
         $product->supplier_id=$request->input('product_supplier');
-        $product->name=$request->input('product_name');
-        $product->slug=make_slug($request->input('product_name'));
+        $product->name=$request->input('name');
+        $product->slug=make_slug($request->input('name'));
         $product->brand_id=$request->input('product_brand');
         $product->short_description=$request->input('product_short_description');
         $product->long_description=$request->input('product_long_description');
