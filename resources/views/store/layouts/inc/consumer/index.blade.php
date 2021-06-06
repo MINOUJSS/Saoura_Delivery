@@ -27,7 +27,7 @@
             <div id="main" class="col-md-9">
 
                 <!-- DASHBOARD -->
-                <div class="container">
+                {{-- <div class="container"> --}}
                 <div class="row" style="display: block">                    
                     <div class="col-lg-3 col-sm-12 col-xs-12 pull-left">    
                         <a href="{{route('consumer.orders',Auth::guard('consumer')->user()->id)}}">                
@@ -56,7 +56,7 @@
                 </div>
                 </div>
                 <!-- /DASHBOARD -->
-            </div>
+            {{-- </div> --}}
             <!-- /MAIN -->
         </div>
         <!-- /row -->

@@ -356,8 +356,21 @@
             </div> --}}
             <!--end show this in col-lg-->
             <!--show this in col-xs -->
-            <nav class="hidden-lg hidden-md navbar navbar-default">
-                <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 xs-header">
+                        <img src="{{url('store/img/drapo.png')}}" height="20">
+                    </div>
+                    {{-- <div class="col-sm-6 xs-header">
+                        <img src="{{url('store/img/drapo.png')}}" height="20">
+                    </div>
+                    <div class="col-sm-3 xs-header">
+                        <img src="{{url('store/img/drapo.png')}}" height="20">
+                    </div> --}}
+                </div>                
+            </div>
+            <nav class="hidden-lg hidden-md navbar navbar-default">                
+                <div class="container">                    
                     <div class="pull-right">
                         <ul class="header-btns">
                             <!--search btn-->

@@ -31,9 +31,7 @@
             <!-- /ASIDE -->
 
             <!-- MAIN -->
-            <div id="main" class="col-md-9">
-                
-
+            <div id="main" class="col-md-9">                
                 <!-- MAIN -->
                     <div class="row">
                         <form class="review-form" method="POST" action="{{ route('consumer.update.account') }}">
@@ -118,8 +116,7 @@
                                 </div>
                         </form>
                     </div>
-                <!-- /MAIN -->
-                
+                <!-- /MAIN -->                
             </div>
             <!-- /MAIN -->
         </div>
