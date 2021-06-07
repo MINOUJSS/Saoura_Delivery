@@ -152,8 +152,10 @@
                               <td>{{$prod_image->product->name}}</td>                                                            
                               <td><img src="{{url('admin-css/uploads/images/products/small/'.$prod_image->image)}}" title="{{$prod_image->image}}" width="25" height="25"/></td>
                               <td>
+                                @if(count($product_images) > 1)
                                 <a href="{{url('admin/product').'/'.$prod_image->id.'/edit-image'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
                                 <i id="delete_product_image" title="{{$prod_image->image}}" url="{{url('admin/product').'/'.$prod_image->id.'/delete-image'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                                @endif
                               </td>
                             </tr>
                             @endforeach

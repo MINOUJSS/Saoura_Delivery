@@ -87,7 +87,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/product/edit-size/update','Admin\ProductController@update_size')->name('admin.edit-size-to-product.update');
     Route::get('/product/{id}/delete-size','Admin\ProductController@delete_product_size');
     //
-    Route::get('/product/{id}/add-images','Admin\ProductController@add_images');
+    Route::get('/product/{id}/add-images','Admin\ProductController@add_images')->name('admin.product.add.images');
     Route::post('/product/add-image/store','Admin\ProductController@store_image')->name('admin.add-image-to-product.store');
     Route::get('/product/{id}/edit-image','Admin\ProductController@edit_image');
     Route::post('/product/edit-image/update','Admin\ProductController@update_image')->name('admin.edit-image-to-product.update');

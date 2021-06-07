@@ -168,8 +168,10 @@
                               <td>{{$prod_size->size->size}}</td>
                               <td>{{$prod_size->qty}}</td>
                               <td>
+                                @if(count($product_sizes) > 1)
                                 <a href="{{url('admin/product').'/'.$prod_size->id.'/edit-size'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
                                 <i id="delete_product_size" title="{{$prod_size->size->name}}" url="{{url('admin/product').'/'.$prod_size->id.'/delete-size'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                                @endif
                               </td>
                             </tr>
                             @endforeach

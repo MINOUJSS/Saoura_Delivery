@@ -169,8 +169,10 @@
                               <td>{{$prod_color->qty}}</td>
                               <td>{{$prod_color->image}}</td>
                               <td>
+                                @if(count($product_colors) > 1)
                                 <a href="{{url('admin/product').'/'.$prod_color->id.'/edit-color'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
                                 <i id="delete_product_color" title="{{$prod_color->color->name}}" url="{{url('admin/product').'/'.$prod_color->id.'/delete-color'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                                @endif
                               </td>
                             </tr>
                             @endforeach

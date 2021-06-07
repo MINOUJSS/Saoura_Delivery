@@ -340,7 +340,7 @@ class ProductController extends Controller
         //delete data
         $product_color->delete();
         //redirect
-        return redirect()->back();
+        //return redirect()->back();
     }
     public function add_size($id)
     {    
@@ -503,7 +503,7 @@ class ProductController extends Controller
   
  public function edit_image($id)
  {
-    $prod_image=product_images::findOrFail($id);
+    $prod_image=product_images::findOrfail($id);
     $product=product::findOrFail($prod_image->product_id);
     $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
     $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
@@ -550,6 +550,7 @@ class ProductController extends Controller
     $product_image=product_images::findOrFail($id);
         //delete image
         $p_image=$product_image->image;
+        $product_id=$product_image->product_id;
         if(\File::exists(public_path('admin-css/uploads/images/products/small/'.$p_image)))
         {
             \File::delete(public_path('admin-css/uploads/images/products/small/'.$p_image));
@@ -557,7 +558,7 @@ class ProductController extends Controller
         //delete data
         $product_image->delete();
         //redirect
-        // return redirect()->url('/admin/product/'.$product_image->product_id.'/add-images');
+        return redirect(route('admin.product.add.images',$product_id));
  }
 
  public function product_details($id)
