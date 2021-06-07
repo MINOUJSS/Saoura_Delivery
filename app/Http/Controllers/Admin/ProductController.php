@@ -9,12 +9,15 @@ use App\product;
 use App\brand;
 use App\supplier;
 use App\category;
-use App\product_images;
+use App\Product_Images;
 use App\product_colors;
 use App\product_sizes;
 use App\color;
 use App\size;
 use App\reating;
+use App\reading_notification;
+use App\admin_notefication;
+use Auth;
 class ProductController extends Controller
 {
      /**
@@ -93,6 +96,18 @@ class ProductController extends Controller
         $product->sub_category_id=$request->input('product_sub_category');
         $product->sub_sub_category_id=$request->input('product_sub_sub_category');
         $product->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة منتج جديد '.$request->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('إضافة منتج', 'تم إضافة المنتج بنجاح');
         //redirecte to category page
@@ -166,6 +181,18 @@ class ProductController extends Controller
         $product->sub_category_id=$request->input('product_sub_category');
         $product->sub_sub_category_id=$request->input('product_sub_sub_category');
         $product->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل المنتج '.$request->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('تعديل منتج', 'تم التعديل المنتج بنجاح');
         //redirecte to category page
@@ -177,7 +204,17 @@ class ProductController extends Controller
         $product=product::findOrFail($id);
         //delete all small product images
         // ................... 
-
+        $product_images=Product_Images::where('product_id',$product->id)->get();
+        foreach($product_images as $p_image)
+        {
+            $small_image=$p_image->image;
+            if(\File::exists(public_path('admin-css/uploads/images/products/small/'.$small_image)))
+           {
+            \File::delete(public_path('admin-css/uploads/images/products/small/'.$small_image));
+           }
+        //delete product images data
+        $p_image->delete();
+        }
         //delete the big product images
         $image=$product->image;
             if(\File::exists(public_path('admin-css/uploads/images/products/'.$image)))
@@ -186,7 +223,18 @@ class ProductController extends Controller
            }
         //delete product data
         $product->delete();
-        //notificte Admin
+           //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف المنتج '.$product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
 
         //redirect to back
     }
@@ -194,7 +242,7 @@ class ProductController extends Controller
     public function add_color($id)
     { 
         $product=product::findOrFail($id);
-        $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();
         $colors=color::orderBy('id','desc')->where('id','!=',1)->get();
         return view('admin.add-color-to-product',compact('product','product_images','product_colors','colors'));
@@ -252,6 +300,19 @@ class ProductController extends Controller
             }
         }                    
         $product_color->save();
+        //
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة اللون '.$product_color->name.' للمنتج '.$product_color->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //success Alert
         Alert::success('إضافة لون', 'تم إضافة اللون بنجاح');
         //redirecte
@@ -263,7 +324,7 @@ class ProductController extends Controller
     {        
         $prod_color=product_colors::findOrFail($id);
         $product=product::findOrFail($prod_color->product_id);
-        $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();
         $colors=color::all();
         return view('admin.edit-color-to-product',compact('product','product_images','product_colors','prod_color','colors'));
@@ -322,6 +383,18 @@ class ProductController extends Controller
             }
         }                    
         $product_color->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل اللون '.$product_color->name.' للمنتج '.$product_color->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //success Alert
         Alert::success('تعديل لون', 'تم تعديل اللون بنجاح');
         //redirecte
@@ -339,13 +412,25 @@ class ProductController extends Controller
         }
         //delete data
         $product_color->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف اللون '.$product_color->name.' للمنتج '.$product_color->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.colors');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //redirect
         //return redirect()->back();
     }
     public function add_size($id)
     {    
         $product=product::findOrFail($id);
-        $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_sizes=product_sizes::orderBy('id','desc')->where('product_id',$product->id)->get();
         $sizes=size::orderBy('id','desc')->where('id','!=',1)->get();;
         return view('admin.add-size-to-product',compact('product','product_images','product_sizes','sizes'));
@@ -390,6 +475,18 @@ class ProductController extends Controller
             $product_size->size_id=$request->input('size_id');
             $product_size->qty=$request->input('qty');        
         $product_size->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة المقاس '.$product_size->name.' للمنتج '.$product_size->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //success Alert
         Alert::success('إضافة مقاس', 'تم إضافة المقاس بنجاح');
         //redirecte
@@ -402,7 +499,7 @@ class ProductController extends Controller
     { 
         $prod_size=product_sizes::findOrFail($id);      
         $product=product::findOrFail($prod_size->product_id);
-        $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_sizes=product_sizes::orderBy('id','desc')->where('product_id',$product->id)->get();
         $sizes=size::all();
         return view('admin.edit-size-to-product',compact('product','product_images','product_sizes','sizes','prod_size'));
@@ -447,6 +544,18 @@ class ProductController extends Controller
             $product_size->size_id=$request->input('size_id');
             $product_size->qty=$request->input('qty');        
         $product_size->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل المقاس '.$product_size->name.' للمنتج '.$product_size->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //success Alert
         Alert::success('تعديل مقاس', 'تم تعديل المقاس بنجاح');
         //redirecte
@@ -459,6 +568,18 @@ class ProductController extends Controller
         $product_size=product_sizes::findOrFail($id);        
         //delete data
         $product_size->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف المقاس '.$product_size->name.' للمنتج '.$product_size->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //redirect
         //return redirect()->back();
     }
@@ -466,7 +587,7 @@ class ProductController extends Controller
     public function add_images($id)
     {    
         $product=product::findOrFail($id);
-        $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
         $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
         return view('admin.add-images-to-product',compact('product','product_images','product_colors'));
     }
@@ -483,11 +604,23 @@ class ProductController extends Controller
       if($file->move('admin-css/uploads/images/products/small/',$imagename))
       {
           //insert into database;
-          $product_image=new product_images;
+          $product_image=new Product_Images;
           $product_image->user_id=$request->input('user_id');
           $product_image->product_id=$request->input('product_id');            
           $product_image->image=$imagename;
           $product_image->save();
+          //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة الصورة '.$product_image->image.' للمنتج '.$product_image->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
           //success Alert
           Alert::success('إضافة صورة', 'تم إضافة الصورة بنجاح');
       }else
@@ -503,9 +636,9 @@ class ProductController extends Controller
   
  public function edit_image($id)
  {
-    $prod_image=product_images::findOrfail($id);
+    $prod_image=Product_Images::findOrfail($id);
     $product=product::findOrFail($prod_image->product_id);
-    $product_images=product_images::orderBy('id','desc')->where('product_id',$product->id)->get();
+    $product_images=Product_Images::orderBy('id','desc')->where('product_id',$product->id)->get();
     $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
     return view('admin.edit-images-to-product',compact('product','product_images','product_colors','prod_image'));
  }
@@ -516,7 +649,7 @@ class ProductController extends Controller
   if($file=$request->file('image'))
   { 
       //delete old image
-      $product_image=product_images::findOrFail($request->input('product_image_id'));
+      $product_image=Product_Images::findOrFail($request->input('product_image_id'));
       $old_image=$product_image->image;
       if(\File::exists(public_path('admin-css/uploads/images/products/small/'.$old_image)))
       {
@@ -531,6 +664,18 @@ class ProductController extends Controller
           $product_image->product_id=$request->input('product_id');            
           $product_image->image=$imagename;
           $product_image->update();
+          //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل الصورة '.$product_image->image.' للمنتج '.$product_image->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
           //success Alert
           Alert::success('تعديل صورة', 'تم تعديل الصورة بنجاح');
       }else
@@ -547,7 +692,7 @@ class ProductController extends Controller
 
  public function delete_image($id)
  {
-    $product_image=product_images::findOrFail($id);
+    $product_image=Product_Images::findOrFail($id);
         //delete image
         $p_image=$product_image->image;
         $product_id=$product_image->product_id;
@@ -557,6 +702,18 @@ class ProductController extends Controller
         }
         //delete data
         $product_image->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف الصورة '.$product_image->image.' للمنتج '.$product_image->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //redirect
         return redirect(route('admin.product.add.images',$product_id));
  }

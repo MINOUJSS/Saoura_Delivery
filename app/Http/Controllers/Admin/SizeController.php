@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\size;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class SizeController extends Controller
 {
@@ -42,6 +45,18 @@ class SizeController extends Controller
         $size->name=$request->input('size_name');
         $size->size=$request->input('size_size');
         $size->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة المقاس '.$size->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //alert success message
         Alert::success('إضافة مقاس', 'تم إضافة مقاس بنجاح');
 
@@ -73,6 +88,18 @@ class SizeController extends Controller
                 $size->name=$request->input('size_name');
                 $size->size=$request->input('size_size');
                 $size->update();
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل المقاس '.$size->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
                 //alert success message
                 Alert::success('تعديل مقاس', 'تم تعديل مقاس بنجاح');
         
@@ -90,6 +117,18 @@ class SizeController extends Controller
             $size=size::findOrFail($id);
             $size->delete();
             //
+            //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف المقاس '.$size->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.sizes');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
             return redirect()->back();
         }
     }
