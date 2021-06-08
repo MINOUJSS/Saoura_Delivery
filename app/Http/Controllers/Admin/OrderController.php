@@ -12,6 +12,9 @@ use App\return_order_observation;
 use App\product;
 use App\orders_notification;
 use App\Completed_Sale;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class OrderController extends Controller
 {
@@ -52,6 +55,18 @@ class OrderController extends Controller
         //update status
         $order->status=1;
         $order->update();
+                //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتأكيد الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //redirect 
         // return redirect()->back();
     }
@@ -62,6 +77,18 @@ class OrderController extends Controller
         //update status
         $order->status=2;
         $order->update();
+        //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإرسال الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //redirect 
         // return redirect()->back();
     }
@@ -72,6 +99,18 @@ class OrderController extends Controller
         //update status
         $order->status=3;
         $order->update();
+        //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتسليم الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //insert in compladed sales table
         $order_products=order_product::where('order_id',$order_id)->get();
         foreach($order_products as $product)
@@ -105,6 +144,18 @@ class OrderController extends Controller
             $product_data->qty=$product_data->qty + $product->qty;
             $product_data->update();
         }
+        //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإلغاء الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //alert success
             Alert::success('رائع','تم إلغاء الطلب');
         //redirect back()
@@ -143,6 +194,18 @@ class OrderController extends Controller
         {
             $sale->delete();
         }
+        //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإعادة الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //alert success
             Alert::success('رائع','تم إعادة الطلب');
         //redirect back()
@@ -160,6 +223,18 @@ class OrderController extends Controller
     {
        $order_product=order_product::where('order_id',$order_id)->where('product_id',$product_id)->first();
        $order_product->delete();
+       //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف منتج من الطلب رقم '.$order_id;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
        return redirect()->back();
     }
 
@@ -190,6 +265,18 @@ class OrderController extends Controller
       $deny_obs=new deny_order_observation;
       $deny_obs->obs=$request->obs;
       $deny_obs->save();
+      //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة سبب إلغاء الطلب '.$deny_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
       //alert success
       Alert::success('رائع','تم إضافة سبب إلغاء الطلب بنجاح');
       //redirect back()
@@ -212,6 +299,18 @@ class OrderController extends Controller
         $deny_obs=deny_order_observation::findOrfail($request->obs_id);
         $deny_obs->obs=$request->obs;
         $deny_obs->update();
+              //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل سبب إلغاء الطلب '.$deny_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //alert success
         Alert::success('رائع','تم تعديل سبب إلغاء الطلب بنجاح');
         //redirect back()
@@ -222,6 +321,18 @@ class OrderController extends Controller
     {
         $deny_obs=deny_order_observation::find($id);
         $deny_obs->delete();
+              //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف سبب إلغاء الطلب '.$deny_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
     }
     public function create_return_order_observation()
     {
@@ -237,6 +348,18 @@ class OrderController extends Controller
       $return_obs=new return_order_observation;
       $return_obs->obs=$request->obs;
       $return_obs->save();
+            //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة سبب إعادة الطلب '.$return_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
       //alert success
       Alert::success('رائع','تم إضافة سبب إرجاع الطلب بنجاح');
       //redirect back()
@@ -258,6 +381,18 @@ class OrderController extends Controller
         $return_obs=return_order_observation::findOrfail($request->obs_id);
         $return_obs->obs=$request->obs;
         $return_obs->update();
+                    //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل سبب إعادة الطلب '.$return_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //alert success
         Alert::success('رائع','تم تعديل سبب إرجاع الطلب بنجاح');
         //redirect back()
@@ -267,5 +402,17 @@ class OrderController extends Controller
     {
         $return_obs=return_order_observation::find($id);
         $return_obs->delete();
+                    //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف سبب إعادة الطلب '.$return_obs->obs;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.orders');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
     }
 }

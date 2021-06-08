@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\deal;
 use App\sid_deal;
+use App\admin_noteficiation;
+use App\reading_notification;
+use Auth;
 
 class DealController extends Controller
 {
@@ -40,6 +43,18 @@ class DealController extends Controller
     }
         //delete data
         $deal->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف السلايدر '.$deal->title;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.slider.deals');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();        
         //redurect 
         return redirect()->back();
     }
@@ -85,6 +100,18 @@ class DealController extends Controller
         // $deal->descount=$request->input('descount');
         $deal->link=$request->input('link');
         $deal->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل السلايدر '.$deal->title;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.slider.deals');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();        
         //alert success message
         Alert::success('تعديل عرض خاص', 'تم تعديل العرض بنجاح');
 
@@ -124,6 +151,18 @@ class DealController extends Controller
             }
         }   
         $deal->save();                 
+                //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة السلايدر '.$deal->title;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.slider.deals');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();        
                 // success alert 
                 Alert::success('إضافة عرض خاص', 'تم إضافة العرض بنجاح');
                 //redirect to deals pege
@@ -170,6 +209,18 @@ class DealController extends Controller
     }
 }   
 $deal->save();                 
+//noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة السلايدر '.$deal->title;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.sid.deals');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         // success alert 
         Alert::success('إضافة عرض خاص', 'تم إضافة العرض جانبي بنجاح');
         //redirect to deals pege
@@ -216,6 +267,19 @@ $deal->save();
         $deal->link=$request->input('link');
         $deal->exp_date=$request->input('exp_date').' '.date('H:i:s');
         $deal->update();
+        //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل السلايدر '.$deal->title;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.sid.deals');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
+
         //alert success message
         Alert::success('تعديل عرض خاص', 'تم تعديل العرض الجانبي بنجاح');
 
@@ -232,6 +296,18 @@ $deal->save();
     }
         //delete data
         $deal->delete();
+                //noteficte admin
+$note=new admin_notefication;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف السلايدر '.$deal->title;
+$note->icon ='fa fa-info-circle';
+$note->type=1;
+$note->link=route('admin.sid.deals');
+$note->save();
+//insert reading note for this admin
+$r_note=new reading_notification;
+$r_note->admin_id=Auth::guard('admin')->user()->id;
+$r_note->note_id=$note->id;
+$r_note->save();        
         //redurect 
         return redirect()->back();
     }

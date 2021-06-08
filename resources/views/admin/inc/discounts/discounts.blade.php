@@ -41,7 +41,7 @@
             <tr>
               <td>{{$index + 1}}</td>
               <td>{{$discount->product_id}}</td>              
-              <td>{{$discount->discount}}%</td>
+              <td>{{get_product_discount($discount->product_id)}} %</td>
               <td>{{$discount->exp_date}}</td>              
               <td>
                 <a href="{{url('admin/product/discount').'/'.$discount->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\discount;
 use App\product;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class DiscountsController extends Controller
 {
@@ -44,6 +47,18 @@ class DiscountsController extends Controller
         $discount->discount=$request->discount;
         $discount->exp_date=$request->exp_date.' '.date('H:i:s');
         $discount->save();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة تخفيض للمنتج رقم '.$discount->product_id;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //Alert success message        
         Alert::success('إضافة تخفيض', 'تم إضافة التخفيض بنجاح');
         //redirect back();
@@ -54,6 +69,18 @@ class DiscountsController extends Controller
         $discount=discount::findOrFail($id);
         //delete
         $discount->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف التخفيض للمنتج رقم '.$discount->product_id;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
     }
 
     public function edit($id)
@@ -75,6 +102,18 @@ class DiscountsController extends Controller
         $discount->discount=$request->discount;
         $discount->exp_date=$request->exp_date.' '.date('H:i:s');
         $discount->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل التخفيض للمنتج رقم '.$discount->product_id;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //Alert success message        
         Alert::success('رائع', 'تم تعديل التخفيض بنجاح');
         //redirect back();

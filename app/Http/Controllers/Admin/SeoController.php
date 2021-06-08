@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\product;
-use App\product_seo;
+use App\Product_seo;
+use App\admin_notefication;
+use App\reading_notification;
+use Auth;
 
 class SeoController extends Controller
 {
@@ -21,7 +24,7 @@ class SeoController extends Controller
     }
     public function products_seo_index()
     {
-        $seos=product_seo::orderBy('id','desc')->paginate(10);
+        $seos=Product_seo::orderBy('id','desc')->paginate(10);
       return view('admin.inc.products.seo.index',compact('seos'));  
     }
 
@@ -40,12 +43,24 @@ class SeoController extends Controller
             'link'=>'required'
         ]);
         //save data
-        $seo=new product_seo;
+        $seo=new Product_seo;
         $seo->product_id=$request->product_id;
         $seo->key_words=$request->keywords;
         $seo->description=$request->description;
         $seo->link=$request->link;
         $seo->save();
+           //noteficte admin
+           $note=new admin_notefication;
+           $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة الكلمات المفتاحية للمنتج رقم '.$request->product_id;
+           $note->icon ='fa fa-info-circle';
+           $note->type=1;
+           $note->link=route('admin.products');
+           $note->save();
+           //insert reading note for this admin
+           $r_note=new reading_notification;
+           $r_note->admin_id=Auth::guard('admin')->user()->id;
+           $r_note->note_id=$note->id;
+           $r_note->save();
         //success alert
         Alert::success('رائع','تم إضافة الكلمات المفتاحية للمنتج');
         //redirect
@@ -54,7 +69,7 @@ class SeoController extends Controller
 
     public function product_seo_edit($id)
     {
-        $seo=product_seo::findOrFail($id);
+        $seo=Product_seo::where('product_id',$id)->first();
         return view('admin.inc.products.seo.edit',compact('seo'));  
     }
 
@@ -67,21 +82,45 @@ class SeoController extends Controller
             'link'=>'required'
         ]);
         //save data
-        $seo=product_seo::findOrFail($request->seo_id);
+        $seo=Product_seo::findOrFail($request->seo_id);
         $seo->key_words=$request->keywords;
         $seo->description=$request->description;
         $seo->link=$request->link;
         $seo->update();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل الكلمات المفتاحية للمنتج رقم '.$seo->product_id;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
         //success alert
         Alert::success('رائع','تم تعديل الكلمات المفتاحية للمنتج');
         //redirect
         return redirect(route('admin.products.seo'));
     }
 
-    public function product_seo_destroy($id)
+    public function Product_seo_destroy($id)
     {
-        $seo=product_seo::findOrFail($id);
+        $seo=Product_seo::findOrFail($id);
         //delete
         $seo->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف الكلمات المفتاحية للمنتج رقم '.$seo->product_id;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
     }
 }
