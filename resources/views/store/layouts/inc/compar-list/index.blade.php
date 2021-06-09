@@ -15,13 +15,13 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <!-- ASIDE -->
-            <div id="aside" class="col-md-3">
+            <!-- ASIDE IN LARGE SCREEN-->
+            <div id="aside" class="hidden-xs hidden-sm col-md-3">
                 <!-- aside widget -->
                 
                 <!-- /aside widget -->
             </div>
-            <!-- /ASIDE -->
+            <!-- /ASIDE IN LARGE SCREEN-->
 
             <!-- MAIN -->
             <div id="main" class="col-md-9">
@@ -86,6 +86,15 @@
                 <!-- /store bottom filter -->
             </div>
             <!-- /MAIN -->
+
+            <!-- ASIDE IN SMALL SCREEN-->
+            <div id="aside" class="hidden-md hidden-lg col-md-3">
+                <!-- aside widget -->
+
+                <!-- /aside widget -->
+            </div>
+            <!-- /ASIDE IN SMALL SCREEN-->
+            
         </div>
         <!-- /row -->
     </div>

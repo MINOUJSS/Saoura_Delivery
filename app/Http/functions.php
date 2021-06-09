@@ -1096,6 +1096,19 @@ function get_no_reading_order_note_data()
     $note=App\orders_notification::where('status',0)->get();
     return $note;
 }
+//function get_admin_note_status()
+function get_admin_note_status($note_id,$admin_id)
+{
+    $reading_note=App\reading_notification::where('note_id',$note_id)->where('admin_id',$admin_id)->first();
+    if($reading_note==null)
+    {
+        return '<span class="label label-danger">غير مقروءة</span>';
+    }
+    else
+    {
+        return '<span class="label label-success">مقروءة</span>';
+    }
+}
 //function store_name_label()
 function store_name_label()
 {
