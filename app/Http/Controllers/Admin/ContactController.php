@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\contact_us_reply;
+use Illuminate\Contracts\Queue\ShoulQueue;
+use App\Jobs\Send_Contact_Mail;
 use App\contact_us;
 use App\deleted_contact;
 use App\deleted_reply;
@@ -82,12 +84,14 @@ class ContactController extends Controller
             'message'=>$request->message
         );
         $data=array(
+            'to' => $request->to,
             'name'   =>$request->name,
             'subject'=> $request->subject,
             'message' => $request->message
         );
         //send mail
-            Mail::to($request->to)->send(new contact_us_reply($data));
+            //Mail::to($request->to)->send(new Send_Contact_mail($data));
+            dispatch(new Send_Contact_mail($data));
         //insert in sent mail table
             $email=new reply_contact;
             $email->admin_id=Auth::guard('admin')->user()->id;
