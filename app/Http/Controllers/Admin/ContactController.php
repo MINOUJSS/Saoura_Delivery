@@ -82,7 +82,7 @@ class ContactController extends Controller
             'message'=>$request->message
         );
         $data=array(
-            'name'   =>$request->name;
+            'name'   =>$request->name,
             'subject'=> $request->subject,
             'message' => $request->message
         );
