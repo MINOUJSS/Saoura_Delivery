@@ -81,7 +81,7 @@
                             <li><a href="{{route('consumer.wish_list')}}"><i class="fa fa-heart-o"></i> قائمة امنياتي</a></li>
                             <li><a href="{{route('consumer.compar_list')}}"><i class="fa fa-exchange"></i> مقارنة</a></li>
                             @if(session()->has('cart'))
-                            <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> الدفع</a></li>                                                        
+                            <li><a href="{{route('checkout')}}"><i class="fa fa-check"></i> أطلب الآن</a></li>                                                        
                             @endif
                             <li><a href="{{route('consumer.logout')}}"><i class="fa fa-sign-out"></i></i> تسجيل الخروج</a></li>                                 
                             @else 
@@ -139,7 +139,7 @@
                                 @if(session()->has('cart'))
                                 <div class="shopping-cart-btns">
                                     <a href="{{route('cart.show')}}"><button class="main-btn">عرض محتوى السلة</button></a>
-                                    <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                    <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> أطلب الآن</button></a>
                                 </div>
                                 @endif
                             </div>
@@ -419,7 +419,7 @@
                                         @if(session()->has('cart'))
                                         <div class="shopping-cart-btns">
                                             <a href="{{route('cart.show')}}"><button class="main-btn">عرض محتوى السلة</button></a>
-                                            <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                            <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> أطلب الآن</button></a>
                                         </div>
                                         @endif
                                     </div>

@@ -134,7 +134,7 @@
                         <!--end show this table in small screen-->
 
                         <div class="pull-left">
-                            <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"> الدفع</i></button></a>
+                            <a href="{{route('checkout')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"> أطلب الآن</i></button></a>
                         </div>
                         @else
                         <div class="text-center"> 

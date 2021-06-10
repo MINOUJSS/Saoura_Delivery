@@ -71,6 +71,7 @@
                 @csrf
               <div class="form-group {{$errors->has('to')? 'has-error':''}}">
                 <input type="hidden" name="contact_us_id" value="{{$contact->id}}"> 
+                <input type="hidden" name="name" value="{{$contact->name}}">
                 <input type="hidden" name="to" class="form-control" placeholder="إلى:" value="{{$contact->email}}">
                 <input  class="form-control" placeholder="إلى:" value="{{$contact->email}}" disabled>
                 {{-- @if($errors->has('to'))

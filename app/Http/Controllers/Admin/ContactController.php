@@ -81,6 +81,11 @@ class ContactController extends Controller
             'subject'=>$request->subject,
             'message'=>$request->message
         );
+        $data=array(
+            'name'   =>$request->name;
+            'subject'=> $request->subject,
+            'message' => $request->message
+        );
         //send mail
             Mail::to($request->to)->send(new contact_us_reply($data));
         //insert in sent mail table
