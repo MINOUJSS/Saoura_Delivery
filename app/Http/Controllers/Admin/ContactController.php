@@ -91,7 +91,7 @@ class ContactController extends Controller
         );
         //send mail
             //Mail::to($request->to)->send(new Send_Contact_mail($data));
-            for($i=0;$i<=50;$i++)
+            for($i=0;$i<=10;$i++)
             {
 
                 //dispatch(new Send_Contact_mail($data));

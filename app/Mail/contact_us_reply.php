@@ -30,7 +30,7 @@ class contact_us_reply extends Mailable
      */
     public function build()
     {
-        return $this->from('contact@saouradelivery.com')->subject($this->data['subject'])->view('emails.contact-us-reply')->with('data',$this->data);
+        return $this->from('contact@souradelivery.com')->subject($this->data['subject'])->view('emails.contact-us-reply')->with('data',$this->data);
         //return $this->view('view.name');
     }
 }
