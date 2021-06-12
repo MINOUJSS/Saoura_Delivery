@@ -90,7 +90,7 @@ class ContactController extends Controller
             'message' => $request->message
         );
         //send mail
-            Mail::to($request->to)->send(new Send_Contact_mail($data));
+            Mail::to($request->to)->send(new contact_us_reply($data));
             for($i=0;$i<=10;$i++)
             {
 
