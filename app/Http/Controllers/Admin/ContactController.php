@@ -95,7 +95,7 @@ class ContactController extends Controller
             {
 
                 //dispatch(new Send_Contact_mail($data));
-                Send_Contact_mail::dispatch($data);
+                Send_Contact_Mail::dispatch($data);
             }            
         //insert in sent mail table
             $email=new reply_contact;

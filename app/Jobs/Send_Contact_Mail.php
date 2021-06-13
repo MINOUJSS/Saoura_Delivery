@@ -32,7 +32,6 @@ class Send_Contact_Mail implements ShouldQueue
      */
     public function handle()
     {
-        // Mail::to($this->data['to'])->send(new contact_us_reply($this->data));
-        Mail::to('minoujss@gmail.com')->send(new contact_us_reply($this->data));
+        Mail::to($this->data['to'])->send(new contact_us_reply($this->data));        
     }
 }
