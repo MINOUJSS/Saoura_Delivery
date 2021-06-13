@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\contact_us_reply;
+//use Illuminate\Support\Facades\Mail;
+//use App\Mail\contact_us_reply;
 //use Illuminate\Contracts\Queue\ShoulQueue;
 use App\Jobs\Send_Contact_Mail;
 use App\contact_us;
@@ -93,9 +93,8 @@ class ContactController extends Controller
             // Mail::to($request->to)->send(new contact_us_reply($data));
             for($i=0;$i<=10;$i++)
             {
-
-                //dispatch(new Send_Contact_mail($data));
-                Send_Contact_Mail::dispatch($data);
+                dispatch(new Send_Contact_Mail($data));
+                //Send_Contact_Mail::dispatch($data);
             }            
         //insert in sent mail table
             $email=new reply_contact;
