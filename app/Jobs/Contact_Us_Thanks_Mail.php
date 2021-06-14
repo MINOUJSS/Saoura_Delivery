@@ -9,7 +9,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Thank_Consummer_For_Contact;
-use App\product;
 
 class Contact_Us_Thanks_Mail implements ShouldQueue
 {
@@ -33,8 +32,6 @@ class Contact_Us_Thanks_Mail implements ShouldQueue
      */
     public function handle()
     {
-        $product=product::orderBy('id','desc')->first();
-        $product->delete();
         Mail::to($this->data['email'])->send(new Thank_Consummer_For_Contact($this->data));
     }
 }
