@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Store;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Thank_Consummer_For_Contact;
+use App\Jobs\Contact_Us_Thanks_Mail;
 use App\about_us;
 use App\contra;
 use App\how_to_ship;
@@ -78,15 +81,20 @@ class PagesController extends Controller
         $contact->message=$request->message;
         $contact->status=0;
         $contact->save();
-        // noteficate admin abou this contact
-        $note=new admin_notefication;
-        $note->title='لديك رسالة جديدة(إتصل بنا)';
-        $note->icon='fa fa-envelope';
-        $note->type=2;
-        $note->link="/admin/contact/".$contact->id;
-        $note->save();
+        // // noteficate admin abou this contact
+        // $note=new admin_notefication;
+        // $note->title='لديك رسالة جديدة(إتصل بنا)';
+        // $note->icon='fa fa-envelope';
+        // $note->type=2;
+        // $note->link="/admin/contact/".$contact->id;
+        // $note->save();
+        $data=array(
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'subject'=>$request->title
+        );
         //send mail to this consumer
-
+        dispatch(new Contact_Us_Thanks_Mail($data));
         //alert to thanks this consumer about this contact
         Alert::success('إرسال رسالة','تم إرسال رسالتك بنجاح,و سيتم الرد عليك في أقرب وقت ممكن.شكراً على الإتصال');
         //redirect to products page
