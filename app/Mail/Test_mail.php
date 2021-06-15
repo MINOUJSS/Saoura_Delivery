@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Thank_Consummer_For_Contact extends Mailable
+class Test_mail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class Thank_Consummer_For_Contact extends Mailable
      */
     public function build()
     {
-        return $this->from('contact@saouradelivery.com')->subject('شكراً على الإتصال')->view('emails.thank-consummer-for-contact')->with('data',$this->data);
+        return $this->from('contact@saouradelivery.com')->subject($this->data['subject'])->view('emails.test-mail')->with('data',$this->data);
     }
 }

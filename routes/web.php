@@ -235,6 +235,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 //--------------------------------------------
 //              store routes
 //--------------------------------------------
+//test routes
+Route::get('/test/send-normal-email','Store\TestController@create_normal_email')->name('test.send.normal.email');
+Route::post('/test/send-normal-email','Store\TestController@send_normal_email')->name('test.send.normal.email.send');
+Route::get('/test/send-cron-job-email','Store\TestController@create_cron_job_email')->name('test.send.cron.job.email');
+Route::post('/test/send-cron-job-email','Store\TestController@send_cron_job_email')->name('test.send.cron.job.email.send');
 //consumer routes
 Route::prefix('consumer')->group(function(){
     //authontication
