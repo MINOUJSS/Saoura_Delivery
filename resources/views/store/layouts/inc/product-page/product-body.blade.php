@@ -74,12 +74,13 @@
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
                 <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
                 </form>
-            @endif 
+            @endif             
             {{-- <div class="pull-right">
                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
             </div> --}}
         </div>
+
     </div>
 </div>

@@ -29,6 +29,6 @@ class Test_mail extends Mailable
      */
     public function build()
     {
-        return $this->from('contact@saouradelivery.com')->subject($this->data['subject'])->view('emails.test-mail')->with('data',$this->data);
+        return $this->from('gator4036.hostgator.com')->subject($this->data['subject'])->view('emails.test-mail')->with('data',$this->data);
     }
 }
