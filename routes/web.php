@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test',function(){
+// Route::get('/test',function(){
     
-    return redirect()->intended(url('consumer/login'));    
-});
+//     return redirect()->intended(url('consumer/login'));    
+// });
 // Route::get('/checkout','Store\StoreController@checkout')->name('checkout');
 Auth::routes(['verify'=>true]);
 
