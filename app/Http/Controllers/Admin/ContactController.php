@@ -91,11 +91,7 @@ class ContactController extends Controller
         );
         //send mail
             // Mail::to($request->to)->send(new contact_us_reply($data));
-            for($i=0;$i<=10;$i++)
-            {
-                dispatch(new Send_Contact_Mail($data));
-                //Send_Contact_Mail::dispatch($data);
-            }            
+                dispatch(new Send_Contact_Mail($data));            
         //insert in sent mail table
             $email=new reply_contact;
             $email->admin_id=Auth::guard('admin')->user()->id;
