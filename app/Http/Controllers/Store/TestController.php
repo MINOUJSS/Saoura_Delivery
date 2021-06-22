@@ -59,7 +59,8 @@ class TestController extends Controller
             'message' => $request->message
         );
         //send mail
-        Test_job::dispatch(new Test_job($data));
+        //dispatch(new Test_job($data));
+        Test_job::dispatch($data);
         //redirect
         return redirect()->back();
     }

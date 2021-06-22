@@ -32,6 +32,6 @@ class Test_job implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->data['to'])->send(new Test_mail($this->data));        
+        Mail::to($this->data['to'])->queue(new Test_mail($this->data));        
     }
 }
