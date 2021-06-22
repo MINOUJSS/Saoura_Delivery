@@ -181,7 +181,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:13px 26px 16px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align" style="color: #ffffff; line-height: 140%; text-align: right; word-wrap: break-word;">
-    <p dir="rtl" style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: arial, helvetica, sans-serif; color: #ffffff;"><strong><a style="color: #ffffff;" href="https://saouradelivery.com" target="_blank" rel="noopener">جرب متعة التسوق عبر الأنترنت في موقعنا في ولاية بشار</a></strong></span></p>
+    <p dir="rtl" style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: arial, helvetica, sans-serif; color: #ffffff;"><strong><a style="color: #ffffff;" href="https://saouradelivery.com" target="_blank" rel="noopener">جرب متعة التسوق عبر الأنترنت على موقعنا في ولاية بشار</a></strong></span></p>
   </div>
 
       </td>
