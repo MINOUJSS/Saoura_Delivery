@@ -41,9 +41,17 @@ return [
             'retry_after' => 90,
         ],
 
+        // 'beanstalkd' => [
+        //     'driver' => 'beanstalkd',
+        //     'host' => 'localhost',
+        //     'queue' => 'default',
+        //     'retry_after' => 90,
+        //     'block_for' => 0,
+        // ],
+
         'beanstalkd' => [
             'driver' => 'beanstalkd',
-            'host' => 'localhost',
+            'host' => 'gator4036.hostgator.com',
             'queue' => 'default',
             'retry_after' => 90,
             'block_for' => 0,
