@@ -30,6 +30,6 @@ class Thank_Consummer_For_Contact extends Mailable
      */
     public function build()
     {
-        return $this->from('Saoura Delivery <contact@saouradelivery.com>')->subject('شكراً على الإتصال')->view('emails.thank-consummer-for-contact')->with('data',$this->data);
+        return $this->from('Saoura_Delivery <contact@saouradelivery.com>')->subject('شكراً على الإتصال')->view('emails.thank-consummer-for-contact')->with('data',$this->data);
     }
 }
