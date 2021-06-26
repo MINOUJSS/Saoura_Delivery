@@ -10,6 +10,7 @@ $factory->define(Sub_Category::class, function (Faker $faker) {
     return [
         'category_id' => $faker->biasedNumberBetween($min = 1, $max = 7, $function = 'sqrt'),
         'name' =>$name,
-        'slug'=>make_slug($name)
+        'slug'=>make_slug($name),
+        'description'=>$name
     ];
 });

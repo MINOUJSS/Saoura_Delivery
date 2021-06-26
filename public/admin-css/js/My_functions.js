@@ -24,7 +24,41 @@ $(document).ready(function(){
     var $total=price1+price2+price3+price4+price5;
     global_price.val($total);  
 });
-
+//function show_sub_category_checkbox(category_id)
+function show_sub_category_checkboxs(category_id)
+{
+    var category=document.getElementsByName('category_id['+category_id+']');
+   $(category).on('change',function(){
+    if($(this).prop('checked'))
+    {
+        $('#sub_category_list_checkbox_'+category_id).show();
+    }else
+    {
+        //deselect all sub category and sub sub category check box
+        $('.sub_sub_category_'+category_id).prop('checked',$(this).prop('checked'))
+        $('.sub_category_'+category_id).prop('checked',$(this).prop('checked'))        
+        //hid the check sub category boxses
+        $('#sub_category_list_checkbox_'+category_id).hide();
+    }
+   });
+}
+//function show_sub_category_checkbox(category_id)
+function show_sub_sub_category_checkboxs(sub_category_id)
+{
+    var sub_category=document.getElementsByName('sub_category_id['+sub_category_id+']');
+   $(sub_category).on('change',function(){
+    if($(this).prop('checked'))
+    {
+        $('#sub_sub_category_list_checkbox_'+sub_category_id).show();
+    }else
+    {
+        //deselect all sub category and sub sub category check box
+        $('.sub_sub_category_'+sub_category_id).prop('checked',$(this).prop('checked'))
+        //hid the check sub category boxses
+        $('#sub_sub_category_list_checkbox_'+sub_category_id).hide();
+    }
+   });
+}
 //function to select category and show sub category
 $('select[name="product_category"]').on('change',function(){
     var category_id=$(this).val();

@@ -25,10 +25,10 @@ $factory->define(product::class, function (Faker $faker) {
     //    'Purchasing_price'=> $faker->biasedNumberBetween($min = 200, $max = 2000, $function = 'sqrt'),
     //    'selling_price'=> $faker->biasedNumberBetween($min = 400, $max = 4000, $function = 'sqrt'),
       //  'reating'=> $faker->biasedNumberBetween($min = 0, $max = 5, $function = 'sqrt'),
-       'qty'=> $faker->biasedNumberBetween($min = 1, $max = 100, $function = 'sqrt'),
-       'category_id'=> $faker->biasedNumberBetween($min = 1, $max = 7, $function = 'sqrt'),
-       'sub_category_id'=> $faker->biasedNumberBetween($min = 1, $max = 15, $function = 'sqrt'),
-       'sub_sub_category_id'=> $faker->biasedNumberBetween($min = 1, $max = 20, $function = 'sqrt')      
+       'qty'=> $faker->biasedNumberBetween($min = 1, $max = 100, $function = 'sqrt')
+      //  'category_id'=> 1,
+      //  'sub_category_id'=> 1,
+      //  'sub_sub_category_id'=> 1      
 
     ];
 });

@@ -15,6 +15,9 @@
     <section class="content">
 
       <!-- Your Page Content Here -->
+<div class="container-fliud">
+  <div class="row">
+    <div class="col-lg-8">
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">إضافة منتج</h3>
@@ -141,7 +144,7 @@
               </span>
               @endif
             </div>
-            <div class="form-group col-lg-4 {{$errors->has('product_category')? 'has-error':''}}">
+            {{-- <div class="form-group col-lg-4 {{$errors->has('product_category')? 'has-error':''}}">
               <label for="product_category">الصنف</label>
               <select class="form-control" name="product_category" id="product_category">
                 <option value="1">إختر الصنف</option>
@@ -161,8 +164,8 @@
               <select class="form-control" name="product_sub_sub_category" id="product_sub_sub_category">
                 <option value="1">إختر تحت تحت الصنف</option>               
               </select>              
-            </div>
-            <div class="form-group {{$errors->has('product_image')? 'has-error':''}}">
+            </div> --}}
+            {{-- <div class="form-group col-lg-4 {{$errors->has('product_image')? 'has-error':''}}">
               <label for="product_image">صورة المنتج الرئيسية ( 360x555)</label>
               <input type="file" name="product_image" id="product_image">
               @if($errors->has('product_image'))
@@ -170,14 +173,70 @@
                 {{$errors->first('product_image')}}
               </span>
               @endif
-            </div>            
-          </div><!-- /.box-body -->
-
-          <div class="box-footer">
+            </div>             --}}
+          </div><!-- /.box-body --> 
+          
+          <div class="box-footer"></div>
+          {{-- <div class="box-footer">
             <button type="submit" class="btn btn-primary">حفظ</button>
           </div>
-        </form>
+        </form> --}}
+      </div>      
+    </div>
+    <!---->
+    <div class="col-lg-4">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"></h3>
+        </div><!-- /.box-header -->
+        <h4>حالة المنتج (مرئي أو مخفي)</h4>
+        <div classe="form-group">
+          <input type="checkbox" name="statu" value="1"> مرئي
+        </div>
+        <h4>إضافة الصورة الرئيسية</h4>
+        <div class="form-group {{$errors->has('product_image')? 'has-error':''}}">
+          <label for="product_image">صورة المنتج الرئيسية ( 360x555)</label>
+          <input type="file" name="product_image" id="product_image">
+          @if($errors->has('product_image'))
+          <span class="help-block">
+            {{$errors->first('product_image')}}
+          </span>
+          @endif
+        </div>            
+        <h4>الأقسام</h4> 
+        <hr>
+        <div class="form-group">
+        <ul class="list-unstyled" style="padding-right:15px !important;">
+        @foreach($categories as $Cat)
+          <li><input type="checkbox" name="category_id[{{$Cat->id}}]" onclick="show_sub_category_checkboxs({{$Cat->id}})" value="{{$Cat->id}}"> {{$Cat->name}}            
+            @if(has_sub_categories($Cat->id))
+            <ul class="list-unstyled" id="sub_category_list_checkbox_{{$Cat->id}}" style="padding-right:15px !important;display:none;">
+              @foreach($Cat->sub_categories as $Sub_Cat)
+              <li><input class="sub_category_{{$Cat->id}}" type="checkbox" name="sub_category_id[{{$Sub_Cat->id}}]" onclick="show_sub_sub_category_checkboxs({{$Sub_Cat->id}})" value="{{$Sub_Cat->id}}"> {{$Sub_Cat->name}}
+                   @if(has_sub_sub_categories($Sub_Cat->id))
+                  <ul class="list-unstyled" id="sub_sub_category_list_checkbox_{{$Sub_Cat->id}}" style="padding-right:15px !important;display:none;">
+                    @foreach(get_sub_sub_categories($Sub_Cat->id) as $Sub_Sub_Cat)
+                    <li><input class="sub_sub_category_{{$Cat->id}}" type="checkbox" name="sub_sub_category_id[{{$Sub_Sub_Cat->id}}]" value="{{$Sub_Sub_Cat->id}}"> {{$Sub_Sub_Cat->name}}</li>
+                    @endforeach
+                  </ul>
+                  @endif 
+              </li>
+              @endforeach
+            </ul>
+            @endif
+           
+          </li>
+        @endforeach
+        </ul>
+        </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary">حفظ</button>
       </div>
+    </form>
+    </div><!-- /.box-body -->
+    <!---->    
+  </div>
+</div>
       <!-- End Your Page Content Here -->
 
     </section><!-- /.content -->

@@ -16,6 +16,9 @@ use App\size;
 use App\brand;
 use App\product_colors;
 use App\product_sizes;
+use App\Product_Category;
+use App\Product_Sub_Category;
+use App\Product_Sub_Sub_Category;
 use App\Store_Model\Cart;
 use App\Store_Model\Searcher;
 use App\searsh_word;
@@ -545,7 +548,23 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $brands=brand::all();
         $min_price=product::orderBy('selling_price')->first()->selling_price;
         $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
-        $products=product::OrderBy('id','desc')->where('category_id',$category->id)->paginate(12);
+        //$products=product::OrderBy('id','desc')->where('category_id',$category->id)->paginate(12);
+        $product_category=Product_Category::where('category_id',$category->id)->get();
+        //get all $product_category product_id in array
+        $p_c_product_id_array=[];
+        if(count($product_category)>0)
+        {
+            foreach($product_category as $p_c)
+            {
+                $p_c_product_id_array[]=$p_c->product_id;
+            }
+                //dd($p_c_product_id_array);            
+            $products=product::whereIn('id',$p_c_product_id_array)->paginate(12);
+        }else
+        {
+            $products=product::where('id',0)->paginate(12);
+        }
+        //dd($products);
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 
@@ -557,7 +576,22 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $brands=brand::all();
         $min_price=product::orderBy('selling_price')->first()->selling_price;
         $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
-        $products=product::OrderBy('id','desc')->where('sub_category_id',$sub_category->id)->paginate(12);
+        //$products=product::OrderBy('id','desc')->where('sub_category_id',$sub_category->id)->paginate(12);
+        $product_sub_category=Product_Sub_Category::where('category_id',$sub_category->id)->get();
+        //get all $product_category product_id in array
+        $p_c_product_id_array=[];
+        if(count($product_sub_category)>0)
+        {
+            foreach($product_sub_category as $p_s_c)
+            {
+                $p_s_c_product_id_array[]=$p_s_c->product_id;
+            }
+                //dd($p_c_product_id_array);            
+            $products=product::whereIn('id',$p_s_c_product_id_array)->paginate(12);
+        }else
+        {
+            $products=product::where('id',0)->paginate(12);
+        }
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 
@@ -569,7 +603,22 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $brands=brand::all();
         $min_price=product::orderBy('selling_price')->first()->selling_price;
         $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
-        $products=product::OrderBy('id','desc')->where('sub_category_id',$sub_sub_category->id)->paginate(12);
+        //$products=product::OrderBy('id','desc')->where('sub_category_id',$sub_sub_category->id)->paginate(12);
+        $product_sub_sub_category=Product_Sub_Sub_Category::where('category_id',$sub_sub_category->id)->get();
+        //get all $product_category product_id in array
+        $p_s_s_c_product_id_array=[];
+        if(count($product_sub_sub_category)>0)
+        {
+            foreach($product_sub_sub_category as $p_s_s_c)
+            {
+                $p_s_s_c_product_id_array[]=$p_s_s_c->product_id;
+            }
+                //dd($p_c_product_id_array);            
+            $products=product::whereIn('id',$p_s_s_c_product_id_array)->paginate(12);
+        }else
+        {
+            $products=product::where('id',0)->paginate(12);
+        }
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
 

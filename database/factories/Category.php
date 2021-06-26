@@ -9,6 +9,7 @@ $factory->define(Category::class, function (Faker $faker) {
     $name=$faker->unique()->word;
     return [
         'name' =>$name,
-        'slug'=>make_slug($name) 
+        'slug'=>make_slug($name),
+        'description'=>$name
     ];
 });

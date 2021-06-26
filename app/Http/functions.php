@@ -1241,6 +1241,85 @@ function store_phone_value()
         return null;    
     }
 }
+//function product Status
+function product_status($statu)
+{
+    if($statu==0)
+    {
+        return '<span class="label label-danger">غير مرئي</span>';
+    }else
+    {
+        return '<span class="label label-success">مرئي</span>';
+    }
+}
+//function globale_product_category
+function globale_product_categories($product_id)
+{
+
+    $product_category=App\Product_Category::where('product_id',$product_id)->get();
+    $product_sub_category=App\Product_Sub_Category::where('product_id',$product_id)->get();
+    $product_sub_sub_category=App\Product_Sub_Sub_Category::where('product_id',$product_id)->get();
+    //get categories ides
+    $category_id_array=[];
+    if(count($product_category)>0)
+    {
+        foreach($product_category as $p_cat)
+        {
+            $category_id_array[]=$p_cat->id;
+        }
+    }    
+    //get sub categories ides
+    $sub_category_id_array=[];
+    if(count($product_sub_category)>0)
+    {
+        foreach($product_sub_category as $p_s_cat)
+        {
+            $sub_category_id_array[]=$p_s_cat->id;
+        }
+    }
+    //get sub sub categories ides
+    $sub_sub_category_id_array=[];
+    if(count($product_sub_sub_category)>0)
+    {
+        foreach($product_sub_sub_category as $p_s_s_cat)
+        {
+            $sub_sub_category_id_array[]=$p_s_s_cat->id;
+        }
+    }
+    //get categories for this product
+    $category=App\category::whereIn('id',$category_id_array)->get();
+    //get sub categories for this product
+    $sub_category=App\category::whereIn('id',$sub_category_id_array)->get();
+    //get sub sub categories for this product
+    $sub_sub_category=App\category::whereIn('id',$sub_sub_category_id_array)->get();
+    //writ it in html        
+    $html='<ul class="list-unstyled">';
+    if(count($category)>0)
+    {
+        foreach($category as $cat)
+        {
+            $html.="<li>".$cat->name."</li>";
+        }    
+    }
+    //
+    if(count($sub_category)>0)
+    {
+        foreach($sub_category as $s_cat)
+        {
+            $html.="<li>".$s_cat->name."</li>";
+        }    
+    }
+    //
+    if(count($sub_sub_category)>0)
+    {
+        foreach($sub_sub_category as $s_s_cat)
+        {
+            $html.="<li>".$s_s_cat->name."</li>";
+        }    
+    }
+    $html.='</ul>';
+    return $html;
+}
 //function order Status
 function order_status($type)
 {
@@ -1283,6 +1362,42 @@ function product_has_seo($product_id)
     if ($seo==null) {
         return false;
     }else {
+        return true;
+    }
+}
+//function is_product_has_this_cat
+function is_product_has_this_cat($product_id,$category_id)
+{
+    $product_category=App\Product_Category::where('product_id',$product_id)->where('category_id',$category_id)->first();
+    if($product_category==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//function is_product_has_this_sub_cat
+function is_product_has_this_sub_cat($product_id,$sub_category_id)
+{
+    $product_sub_category=App\Product_Sub_Category::where('product_id',$product_id)->where('sub_category_id',$sub_category_id)->first();
+    if($product_sub_category==null)
+    {
+        return false;
+    }else
+    {
+        return true;
+    }
+}
+//function is_product_has_this_sub_sub_cat
+function is_product_has_this_sub_sub_cat($product_id,$sub_sub_category_id)
+{
+    $product_sub_sub_category=App\Product_Sub_Sub_Category::where('product_id',$product_id)->where('sub_sub_category_id',$sub_sub_category_id)->first();
+    if($product_sub_sub_category==null)
+    {
+        return false;
+    }else
+    {
         return true;
     }
 }

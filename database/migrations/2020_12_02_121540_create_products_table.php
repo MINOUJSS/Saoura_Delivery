@@ -42,9 +42,9 @@ class CreateProductsTable extends Migration
             $table->decimal('adds_price',6,2);
             $table->decimal('selling_price',6,2);            
             $table->integer('qty');
-            $table->integer('category_id');
-            $table->integer('sub_category_id')->default(0);
-            $table->integer('sub_sub_category_id')->default(0);            
+            // $table->integer('category_id')->default(1);
+            // $table->integer('sub_category_id')->default(1);
+            // $table->integer('sub_sub_category_id')->default(1);            
             $table->integer('statu')->default('0');
             $table->timestamps();
         });

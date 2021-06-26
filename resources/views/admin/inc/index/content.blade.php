@@ -16,7 +16,7 @@
 
       <!-- Your Page Content Here -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
@@ -30,7 +30,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
@@ -62,7 +62,7 @@
 
       <div class="row">
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">

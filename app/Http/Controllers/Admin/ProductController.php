@@ -12,6 +12,9 @@ use App\category;
 use App\Product_Images;
 use App\product_colors;
 use App\product_sizes;
+use App\Product_Category;
+use App\Product_Sub_Category;
+use App\Product_Sub_Sub_Category;
 use App\color;
 use App\size;
 use App\reating;
@@ -60,7 +63,7 @@ class ProductController extends Controller
             'product_adds_price' =>'required',
             'product_selling_price' => 'required',
             'product_qty' => 'required',
-            'product_category' => 'required',
+            // 'product_category' => 'required',
             // 'product_sub_category' => 'required',
             // 'product_sub_sub_category' => 'required',
             'product_image' =>'required|mimes:jpeg,bmp,png'
@@ -92,10 +95,57 @@ class ProductController extends Controller
         $product->adds_price=$request->input('product_adds_price');
         $product->selling_price=$request->input('product_selling_price');
         $product->qty=$request->input('product_qty');
-        $product->category_id=$request->input('product_category');
-        $product->sub_category_id=$request->input('product_sub_category');
-        $product->sub_sub_category_id=$request->input('product_sub_sub_category');
+        if($request->statu==null)
+        {
+        $product->statu=0;
+        }else
+        {
+            $product->statu=1;
+        }
+        // $product->category_id=$request->input('product_category');
+        // $product->sub_category_id=$request->input('product_sub_category');
+        // $product->sub_sub_category_id=$request->input('product_sub_sub_category');
+        // $product->category_id=1;
+        // $product->sub_category_id=1;
+        // $product->sub_sub_category_id=1;
         $product->save();
+        //insert to product_categories table
+        if($request->category_id!=null)
+        {            
+            //save data
+            foreach($request->category_id as $cat_id)
+            {
+                $product_category=new Product_Category;
+                $product_category->product_id=$product->id;
+                $product_category->category_id=$cat_id;
+                $product_category->save();
+            }
+
+        }
+        //insert to product_sub_categories table
+        if($request->sub_category_id!=null)
+        {            
+            //save data
+            foreach($request->sub_category_id as $sub_cat_id)
+            {
+                $product_sub_category=new Product_Sub_Category;
+                $product_sub_category->product_id=$product->id;
+                $product_sub_category->sub_category_id=$sub_cat_id;
+                $product_sub_category->save();
+            }
+        }
+        //insert to product_sub_sub_categories table
+        if($request->sub_sub_category_id!=null)
+        {            
+            //save data
+            foreach($request->sub_sub_category_id as $sub_sub_cat_id)
+            {
+                $product_sub_sub_category=new Product_Sub_Sub_Category;
+                $product_sub_sub_category->product_id=$product->id;
+                $product_sub_sub_category->sub_sub_category_id=$sub_sub_cat_id;
+                $product_sub_sub_category->save();
+            }
+        }
         //noteficte admin
         $note=new admin_notefication;
         $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة منتج جديد '.$request->name;
@@ -109,7 +159,7 @@ class ProductController extends Controller
         $r_note->note_id=$note->id;
         $r_note->save();
         //alert success message
-        Alert::success('إضافة منتج', 'تم إضافة المنتج بنجاح');
+        Alert::success('رائع', 'تم إضافة المنتج بنجاح');
         //redirecte to category page
         return redirect(route('admin.products'));
     }
@@ -139,7 +189,7 @@ class ProductController extends Controller
             'product_adds_price' =>'required',
             'product_selling_price' => 'required',
             'product_qty' => 'required',
-            'product_category' => 'required',
+            // 'product_category' => 'required',
             // 'product_sub_category' => 'required',
             // 'product_sub_sub_category' => 'required',
             'product_image' =>'mimes:jpeg,bmp,png'
@@ -177,10 +227,73 @@ class ProductController extends Controller
         $product->adds_price=$request->input('product_adds_price');
         $product->selling_price=$request->input('product_selling_price');
         $product->qty=$request->input('product_qty');
-        $product->category_id=$request->input('product_category');
-        $product->sub_category_id=$request->input('product_sub_category');
-        $product->sub_sub_category_id=$request->input('product_sub_sub_category');
+        if($request->statu==null)
+        {
+        $product->statu=0;
+        }else
+        {
+            $product->statu=1;
+        }
+        // $product->category_id=$request->input('product_category');
+        // $product->sub_category_id=$request->input('product_sub_category');
+        // $product->sub_sub_category_id=$request->input('product_sub_sub_category');
         $product->update();
+        //delete all product categeries
+        $product_categories=Product_Category::where('product_id',$product->id)->get();
+        foreach($product_categories as $p_cat)
+        {
+            $p_cat->delete();
+        }
+        //delete all product sub_categories
+        $product_sub_categories=Product_Sub_Category::where('product_id',$product->id)->get();
+        foreach($product_sub_categories as $p_sub_cat)
+        {
+            $p_sub_cat->delete();
+        }
+        //delete all product sub_sub_categories
+        $product_sub_sub_categories=Product_Sub_Sub_Category::where('product_id',$product->id)->get();
+        foreach($product_sub_sub_categories as $p_sub_sub_cat)
+        {
+            $p_sub_sub_cat->delete();
+        }
+        //insert to product_categories table                
+        if($request->category_id!=null)
+        {            
+            //save data
+            foreach($request->category_id as $cat_id)
+            {
+                $product_category=new Product_Category;
+                $product_category->product_id=$product->id;
+                $product_category->category_id=$cat_id;
+                $product_category->save();
+            }
+
+        }
+        //insert to product_sub_categories table
+        if($request->sub_category_id!=null)
+        {            
+            //save data
+            foreach($request->sub_category_id as $sub_cat_id)
+            {
+                $product_sub_category=new Product_Sub_Category;
+                $product_sub_category->product_id=$product->id;
+                $product_sub_category->sub_category_id=$sub_cat_id;
+                $product_sub_category->save();
+            }
+        }
+                
+                //insert to product_sub_sub_categories table
+                if($request->sub_sub_category_id!=null)
+                {                    
+                    //save data
+                    foreach($request->sub_sub_category_id as $sub_sub_cat_id)
+                    {
+                        $product_sub_sub_category=new Product_Sub_Sub_Category;
+                        $product_sub_sub_category->product_id=$product->id;
+                        $product_sub_sub_category->sub_sub_category_id=$sub_sub_cat_id;
+                        $product_sub_sub_category->save();
+                    }
+                }
         //noteficte admin
         $note=new admin_notefication;
         $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل المنتج '.$request->name;

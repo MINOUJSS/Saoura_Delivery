@@ -78,6 +78,7 @@
                 <th>رقم المنتج</th>
                 <th>صورة المنتج</th>
                 <th>إسم المنتج</th>
+                <th>حالة المنتج</th>
                 {{-- <th>العلامة التجارية</th>
                 <th>وصف موجز</th>
                 <th>وصف كامل</th> --}}
@@ -100,6 +101,7 @@
                 <td>{{$product->id}}</td>
                 <td><img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="50" width="50"></td>
                 <td><a href="{{route('admin.product.details',$product->id)}}">{{$product->name}}</a></td>
+                <td>{!!product_status($product->statu)!!}</td>
                 {{-- @if($product->brand!=null)
                 <td>{{$product->brand->name}}</td>
                 @else
@@ -121,11 +123,14 @@
                 <td>{{$product->sales->count()}}</td>
                 <td>{{get_product_reating_from_id($product->id)}}</td>
                 <td>{{$product->qty}}</td>
-                @if($product->category!=null)
+                <td>{!!globale_product_categories($product->id)!!}</td>
+                {{-- @if($product->category!=null)
                 <td>{{$product->category->name}}</td>
                 @else 
                 <td>بدون تصنيف</td>
-                @endif
+                @endif --}}
+
+
                 {{-- @if($product->category->id!=null)
                 <td>{{$product->sub_category->name}}</td>
                 @else 
