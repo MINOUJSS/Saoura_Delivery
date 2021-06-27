@@ -32,15 +32,15 @@ class Sub_CategoryController extends Controller
 
     public function create()
     {
-        $categories=category::all();
-        $sub_categories=Sub_Category::OrderBy('id','desc')->paginate(10);
+        $categories=category::orderBy('id','desc')->where('id','!=','1')->get();
+        $sub_categories=Sub_Category::OrderBy('id','desc')->where('id','!=','1')->paginate(10);
         return view('admin.create-sub-category',compact('categories','sub_categories'));
     }
 
     public function edite($id)
     {
-        $categories=category::all();
-        $sub_categories=Sub_Category::OrderBy('id','desc')->paginate(10);
+        $categories=category::orderBy('id','desc')->where('id','!=','1')->get();
+        $sub_categories=Sub_Category::OrderBy('id','desc')->where('id','!=','1')->paginate(10);
         $sub_category=Sub_Category::findOrFail($id);
         return view('admin.edit-sub-category',compact('categories','sub_categories','sub_category'));
     }
