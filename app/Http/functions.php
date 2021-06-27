@@ -1318,6 +1318,11 @@ function globale_product_categories($product_id)
             $html.="<li>".$s_s_cat->name."</li>";
         }    
     }
+    //
+    if(count($category)==0 && count($sub_category)==0 && count($sub_sub_category)==0)
+    {
+        $html.="<li>بدون تصنيف</li>";  
+    }
     $html.='</ul>';
     return $html;
 }
