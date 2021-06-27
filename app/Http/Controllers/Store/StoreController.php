@@ -13,9 +13,9 @@ class StoreController extends Controller
     public function index()
     {   
         //get discount products
-        $products=product::inRandomOrder()->get();
-        $piked_products=product::inRandomOrder()->paginate(4);
-        $last_products=product::orderBy('id','desc')->paginate(4);
+        $products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->get();
+        $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
+        $last_products=product::orderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(4);
         $query=product::orderBy('id','desc');
         foreach($products as $product)
         {
@@ -27,7 +27,7 @@ class StoreController extends Controller
                 $query->orwhere('id','0');
             }
         }
-        $dis_products=$query->paginate(9);
+        $dis_products=$query->where('statu',1)->where('qty','!=',0)->paginate(9);
         $sid_deal=sid_deal::inRandomOrder()->first();
         //dd($dis_products);
         // foreach($dis_products as $product)
@@ -60,7 +60,7 @@ class StoreController extends Controller
     
     public function products()
     {
-        $products=product::OrderBy('id','desc')->paginate(12);
+        $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);
         return view('store.products',compact('products'));
     }
 

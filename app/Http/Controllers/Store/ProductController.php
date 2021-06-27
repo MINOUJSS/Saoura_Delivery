@@ -396,9 +396,9 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
             $query=product::orderBy('id','desc');
         } 
         
-        $products=$query->paginate(12);
+        $products=$query->where('statu',1)->where('qty','!=',0)->paginate(12);
         }else{
-        $products=product::OrderBy('id','desc')->paginate(12);                
+        $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);                
         }
         return view('store.products',compact('products','min_price','max_price','colors','sizes','brands')); 
     }
@@ -559,10 +559,10 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                 $p_c_product_id_array[]=$p_c->product_id;
             }
                 //dd($p_c_product_id_array);            
-            $products=product::whereIn('id',$p_c_product_id_array)->paginate(12);
+            $products=product::whereIn('id',$p_c_product_id_array)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }else
         {
-            $products=product::where('id',0)->paginate(12);
+            $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
         //dd($products);
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
@@ -587,10 +587,10 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                 $p_s_c_product_id_array[]=$p_s_c->product_id;
             }
                 //dd($p_c_product_id_array);            
-            $products=product::whereIn('id',$p_s_c_product_id_array)->paginate(12);
+            $products=product::whereIn('id',$p_s_c_product_id_array)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }else
         {
-            $products=product::where('id',0)->paginate(12);
+            $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
@@ -614,10 +614,10 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                 $p_s_s_c_product_id_array[]=$p_s_s_c->product_id;
             }
                 //dd($p_c_product_id_array);            
-            $products=product::whereIn('id',$p_s_s_c_product_id_array)->paginate(12);
+            $products=product::whereIn('id',$p_s_s_c_product_id_array)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }else
         {
-            $products=product::where('id',0)->paginate(12);
+            $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
         return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
     }
@@ -649,12 +649,12 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         //if category_id=0
         if($category_id==0)
         {
-            $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->paginate(12); 
+            $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('statu',1)->where('qty','!=',0)->paginate(12); 
         }
         else
         {
         //ifcategory_id!=0
-        $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('category_id',$category_id)->paginate(12);
+        $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('category_id',$category_id)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }        
         return view('store.search',compact('products','query','category_id')); 
         //return view('store.search');
@@ -1010,7 +1010,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
             $query=product::orderBy('id','desc');
         } 
         
-        $products=$query->paginate(12);
+        $products=$query->where('statu',1)->where('qty','!=',0)->paginate(12);
         //dd($products);        
         $output='';
         if(count($products)>0){
