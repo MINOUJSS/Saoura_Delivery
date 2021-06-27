@@ -110,7 +110,7 @@ class ProductController extends Controller
         // $product->sub_sub_category_id=1;
         $product->save();
         //insert to product_categories table
-        if($request->category_id!=null)
+        if(count($request->category_id)>0)
         {            
             //save data
             foreach($request->category_id as $cat_id)
@@ -123,7 +123,7 @@ class ProductController extends Controller
 
         }
         //insert to product_sub_categories table
-        if($request->sub_category_id!=null)
+        if(count($request->sub_category_id)>0)
         {            
             //save data
             foreach($request->sub_category_id as $sub_cat_id)
@@ -135,7 +135,7 @@ class ProductController extends Controller
             }
         }
         //insert to product_sub_sub_categories table
-        if($request->sub_sub_category_id!=null)
+        if(count($request->sub_sub_category_id)>0)
         {            
             //save data
             foreach($request->sub_sub_category_id as $sub_sub_cat_id)
@@ -257,7 +257,7 @@ class ProductController extends Controller
             $p_sub_sub_cat->delete();
         }
         //insert to product_categories table                
-        if($request->category_id!=null)
+        if(count($request->category_id)>0)
         {            
             //save data
             foreach($request->category_id as $cat_id)
@@ -270,7 +270,7 @@ class ProductController extends Controller
 
         }
         //insert to product_sub_categories table
-        if($request->sub_category_id!=null)
+        if(count($request->sub_category_id)>0)
         {            
             //save data
             foreach($request->sub_category_id as $sub_cat_id)
@@ -283,7 +283,7 @@ class ProductController extends Controller
         }
                 
                 //insert to product_sub_sub_categories table
-                if($request->sub_sub_category_id!=null)
+                if(count($request->sub_sub_category_id)>0)
                 {                    
                     //save data
                     foreach($request->sub_sub_category_id as $sub_sub_cat_id)
