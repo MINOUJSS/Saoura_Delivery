@@ -4,7 +4,7 @@
         <ul class="breadcrumb">
             <li><a href="{{route('store')}}">الرئيسية</a></li>
             <li><a href="{{route('products')}}">المنتجات</a></li>
-            <li><a href="{{url('products/category/'.$product->category->name)}}">{{$product->category->name}}</a></li>
+            {{-- <li><a href="{{url('products/category/'.$product->category->name)}}">{{$product->category->name}}</a></li> --}}
             <li class="active">{{$product->name}}</li>
         </ul>
     </div>
