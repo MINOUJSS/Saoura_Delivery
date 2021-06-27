@@ -205,7 +205,7 @@
                 @endif
               </div>
               <div class="">
-                <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
+                <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" width="100%">
               </div>
               <h4>الأقسام</h4> 
               <hr>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
+use App\category;
 use App\Sub_Category;
 use App\Sub_Sub_Category;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -32,14 +32,14 @@ class Sub_CategoryController extends Controller
 
     public function create()
     {
-        $categories=Category::all();
+        $categories=category::all();
         $sub_categories=Sub_Category::OrderBy('id','desc')->paginate(10);
         return view('admin.create-sub-category',compact('categories','sub_categories'));
     }
 
     public function edite($id)
     {
-        $categories=Category::all();
+        $categories=category::all();
         $sub_categories=Sub_Category::OrderBy('id','desc')->paginate(10);
         $sub_category=Sub_Category::findOrFail($id);
         return view('admin.edit-sub-category',compact('categories','sub_categories','sub_category'));
@@ -59,7 +59,7 @@ class Sub_CategoryController extends Controller
                     //return back with data
                     return redirect()->back();
                 }else{              
-        $sub_category=Sub_category::findOrFail($request->input('sub_category_id'));
+        $sub_category=Sub_Category::findOrFail($request->input('sub_category_id'));
         $sub_category->category_id=$request->input('category');
         $sub_category->name=$request->input('sub_category');
         $sub_category->slug=make_slug($request->input('sub_category'));
@@ -96,7 +96,7 @@ class Sub_CategoryController extends Controller
                     //return back with data
                     return redirect()->back();
                 }else{              
-        $sub_category=new Sub_category;
+        $sub_category=new Sub_Category;
         $sub_category->category_id=$request->input('category');
         $sub_category->name=$request->input('sub_category');
         $sub_category->slug=make_slug($request->input('sub_category'));

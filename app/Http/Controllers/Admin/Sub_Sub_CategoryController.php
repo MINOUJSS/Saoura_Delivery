@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Sub_category;
+use App\Sub_Category;
 use App\Sub_Sub_Category;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\admin_notefication;
@@ -52,7 +52,7 @@ class Sub_Sub_CategoryController extends Controller
             //return back with data
             return redirect()->back();
         }else{       
-        $sub_sub_category=Sub_Sub_category::findOrFail($request->input('sub_sub_category_id'));
+        $sub_sub_category=Sub_Sub_Category::findOrFail($request->input('sub_sub_category_id'));
         $sub_sub_category->sub_category_id=$request->input('sub_category');
         $sub_sub_category->name=$request->input('sub_sub_category');
         $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
@@ -89,7 +89,7 @@ class Sub_Sub_CategoryController extends Controller
                     //return back with data
                     return redirect()->back();
                 }else{       
-                $sub_sub_category=new Sub_Sub_category;
+                $sub_sub_category=new Sub_Sub_Category;
                 $sub_sub_category->sub_category_id=$request->input('sub_category');
                 $sub_sub_category->name=$request->input('sub_sub_category');
                 $sub_sub_category->slug=make_slug($request->input('sub_sub_category'));
