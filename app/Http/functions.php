@@ -1256,7 +1256,7 @@ function product_status($statu)
 function globale_product_categories($product_id)
 {
 
-    $product_category=App\Product_Category::where('product_id',$product_id)->get();
+    $product_category=App\Product_Category::where('product_id',$product_id)->get();    
     $product_sub_category=App\Product_Sub_Category::where('product_id',$product_id)->get();
     $product_sub_sub_category=App\Product_Sub_Sub_Category::where('product_id',$product_id)->get();
     //get categories ides
@@ -1265,16 +1265,16 @@ function globale_product_categories($product_id)
     {
         foreach($product_category as $p_cat)
         {
-            $category_id_array[]=$p_cat->id;
+            $category_id_array[]=$p_cat->category_id;
         }
-    }    
+    }       
     //get sub categories ides
     $sub_category_id_array=[];
     if(count($product_sub_category)>0)
     {
         foreach($product_sub_category as $p_s_cat)
         {
-            $sub_category_id_array[]=$p_s_cat->id;
+            $sub_category_id_array[]=$p_s_cat->sub_category_id;
         }
     }
     //get sub sub categories ides
@@ -1283,17 +1283,18 @@ function globale_product_categories($product_id)
     {
         foreach($product_sub_sub_category as $p_s_s_cat)
         {
-            $sub_sub_category_id_array[]=$p_s_s_cat->id;
+            $sub_sub_category_id_array[]=$p_s_s_cat->sub_sub_id;
         }
-    }
+    }    
+    //dd($cat_value);
     //get categories for this product
     $category=App\category::whereIn('id',$category_id_array)->get();
     //get sub categories for this product
-    $sub_category=App\category::whereIn('id',$sub_category_id_array)->get();
+    $sub_category=App\Sub_Category::whereIn('id',$sub_category_id_array)->get();
     //get sub sub categories for this product
-    $sub_sub_category=App\category::whereIn('id',$sub_sub_category_id_array)->get();
+    $sub_sub_category=App\Sub_Sub_Category::whereIn('id',$sub_sub_category_id_array)->get();
     //writ it in html        
-    $html='<ul class="list-unstyled">';
+    $html='<ul class="list-unstyled">';    
     if(count($category)>0)
     {
         foreach($category as $cat)
