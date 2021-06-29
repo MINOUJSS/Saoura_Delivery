@@ -21,6 +21,10 @@ class product extends Model
     {
         return $this->belongsTo('App\category');
     }
+    public function categories()
+    {
+        return $this->hasMany('App\Product_Category');
+    }
 
     public function sub_category()
     {

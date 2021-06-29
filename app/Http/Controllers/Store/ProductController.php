@@ -654,7 +654,17 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         else
         {
         //ifcategory_id!=0
-        $products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('category_id',$category_id)->where('statu',1)->where('qty','!=',0)->paginate(12);
+        //$products=product::orderBy('id','desc')->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('category_id',$category_id)->where('statu',1)->where('qty','!=',0)->paginate(12);
+        $category=category::findOrFail($category_id);
+        //get products_ids 
+        $product_id_array=[];
+        $product_category=Product_Category::where('category_id',$category->id)->get();
+        foreach($product_category as $p_c)
+        {
+            $product_id_array[]=$p_c->product_id;
+        }
+
+        $products=product::whereIn('id',$product_id_array)->orwhere('name', 'like',"%$query%")->orwhere('short_description', 'like',"%$query%")->orwhere('long_description', 'like',"%$query%")->where('statu',1)->where('qty','!=',0)->paginate(12);
         }        
         return view('store.search',compact('products','query','category_id')); 
         //return view('store.search');
