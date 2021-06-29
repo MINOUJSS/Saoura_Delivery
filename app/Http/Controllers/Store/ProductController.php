@@ -577,7 +577,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $min_price=product::orderBy('selling_price')->first()->selling_price;
         $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
         //$products=product::OrderBy('id','desc')->where('sub_category_id',$sub_category->id)->paginate(12);
-        $product_sub_category=Product_Sub_Category::where('category_id',$sub_category->id)->get();
+        $product_sub_category=Product_Sub_Category::where('sub_category_id',$sub_category->id)->get();
         //get all $product_category product_id in array
         $p_c_product_id_array=[];
         if(count($product_sub_category)>0)
