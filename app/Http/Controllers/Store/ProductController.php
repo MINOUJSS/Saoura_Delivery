@@ -412,7 +412,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
     }
 
     public function addToCart(product $product)
-    {
+    {        
         if(session()->has('cart'))
         {
             $cart=new Cart(session()->get('cart'));
@@ -486,7 +486,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
     }
 
     public function addWithQty(Request $request,product $product)
-    {
+    {        
         $this->validate($request,[
             'qty' => 'required|numeric|min:1'
         ]);
@@ -502,9 +502,36 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $cart->addWithQty($product,$request->qty,$request->color_id,$request->size_id);                
         session()->put('cart',$cart);        
         //dd($cart);
-        return redirect()->back();
+        if($request->checkout=='checkout')
+        {
+            return redirect(route('checkout'));
+        }else
+        {
+            return redirect()->back();
+        }        
 
     }
+
+    // public function addWithQtyToCheckout(Request $request,product $product)
+    // {
+    //     $this->validate($request,[
+    //         'qty' => 'required|numeric|min:1'
+    //     ]);
+
+    //     if(session()->has('cart'))
+    //     {
+    //         $cart=new Cart(session()->get('cart'));
+    //     }
+    //     else
+    //     {
+    //         $cart=new Cart();
+    //     }
+    //     $cart->addWithQty($product,$request->qty,$request->color_id,$request->size_id);                
+    //     session()->put('cart',$cart);        
+    //     //dd($cart);
+    //     return redirect(route('checkout'));
+
+    // }
 
     public function removeFromCart(product $product)
     {
@@ -532,7 +559,13 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $cart->updateQty($product->id,$request->qty,$request->color_id,$request->size_id);
         session()->put('cart',$cart);
         //dd($cart);
-        return redirect()->back();
+        if($request->checkout=='checkout')
+        {
+            return redirect(route('checkout'));
+        }else
+        {
+            return redirect()->back();
+        }        
     }
 
     public function showCart()

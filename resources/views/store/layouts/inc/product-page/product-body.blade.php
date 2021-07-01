@@ -50,31 +50,41 @@
         </div>
 
         <div class="product-btns">
+            <div class="col-lg-9 pull-left">
             @if(session()->has('cart') && array_key_exists($product->id,session()->get('cart')->items))
             <form name="update_cart" action="{{route('cart.update',$product->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf 
-                <div class="qty-input">
+                <div class="qty-input form-group col-xs-12">
                     <span class="text-uppercase">الكمية: </span>
                     <input name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
                     <input id="color_id" name="color_id" class="input" type="hidden" value="@if(old('color_id')){{old('color_id')}}@else{{session()->get('cart')->items[$product->id]['color_id']}}@endif">
-                    <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">
-                </div>
+                    <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
-                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> تعديل</button>
+                <button type="submit" name="submit" value="تعديل" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> تعديل</button>
+                </div>
+                <div class="form-group col-xs-12">
+                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                </div>
                 </form>            
             @else 
             <form name="add_to_cart" action="{{route('cart.addwithqty',$product->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf 
-                <div class="qty-input">
+                <div class="qty-input form-group col-xs-12 pull-left">
                     <span class="text-uppercase">الكمية: </span>
                     <input name="qty" class="input" type="number" value="1">
                     <input id="color_id" name="color_id" class="input" type="hidden" value="0">
-                    <input id="size_id" name="size_id" class="input" type="hidden" value="0">
-                </div>
+                    <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
-                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
+                </div>
+                <div class="form-group col-xs-12 col-lg-6 pull-left">
+                <button type="submit" name="submit" value="submit" class="primary-btn add-to-cart col-xs-12"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
+                </div>
+                <div class="form-group col-xs-12 col-lg-6 pull-left">
+                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                </div>
                 </form>
-            @endif             
+            @endif 
+        </div>            
             {{-- <div class="pull-right">
                 <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                 <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
