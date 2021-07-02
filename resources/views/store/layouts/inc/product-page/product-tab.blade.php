@@ -1,3 +1,4 @@
+<div class="col-xs-12">
 <div class="product-tab">
     <ul class="tab-nav">
         <li><a data-toggle="tab" href="#tab0">الوصف </a></li>

@@ -22,7 +22,7 @@ class Admin_table_seeder extends Seeder
 
         DB::table('admins')->insert([
             'name' =>'Abdelbari',
-            'email'=>'admin@admin.com',            
+            'email'=>'abdel_bari_91@yahoo.com',            
             'password'=>hash::make('admin'),
             'type' =>1
         ]);

@@ -11,6 +11,8 @@ use App\order;
 use App\order_product;
 use App\orders_notification;
 use App\product;
+use App\Jobs\send_info_mail_about_oreder_to_admin;
+use App\Admin;
 use Auth;
 
 class OrderController extends Controller
@@ -112,7 +114,17 @@ class OrderController extends Controller
         $note->type=1;
         $note->link="/admin/order/".$order->id;
         $note->save();
-        //notifucate user about  this order
+        //notificate admin about this order
+        $admins=Admin::all();
+        foreach ($admins as $admin) {
+            $data=array(
+                'email' => $admin->email,
+                'name'  => $admin->name,
+                'order_id' => $order->id
+            );
+            dispatch(new send_info_mail_about_oreder_to_admin($data));
+        }
+        //send thanks email to user about  this order
         
         //alert for success message
         Alert::success('إضافة طلب', 'تم إضافة طلبك بنجاح');
