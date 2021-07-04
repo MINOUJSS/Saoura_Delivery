@@ -72,10 +72,10 @@
                                         @else 
                                         <img src="{{url('admin-css/uploads/images/categories/'.$category->image)}}" height="180" width="716" alt="">
                                         @endif
-                                        <div class="banner-caption text-center">
+                                        {{-- <div class="banner-caption text-center">
                                             <h2 class="white-color">NEW COLLECTION</h2>
                                             <h3 class="white-color font-weak">HOT DEAL</h3>
-                                        </div>
+                                        </div> --}}
                                     </a>
                                 </div>
                             </div>
