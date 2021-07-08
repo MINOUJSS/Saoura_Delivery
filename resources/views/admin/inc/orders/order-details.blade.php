@@ -48,7 +48,7 @@
               {{$order->billing_address}}<br>
               {{-- San Francisco, CA 94107<br> --}}
               الهاتف: <a href="tel:{{$order->billing_mobile}}">{{$order->billing_mobile}}</a> <i class="fa fa-phone"></i><br>
-              الواتس أب: <a href="https://wa.me/{{$order->billing_mobile}}">{{$order->billing_mobile}}</a> <i class="fa fa-whatsapp"></i><br>
+              الواتس أب: <a href="https://wa.me/+213{{(int)$order->billing_mobile}}">{{$order->billing_mobile}}</a> <i class="fa fa-whatsapp"></i><br>
               البريد الإلكتروني: {{$order->billing_email}}
             </address>
           </div><!-- /.col -->
