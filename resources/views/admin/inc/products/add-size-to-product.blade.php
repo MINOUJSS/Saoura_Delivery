@@ -94,9 +94,10 @@
                   <p class="text-success"><label>ثمن البيع:</label>{{$product->selling_price}}</p>                  
                   <p class="text-info"><label>الربح المتوقع:</label>{{$product->selling_price - $total}}</p>
                   <p><label>الكمية المتوفرة في المخزن:</label>{{$product->qty}}</p>
-                  <p><label>الصنف:</label>{{$product->category->name}}</p>
+                  <td><label>الصنف:</label>{!!globale_product_categories($product->id)!!}</td>
+                  {{-- <p><label>الصنف:</label>{{$product->category->name}}</p>
                   <p><label>تحت الصنف:</label>{{$product->sub_category->name}}</p>
-                  <p><label>تحت تحت الصنف:</label>{{$product->sub_sub_category->name}}</p>
+                  <p><label>تحت تحت الصنف:</label>{{$product->sub_sub_category->name}}</p> --}}
                   <p><label>المورد:</label>{{$product->supplier->name}}</p>
                   <p><label>صاحب السلعة:</label>{{$product->user->name}}</p>                  
                 </div><!-- /.box-body -->
