@@ -44,8 +44,17 @@ class ProductController extends Controller
             $sizes_ids[]=$size->id;
         }
         $brands=brand::all();
-        $min_price=product::orderBy('selling_price')->first()->selling_price;
-        $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        $all_pro=product::all();
+        if(count($all_pro)>0)
+        {
+            $min_price=product::orderBy('selling_price')->first()->selling_price;
+            $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        }else
+        {
+            $min_price=0;
+            $max_price=100;
+        }      
+        //        
         if(session()->has('searcher'))
         {
             //if has color only
@@ -578,9 +587,17 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $category=category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
-        $brands=brand::all();
-        $min_price=product::orderBy('selling_price')->first()->selling_price;
-        $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        $brands=brand::all();        
+        $all_pro=product::all();
+        if(count($all_pro)>0)
+        {
+            $min_price=product::orderBy('selling_price')->first()->selling_price;
+            $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        }else
+        {
+            $min_price=0;
+            $max_price=100;
+        } 
         //$products=product::OrderBy('id','desc')->where('category_id',$category->id)->paginate(12);
         $product_category=Product_Category::where('category_id',$category->id)->get();
         //get all $product_category product_id in array
@@ -607,8 +624,16 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $colors=color::all();
         $sizes=size::all();
         $brands=brand::all();
-        $min_price=product::orderBy('selling_price')->first()->selling_price;
-        $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        $all_pro=product::all();
+        if(count($all_pro)>0)
+        {
+            $min_price=product::orderBy('selling_price')->first()->selling_price;
+            $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        }else
+        {
+            $min_price=0;
+            $max_price=100;
+        } 
         //$products=product::OrderBy('id','desc')->where('sub_category_id',$sub_category->id)->paginate(12);
         $product_sub_category=Product_Sub_Category::where('sub_category_id',$sub_category->id)->get();
         //get all $product_category product_id in array
@@ -634,10 +659,18 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $colors=color::all();
         $sizes=size::all();
         $brands=brand::all();
-        $min_price=product::orderBy('selling_price')->first()->selling_price;
-        $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        $all_pro=product::all();
+        if(count($all_pro)>0)
+        {
+            $min_price=product::orderBy('selling_price')->first()->selling_price;
+            $max_price=product::orderBy('selling_price','desc')->first()->selling_price;        
+        }else
+        {
+            $min_price=0;
+            $max_price=100;
+        } 
         //$products=product::OrderBy('id','desc')->where('sub_category_id',$sub_sub_category->id)->paginate(12);
-        $product_sub_sub_category=Product_Sub_Sub_Category::where('category_id',$sub_sub_category->id)->get();
+        $product_sub_sub_category=Product_Sub_Sub_Category::where('sub_sub_category_id',$sub_sub_category->id)->get();
         //get all $product_category product_id in array
         $p_s_s_c_product_id_array=[];
         if(count($product_sub_sub_category)>0)
