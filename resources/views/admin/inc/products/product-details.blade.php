@@ -213,11 +213,12 @@
                   <label>الكمية المتوفرة في المخزن:</label>
                   <p class="text-muted well well-sm no-shadow">{{$product->qty}}</p>
                   <label>الصنف:</label>
-                  <p class="text-muted well well-sm no-shadow">{{$product->category->name}}</p>
+                  <p class="text-muted well well-sm no-shadow">{!!globale_product_categories($product->id)!!}</p>
+                  {{-- <p class="text-muted well well-sm no-shadow">{{$product->category->name}}</p>
                   <label>تحت الصنف:</label>
                   <p class="text-muted well well-sm no-shadow">{{$product->sub_category->name}}</p>
                   <label>تحت تحت الصنف:</label>                  
-                  <p class="text-muted well well-sm no-shadow">{{$product->sub_sub_category->name}}</p>
+                  <p class="text-muted well well-sm no-shadow">{{$product->sub_sub_category->name}}</p> --}}
                   <label>المورد:</label>
                   <p class="text-muted well well-sm no-shadow">{{$product->supplier->name}} <br><br><i class="fa fa-phone" style="color:#f00"></i><a href="tel:{{$product->supplier->mobile}}">{{$product->supplier->mobile}}</a> <br><br><i class="fa fa-whatsapp" style="color:#0f0"></i><a href="https://wa.me/{{$product->supplier->mobile}}">{{$product->supplier->mobile}}</a></p>
                   <label>صاحب السلعة:</label>
