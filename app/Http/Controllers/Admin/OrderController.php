@@ -146,7 +146,7 @@ $r_note->save();
         }
         //noteficte admin
 $note=new admin_notefication;
-$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإلغاء الطلب رقم '.$order_id;
+$note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإلغاء الطلب رقم '.$order->id;
 $note->icon ='fa fa-info-circle';
 $note->type=1;
 $note->link=route('admin.orders');
