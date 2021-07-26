@@ -11,7 +11,7 @@
 	@if(google_analitycs_code_is_avtive())
 	{!!print_google_analytics_code() !!}
 	@endif
-	<title>الساورة دليفري</title>
+	<title>الساورة دليفري| {{$title ?? ''}}</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">

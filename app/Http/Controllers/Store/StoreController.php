@@ -11,7 +11,7 @@ use App\sid_deal;
 class StoreController extends Controller
 {
     public function index()
-    {   
+    {           
         //get discount products
         $products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->get();
         $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
