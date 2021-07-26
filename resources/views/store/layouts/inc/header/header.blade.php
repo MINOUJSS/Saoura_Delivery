@@ -358,8 +358,8 @@
             <!--show this in col-xs -->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3 xs-header">
-                        <img src="{{url('store/img/drapo.png')}}" height="20">
+                    <div class="text-center col-xs-12 col-sm-12 xs-header">
+                        <img src="{{url('store/img/logo.png')}}">
                     </div>
                     {{-- <div class="col-sm-6 xs-header">
                         <img src="{{url('store/img/drapo.png')}}" height="20">
