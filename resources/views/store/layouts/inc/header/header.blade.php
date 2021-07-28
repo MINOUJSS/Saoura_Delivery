@@ -358,7 +358,8 @@
             <!--show this in col-xs -->
             <div class="container">
                 <div class="row">
-                    <div class="text-center col-xs-12 col-sm-12 xs-header">
+                    {{-- <div class="text-center col-xs-12 col-sm-12 xs-header"> --}}
+                    <div class="text-center">
                         <img src="{{url('store/img/logo.png')}}">
                     </div>
                     {{-- <div class="col-sm-6 xs-header">

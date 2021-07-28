@@ -7,10 +7,10 @@
     </ul>
     <div class="tab-content">
         <div id="tab0" class="tab-pane fade in ">
-            <p>{{$product->short_description}}</p>
+            <p>{!!$product->short_description!!}</p>
         </div>
         <div id="tab1" class="tab-pane fade in">
-            <p>{{$product->long_description}}</p>
+            <p>{!!$product->long_description!!}</p>
         </div>
         <div id="tab2" class="tab-pane fade in active">
 
