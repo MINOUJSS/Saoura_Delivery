@@ -250,6 +250,9 @@ Route::prefix('consumer')->group(function(){
     Route::post('/register','Auth\ConsumerRegisterController@register')->name('consumer.register.submit');
     //dashboard (index)
     Route::get('/{id}/dashboard','Store\ConsumerController@index')->name('consumer.dashboard');
+    // reset password
+    Route::get('password/forget','Auth\ConsumerForgetPasswordController@ShowForgetPasswordForm')->name('consumer.forget.password');
+    Route::post('password/reset','Auth\ConsumerResetPasswordController@ResetPassword')->name('consumer.reset.password');
 });
 //store
 Route::get('/','Store\StoreController@index')->name('store');

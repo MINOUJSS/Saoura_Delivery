@@ -46,6 +46,9 @@
                             <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label class="font-weak" for="remember">تذكرني</label>                        
                         </div>
+                        <div class="pull-right">
+                         <a href="{{route('consumer.forget.password')}}">نسيت كلمة المرور؟</a>
+                        </div>
                     </div>
                     <input type="submit" class="primary-btn" name="submit" value="دخول">
                     {{-- <button class="primary-btn">نشر</button> --}}
