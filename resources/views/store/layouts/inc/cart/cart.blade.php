@@ -37,10 +37,10 @@
                             <tbody>
                                 @if(session()->has('cart'))
                                 @foreach(session()->get('cart')->items as $item)
-                                <tr>
+                                <tr>                                
                                 <td class="thumb"><img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt=""></td>
                                     <td class="details">
-                                        <a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a>
+                                        <a href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>
                                         {{-- <ul>
                                             <li><span>Size: XL</span></li>
                                             <li><span>Color: Camelot</span></li>
@@ -98,7 +98,7 @@
                                 <tr>
                                     <td class="details thumb">
                                         <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt=""><br>
-                                        <a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a>
+                                        <a href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>
                                         <form action="{{route('cart.update',$item['id'])}}" method="POST" enctype="multipart/form-data">
                                             @csrf                                       
                                         {!!print_product_colors_html($item['id'])!!}

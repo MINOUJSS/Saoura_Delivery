@@ -41,7 +41,7 @@
                             <tr>
                             <td class="thumb"><img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt=""></td>
                                 <td class="details">
-                                    <a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a>
+                                    <a href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>
                                     {{-- <ul>
                                         <li><span>Size: XL</span></li>
                                         <li><span>Color: Camelot</span></li>
@@ -97,7 +97,7 @@
                             <tr>
                             <td class="details thumb">
                                 <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">                        
-                                    <a href="{{url('product/'.$item['id'])}}">{{$item['title']}}</a>                                    
+                                    <a href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>                                    
                                     {!!print_product_colors_html($item['id'])!!}
                                     {!!print_product_sizes_html($item['id'])!!}
                                     <br>
