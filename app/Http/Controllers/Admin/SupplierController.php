@@ -37,7 +37,7 @@ class SupplierController extends Controller
          //validate data
          $this->validate($request,[
             'supplier_name' =>'required|min:3',
-            'supplier_email' =>'email',
+            'supplier_email' =>'sometimes|email',
             'supplier_mobile' =>'required|numeric',
             'supplier_address' =>'required'
         ]);
