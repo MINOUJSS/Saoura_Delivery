@@ -54,7 +54,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><i class="fa fa-frown-o text-danger"> لا توجد ألوان مسجلة</i></td>
+            <td><i class="fa fa-frown-o text-danger"> لا يوجد موردين مسجلين</i></td>
+            <td></td>
+            <td></td>
             <td></td>
             @endif
           </tbody></table>
