@@ -3,7 +3,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="{{route('store')}}">الرئيسية</a></li>
-            <li class="active">الدفع</li>
+            <li class="active">تأكيد الطلب</li>
         </ul>
     </div>
 </div>
@@ -53,7 +53,7 @@
                                 <td class="qty text-center">
                                     
                                     <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                        
-                                    <input class="btn btn-primary" type="submit" name="submit" value="حفظ">                                        
+                                    <input class="btn btn-primary" type="submit" name="submit" value="تحديث">                                        
                                 </form>
                                 </td>
                                 <td class="total text-center"><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></td>
@@ -63,7 +63,7 @@
                             @endif                                
                         </tbody>                            
                         <tfoot>
-                            <tr>                                    
+                            {{-- <tr>                                    
                                 <th>المبلغ بدون إحتساب التوصيل</th>
                                 <th colspan="2" class="sub-total">{{$subTotal=session()->get('cart')->totalPrice}} دج</th>
                                 <th class="empty" colspan="3"></th>
@@ -77,17 +77,93 @@
                                 <th>المبلغ المستحق</th>
                                 <th colspan="2" class="total">{{$total=$subTotal + $shepPrice}} دج</th>
                                 <th class="empty" colspan="3"></th>
+                            </tr> --}}
+                             <tr>                                    
+                                <th>المبلغ المستحق</th>
+                                <th colspan="2" class="total">{{$total=session()->get('cart')->totalPrice}} دج</th>
+                                <th class="empty" colspan="3"></th>
                             </tr>
                         </tfoot>                            
                     </table>
                     <!--end show this table in large screen -->
 
                     <!--start show this table in small screen -->
-                    <table class="shopping-cart-table table hidden-lg hidden-md">
+                    <!--test-->
+                    <div class="container hidden-lg hidden-md">
+                        <div class="row">
+                            
+                                <table width="100%">
+                                    <thead>
+                                        <th width="20%"></th>
+                                        <th width="70%"></th>
+                                        <th width="10%"></th>
+                                    </thead>
+                                    <tbody>
+
+                                    @if(session()->has('cart'))                                    
+                                    @foreach(session()->get('cart')->items as $item)                                    
+                                    <form name="form{{$item['id']}}" action="{{route('cart.update',$item['id'])}}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <tr>
+                                            <td>
+                                                <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="" height="50px" width="50px">
+                                            </td>
+                                            <td>
+                                                <a style="font-size:16px ;" href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>
+                                            </td>
+                                            <td>
+                                                <a href="{{route('cart.remove',$item['id'])}}"><i class="fa fa-close"></i></a>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                {!!print_product_colors_html($item['id'])!!}
+                                                {!!print_product_sizes_html($item['id'])!!}
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                السعر: @if(has_discount($item['id']))<strong>{{$item['price']}} د.ج</strong><br><del class="font-weak"><small>{{get_product_price_by_id($item['id'])}}</small></del>@else <strong>{{get_product_price_by_id($item['id'])}} </strong>@endif د.ج
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
+                                                <input style="margin-top:5px;" class="btn btn-primary" type="submit" name="submit" value="تحديث">
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                          </form>
+                                        <tr class="bottom-border">
+                                            <td></td>
+                                            <td>
+                                                <h4><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></h4>
+                                            </td>
+                                            <td></td>
+                                        </tr>                                                                            
+                                        @endforeach                                        
+                                        @endif                                        
+                                    </tbody>
+                                    <tfoot>                                       
+                                        <tr>                                    
+                                            <th style="background-color:lavender;"></th>
+                                            <th class="total-value">المبلغ المستحق {{$total=session()->get('cart')->totalPrice}} دج</th>
+                                            <th style="background-color:lavender;"></th>
+                                        </tr>                                                              
+                                    </tfoot>
+                                </table>
+                            
+                        </div>
+                    </div>
+                    <!--end test-->
+                    {{-- <table class="shopping-cart-table table hidden-lg hidden-md">
                         <thead>
                             <th>تفاصيل المنتج</th>
-                            <th>المجموع</th>
-                            <th></th>
                         </thead>
                         <tbody>
                             @if(session()->has('cart'))
@@ -95,18 +171,27 @@
                             <form name="form{{$item['id']}}" action="{{route('cart.update',$item['id'])}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                             <tr>
-                            <td class="details thumb">
-                                <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">                        
+                                <td class="details thumb" width="20%">
+                                    <img src="{{url('admin-css/uploads/images/products/'.$item['image'])}}" alt="">                        
+                                </td>
+                                <td width="80%">
                                     <a href="{{url('product/'.make_slug($item['title']))}}">{{$item['title']}}</a>                                    
-                                    {!!print_product_colors_html($item['id'])!!}
-                                    {!!print_product_sizes_html($item['id'])!!}
-                                    <br>
+                                     {!!print_product_colors_html($item['id'])!!}
+                                     {!!print_product_sizes_html($item['id'])!!}
+                                </td>
+                            </tr>
+                    
+                            <tr>
+                                <td width="100%">
                                     السعر: @if(has_discount($item['id']))<strong>{{$item['price']}} د.ج</strong><br><del class="font-weak"><small>{{get_product_price_by_id($item['id'])}}</small></del>@else <strong>{{get_product_price_by_id($item['id'])}} </strong>@endif د.ج
                                     <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
                                     <input style="margin-top:5px;" class="btn btn-primary" type="submit" name="submit" value="حفظ">                                        
-
+                                </td>
+                            </tr>
                                 </form>
-                                <td class="total text-center"><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></td>
+                              
+                            <tr>
+                                <td class="total text-center" width="80%"><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></td>
                                 <td class="text-right"><a href="{{route('cart.remove',$item['id'])}}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
                             </tr>                             
                             @endforeach
@@ -124,17 +209,17 @@
                                 <th class="empty" colspan="3"></th>
                             </tr>
                             <tr>                                    
-                                <th>المبلغ المستحق</th>
-                                <th colspan="2" class="total">{{$total=$subTotal + $shepPrice}} دج</th>
+                                <th colspan="2">المبلغ المستحق</th>
+                                <th class="total">المبلغ المستحق {{$total=$subTotal + $shepPrice}} دج</th>
                                 <th class="empty" colspan="3"></th>
                             </tr>
                         </tfoot>
-                        </tfoot>
-                    </table>
+                    </table> --}}
                     <!--end show this table in small screen -->
                     @else
                     <div class="text-center"> 
                     <h2>العربة فارغة</h2>
+                     <a href="{{route('products')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left">العودة للتسوق</i></button></a>
                     </div>
                     @endif
                 </div>                    
@@ -159,7 +244,7 @@
                         <p>زبون في المتجر ؟ <a href="{{route('consumer.login')}}">تسجيل الدخول</a></p>
                         @endif
                         <div class="section-title">
-                            <h3 class="title">معلومات الفاتورة</h3>
+                            <h3 class="title">بيانات الطالب</h3>
                         </div>
                         <input type="hidden" name="total" value="{{$total}}">
                         <div class="form-group" {{$errors->has('first-name')? 'has-error':''}}>

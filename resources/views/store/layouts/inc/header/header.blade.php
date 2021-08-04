@@ -4,7 +4,7 @@
         <div class="container">
             <div class="pull-left">
                 <img src="{{url('store/img/drapo.png')}}" height="20">
-                <span>مرحباً بكم في ساورة دليفري!</span>
+                <span>التوصيل سريع و مجاني في ولاية بشار و الدفع عند الإستلام!</span>
             </div>
             <div class="pull-right">
                 <ul class="header-top-links">
@@ -247,8 +247,11 @@
         </div>
         <!--/container in lg-->
         <!--container in sm-->
-        <div class="container-fliud hidden-lg hidden-md">            
-            <div class="hidden-xs hidden-sm pull-left">
+        <div class="container-fliud hidden-lg hidden-md"> 
+                <div class="header-text-div text-center">
+                    <p> التوصيل سريع و مجاني في ولاية بشار والدفع عند الإستلام</p>
+                </div>           
+            <div class="hidden-xs hidden-sm pull-left">                
                 <!-- Logo -->
                 <div class="header-logo">
                     <a class="logo" href="#">

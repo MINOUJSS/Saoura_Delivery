@@ -170,4 +170,25 @@ li
 }
 
  }
+ /*check out and cart div*/
+ .bottom-border
+ {
+   border-bottom: 1px solid #333;
+   padding-bottom:5px;  
+ }
+ .total-value
+ {
+   background-color: lavender;
+   padding:5px;
+   font-size:18px;
+   color:#F8694A;
+ }
+ /* header div*/
+ .header-text-div
+ {
+   background-color:#F8694A;
+   color:#FFF;
+   font-size: 20px;
+   padding:5px;
+ }
  /*::::::::::::end media screen:::::::::*/
