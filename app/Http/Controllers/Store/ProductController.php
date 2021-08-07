@@ -417,7 +417,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $title=$slug;
         $product=product::where('slug',$slug)->first();
         $piked_products=product::inRandomOrder()->paginate(4);
-        $reviews=reating::where('product_id',$product->id)->paginate(5);
+        $reviews=reating::where('product_id',$product->id)->where('visible',1)->paginate(5);
         return view('store.product-page',compact('product','reviews','piked_products','title'));
     }
 

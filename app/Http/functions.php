@@ -617,6 +617,57 @@ function active_create_upsale_link()
         return '';
     }      
 }
+//:::::::::::function to active reatings links group
+function active_reatings_links_group()
+{ 
+    $products_url=url('/admin/reatings'); 
+    $create_product_url=url('/admin/reatings/create');
+    $request_url=Request::url();
+    $url_array=explode('/',$request_url);
+    if(count($url_array)>5){
+    $edit_product_url=url('/admin/reatings/'.$url_array[5].'/edit');
+    }else
+    {
+        $edit_product_url="";
+    }
+    $current_url=Request::url();
+    if($current_url==$products_url || $current_url==$create_product_url || $current_url==$edit_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active reatings links
+function active_reatings_link()
+{ 
+    $products_url=url('/admin/reatings'); 
+    $current_url=Request::url();
+    if($current_url==$products_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
+//:::::::::::function to active create reatings link
+function active_create_reating_link()
+{ 
+    $create_product_url=url('/admin/reating/create');
+    $current_url=Request::url();
+    if($current_url==$create_product_url)
+    {
+        return 'active';
+    }
+    else
+    {
+        return '';
+    }      
+}
 //:::::::::::function to active sales links group
 function active_sales_links_group()
 { 
@@ -857,7 +908,7 @@ function get_product_reating_from_consumer_created_at($product_id,$date)
 //get get_product_reating_from_id
 function get_product_reating_from_id($id)
 {
-    $reatings=App\reating::where('product_id',$id)->get();
+    $reatings=App\reating::where('product_id',$id)->where('visible',1)->get();
     if($reatings->count()>0){
         $result=0;
         foreach($reatings as $reating)
@@ -871,6 +922,12 @@ function get_product_reating_from_id($id)
     {
         return '0.00';
     }
+}
+//number_of_reatings_have_this_product
+function number_of_reatings_have_this_product($product_id)
+{
+    $reatings=App\reating::where('product_id',$product_id)->where('visible',1)->get();
+    return count($reatings);
 }
 //get_user_type_name function
 function get_user_type_name($code)
@@ -1359,6 +1416,17 @@ function consumer_is_register($consumer_id)
     }else
     {
         return '<span class="label label-success">زبون مسجل</span>';
+    }
+}
+// function reating_is_visible
+function reating_is_visible($num)
+{
+    if($num==0)
+    {
+        return '<span class="label label-danger">غير مرئي</span>';
+    }else
+    {
+        return '<span class="label label-success">مرئي</span>';
     }
 }
 //function product_has_seo
