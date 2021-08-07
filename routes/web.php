@@ -97,7 +97,7 @@ Route::prefix('admin')->group(function(){
     // generate slug generate_slug_for_all_products
     Route::get('/product/slug/generate','Admin\ProductController@generate_slug_for_all_products')->name('admin.product.generate.slugs');
     //reating
-    Route::get('/reatings','Admin\ReatingController@index')->name('admin.reatings');
+    Route::get('/reatings','Admin\ReatingController@index')->name('admin.reatingss');
     Route::get('/reating/{id}/approve','Admin\ReatingController@approve')->name('admin.reating.approve');
     Route::get('/reating/{id}','Admin\ReatingController@show')->name('admin.reating.show');
     Route::get('/reating/{id}/delete','Admin\ReatingController@destroy')->name('admin.reating.delete');
