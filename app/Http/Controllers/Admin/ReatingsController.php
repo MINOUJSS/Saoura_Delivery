@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\reating;
 
-class ReatingController extends Controller
+class ReatingsController extends Controller
 {
-    
     /**
      * Create a new controller instance.
      *

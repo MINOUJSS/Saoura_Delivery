@@ -97,10 +97,10 @@ Route::prefix('admin')->group(function(){
     // generate slug generate_slug_for_all_products
     Route::get('/product/slug/generate','Admin\ProductController@generate_slug_for_all_products')->name('admin.product.generate.slugs');
     //reating
-    Route::get('/star-reatings','Admin\ReatingController@index')->name('admin.star-reatings');
-    Route::get('/reating/{id}/approve','Admin\ReatingController@approve')->name('admin.reating.approve');
-    Route::get('/reating/{id}','Admin\ReatingController@show')->name('admin.reating.show');
-    Route::get('/reating/{id}/delete','Admin\ReatingController@destroy')->name('admin.reating.delete');
+    Route::get('/star-reatings','Admin\ReatingsController@index')->name('admin.star-reatings');
+    Route::get('/reating/{id}/approve','Admin\ReatingsController@approve')->name('admin.reating.approve');
+    Route::get('/reating/{id}','Admin\ReatingsController@show')->name('admin.reating.show');
+    Route::get('/reating/{id}/delete','Admin\ReatingsController@destroy')->name('admin.reating.delete');
     //contact us
     Route::get('/all-contact','Admin\ContactController@index')->name('admin.all.contacts');
     Route::get('/contact/create','Admin\ContactController@create')->name('admin.create.contact');
