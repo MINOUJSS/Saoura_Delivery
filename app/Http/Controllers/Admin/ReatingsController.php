@@ -42,6 +42,6 @@ class ReatingsController extends Controller
         //success alert
         Alert::success('رائع','تم حذف تقييم المستهلك لهذا المنتج');
         //redirect
-        return redirect(route('admin.reatings'));
+        //return redirect(route('admin.reatings'));
     }
 }
