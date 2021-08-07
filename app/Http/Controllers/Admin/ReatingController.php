@@ -20,8 +20,9 @@ class ReatingController extends Controller
     }
     public function index()
     {
-        $reatings=reating::orderBy('id','desc')->paginate(10);
-        return view('admin.reatings',compact('reatings'));
+        return 'this is index';
+        // $reatings=reating::orderBy('id','desc')->paginate(10);
+        // return view('admin.reatings',compact('reatings'));
     }
     public function approve($id)
     {
