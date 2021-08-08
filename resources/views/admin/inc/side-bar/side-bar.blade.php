@@ -82,9 +82,9 @@
           </ul>
         </li>
         <li class="treeview {{active_reatings_links_group()}}">
-          <a href="{{route('admin.star-reatings')}}"><i class="fa fa-comment-dots"></i> <span>التقييمات</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <a href="{{route('admin.reatings')}}"><i class="fa fa-comment-dots"></i> <span>التقييمات</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="{{active_reatings_link()}}"><a href="{{url('/admin/star-reatings')}}">الكل</a></li>
+            <li class="{{active_reatings_link()}}"><a href="{{url('/admin/reatings')}}">الكل</a></li>
           </ul>
         </li>
         {{-- <li class=""><a href="{{route('admin.upsales')}}"><i class="fa fa-chain"></i> <span>ربط المنتجات ببعضها</span></a></li>       --}}
