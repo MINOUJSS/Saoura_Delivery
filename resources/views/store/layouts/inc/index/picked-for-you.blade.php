@@ -33,7 +33,7 @@
             <div class="product-body"> 
                 <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->id)}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
                 
-            <h2 class="product-name"><a href="#">{{substr($product->name,0,100)}}</a></h2>
+            <h2 class="product-name"><a href="{{route('store.product.details',$product->slug)}}">{{substr($product->name,0,100)}}</a></h2>
                 <div class="product-btns">
                     @if(Auth::guard('consumer')->check()) 
                     <a id="wish_list_button{{$product->id}}" onclick="add_to_wish_list({{$product->id}})" class="main-btn icon-btn" @if(in_wish_list(Auth::guard('consumer')->user()->id,$product->id))style="color:#F8694A"@endif><i class="fa fa-heart"></i></a>
