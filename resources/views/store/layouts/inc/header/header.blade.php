@@ -363,7 +363,9 @@
                 <div class="row">
                     {{-- <div class="text-center col-xs-12 col-sm-12 xs-header"> --}}
                     <div class="text-center">
+                    <a href="{{url('/')}}">
                         <img src="{{url('store/img/logo.png')}}">
+                        </a>
                     </div>
                     {{-- <div class="col-sm-6 xs-header">
                         <img src="{{url('store/img/drapo.png')}}" height="20">
