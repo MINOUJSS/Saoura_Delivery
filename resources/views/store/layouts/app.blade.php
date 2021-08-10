@@ -68,7 +68,7 @@
 					<div class="footer">
 						<!-- footer logo -->
 						<div class="footer-logo">
-							<a class="logo" href="#">
+							<a class="logo" href="{{url('/')}}">
 		            <img src="{{url('store')}}/img/logo.png" alt="">
 		          </a>
 						</div>

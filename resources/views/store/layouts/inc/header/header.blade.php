@@ -3,15 +3,15 @@
     <div class="hidden-xs hidden-sm" id="top-header">
         <div class="container">
             <div class="pull-left">
-                <img src="{{url('store/img/drapo.png')}}" height="20">
+                {{-- <img src="{{url('store/img/drapo.png')}}" height="20"> --}}
                 <span>التوصيل سريع و مجاني في ولاية بشار و الدفع عند الإستلام!</span>
             </div>
             <div class="pull-right">
-                <ul class="header-top-links">
-                    {{-- <li><a href="#">المتجر</a></li>
-                    <li><a href="#">النشرة الإخبارية</a></li> --}}
+                {{-- <ul class="header-top-links">
+                    <li><a href="#">المتجر</a></li>
+                    <li><a href="#">النشرة الإخبارية</a></li>
                     <li><a href="{{route('faq')}}">أسئلة شائعة</a></li>
-                    {{-- <li class="dropdown default-dropdown">
+                    <li class="dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">ع <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
                             <li><a href="#">العربية (ع)</a></li>
@@ -19,15 +19,15 @@
                             <li><a href="#">الفرنسية (FR)</a></li>
                             <li><a href="#">الإسبانية (Es)</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
                     <li class="dropdown default-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">دج <i class="fa fa-caret-down"></i></a>
                         <ul class="custom-menu">
                             <li><a href="#">الدينار الجزائري (DA)</a></li>
-                            {{-- <li><a href="#">EUR (€)</a></li> --}}
+                            <li><a href="#">EUR (€)</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
             <div class="hidden-xs hidden-sm pull-left">
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="#">
+                    <a class="logo" href="{{url('/')}}">
                         <img src="{{url('store')}}/img/logo.png" alt="">
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                         <input name="query" class="input search-input" type="text" value="@if(Request::url()==route('store.product.find')){{$query}}@endif" placeholder="أدخل كلمة البحث">
                         </div>
                         <select name="category" class="input search-categories">
-                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل التصنيفات</option>
+                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل الأقسام</option>
                             @foreach(get_all_categories() as $index => $category)
                         <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
                             @endforeach
@@ -254,7 +254,7 @@
             <div class="hidden-xs hidden-sm pull-left">                
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="#">
+                    <a class="logo" href="{{url('/')}}">
                         <img src="{{url('store')}}/img/logo.png" alt="">
                     </a>
                 </div>
