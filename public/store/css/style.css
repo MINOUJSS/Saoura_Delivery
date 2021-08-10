@@ -558,7 +558,7 @@ textarea.input {
 }
 
 .menu-nav .menu-header>i {
-  float: right;
+  float:left;
   line-height: 20px;
 }
 

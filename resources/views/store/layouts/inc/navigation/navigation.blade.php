@@ -382,7 +382,7 @@
             <!-- menu nav -->
             <!--start account menu-->
             <div class="hidden-lg hidden-md account-nav">
-                <span class="account-header">حسابي <i class="fa fa-bars"></i></span>
+                <span class="account-header">حسابي <i class="fa fa-user-o"></i></span>
                 <ul class="account-list">            
                 @if(Auth::guard('consumer')->check())
                 <li><a href="{{route('consumer.dashboard',Auth::guard('consumer')->user()->id)}}"><i class="fa fa-user-o"></i> حسابي</a></li>

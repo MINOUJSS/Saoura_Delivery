@@ -376,7 +376,7 @@
             <nav class="hidden-lg hidden-md navbar navbar-default">                
                 <div class="container">                    
                     <div class="pull-right">
-                        <ul class="header-btns">
+                        <ul class="header-btns my-xs-nav-ul">
                             <!--search btn-->
                             <li class="xs-search-btn">
                                 <button class="header-btns-icon"><i class="fa fa-search"></i></button>

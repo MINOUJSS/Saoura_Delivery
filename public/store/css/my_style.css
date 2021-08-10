@@ -109,15 +109,15 @@ li
 
 .account-nav .account-header {
   display: none;
-  padding: 15px;
+  padding: 9px 15px;
   text-transform: uppercase;
-  background: #04da32;
+  background: #bcbcbc;
   color: #FFF;
   font-weight: 700;
 }
 
 .account-nav .account-header>i {
-  float: right;
+  float: left;
   line-height: 20px;
 }
 
@@ -169,6 +169,11 @@ li
     padding: 0px 30px 0px 30px;
 }
 
+ }
+ /**/
+ .my-xs-nav-ul>li
+ {
+   padding:3px 0px !important;
  }
  /*check out and cart div*/
  .bottom-border
