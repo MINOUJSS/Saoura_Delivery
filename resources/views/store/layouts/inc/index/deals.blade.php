@@ -1,7 +1,8 @@
+ @if(count($dis_products)>0)
 <div class="section">
     <!-- container -->
     <div class="container">
-        @if(count($dis_products)>0)
+        {{-- @if(count($dis_products)>0) --}}
         <!-- row -->
         <div class="row">
             <!-- section-title -->
@@ -105,7 +106,7 @@
             <!-- /Product Slick -->
         </div>
         <!-- /row -->
-@endif
+{{-- @endif --}}
         {{-- <!-- row -->
         <div class="row">
             <!-- section title -->
@@ -275,6 +276,7 @@
     </div>
     <!-- /container -->
 </div>
+@endif
 <!--------------------------->
 @if(count($dis_products)>0)
 <script>
