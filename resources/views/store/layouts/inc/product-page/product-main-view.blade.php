@@ -22,12 +22,12 @@
     </div>
     <div id="product-view">
         <div class="product-view">
-            <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="137" width="137" alt="">
+            <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}">
         </div>
         @if(count(get_all_product_images($product->id))>=1)
         @foreach(get_all_product_images($product->id) as $image)
         <div class="product-view">
-            <img src="{{$image}}" height="137" width="137" alt="test">
+            <img src="{{$image}}" alt="test test">
         </div>
         @endforeach
         @endif
