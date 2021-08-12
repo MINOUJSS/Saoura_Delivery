@@ -1,12 +1,12 @@
 <div class="col-md-6">
     <div id="product-main-view">
         <div class="product-view">
-            <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" alt="" height="360" width="270">
+            <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}">
         </div>
         @if(count(get_all_product_images($product->id))>=1)
         @foreach(get_all_product_images($product->id) as $image)                    
         <div class="product-view">
-        <img src="{{$image}}" alt="">
+        <img src="{{$image}}">
         </div>
         @endforeach
         @endif
@@ -27,7 +27,7 @@
         @if(count(get_all_product_images($product->id))>=1)
         @foreach(get_all_product_images($product->id) as $image)
         <div class="product-view">
-            <img src="{{$image}}" height="137" width="137" alt="">
+            <img src="{{$image}}" height="137" width="137" alt="test">
         </div>
         @endforeach
         @endif
