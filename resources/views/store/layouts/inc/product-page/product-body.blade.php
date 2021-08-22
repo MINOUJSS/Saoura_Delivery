@@ -77,7 +77,13 @@
                 @csrf 
                 <div class="qty-input form-group col-xs-12 pull-left">
                     <span class="text-uppercase">الكمية: </span>
-                    <input name="qty" class="input" type="number" value="1">
+                    <!--add qty ntb-->
+                    <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
+                    <!---->
+                    <input id="qty_input" name="qty" class="input" type="number" value="1">
+                    <!--min qty ntb-->
+                    <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
+                    <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="0">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
