@@ -135,6 +135,12 @@ li
 }
  /*::::::::::::start media screen:::::::::*/ 
  @media only screen and (max-width: 991px) {
+   /**/
+   .dropdown.default-dropdown>.custom-menu
+   {
+     left:20%;
+   }
+   /**/
   /**/
   /* .icon-btn.main-btn, .icon-btn.primary-btn  */
   .menu-btn
