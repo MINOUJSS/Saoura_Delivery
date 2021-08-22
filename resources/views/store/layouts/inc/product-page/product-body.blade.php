@@ -56,11 +56,17 @@
                 @csrf 
                 <div class="qty-input form-group col-xs-12">
                     <span class="text-uppercase">الكمية: </span>
-                    <input name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
+                    <!--add qty ntb-->
+                    <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
+                    <!---->
+                    <input id="qty_input" name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
+                    <!--min qty ntb-->
+                    <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
+                    <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="@if(old('color_id')){{old('color_id')}}@else{{session()->get('cart')->items[$product->id]['color_id']}}@endif">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
-                <button type="submit" name="submit" value="تعديل" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> تعديل</button>
+                <button style="margin-top:10px" type="submit" name="submit" value="تعديل" class="col-xs-12 primary-btn add-to-cart"><i class="fa fa-edit"></i> تعديل الكمية</button>
                 </div>
                 <div class="form-group col-xs-12">
                 <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
