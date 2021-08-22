@@ -27,7 +27,7 @@
         </div>
         <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
         <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
-        <p>{{$product->short_description}}</p>
+        <p>{!!$product->long_description!!}</p>
         <div class="product-options"> 
             @if(count($product->sizes)>0)           
             <ul class="size-option">

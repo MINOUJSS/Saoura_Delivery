@@ -1,5 +1,17 @@
 //
-$(document).ready(function(){                                                                 
+$(document).ready(function(){ 
+   // add product qty
+   $(add_product_qty).on('click',function(){
+      $('#qty_input').val(parseInt($('#qty_input').val())+1);
+   }); 
+   // min product qty
+  
+   $(min_product_qty).on('click',function(){
+      if($('#qty_input').val()>=2)
+      {
+      $('#qty_input').val(parseInt($('#qty_input').val())-1);
+      }
+   });                                                              
    //get min price change     
       $('.noUi-handle-lower').on('mouseup',function(event){
          event.preventDefault();

@@ -175,7 +175,7 @@
                                         <i class="fa fa-shopping-cart"></i>
                                         <span class="qty">{{session()->has('cart')?session()->get('cart')->totalQty:'0'}}</span>
                                     </div>
-                                    <strong class="text-uppercase">عربة التسوق:</strong>
+                                    <strong class="text-uppercase">السلة:</strong>
                                     <br>
                                     <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                                 </a>
@@ -394,7 +394,7 @@
                                         <i class="fa fa-shopping-cart"></i>
                                         <span class="qty">{{session()->has('cart')?session()->get('cart')->totalQty:'0'}}</span>
                                     </div>
-                                    <strong class="text-uppercase">عربة التسوق:</strong>
+                                    <strong class="text-uppercase">السلة:</strong>
                                     <br>
                                     <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                                 </a>
