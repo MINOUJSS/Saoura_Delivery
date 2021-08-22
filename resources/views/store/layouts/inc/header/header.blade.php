@@ -388,7 +388,7 @@
                             <!-- /Account -->
         
                             <!-- Cart -->
-                            <li id="xs_cart_section" class="header-cart dropdown default-dropdown text-center">
+                            <li id="xs_cart_section" class="header-cart dropdown default-dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <div class="header-btns-icon">
                                         <i class="fa fa-shopping-cart"></i>
