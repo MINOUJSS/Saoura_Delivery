@@ -598,9 +598,10 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         {
             $min_price=0;
             $max_price=100;
-        } 
+        }
         //$products=product::OrderBy('id','desc')->where('category_id',$category->id)->paginate(12);
         $product_category=Product_Category::where('category_id',$category->id)->get();
+        
         //get all $product_category product_id in array
         $p_c_product_id_array=[];
         if(count($product_category)>0)

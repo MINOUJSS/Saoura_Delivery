@@ -101,7 +101,7 @@
 						<h3 class="footer-header">أقسام المتجر</h3>
 						<ul class="list-links">							
 							@foreach(get_all_categories() as $index => $category)
-							<li><a href="{{url('products/category/'.$category->name)}}">{{$category->name}}</a></li>	
+							<li><a href="{{url('products/category/'.$category->slug)}}">{{$category->name}}</a></li>	
 							@endforeach							
 						</ul>
 					</div>
