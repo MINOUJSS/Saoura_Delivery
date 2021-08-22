@@ -307,11 +307,11 @@
                                             <td></td>
                                             <td>
                                             <!--add qty ntb-->
-                                            <span id="add_product_qty" class="btn btn-info" style="width:17%">+</span>
+                                            <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
                                             <!---->
                                                 <input id="qty_input" style="width:60%" class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
                                             <!--min qty ntb-->
-                                            <span id="min_product_qty" class="btn btn-info" style="width:17%">-</span>
+                                            <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
                                             <!---->
                                                 <input style="margin-top:5px;width:97%" class="btn btn-primary" type="submit" name="submit" value="تحديث">
                                             </td>
