@@ -398,7 +398,7 @@
                                     <br>
                                     <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                                 </a>
-                                <div class="custom-menu">
+                                <div class="custom-menu text-center">
                                     <div id="shopping-cart">
                                         <div class="shopping-cart-list">
                                             @if(session()->has('cart'))
