@@ -66,7 +66,7 @@
                                     {{-- <input type="hidden" id="countdown" onclick="countDown('{{$index}}','{{$product->discount->exp_date}}')">--}} 
                                     <a href="{{url('/product/'.$product->id)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
                                     {{-- <img src="{{url('store')}}/img/product01.jpg" alt=""> --}}
-                                    <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}" height="350" width="262">
+                                    <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}">
                                 </div>
                                 <div class="product-body"> 
                                     <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->id)}} د.ج <br><del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>

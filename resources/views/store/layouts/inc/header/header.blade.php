@@ -267,7 +267,7 @@
                         <input name="query" class="input search-input" type="text" value="@if(Request::url()==route('store.product.find')){{$query}}@endif" placeholder="أدخل كلمة البحث">
                         </div>
                         <select name="category" class="input search-categories">
-                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل التصنيفات</option>
+                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل الأقسام</option>
                             @foreach(get_all_categories() as $index => $category)
                         <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
                             @endforeach
@@ -416,8 +416,8 @@
                                             </div>
                                             @endforeach
                                             @else 
-                                           <div class="product product-widget">
-                                           السلة فارغة
+                                           <div class="product product-widget text-center">
+                                                  السلة فارغة
                                             </div>              
                                             @endif
                                             
@@ -450,7 +450,7 @@
                         <input name="query" class="input search-input" type="text" value="@if(Request::url()==route('store.product.find')){{$query}}@endif" placeholder="أدخل كلمة البحث">
                         </div>
                         <select name="category" class="input search-categories">
-                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==0){{'selected'}}@endif>كل التصنيفات</option>
+                            <option value="0" @if(Request::url()==route('store.product.find')  && $category_id ==1){{'selected'}}@endif>كل الأقسام</option>
                             @foreach(get_all_categories() as $index => $category)
                         <option value="{{$category->id}}" @if(Request::url()==route('store.product.find')  && $category_id ==$category->id){{'selected'}}@endif>{{$category->name}}</option>
                             @endforeach                            
