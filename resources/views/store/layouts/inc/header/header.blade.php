@@ -388,7 +388,7 @@
                             <!-- /Account -->
         
                             <!-- Cart -->
-                            <li id="xs_cart_section" class="header-cart dropdown default-dropdown">
+                            <li id="xs_cart_section" class="header-cart dropdown default-dropdown text-center">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <div class="header-btns-icon">
                                         <i class="fa fa-shopping-cart"></i>
@@ -398,7 +398,7 @@
                                     <br>
                                     <span>{{session()->has('cart')?session()->get('cart')->totalPrice:'0.00'}} دج</span>
                                 </a>
-                                <div class="custom-menu text-center">
+                                <div class="custom-menu">
                                     <div id="shopping-cart">
                                         <div class="shopping-cart-list">
                                             @if(session()->has('cart'))
