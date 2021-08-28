@@ -2,13 +2,15 @@
 function add_product_qty()
 {
    $('#qty_input').val(parseInt($('#qty_input').val())+1);
+   $('#xs_qty_input').val(parseInt($('#xs_qty_input').val())+1);
 }
 
 function min_product_qty()
 {
-   if($('#qty_input').val()>=2)
+   if($('#qty_input').val()>=2 || ('#xs_qty_input').val() >= 2)
    {
    $('#qty_input').val(parseInt($('#qty_input').val())-1);
+   $('#xs_qty_input').val(parseInt($('#xs_qty_input').val())-1);
    }
 }
 
@@ -405,6 +407,7 @@ setTimeout(alert('1000'),1000);
    // fix nav bar whenn scrolling
    $(window).scroll(function(){
       $('nav').toggleClass('navbar-fixed-top',$(this).scrollTop() >50);
+      $('.fix-order-btn').toggleClass('order-btn-fixed-bottom',$(this).scrollTop() >800);
    });
    //show and hid search form
    $('.xs-search-btn').click(function(){

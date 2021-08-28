@@ -133,6 +133,20 @@ li
   float: right;
   margin: 5px;
 }
+
+.fix-order-btn
+{
+  left:0px;
+  width: 100%;
+  z-index: 9999999;
+  padding:5px;
+  background-color: #FFF;
+}
+.order-btn-fixed-bottom
+{
+  position:fixed;
+  bottom:0px;
+}
  /*::::::::::::start media screen:::::::::*/ 
  @media only screen and (max-width: 991px) {
    /**/
