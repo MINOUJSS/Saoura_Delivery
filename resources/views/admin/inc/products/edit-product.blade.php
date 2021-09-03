@@ -190,6 +190,13 @@
               <div class="box-header with-border">
                 <h3 class="box-title"></h3>
               </div><!-- /.box-header -->
+              <h4>منتج  مملوك أو دروب شبين</h4>
+        <div classe="form-group">
+          <select class="form-control" name="dropsheping">
+              <option value="0" @if(old('dropsheping')==0 || $product->dropsheping==0){{'selected'}}@endif>منتج مملوك</option>
+              <option value="1" @if(old('dropsheping')==1 || $product->dropsheping==1){{'selected'}}@endif>دروب شبين</option>
+          </select>
+        </div>
               <h4>حالة المنتج (مرئي أو مخفي)</h4>
         <div classe="form-group">
           <input type="checkbox" name="statu" value="1" @if($product->statu==1){{'checked'}}@endif> مرئي

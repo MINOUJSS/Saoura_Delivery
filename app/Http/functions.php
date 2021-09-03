@@ -1309,6 +1309,17 @@ function product_status($statu)
         return '<span class="label label-success">مرئي</span>';
     }
 }
+//function product Dropsheping Status
+function product_dropsheping_statu($value)
+{
+    if($value==0)
+    {
+        return '<span class="label label-success">منتج مملوك</span>';
+    }else
+    {
+        return '<span class="label label-danger">دروب شبين</span>';
+    }
+}
 //function globale_product_category
 function globale_product_categories($product_id)
 {
