@@ -119,7 +119,7 @@
 							<li><a href="{{route('contra')}}">سياسة خصوصية</a></li>
 							<li><a href="{{route('how_to_ship')}}">طريقة تسليم الطلبات</a></li>
 							<li><a href="{{route('contact_us')}}">إتصل بنا</a></li>
-							<li><a href="{{route('faq')}}">أسئلة شائعة</a></li>
+							{{-- <li><a href="{{route('faq')}}">أسئلة شائعة</a></li> --}}
 						</ul>
 					</div>
 				</div>
@@ -132,11 +132,11 @@
 						<p>سجل في القائمة البريدية للمتجر ليصلك كل جديد عن العروض المغرية لمتجرنا في ولاية بشار.</p>
 						<form action="{{route('email_list.store')}}" method="POST" enctype="multipart/form-data">
 							@csrf
-							<div class="form-group {{$errors->has('email')? 'has-error': ''}}">
-								<input class="form-control" name="email" placeholder="بريدك الإلكتروني">
-								@if($errors->has('email'))
+							<div class="form-group {{$errors->has('footer_email')? 'has-error': ''}}">
+								<input class="form-control" name="footer_email" placeholder="بريدك الإلكتروني">
+								@if($errors->has('footer_email'))
 								<span class="help-block">
-									{{$errors->first('email')}}
+									{{$errors->first('footer_email')}}
 								</span>
 								@endif
 							</div>

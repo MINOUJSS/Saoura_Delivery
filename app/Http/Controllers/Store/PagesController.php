@@ -158,7 +158,7 @@ class PagesController extends Controller
     {
         //validate
         $this->validate($request,[
-            'email' => 'required|email'
+            'footer_email' => 'required|email'
         ]);
         //verifier if email exist in list
         $ex_email=email_list::where('email',$request->email)->first();
@@ -172,7 +172,7 @@ class PagesController extends Controller
         {
         //insert data
         $email= new email_list;
-        $email->email=$request->email;
+        $email->email=$request->footer_email;
         $email->save();
         //alert
         Alert::success('تسجيل في القائمة','تم تسجيلك في القائمة البريدية بنجاح,مرحباً بك.');

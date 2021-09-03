@@ -34,7 +34,7 @@ class OrderController extends Controller
         //validate data
         $this->validate($request,[
             'first-name' => 'required|min:3',
-            'email' => 'required|email',
+            'email' => 'sometimes:required|sometimes:email',
             'address' =>'required|min:10',
             'tel' => 'required|numeric|min:9',            
         ]);
