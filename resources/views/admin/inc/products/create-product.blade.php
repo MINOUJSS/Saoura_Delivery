@@ -196,6 +196,13 @@
               <option value="1" @if(old('dropsheping')==1){{'selected'}}@endif>دروب شبين</option>
           </select>
         </div>
+        <h4>منتج جديد (مستعمل)</h4>
+        <div classe="form-group">
+          <select class="form-control" name="is_new">
+              <option value="1" @if(old('is_new')===1){{'selected'}}@endif>جديد</option>
+              <option value="0" @if(old('is_new')===0){{'selected'}}@endif>مستعمل</option>
+          </select>
+        </div>
         <h4>حالة المنتج (مرئي أو مخفي)</h4>
         <div classe="form-group">
           <input type="checkbox" name="statu" value="1"> مرئي
