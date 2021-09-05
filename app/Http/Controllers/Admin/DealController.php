@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\deal;
 use App\sid_deal;
-use App\admin_noteficiation;
+use App\admin_notefication;
 use App\reading_notification;
 use Auth;
 
@@ -99,6 +99,7 @@ class DealController extends Controller
         $deal->daitels=$request->input('daitels');
         // $deal->descount=$request->input('descount');
         $deal->link=$request->input('link');
+        $deal->view_type=$request->view_type;
         $deal->update();
         //noteficte admin
         $note=new admin_notefication;
@@ -138,6 +139,7 @@ class DealController extends Controller
                 $deal->daitels=$request->input('daitels');
                 // $deal->descount=$request->input('descount');
                 $deal->link=$request->input('link');
+                $deal->view_type=$request->view_type;
                 //upload image
                 if($file=$request->file('image'))
         {

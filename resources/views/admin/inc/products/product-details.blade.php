@@ -217,6 +217,8 @@
                   </div>
                 </div>
                 <div class="box-body">
+                  <label>رابط  المنتج:</label>
+                <p class="text-muted well well-sm no-shadow"> {{url('/product').'/'.$product->slug}}</p>
                     <label>العلامة التجارية:</label>
                 <p class="text-muted well well-sm no-shadow"> {{$product->brand->name}}</p>
                 <label>وصف مختصر للمنتج:</label>

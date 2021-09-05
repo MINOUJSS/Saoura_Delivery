@@ -79,6 +79,13 @@
             @endif
           </div>
         </div><!-- /.box-body -->
+        <div class="form-group">
+          <label for="view_type">طريقةعرض السلايدر</label>
+          <select name="view_type">
+            <option value="1" @if(old('view_type')===1){{'selected'}}@endif>عرض الصورة  فقط مع  زر المشاهدة</option>
+            <option value="2" @if(old('view_type')===2){{'selected'}}@endif>عرض إسم المنتج والوصف والصورةو  زر  المشاهدة</option>
+          </select>
+        </div>
   
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">نشر</button>
