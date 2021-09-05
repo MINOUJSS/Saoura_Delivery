@@ -74,6 +74,37 @@
             </div>
 
             <div class="col-lg-6 col-md-6">
+              <!--start operations-->
+              <div class="box box-default collapsed-box" style="margin-top:10px;">
+                <div class="box-header with-border">
+                  <h3 class="box-title">العمليات</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                  </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                  <!---->
+                  <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-size')}}"><button class="btn btn-block btn-primary btn-xs"><i class="fa fa-hand-scissors-o"> إضافة مقاس</i></button></a>
+                  @if(!has_discount($product->id))
+                  <a href="{{url('admin/product/'.$product->id.'/discount/create')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-percent"> إضافة تخفيض</i></button></a>
+                  @else
+                  <button id="delete_discount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button>
+                  {{-- <i id="delete_descount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i> --}}
+                  {{-- <a href="{{url('admin/product/discount/'.$product->discount->id.'/delete')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button></a> --}}
+                  @endif
+                  @if (product_has_seo($product->id))
+                  <a href="{{route('admin.edit.product.seo',$product->id)}}"><button class="btn btn-block btn-success btn-xs"><i class="fa fa-search"> تعديل سيو</i></button></a>        
+                  @else
+                  <a href="{{route('admin.create.product.seo',$product->id)}}"><button class="btn btn-block btn-info btn-xs"><i class="fa fa-search"> إضافة سيو</i></button></a>    
+                  @endif
+                  <a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
+                  <i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                  <!---->
+                </div><!-- /.box-body -->                  
+              </div><!-- /.box -->
+              <!--end operations-->
                 <div class="product-body">
                     <div class="product-label">
                         @if(is_new_product($product->created_at))
@@ -125,7 +156,7 @@
                     </div>
             </div>
 
-
+    <!-- reviews -->
                 <div class="box box-default collapsed-box" style="margin-top:10px;">
                   <div class="box-header with-border">
                     <h3 class="box-title">التقييمات</h3>

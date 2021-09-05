@@ -313,7 +313,8 @@ class ProductController extends Controller
         //alert success message
         Alert::success('تعديل منتج', 'تم التعديل المنتج بنجاح');
         //redirecte to category page
-        return redirect(route('admin.products'));
+        // return redirect(route('admin.products'));
+        return redirect()->back();
     }
 
     public function destroy($id)

@@ -186,7 +186,7 @@
           </div>
           <!---->          
           <div class="col-lg-4">
-            <div class="box box-primary">
+            <div class="box box-primary" style="padding:10px;">
               <div class="box-header with-border">
                 <h3 class="box-title"></h3>
               </div><!-- /.box-header -->

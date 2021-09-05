@@ -76,6 +76,7 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>رقم المنتج</th>
+                <th>العمليات</th>
                 <th>صورة المنتج</th>
                 <th>إسم المنتج</th>
                 <th>ملكية المنتج</th>
@@ -95,11 +96,30 @@
                 <th>تحت تحت الصنف</th>
                 <th>المورد</th>
                 <th>صاحب السلعة</th> --}}
-                <th>العمليات</th>
+                
               </tr>
               @foreach($products as $product)
               <tr>
                 <td>{{$product->id}}</td>
+                <td>
+                  <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>
+                  <a href="{{url('admin/product/'.$product->id.'/add-size')}}"><button class="btn btn-block btn-primary btn-xs"><i class="fa fa-hand-scissors-o"> إضافة مقاس</i></button></a>
+                  @if(!has_discount($product->id))
+                  <a href="{{url('admin/product/'.$product->id.'/discount/create')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-percent"> إضافة تخفيض</i></button></a>
+                  @else
+                  <button id="delete_discount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button>
+                  {{-- <i id="delete_descount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i> --}}
+                  {{-- <a href="{{url('admin/product/discount/'.$product->discount->id.'/delete')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button></a> --}}
+                  @endif
+                  @if (product_has_seo($product->id))
+                  <a href="{{route('admin.edit.product.seo',$product->id)}}"><button class="btn btn-block btn-success btn-xs"><i class="fa fa-search"> تعديل سيو</i></button></a>        
+                  @else
+                  <a href="{{route('admin.create.product.seo',$product->id)}}"><button class="btn btn-block btn-info btn-xs"><i class="fa fa-search"> إضافة سيو</i></button></a>    
+                  @endif
+                  <a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
+                  <i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                </td>
                 <td><img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="50" width="50"></td>
                 <td><a href="{{route('admin.product.details',$product->id)}}">{{$product->name}}</a></td>
                 <td>{!!product_dropsheping_statu($product->dropsheping)!!}</td>
@@ -149,24 +169,7 @@
                 <td>بدون مزود</td>
                 @endif
                 <td>{{$product->user->name}}</td> --}}
-                <td>
-                  <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
-                  <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>
-                  <a href="{{url('admin/product/'.$product->id.'/add-size')}}"><button class="btn btn-block btn-primary btn-xs"><i class="fa fa-hand-scissors-o"> إضافة مقاس</i></button></a>
-                  @if(!has_discount($product->id))
-                  <a href="{{url('admin/product/'.$product->id.'/discount/create')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-percent"> إضافة تخفيض</i></button></a>
-                  @else
-                  <button id="delete_discount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button>
-                  {{-- <i id="delete_descount" title="{{$product->discount->descount}}" url="{{url('admin/product/discount').'/'.$product->discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i> --}}
-                  {{-- <a href="{{url('admin/product/discount/'.$product->discount->id.'/delete')}}"><button class="btn btn-block btn-danger btn-xs"><i class="fa fa-trash-o"> حذف تخفيض</i></button></a> --}}
-                  @endif
-                  @if (product_has_seo($product->id))
-                  <a href="{{route('admin.edit.product.seo',$product->id)}}"><button class="btn btn-block btn-success btn-xs"><i class="fa fa-search"> تعديل سيو</i></button></a>        
-                  @else
-                  <a href="{{route('admin.create.product.seo',$product->id)}}"><button class="btn btn-block btn-info btn-xs"><i class="fa fa-search"> إضافة سيو</i></button></a>    
-                  @endif
-                  <a href="{{url('admin/product').'/'.$product->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
-                  <i id="delete_product" title="{{$product->name}}" url="{{url('admin/product').'/'.$product->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
+                
               </tr> 
               @endforeach             
             </tbody></table>            
