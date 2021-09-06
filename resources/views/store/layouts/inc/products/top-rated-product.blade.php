@@ -21,7 +21,8 @@
         <div class="product-body">
             <h2 class="product-name"><a href="{{url('/product/'.$product->slug)}}">{{$product->name}}</a></h2>
             {{-- <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3> --}}
-            <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
+            {{-- <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->selling_price,get_product_discount($product->id))}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3> --}}
+            <h3 class="product-price">@if(has_discount($product->id)){{price_with_discount($product->id)}} د.ج <del class="product-old-price">{{$product->selling_price}} د.ج </del>@else {{$product->selling_price}} د.ج @endif</h3>
             <div class="product-rating">
                 {{-- <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
