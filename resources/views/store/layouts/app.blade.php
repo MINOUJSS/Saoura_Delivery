@@ -235,6 +235,15 @@
 				rating:product_ratings[b].getAttribute('data-rating')
 			    });
 			}
+			//deal products
+			var product_ratings=document.getElementsByName('deal_products_ratings');
+			for(var b=0 ;b<=product_ratings.length-1; b++)
+			{
+				$('.deal-product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
 			}else{
 			//get product ratings
 			var product_rating=document.getElementById('product_ratings');

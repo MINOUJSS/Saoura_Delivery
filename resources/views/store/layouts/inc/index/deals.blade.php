@@ -46,8 +46,8 @@
                                     });                                    
                                 </script> --}}
                                 <div class="product-rating pull-left">
-                                    <div name="products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
-                                    <div class='product-star-{{$index}} starrr'></div>
+                                    <div name="deal_products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
+                                    <div class='deal-product-star-{{$index}} starrr'></div>
                                 </div>
 
                                 <div class="product-thumb">
@@ -64,7 +64,7 @@
                                         
                                     </ul>                                    
                                     {{-- <input type="hidden" id="countdown" onclick="countDown('{{$index}}','{{$product->discount->exp_date}}')">--}} 
-                                    <a href="{{url('/product/'.$product->id)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
+                                    <a href="{{url('/product/'.$product->slug)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
                                     {{-- <img src="{{url('store')}}/img/product01.jpg" alt=""> --}}
                                     <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="{{$product->name}}">
                                 </div>
