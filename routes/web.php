@@ -94,6 +94,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/product/{id}/delete-image','Admin\ProductController@delete_image');    
     //
     Route::get('/product/{id}','Admin\ProductController@product_details')->name('admin.product.details');
+    //
+    Route::get('/product/{id}/change_product_statu','Admin\ProductController@change_product_statu')->name('admin.product.change_statu');
     // generate slug generate_slug_for_all_products
     Route::get('/product/slug/generate','Admin\ProductController@generate_slug_for_all_products')->name('admin.product.generate.slugs');
     //reating

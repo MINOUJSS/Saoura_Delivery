@@ -856,4 +856,24 @@ class ProductController extends Controller
       //redirect
       return redirect()->back();
   }
+
+  public function change_product_statu($id)
+  {
+      //get product statu
+        $product=product::findOrFail($id);
+      //change product status
+      if($product->statu==1)
+      {
+          $product->statu=0;
+          $product->update();
+      }
+      else
+      {
+        $product->statu=1;
+          $product->update();
+      }
+
+      //redirect back
+      return redirect()->back();
+  }
 }

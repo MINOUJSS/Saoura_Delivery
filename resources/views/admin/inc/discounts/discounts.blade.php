@@ -45,7 +45,7 @@
               <td>{{$discount->exp_date}}</td>              
               <td>
                 <a href="{{url('admin/product/discount').'/'.$discount->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
-                <i id="delete_descount" title="{{$discount->descount}}" url="{{url('admin/product/discount').'/'.$discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
+                <i id="delete_discount" title="{{$discount->descount}}" url="{{url('admin/product/discount').'/'.$discount->id.'/delete'}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
               </td>
             </tr>
             @endforeach
