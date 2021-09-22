@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function index()
     { 
-        $orders=order::all();        
+        $orders=order::all(); 
         return view('admin.index',compact('orders'));
     }
 }
