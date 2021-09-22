@@ -998,11 +998,11 @@ function get_no_read_notification_count($admin_id)
     return $no_reading_not;
 }
 //get no read notification
-function get_no_read_order_notification_count()
-{
-    $note=App\orders_notification::where('status',0)->get();
-    return $note->count();
-}
+// function get_no_read_order_notification_count()
+// {
+//     $note=App\orders_notification::where('status',0)->get();
+//     return $note->count();
+// }
 // get_contact_count_rows
 function get_contact_count_rows()
 {
@@ -1016,11 +1016,11 @@ function get_no_read_contact_data()
     return $contacts;
 }
 //get_no_read_contatc
-function get_no_read_contact()
-{
-    $contacts=App\contact_us::where('status',0)->get();
-    return count($contacts);
-}
+// function get_no_read_contact()
+// {
+//     $contacts=App\contact_us::where('status',0)->get();
+//     return count($contacts);
+// }
 //has reply
 function has_reply($contact_us_id)
 {

@@ -1,3 +1,8 @@
+@php
+$auth_admin_user_id=Auth::guard('admin')->user()->id;
+    $get_no_read_contact_data=get_no_read_contact_data();
+    $get_no_reading_order_note_data=get_no_reading_order_note_data();
+@endphp
 <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -11,15 +16,15 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-envelope-o"></i>
-            <span class="label label-success">{{get_no_read_contact()}}</span>
+            <span class="label label-success">{{count($get_no_read_contact_data)}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">{{print_message_nember_string(get_no_read_contact())}}</li>
+            <li class="header">{{print_message_nember_string(count($get_no_read_contact_data))}}</li>
             <li>
               <!-- inner menu: contains the messages -->
               <ul class="menu">
                 {{-- @if() --}}
-                @foreach(get_no_read_contact_data() as $contact)
+                @foreach($get_no_read_contact_data as $contact)
                 <li><!-- start message -->
                   <a href="{{route('admin.contact.show',$contact->id)}}">
                     <div class="pull-left">
@@ -47,16 +52,16 @@
           <!-- Menu toggle button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">{{get_no_read_notification_count(Auth::guard('admin')->user()->id)}}</span>
+            <span class="label label-warning">{{get_no_read_notification_count($auth_admin_user_id)}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">{{print_note_nember_string(get_no_read_notification_count(Auth::guard('admin')->user()->id))}}</li>
+            <li class="header">{{print_note_nember_string(get_no_read_notification_count($auth_admin_user_id))}}</li>
             <li>
               <!-- Inner Menu: contains the notifications -->
               <ul class="menu">
-                @if(count(get_no_reading_note_data(Auth::guard('admin')->user()->id))>0)
+                @if(count(get_no_reading_note_data($auth_admin_user_id))>0)
                 <!-- start notification -->                
-                @foreach(get_no_reading_note_data(Auth::guard('admin')->user()->id) as $note)
+                @foreach(get_no_reading_note_data($auth_admin_user_id) as $note)
                 <li>                  
                   <a href="{{route('admin.notification.read.note.and.redirect',$note->id)}}">
                     <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
@@ -75,16 +80,16 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-flag-o"></i>
-            <span class="label label-danger">{{get_no_read_order_notification_count()}}</span>
+            <span class="label label-danger">{{count($get_no_reading_order_note_data)}}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">{{print_order_note_nember_string(get_no_read_order_notification_count())}}</li>
+            <li class="header">{{print_order_note_nember_string(count($get_no_reading_order_note_data))}}</li>
             <li>
               <!-- Inner menu: contains the tasks -->
               <ul class="menu">
-                @if(count(get_no_reading_order_note_data())>0)
+                @if(count($get_no_reading_order_note_data)>0)
                 <!-- start order notification -->
-                @foreach(get_no_reading_order_note_data() as $note)
+                @foreach($get_no_reading_order_note_data as $note)
                 <li>
                   <a href="{{url($note->link)}}">
                     <i class="{{$note->icon}} text-aqua"></i> {{$note->title}}
