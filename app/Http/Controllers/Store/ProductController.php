@@ -22,6 +22,7 @@ use App\Product_Sub_Sub_Category;
 use App\Store_Model\Cart;
 use App\Store_Model\Searcher;
 use App\searsh_word;
+use App\up_sale;
 use Auth;
 class ProductController extends Controller
 {
@@ -417,10 +418,26 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         $title=$slug;
         $product=product::where('slug',$slug)->first();
         $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
+        $similar_products_list=up_sale::where('first_product_id',$product->id)->where('type',1)->get();
+        $similar_products_ids=array();
+        foreach($similar_products_list as $list)
+        {
+            $similar_products_ids[]=$list->second_product_id;
+        }
+       //dd($similar_products_ids);
+        $similar_products=product::inRandomOrder()->whereIn('id',$similar_products_ids)->paginate(4);
+        //dd($similar_products);
+        $accessories_products_list=up_sale::orderBy('id','desc')->where('first_product_id',$product->id)->where('type',2)->get();
+        $accessories_products_ids=array();
+        foreach($accessories_products_list as $list)
+        {
+            $accessories_products_ids[]=$list->second_product_id;
+        }
+        $accessories_products=product::inRandomOrder()->whereIn('id',$similar_products_ids)->paginate(4);
         if($product != null)
         {
         $reviews=reating::where('product_id',$product->id)->where('visible',1)->paginate(5);
-        return view('store.product-page',compact('product','reviews','piked_products','title'));
+        return view('store.product-page',compact('product','reviews','piked_products','title','similar_products','accessories_products'));
         }else
         {
             $product=product::findOrfail(0);

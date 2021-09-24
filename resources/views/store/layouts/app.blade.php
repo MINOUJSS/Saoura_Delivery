@@ -206,7 +206,7 @@
 			var path_array=document.location.pathname.split('/');
             var cat_or_sub_cat_name=path_array[path_array.length-1];
 			
-			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name)
+			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name || pathname =='/product/'+cat_or_sub_cat_name)
 			{
 				//products		
 				var product_ratings=document.getElementsByName('products_ratings');
@@ -240,6 +240,24 @@
 			for(var b=0 ;b<=product_ratings.length-1; b++)
 			{
 				$('.deal-product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
+			//similar products
+			var product_ratings=document.getElementsByName('similar_products_ratings');
+			for(var b=0 ;b<=product_ratings.length-1; b++)
+			{
+				$('.similar-product-star-'+b).starrr({
+				readOnly:true,
+				rating:product_ratings[b].getAttribute('data-rating')
+			    });
+			}
+			//accessories products
+			var product_ratings=document.getElementsByName('accessories_products_ratings');
+			for(var b=0 ;b<=product_ratings.length-1; b++)
+			{
+				$('.accessories-product-star-'+b).starrr({
 				readOnly:true,
 				rating:product_ratings[b].getAttribute('data-rating')
 			    });

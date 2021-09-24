@@ -40,9 +40,15 @@
 <div class="section">
     <!-- container -->
     <div class="container">
+         <!-- row -->
+         @include('store.layouts.inc.index.similar-products')        
+         <!-- /row -->
+         <!-- row -->
+         @include('store.layouts.inc.index.accessories-products')        
+         <!-- /row -->
         <!-- row -->
         @include('store.layouts.inc.index.picked-for-you')        
-        <!-- /row -->
+        <!-- /row -->       
     </div>
     <!-- /container -->
 </div>
