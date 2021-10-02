@@ -433,7 +433,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         {
             $accessories_products_ids[]=$list->second_product_id;
         }
-        $accessories_products=product::inRandomOrder()->whereIn('id',$similar_products_ids)->paginate(4);
+        $accessories_products=product::inRandomOrder()->whereIn('id',$accessories_products_ids)->paginate(4);
         if($product != null)
         {
         $reviews=reating::where('product_id',$product->id)->where('visible',1)->paginate(5);
