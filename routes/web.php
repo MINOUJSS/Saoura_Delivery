@@ -221,7 +221,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/سياسة-خصوصية','Admin\PagesController@contra')->name('admin.contra');
     Route::post('/سياسة-خصوصية/update','Admin\PagesController@contra_update')->name('admin.contra.update');
     Route::get('/طريقة-تسليم-الطلبات','Admin\PagesController@how_to_ship')->name('admin.how_to_ship');
-    Route::post('/طريقة-تسليم-الطلبات/update','Admin\PagesController@how_to_ship_update')->name('admin.how_to_ship.update');
+    Route::post('/طريقة-تسليم-الطلبات/update','Admin\PagesController@how_to_ship_update')->name('admin.how_to_ship.update');    
     //setting route
     Route::get('setting','Admin\SettingController@index')->name('admin.setting');
     Route::post('setting/update','Admin\SettingController@update')->name('admin.setting.update');
@@ -352,3 +352,5 @@ Route::get('/أسئلة-شائعة','Store\PagesController@faq')->name('faq');
 Route::post('/أسئلة-شائعة/create','Store\PagesController@faq_store')->name('faq.store');
 //create email list
 Route::post('/email_list/create','Store\PagesController@email_list_store')->name('email_list.store');
+//thank you page
+Route::get('/thank-you','Store\ThankYouPageController@index')->name('store.thanks');

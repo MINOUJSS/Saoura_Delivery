@@ -128,8 +128,9 @@ class OrderController extends Controller
         
         //alert for success message
         Alert::success('إضافة طلب', 'تم إضافة طلبك بنجاح');
-        // redirect to my orders page;
-        return redirect()->back();
+        // redirect to thank you page;
+        //return redirect()->back();
+        return redirect(route('store.thanks'))->with('order_id',$order->id);
 
     }
 }
