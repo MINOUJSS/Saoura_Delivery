@@ -286,10 +286,10 @@
     product_ids.forEach(element => {
         //alert(element);   
        setInterval(() => {
-        // setTimeout(() => {
+        setTimeout(() => {
            var target=document.getElementsByName('product-countdown'+element);
         $(target).load('/load-dis-products/'+element);
-    //    },2000);    
+        },1000);    
    }, 1000);
     
 
