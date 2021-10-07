@@ -60,9 +60,12 @@
                                         @endif
                                     </div>                                   
                                     {{-- <input type="hidden" id="dis_prod_ids" value="{{print_r($dis_product_ids)}}"> --}}
-                                    <ul class="product-countdown" name="product-countdown{{$product->id}}">
+                                    <input type="hidden" name="" id="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="" id="exp_discount_date{{$product->id}}" value="{{$product->discount->exp_date}}">
+                                    <input type="hidden" name="" id="product_has_dis_id{{$product->id}}" value="{{$product->id}}">
+                                    <ul class="product-countdown" id="product-countdown{{$product->id}}" name="product-countdown{{$product->id}}" onclick="deal_count_down_interval('{{$product->discount->exp_date}}',{{$product->id}})">
                                         
-                                    </ul>                                    
+                                    </ul>                                                                   
                                     {{-- <input type="hidden" id="countdown" onclick="countDown('{{$index}}','{{$product->discount->exp_date}}')">--}} 
                                     <a href="{{url('/product/'.$product->slug)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
                                     {{-- <img src="{{url('store')}}/img/product01.jpg" alt=""> --}}
@@ -86,20 +89,21 @@
                         <!-- /Product Single -->
                         @php
                             $products_ids[]=$product->id;
-                            $p_ids_string='[';
-                        @endphp
-                        @endforeach
+                            $p_ids_string='';
+                        @endphp                                                 
+                        @endforeach                        
                         <!--convert array to string-->
                          @foreach ($products_ids as $index=>$id)                         
                           @php
                           if($index+1>=count($products_ids)){ 
-                             $p_ids_string.=$id.']';
+                             $p_ids_string.=''.$id.'';
                           }else
                           {
-                            $p_ids_string.=$id.',';
+                            $p_ids_string.=''.$id.',';
                           }
                           @endphp
-                         @endforeach                                                
+                         @endforeach  
+                         <input type="hidden" name="products_ids_array" id="products_ids_array" value="{{$p_ids_string}}">                                                                       
                     </div>
                 </div>
             </div>
@@ -279,7 +283,34 @@
 @endif
 <!--------------------------->
 @if(count($dis_products)>0)
-<script>
+<script>    
+    function deal_count_down(products_ids)
+    {
+        for(let i=0;i<products_ids.length;i++){
+        exp_discount_date=document.getElementById('exp_discount_date'+products_ids[i]).value;
+        now  = new Date();
+        diff = Date.parse(exp_discount_date) - now
+        
+        secs=Math.floor(diff/1000);
+        mins=Math.floor(diff/(1000*60));
+        hours=Math.floor(diff/(1000*60*60));
+        days=Math.floor(diff/(1000*60*60*24));
+
+        d=days;
+        h=hours - days * 24;
+        m= mins - hours *60;
+        s =secs - mins * 60;
+        
+        document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'
+        }
+    }
+    //setInterVal(deal_count_down('2021-10-07 19:17:40',4),1000);
+    // setInterval('deal_count_down('+"'"+'2021-10-07 19:17:40'+"'"+',4)',1000);
+    const  products_ids_array=document.getElementById('products_ids_array').value.split(',');
+          //alert(products_ids_array);                                                              
+            setInterval('deal_count_down(products_ids_array)',1000);
+</script>
+{{-- <script>
     function countDown(product_ids)
    {
     
@@ -299,5 +330,5 @@
       
        countDown({{$p_ids_string}});
        
-</script>
+</script> --}}
 @endif
