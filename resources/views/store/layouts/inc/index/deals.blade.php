@@ -60,10 +60,10 @@
                                         @endif
                                     </div>                                   
                                     {{-- <input type="hidden" id="dis_prod_ids" value="{{print_r($dis_product_ids)}}"> --}}
-                                    <input type="hidden" name="" id="product_id" value="{{$product->id}}">
-                                    <input type="hidden" name="" id="exp_discount_date{{$product->id}}" value="{{$product->discount->exp_date}}">
-                                    <input type="hidden" name="" id="product_has_dis_id{{$product->id}}" value="{{$product->id}}">
-                                    <ul class="product-countdown" id="product-countdown{{$product->id}}" name="product-countdown{{$product->id}}" onclick="deal_count_down_interval('{{$product->discount->exp_date}}',{{$product->id}})">
+                                    {{-- <input type="hidden" name="" id="product_id" value="{{$product->id}}"> --}}
+                                    <input type="hidden"  class="exp_discount_date{{$product->id}}" name="exp_discount_date{{$product->id}}" id="exp_discount_date{{$product->id}}" value="{{$product->discount->exp_date}}">
+                                    <input type="hidden" class="product_has_dis_id{{$product->id}}" name="product_has_dis_id{{$product->id}}" id="product_has_dis_id{{$product->id}}" value="{{$product->id}}">
+                                    <ul class="product-countdown" id="product-countdown{{$product->id}}" name="product-countdown{{$product->id}}">
                                         
                                     </ul>                                                                   
                                     {{-- <input type="hidden" id="countdown" onclick="countDown('{{$index}}','{{$product->discount->exp_date}}')">--}} 
@@ -286,11 +286,11 @@
 <script>    
     function deal_count_down(products_ids)
     {
-        for(let i=0;i<products_ids.length;i++){
-        exp_discount_date=document.getElementById('exp_discount_date'+products_ids[i]).value;
+        for(var i = 0 ; i < products_ids.length ; i++){
+        exp_discount_date=document.getElementById('exp_discount_date'+products_ids[i]).value;        
         now  = new Date();
         diff = Date.parse(exp_discount_date) - now
-        
+        //alert(exp_discount_date);
         secs=Math.floor(diff/1000);
         mins=Math.floor(diff/(1000*60));
         hours=Math.floor(diff/(1000*60*60));
@@ -300,8 +300,27 @@
         h=hours - days * 24;
         m= mins - hours *60;
         s =secs - mins * 60;
-        
-        document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'
+            if(d>0 && h > 10 && m<10){
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>';            
+            }else if(d>0 && h>10 && m>10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'; 
+            }else if(d>0 && h<10 && m>10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'; 
+            }else if(h > 10 && m>10 && s >10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'; 
+            }else if(h > 10 && m > 10 && s < 10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+            }else if(h > 10 && m <10 && s < 10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+            }else
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+            }
         }
     }
     //setInterVal(deal_count_down('2021-10-07 19:17:40',4),1000);

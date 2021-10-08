@@ -56,12 +56,12 @@
   // PRODUCTS SLICK
   $('#product-slick-1').slick({
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
-    infinite: true,
+    infinite: false,
     speed: 300,
     dots: true,
-    arrows: false,
+    arrows: true,
     appendDots: '.product-slick-dots-1',
     responsive: [{
         breakpoint: 991,
