@@ -23,7 +23,7 @@
                     <span>جديد</span>
                     @endif
                     @if(has_discount($product->id))
-                    <span class="sale">- %{{$product->discount->discount}}</span>
+                    <span class="sale">- %{{get_product_discount($product->id)}}</span>
                     @endif
                 </div>
                 <a href="{{route('store.product.details',$product->slug)}}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> إضغط للمشاهدة</button></a>
