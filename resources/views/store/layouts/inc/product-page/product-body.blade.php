@@ -27,6 +27,13 @@
         </div>
         <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
         <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
+        <!---->
+        <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
+        <input type="hidden" name="exp_discount_date" id="exp_discount_date" value="{{$product->discount->exp_date}}">        
+        <ul class="product-countdown" id="product-countdown" name="product-countdown">
+                                        
+        </ul>
+        <!---->
         <p>{!!$product->long_description!!}</p>
         <div class="product-options"> 
             @if(count($product->sizes)>0)           
@@ -147,3 +154,78 @@
 
     </div>
 </div>
+
+<script> 
+        function deal_count_down(product_id)
+        {
+            exp_discount_date=document.getElementById('exp_discount_date').value;        
+            now  = new Date();
+            diff = Date.parse(exp_discount_date) - now;
+            secs=Math.floor(diff/1000);
+            mins=Math.floor(diff/(1000*60));
+            hours=Math.floor(diff/(1000*60*60));
+            days=Math.floor(diff/(1000*60*60*24));
+    
+            d=days;
+            h=hours - days * 24;
+            m= mins - hours *60;
+            s =secs - mins * 60;
+
+                if(d>10 && h>10 && m>10){
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>';         
+                }else if(d>10 && h>10 && m<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
+                }else if(d>10 && h<10 && m<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
+                }else if(d<10 && d>=1 && h>10 && m>10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'; 
+                }else if(d<10 && d>=1 && h>10 && m>10 && s<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
+                }else if(d<10 && d>=1 && h>10 && m>10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
+                }else if(d==0 && h>10 && m>10 && s>10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'; 
+                }else if(d==0 && h>10 && m>10 && s<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+                }else if(d==0 && h>10 && m<10 && s<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+                }else if(d==0 && h<10 && m<10 && s<10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'+'<li><span>0'+s+' ثا</span></li>'; 
+                }else if(d==0 && h<10 && m<10 && s>10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+h+' ي</span></li>'+'<li><span>0'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'; 
+                }else if(d==0 && h<10 && m>10 && s>10)
+                {
+                    document.getElementById('product-countdown').innerHTML='<li><span>0'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'; 
+                }            
+        }
+        const  product_id=document.getElementById('product_id').value;                                                                             
+                setInterval('deal_count_down(product_id)',1000);
+
+                function test(exp_date)
+{
+    now  = new Date();
+        diff = Date.parse(exp_date) - now;
+        //alert(exp_discount_date);
+        secs=Math.floor(diff/1000);
+        mins=Math.floor(diff/(1000*60));
+        hours=Math.floor(diff/(1000*60*60));
+        days=Math.floor(diff/(1000*60*60*24));
+
+        d=days;
+        h=hours - days * 24;
+        m= mins - hours * 60;
+        s =secs - mins * 60;        
+        return  "day:"+d+"heur: "+h+" min: "+m+" sec: "+s
+} 
+// alert(test(product_id));  
+    </script>
