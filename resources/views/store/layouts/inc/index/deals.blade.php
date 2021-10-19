@@ -326,9 +326,12 @@
             }else if(d>10 && h<10 && m<10)
             {
                 document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
-            }else if(d<10 && d>0 && h>10 && m>10)
+            }else if(d>10 && h<10 && m<10)
             {
-                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'; 
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
+            }else if(d<10 && d>0 && h<10 && m>10)
+            {
+                document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>0'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 
             }else if(d<10 && d>0 && h>10 && m<10)
             {
                 document.getElementById('product-countdown'+products_ids[i]).innerHTML='<li><span>0'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>0'+m+' د</span></li>'; 

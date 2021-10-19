@@ -213,9 +213,6 @@
                 }else if(d==0 && h<10 && m>10 && s>10)
                 {
                     document.getElementById('product-countdown').innerHTML='<li><span>0'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>'; 
-                }else
-                {
-                    document.getElementById('product-countdown').innerHTML='<li><span>'+d+' ي</span></li>'+'<li><span>'+h+' سا</span></li>'+'<li><span>'+m+' د</span></li>'+'<li><span>'+s+' ثا</span></li>';  
                 }           
         }
         const  product_id=document.getElementById('product_id').value;                                                                             
