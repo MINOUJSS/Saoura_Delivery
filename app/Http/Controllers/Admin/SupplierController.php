@@ -87,12 +87,24 @@ class SupplierController extends Controller
     public function update(Request $request)
     {
         //validate data
-        $this->validate($request,[
-            'supplier_name' =>'required|min:3',
-            'supplier_email' =>'email',
-            'supplier_mobile' =>'required|numeric',
-            'supplier_address' =>'required'
-        ]);
+        if($request->email == null)
+         {
+            $this->validate($request,[
+                'supplier_name' =>'required|min:3',                
+                'supplier_mobile' =>'required|numeric',
+                'supplier_address' =>'required'
+            ]);
+         }
+         else
+         {
+            $this->validate($request,[
+                'supplier_name' =>'required|min:3',
+                'supplier_email' =>'email',
+                'supplier_mobile' =>'required|numeric',
+                'supplier_address' =>'required'
+            ]);
+         }        
+    
         //save data
         $supplier=supplier::findOrFail($request->input('supplier_id'));
         $supplier->name=$request->input('supplier_name');        
