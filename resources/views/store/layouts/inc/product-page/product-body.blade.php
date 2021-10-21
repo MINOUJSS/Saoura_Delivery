@@ -28,11 +28,13 @@
         <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
         <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
         <!---->
+        @if(has_discount($product->id))
         <input type="hidden" name="product_id" id="product_id" value="{{$product->id}}">
         <input type="hidden" name="exp_discount_date" id="exp_discount_date" value="{{$product->discount->exp_date}}">        
         <ul class="product-countdown" id="product-countdown" name="product-countdown">
                                         
         </ul>
+        @endif
         <!---->
         <p>{!!$product->long_description!!}</p>
         <div class="product-options"> 
