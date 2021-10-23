@@ -17,10 +17,6 @@ class ThankYouPageController extends Controller
         // {
         //     return redirect()->back();
         // }  
-        $i=1;
-        if($i==1)
-        {
-            return view('store.thank-you-page')->with('order_id',1); 
-        }                     
+            return view('store.about-us');                    
     }
 }
