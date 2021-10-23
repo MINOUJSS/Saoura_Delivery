@@ -17,6 +17,10 @@ class ThankYouPageController extends Controller
         // {
         //     return redirect()->back();
         // }  
-        return view('store.thank-you-page');      
+        $i=1;
+        if($i==1)
+        {
+            return view('store.thank-you-page'); 
+        }                     
     }
 }
