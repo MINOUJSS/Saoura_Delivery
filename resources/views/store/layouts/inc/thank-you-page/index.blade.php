@@ -1,3 +1,9 @@
+<script>
+    fbq('track', 'Purchase', {
+      value: 10,
+      currency: 'DA',
+    });
+  </script>
 <!-- BREADCRUMB -->
 <div id="breadcrumb">
     <div class="container">

@@ -9,14 +9,13 @@ class ThankYouPageController extends Controller
 {
     public function index()
     {
-        // if(session()->has('order_id'))
-        // {
-        //     return view('store.thank-you-page');            
-        // }
-        // else
-        // {
-        //     return redirect()->back();
-        // }  
-            return view('store.about-us');                    
+        if(session()->has('order_id'))
+        {
+            return view('store.thank-you-page');            
+        }
+        else
+        {
+            return redirect()->back();
+        }                    
     }
 }

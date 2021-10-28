@@ -1,3 +1,9 @@
+<script>
+    fbq('track', 'InitiateCheckout', {
+      value: 00,
+      currency: 'DA',
+    });
+  </script>
 <!-- BREADCRUMB -->
 <div id="breadcrumb">
     <div class="container">
