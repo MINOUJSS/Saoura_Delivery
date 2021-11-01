@@ -1,7 +1,7 @@
 <script>
     fbq('track', 'InitiateCheckout', {
       value: 00,
-      currency: 'DA',
+      currency: 'DZD',
     });
   </script>
 <!-- BREADCRUMB -->

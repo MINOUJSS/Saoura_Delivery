@@ -1,7 +1,7 @@
 <script>
     fbq('track', 'Purchase', {
-      value: 10,
-      currency: 'DA',
+      value: 100,
+      currency: 'DZD',
     });
   </script>
 <!-- BREADCRUMB -->
