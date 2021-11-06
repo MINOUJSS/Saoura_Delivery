@@ -820,6 +820,12 @@ function get_product_data_from_id($id)
     $product_data=App\product::findOrFail($id);
     return $product_data;
 }
+// get_product_data_from_slug
+function get_product_data_from_slug($slug)
+{
+    $product_data=App\product::where('slug',$slug)->first();
+    return $product_data;
+}
 //global_Purchasing_price function
 function global_Purchasing_price()
 {
@@ -1495,6 +1501,18 @@ function is_product_has_this_sub_sub_cat($product_id,$sub_sub_category_id)
 /*---------------------------------------------------------
     //        Store Functions                //
 ---------------------------------------------------------*/
+//:::::::::::function get_meta_og_image ::::::::::::
+function is_product_details_page($route_name)
+{
+        if($route_name == "store.product.details")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+}
 //:::::::::::function to detect home url and add css class to category nav
 function is_home()
 { 

@@ -7,8 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!---->
-	<meta property="og:title" content="الساورة دليفري أولمتجر إلكترونيفي بشار">
+	@if(is_product_details_page(Route::current()->getName()))
+	<meta property="og:title" content="{{$product->name}}">
+	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
+	@else
+	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
 	<meta property="og:image" content="https://saouradelivery.com/store/img/logo.png">
+	@endif
+	
+	
 	<!---->
 	<link rel="icon" type="image/png" href="{{url('store/img')}}/logo3.png">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
