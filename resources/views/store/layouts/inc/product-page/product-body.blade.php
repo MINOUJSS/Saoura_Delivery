@@ -66,11 +66,11 @@
                 <div class="qty-input form-group col-xs-12">
                     <span class="text-uppercase">الكمية: </span>
                     <!--add qty ntb-->
-                    <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
+                    <span id="add_product_qty" onclick="add_product_qty_in_details()" class="btn btn-info" style="width:17%">+</span>
                     <!---->
-                    <input id="qty_input" name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
+                    <input onchange="qyt_security();" id="qty_input" name="qty" class="input" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
                     <!--min qty ntb-->
-                    <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
+                    <span id="min_product_qty" onclick="min_product_qty_in_details()" class="btn btn-info" style="width:17%">-</span>
                     <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="@if(old('color_id')){{old('color_id')}}@else{{session()->get('cart')->items[$product->id]['color_id']}}@endif">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">                
@@ -87,11 +87,11 @@
                 <div class="qty-input form-group col-xs-12 pull-left">
                     <span class="text-uppercase">الكمية: </span>
                     <!--add qty ntb-->
-                    <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
+                    <span id="add_product_qty" onclick="add_product_qty_in_details()" class="btn btn-info" style="width:17%">+</span>
                     <!---->
-                    <input id="qty_input" name="qty" class="input" type="number" value="1">
+                    <input onchange="qyt_security();" id="qty_input" name="qty" class="input" type="number" value="1">
                     <!--min qty ntb-->
-                    <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
+                    <span id="min_product_qty" onclick="min_product_qty_in_details()" class="btn btn-info" style="width:17%">-</span>
                     <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="0">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
@@ -118,11 +118,11 @@
                 <div class="form-group">
                     {{-- <span class="text-uppercase">الكمية: </span> --}}
                     <!--add qty ntb-->
-                    <span id="xs_add_product_qty" onclick="add_product_qty()" class="btn btn-info">+</span>
+                    <span id="xs_add_product_qty" onclick="add_product_qty_in_details()" class="btn btn-info">+</span>
                     <!---->
                     <input id="xs_qty_input" name="qty" class="input" style="width:40px" type="number" value="@if(old('qty')){{old('qty')}}@else{{session()->get('cart')->items[$product->id]['qty']}}@endif">
                     <!--min qty ntb-->
-                    <span id="xs_min_product_qty" onclick="min_product_qty()" class="btn btn-info">-</span>
+                    <span id="xs_min_product_qty" onclick="min_product_qty_in_details()" class="btn btn-info">-</span>
                     <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="@if(old('color_id')){{old('color_id')}}@else{{session()->get('cart')->items[$product->id]['color_id']}}@endif">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">                
@@ -137,11 +137,11 @@
                 <div class="form-group">
                     {{-- <span class="text-uppercase">الكمية: </span> --}}
                     <!--add qty ntb-->
-                    <span id="xs_add_product_qty" onclick="add_product_qty()" class="btn btn-info" >+</span>
+                    <span id="xs_add_product_qty" onclick="add_product_qty_in_details()" class="btn btn-info" >+</span>
                     <!---->
                     <input id="xs_qty_input" name="qty" class="input" style="width:40px;" type="number" value="1">
                     <!--min qty ntb-->
-                    <span id="xs_min_product_qty" onclick="min_product_qty()" class="btn btn-info">-</span>
+                    <span id="xs_min_product_qty" onclick="min_product_qty_in_details()" class="btn btn-info">-</span>
                     <!---->
                     <input id="color_id" name="color_id" class="input" type="hidden" value="0">
                     <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
@@ -236,5 +236,12 @@
         s =secs - mins * 60;        
         return  "day:"+d+"heur: "+h+" min: "+m+" sec: "+s
 } 
-// alert(test(product_id));  
+// alert(test(product_id)); 
+function qyt_security()
+{
+    if(document.getElementById('qty_input').value<=1)
+        {
+            document.getElementById('qty_input').value=1;
+        }
+} 
     </script>
