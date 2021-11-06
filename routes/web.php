@@ -274,6 +274,7 @@ Route::get('product/{product}/add-to-cart','Store\ProductController@addToCart')-
 Route::post('product/{product}/add-with-qty','Store\ProductController@addWithQty')->name('cart.addwithqty');
 //updatqty
 Route::post('product/{product}/updateqty','Store\ProductController@updateQty')->name('cart.update');
+Route::post('product/{product}/updateqty-with-get-method','Store\ProductController@updateQty_with_get_method')->name('cart.update.with-get-method');
 //remove from cart
 Route::get('product/{product}/remove-from-cart','Store\ProductController@removeFromCart')->name('cart.remove');
 //checkout

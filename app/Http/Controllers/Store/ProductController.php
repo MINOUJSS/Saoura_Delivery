@@ -601,6 +601,75 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         }        
     }
 
+    public function updateQty_with_get_method(Request $request,product $product) 
+    {
+        $this->validate($request,[
+            'qty' => 'required|numeric|min:1'
+        ]);
+
+        $cart=new Cart(session()->get('cart'));
+        $cart->updateQty($product->id,$request->qty,$request->color_id,$request->size_id);
+        session()->put('cart',$cart);
+        //dd($cart);
+        $output='<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <div class="header-btns-icon">
+                                <i class="fa fa-shopping-cart"></i>';
+                                $totalQty=session()->has('cart')?session()->get('cart')->totalQty:'0';
+                                $output.='<span class="qty">'.$totalQty.'</span>
+                            </div>
+                            <strong class="text-uppercase">عربة التسوق:</strong>
+                            <br>';
+                            $totalPrice=session()->has('cart')?session()->get('cart')->totalPrice:'0.00';
+                            $output.='<span>'.$totalPrice.' دج</span>
+                        </a>
+                        <div class="custom-menu">
+                            <div id="shopping-cart">
+                                <div class="shopping-cart-list">';
+                                    if(session()->has('cart'))
+                                    {
+                                    foreach(session()->get('cart')->items as $item)
+                                    {
+                                    $output.='<div class="product product-widget">
+                                        <div class="product-thumb">';
+                                        $image=url('admin-css/uploads/images/products/'.$item['image']);
+                                            $output.='<img src="'.$image.'" alt="">
+                                        </div>
+                                        <div class="product-body">';
+                                        $price=$item['price'];
+                                        $qty=$item['qty'];
+                                        $titel=$item['title'];
+                                        $url=url('product/'.$item['id']);
+                                           $output.='<h3 class="product-price">'.$price.' دج<span class="qty"> الكمية:'.$qty.'</span></h3>';
+                                            $output.='<h2 class="product-name"><a href="'.$url.'">'.$titel.'</a></h2>
+                                        </div>';
+                                        $route=route('cart.remove',$item['id']);
+                                        $output.='<a href="'.$route.'"><button class="cancel-btn"><i class="fa fa-trash"></i></button></a>
+                                    </div>';
+                                    }
+                                    }
+                                    else
+                                    { 
+                                   $output.='<div class="product product-widget">
+                                   السلة فارغة     
+                                    </div>';           
+                                    }                                    
+                                $output.='</div>';
+                                if(session()->has('cart'))
+                                {
+                                $output.='<div class="shopping-cart-btns">';
+                                $show_cart_route=route('cart.show');
+                                $checkout_route=route('checkout');
+                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض عربة التسوق</button></a>';
+                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                </div>';
+                                }
+                            $output.='</div>
+                        </div>';
+        //end output       
+        return $output;
+               
+    }
+
     public function showCart()
     {
         return view('store.cart');

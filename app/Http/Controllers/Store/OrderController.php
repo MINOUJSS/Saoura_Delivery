@@ -33,9 +33,9 @@ class OrderController extends Controller
        
         //validate data
         $this->validate($request,[
-            'first-name' => 'required|min:3',
+            'first-name' => 'required|min:1',
             'email' => 'sometimes:required|sometimes:email',
-            'address' =>'required|min:10',
+            'address' =>'required',
             'tel' => 'required|numeric|min:9',            
         ]);
         if($request->create_account=='on')

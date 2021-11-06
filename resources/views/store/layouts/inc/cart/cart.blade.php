@@ -47,21 +47,44 @@
                                         </ul>  --}}
                                         <form action="{{route('cart.update',$item['id'])}}" method="POST" enctype="multipart/form-data">
                                             @csrf                                       
-                                        {!!print_product_colors_html($item['id'])!!}
-                                        {!!print_product_sizes_html($item['id'])!!}
+                                        {!!print_product_colors_lg_html($item['id'])!!}
+                                        {!!print_product_sizes_lg_html($item['id'])!!}
                                     </td>
                                     {{-- <td class="price text-center"><strong>{{$item['price']}} دج</strong><br><del class="font-weak"><small>$40.00</small></del></td> --}}
                                     <td class="price text-center">@if(has_discount($item['id']))<strong>{{$item['price']}} د.ج</strong><br><del class="font-weak"><small>{{get_product_price_by_id($item['id'])}}</small></del>@else <strong>{{get_product_price_by_id($item['id'])}} </strong>@endif</td>
                                     <td class="qty text-center">
                                         
-                                        <input class="input" type="number" name="qty" value="{{$item['qty']}}">                                        
-                                        <input class="btn btn-primary" type="submit" name="submit" value="تحديث">
+                                        <input type="hidden" name="product_price" id="product_price-lg-{{$item['id']}}" value="@if(has_discount($item['id'])){{$item['price']}}@else{{get_product_price_by_id($item['id'])}}@endif">
+                                        <input onchange="calculate_total_lg({{$item['id']}});update_qty_lg({{$item['id']}});" id="qty-lg-{{$item['id']}}" class="input" type="number" name="qty" value="{{$item['qty']}}">                                        
+                                        {{-- <input class="btn btn-primary" type="submit" name="submit" value="تحديث"> --}}
                                         </form>
                                     </td>
-                                    <td class="total text-center"><strong class="primary-color">{{$item['price'] * $item['qty']}} د.ج</strong></td>
+                                    <input type="hidden" name="total-hidden" id="total-hidden-lg-{{$item['id']}}" value="{{$item['price'] * $item['qty']}}">
+                                    <td class="total text-center"><strong class="primary-color" id="total-lg-{{$item['id']}}">{{$item['price'] * $item['qty']}} د.ج</strong></td>
                                     <td class="text-right"><a href="{{route('cart.remove',$item['id'])}}"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
                                 </tr>
+                                <!---->
+                                    @php
+                                    $item_ids[]=$item['id'];
+                                    $item_ids_string='';
+                                @endphp 
+                                <!--/--> 
                                 @endforeach
+                                <!---->
+                                        <!--convert array to string-->
+                                        @foreach ($item_ids as $index=>$id)                         
+                                        @php
+                                        if($index+1>=count($item_ids)){ 
+                                            $item_ids_string.=''.$id.'';
+                                        }else
+                                        {
+                                        $item_ids_string.=''.$id.'';
+                                        }
+                                        $item_ids_string.='';
+                                        @endphp
+                                        @endforeach  
+                                        <input type="hidden" name="item_ids_array" id="item_ids_array-lg" value="{{$item_ids_string}}">
+                                        <!---->
                                 @endif                                
                             </tbody>                            
                             <tfoot>
@@ -78,7 +101,7 @@
                                 --}}
                                 <tr>                                    
                                     <th>المبلغ المستحق</th>
-                                    <th colspan="2" class="total">{{$total=session()->get('cart')->totalPrice}} دج</th>
+                                    <th colspan="2" class="total" id="total-lg">{{$total=session()->get('cart')->totalPrice}} دج</th>
                                     <th class="empty" colspan="3"></th>
                                 </tr>
                             </tfoot>                            
@@ -131,13 +154,14 @@
                                             <td></td>
                                             <td>
                                             <!--add qty ntb-->
-                                            <span id="add_product_qty" onclick="add_product_qty()" class="btn btn-info" style="width:17%">+</span>
+                                            <span id="add_product_qty" onclick="add_product_qty({{$item['id']}})" class="btn btn-info" style="width:17%">+</span>
                                             <!---->
-                                                <input id="qty_input" style="width:60%" class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
+                                                <input type="hidden" name="product_price-{{$item['id']}}" id="product_price-{{$item['id']}}" value="@if(has_discount($item['id'])){{$item['price']}}@else{{get_product_price_by_id($item['id'])}}@endif">
+                                                <input onchange="calculate_total({{$item['id']}});update_qty({{$item['id']}});" id="qty-{{$item['id']}}" style="width:60%" class="input" type="number" name="qty" value="{{$item['qty']}}">                                                                            
                                             <!--min qty ntb-->
-                                            <span id="min_product_qty" onclick="min_product_qty()" class="btn btn-info" style="width:17%">-</span>
+                                            <span id="min_product_qty" onclick="min_product_qty({{$item['id']}})" class="btn btn-info" style="width:17%">-</span>
                                             <!---->
-                                                <input style="margin-top:5px;width:100%" class="btn btn-primary" type="submit" name="submit" value="تحديث">
+                                                {{-- <input style="margin-top:5px;width:100%" class="btn btn-primary" type="submit" name="submit" value="تحديث"> --}}
                                             </td>
                                             <td></td>
                                         </tr>
@@ -145,17 +169,39 @@
                                         <tr class="bottom-border">
                                             <td></td>
                                             <td>
-                                                <h4><strong class="primary-color">{{$item['price'] * $item['qty']}} دج</strong></h4>
+                                                <input type="hidden" name="total-hidden" id="total-hidden-{{$item['id']}}" value="{{$item['price'] * $item['qty']}}">
+                                                <h4><strong class="primary-color" id="total-{{$item['id']}}">{{$item['price'] * $item['qty']}} دج</strong></h4>
                                             </td>
                                             <td></td>
-                                        </tr>                                                                            
-                                        @endforeach                                        
+                                        </tr>  
+                                        <!---->
+                                        @php
+                                            $item_ids[]=$item['id'];
+                                            $item_ids_string='';
+                                        @endphp 
+                                        <!--/-->                                                                          
+                                        @endforeach 
+                                        <!---->
+                                        <!--convert array to string-->
+                                        @foreach ($item_ids as $index=>$id)                         
+                                        @php
+                                        if($index+1>=count($item_ids)){ 
+                                            $item_ids_string.=''.$id.'';
+                                        }else
+                                        {
+                                        $item_ids_string.=''.$id.'';
+                                        }
+                                        
+                                        @endphp
+                                        @endforeach  
+                                        <input type="hidden" name="item_ids_array" id="item_ids_array" value="{{$item_ids_string}}">
+                                        <!---->                                       
                                         @endif                                        
                                     </tbody>
                                     <tfoot>                                       
                                         <tr>                                    
                                             <th style="background-color:lavender;"></th>
-                                            <th class="total-value">المبلغ المستحق {{$total=session()->get('cart')->totalPrice}} دج</th>
+                                            <th class="total-value" id="total">المبلغ المستحق {{$total=session()->get('cart')->totalPrice}} دج</th>
                                             <th style="background-color:lavender;"></th>
                                         </tr>                                                              
                                     </tfoot>
@@ -228,3 +274,56 @@
     <!-- /container -->
 </div>
 <!-- /section -->
+<script>
+    function calculate_total_lg(item_id)
+    {
+        if(document.getElementById('qty-lg-'+item_id).value<=1)
+        {
+            document.getElementById('qty-lg-'+item_id).value=1;
+        }
+        var qty=document.getElementById('qty-lg-'+item_id).value;
+        var product_price=document.getElementById('product_price-lg-'+item_id).value;
+        
+        document.getElementById('total-lg-'+item_id).innerHTML=product_price*qty+ " دج";
+        document.getElementById('total-hidden-lg-'+item_id).value=product_price*qty;
+        // //get item_id array
+        var item_ids_array=document.getElementById('item_ids_array-lg').value;
+        //alert(item_ids_array);
+       var total=0;
+        for(var i = 0 ; i < item_ids_array.length ; i++)
+        {
+            total+=parseInt(document.getElementById('total-hidden-lg-'+item_ids_array[i]).value);
+            // total+=item_ids_array[1];
+        }
+        //alert(total);
+        // update_qty(item_id);
+        //document.getElementById('qty-lg-'+item_id).value()=2;
+        document.getElementById('total-lg').innerHTML=total+" دج";
+    }
+
+    function calculate_total(item_id)
+    {
+        if(document.getElementById('qty-'+item_id).value<=1)
+        {
+            document.getElementById('qty-'+item_id).value=1;
+        }
+        var qty=document.getElementById('qty-'+item_id).value;
+        var product_price=document.getElementById('product_price-'+item_id).value;
+        
+        document.getElementById('total-'+item_id).innerHTML=product_price*qty+ " دج";
+        document.getElementById('total-hidden-'+item_id).value=product_price*qty;
+        // //get item_id array
+        var item_ids_array=document.getElementById('item_ids_array-lg').value;
+        //alert(item_ids_array);
+       var total=0;
+        for(var i = 0 ; i < item_ids_array.length ; i++)
+        {
+            total+=parseInt(document.getElementById('total-hidden-'+item_ids_array[i]).value);
+            // total+=item_ids_array[1];
+        }
+        //alert(total);
+        // update_qty(item_id);
+        //document.getElementById('qty-lg-'+item_id).value()=2;
+        document.getElementById('total').innerHTML=total+" دج";
+    }
+</script>

@@ -929,6 +929,12 @@ function number_of_reatings_have_this_product($product_id)
     $reatings=App\reating::where('product_id',$product_id)->where('visible',1)->get();
     return count($reatings);
 }
+//count_number_of_reatings_no_visible
+function count_number_of_reatings_no_visible()
+{
+    $reatings=App\reating::orderBy('id','desc')->where('visible',0)->get();
+    return count($reatings);
+}
 //get_user_type_name function
 function get_user_type_name($code)
 {
@@ -1661,6 +1667,34 @@ function selected_box_size($product_id,$size_id)
         return '';
     }
 }
+//function to print product choose color with html in lg
+function print_product_colors_lg_html($product_id)
+{
+    $product=App\product::findOrFail($product_id);
+    // $product_colors=App\product_colors::where('product_id',$product->id)->get();
+    $colors=$product->colors;
+    $html="";
+    if(count($colors)>0)
+    {
+        $html.='<ul class="color-option"><li><span class="text-uppercase">اللون:</span></li>';        
+        foreach($colors as $p_color)
+        {
+        $color=App\color::findOrFail($p_color->color_id);
+        $html.='<li><a id="color-box-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.')"></a></li>';        
+        }
+    }
+    $html.='</ul>';
+    if(session()->has('cart'))
+    {
+        $color_value=session()->get('cart')->items[$product->id]['color_id'];
+    }
+    else
+    {
+        $color_value=0;
+    }
+    $html.='<input type="hidden" name="color_id" id="color_id_lg-'.$product_id.'" value="'.$color_value.'" >';
+    return $html;
+}
 //function to print product choose color with html
 function print_product_colors_html($product_id)
 {
@@ -1686,7 +1720,35 @@ function print_product_colors_html($product_id)
     {
         $color_value=0;
     }
-    $html.='<input type="hidden" name="color_id" id="color_id" value="'.$color_value.'" >';
+    $html.='<input type="hidden" name="color_id" id="color_id-'.$product_id.'" value="'.$color_value.'" >';
+    return $html;
+}
+//function to print product choose size with html inlg
+function print_product_sizes_lg_html($product_id)
+{
+    $product=App\product::findOrFail($product_id);
+    // $product_colors=App\product_colors::where('product_id',$product->id)->get();
+    $sizes=$product->sizes;
+    $html="";
+    if(count($sizes)>0)
+    {
+        $html.='<ul class="size-option"><li><span class="text-uppercase">المقاس:</span></li>';        
+        foreach($sizes as $p_size)
+        {
+        $size=App\size::findOrFail($p_size->size_id);
+        $html.='<li class="active"><a id="size-box-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
+        }
+    }
+    $html.='</ul>';
+    if(session()->has('cart'))
+    {
+        $size_value=session()->get('cart')->items[$product->id]['size_id'];
+    }
+    else
+    {
+        $size_value=0;
+    }
+    $html.='<input type="hidden" name="size_id" id="size_id_lg-'.$product_id.'" value="'.$size_value.'" >';
     return $html;
 }
 //function to print product choose size with html
@@ -1714,7 +1776,7 @@ function print_product_sizes_html($product_id)
     {
         $size_value=0;
     }
-    $html.='<input type="hidden" name="size_id" id="size_id" value="'.$size_value.'" >';
+    $html.='<input type="hidden" name="size_id" id="size_id-'.$product_id.'" value="'.$size_value.'" >';
     return $html;
 }
 //is new product

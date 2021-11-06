@@ -1,17 +1,24 @@
 //
-function add_product_qty()
+function add_product_qty(item_id)
 {
-   $('#qty_input').val(parseInt($('#qty_input').val())+1);
-   $('#xs_qty_input').val(parseInt($('#xs_qty_input').val())+1);
+   $('#qty-'+item_id).val(parseInt($('#qty-'+item_id).val())+1);
+   calculate_total(item_id);
+   update_qty(item_id);
 }
 
-function min_product_qty()
+function min_product_qty(item_id)
 {
-   if($('#qty_input').val()>=2 || ('#xs_qty_input').val() >= 2)
+   if($('#qty-'+item_id).val()>=2)
    {
-   $('#qty_input').val(parseInt($('#qty_input').val())-1);
-   $('#xs_qty_input').val(parseInt($('#xs_qty_input').val())-1);
+   $('#qty-'+item_id).val(parseInt($('#qty-'+item_id).val())-1);
+   calculate_total(item_id);
+   update_qty(item_id);
    }
+   // if($('#qty-'+item_id).val()>=2 || ('#xs_qty_input').val() >= 2)
+   // {
+   // $('#qty-'+item_id).val(parseInt($('#qty_input').val())-1);
+   // $('#xs_qty_input').val(parseInt($('#xs_qty_input').val())-1);
+   // }
 }
 
 $(document).ready(function(){ 
@@ -294,6 +301,76 @@ function add_to_cart(product_id)
             timer: 1500
           })
       }
+   });
+}
+
+//function update qty carte
+function update_qty_lg(product_id)
+{
+   
+      color_id = document.getElementById('color_id_lg-'+product_id).value;            
+      size_id = document.getElementById('size_id_lg-'+product_id).value;                  
+      qty = document.getElementById('qty-lg-'+product_id).value;            
+      _token   = $('meta[name="csrf-token"]').attr('content');      
+   // //send data to products controler to add to catr function   
+   var host_name=document.location.protocol+'//'+document.location.host;
+   $.ajax({
+      url:host_name+'/product/'+product_id+'/updateqty-with-get-method',
+      method:'POST',
+      data:{color_id: color_id,size_id:size_id,qty:qty,_token :_token},
+      //dataType: 'JSON',
+      success:function(response){
+         console.log(response);
+         $('#cart_section').fadeIn(500).html(response);  
+         $('#xs_cart_section').fadeIn(500).html(response);   
+         //alert success
+         // Swal.fire({
+         //    //position: 'top-end',
+         //    icon: 'success',
+         //    title: 'تم إضافة المنتج إلى السلة',
+         //    showConfirmButton: false,
+         //    timer: 1500
+         //  })
+      },
+      error: function(response) {
+         console.log(response);
+        }
+   
+   });
+}
+
+//function update qty carte
+function update_qty(product_id)
+{
+   
+      color_id = document.getElementById('color_id-'+product_id).value;            
+      size_id = document.getElementById('size_id-'+product_id).value;                  
+      qty = document.getElementById('qty-'+product_id).value;            
+      _token   = $('meta[name="csrf-token"]').attr('content');      
+   // //send data to products controler to add to catr function   
+   var host_name=document.location.protocol+'//'+document.location.host;
+   $.ajax({
+      url:host_name+'/product/'+product_id+'/updateqty-with-get-method',
+      method:'POST',
+      data:{color_id: color_id,size_id:size_id,qty:qty,_token :_token},
+      //dataType: 'JSON',
+      success:function(response){
+         console.log(response);
+         $('#cart_section').fadeIn(500).html(response);  
+         $('#xs_cart_section').fadeIn(500).html(response);   
+         //alert success
+         // Swal.fire({
+         //    //position: 'top-end',
+         //    icon: 'success',
+         //    title: 'تم إضافة المنتج إلى السلة',
+         //    showConfirmButton: false,
+         //    timer: 1500
+         //  })
+      },
+      error: function(response) {
+         console.log(response);
+        }
+   
    });
 }
 
