@@ -465,7 +465,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                                 $totalQty=session()->has('cart')?session()->get('cart')->totalQty:'0';
                                 $output.='<span class="qty">'.$totalQty.'</span>
                             </div>
-                            <strong class="text-uppercase">عربة التسوق:</strong>
+                            <strong class="text-uppercase">السلة:</strong>
                             <br>';
                             $totalPrice=session()->has('cart')?session()->get('cart')->totalPrice:'0.00';
                             $output.='<span>'.$totalPrice.' دج</span>
@@ -507,8 +507,8 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                                 $output.='<div class="shopping-cart-btns">';
                                 $show_cart_route=route('cart.show');
                                 $checkout_route=route('checkout');
-                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض عربة التسوق</button></a>';
-                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض محتوى السلة</button></a>';
+                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i>  أطلب الآن</button></a>
                                 </div>';
                                 }
                             $output.='</div>
@@ -617,7 +617,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                                 $totalQty=session()->has('cart')?session()->get('cart')->totalQty:'0';
                                 $output.='<span class="qty">'.$totalQty.'</span>
                             </div>
-                            <strong class="text-uppercase">عربة التسوق:</strong>
+                            <strong class="text-uppercase">السلة:</strong>
                             <br>';
                             $totalPrice=session()->has('cart')?session()->get('cart')->totalPrice:'0.00';
                             $output.='<span>'.$totalPrice.' دج</span>
@@ -659,8 +659,8 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
                                 $output.='<div class="shopping-cart-btns">';
                                 $show_cart_route=route('cart.show');
                                 $checkout_route=route('checkout');
-                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض عربة التسوق</button></a>';
-                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i> الدفع</button></a>
+                                    $output.='<a href="'.$show_cart_route.'"><button class="main-btn">عرض محتوى السلة</button></a>';
+                                    $output.='<a href="'.$checkout_route.'"><button class="primary-btn"><i class="fa fa-arrow-circle-left"></i>  أطلب الآن</button></a>
                                 </div>';
                                 }
                             $output.='</div>

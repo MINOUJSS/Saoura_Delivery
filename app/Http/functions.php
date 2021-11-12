@@ -1498,6 +1498,21 @@ function is_product_has_this_sub_sub_cat($product_id,$sub_sub_category_id)
         return true;
     }
 }
+function discount_status($discount_id)
+{
+    $discount_data=App\discount::findOrfail($discount_id);
+    $to_date=new DateTime($discount_data->exp_date);
+    $from_now=new DateTime();
+    $interval=$to_date->diff($from_now);
+//  dd();
+    if($to_date <= $from_now)
+    {
+        return '<span class="label label-danger">منتهي الصلاحية</span>';
+    }else
+    {
+        return '<span class="label label-success">فعال</span>';
+    }
+}
 /*---------------------------------------------------------
     //        Store Functions                //
 ---------------------------------------------------------*/

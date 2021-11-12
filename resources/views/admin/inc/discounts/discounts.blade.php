@@ -32,7 +32,9 @@
             <tbody><tr>
               <th>#</th>
               <th>رقم المنتج</th>
+              <th>إسم المنتج</th>
               <th>قيمة التخفيض</th>
+              <th>حالة التخفيض</th>
               <th>تاريخ إنتهاء التخفيض</th>
               <th>العمليات</th>
             </tr>
@@ -40,8 +42,10 @@
             @foreach($discounts as $index=>$discount)
             <tr>
               <td>{{$index + 1}}</td>
-              <td>{{$discount->product_id}}</td>              
+              <td>{{$discount->product_id}}</td>
+              <td>{{$discount->product->name}}</td>              
               <td>{{get_product_discount($discount->product_id)}} %</td>
+              <td>{!!discount_status($discount->id)!!}</td>
               <td>{{$discount->exp_date}}</td>              
               <td>
                 <a href="{{url('admin/product/discount').'/'.$discount->id.'/edit'}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>

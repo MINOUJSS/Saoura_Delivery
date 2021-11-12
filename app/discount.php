@@ -9,6 +9,6 @@ class discount extends Model
     //
     public function product()
     {
-        return $this->belongsTo('App\prduct');
+        return $this->belongsTo('App\product');
     }
 }
