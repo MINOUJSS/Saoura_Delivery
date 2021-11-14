@@ -22,25 +22,29 @@ class PagesController extends Controller
 {
     public function about_us()
     {
+        $title='من نحن';
         $about=about_us::orderBy('id','desc')->first();
-        return view('store.about-us',compact('about'));
+        return view('store.about-us',compact('title','about'));
     }
 
     public function contra()
     {
+        $title='سياسة خصوصية';
         $contra=contra::orderBy('id','desc')->first();
-        return view('store.contra',compact('contra'));
+        return view('store.contra',compact('title','contra'));
     }
 
     public function how_to_ship()
     {
+        $title='طريقة تسليم الطلبات';
         $how_to_ship=how_to_ship::orderBy('id','desc')->first();
-        return view('store.how-to-ship',compact('how_to_ship'));
+        return view('store.how-to-ship',compact('title','how_to_ship'));
     }
 
     public function contact_us()
     {
-        return view('store.contact-us');
+        $title='إتصل بنا';
+        return view('store.contact-us',compact('title'));
     }
     
     public function contact_us_store(Request $request)
@@ -103,7 +107,8 @@ class PagesController extends Controller
 
     public function faq()
     {
-        return view('store.faq');
+        $title='أسئلة شائعة';
+        return view('store.faq',compact('title'));
     }
 
     public function faq_store(Request $request)

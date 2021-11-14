@@ -9,6 +9,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('store.checkout');
+        $title='إستمارة الطلب';
+        return view('store.checkout',compact('title'));
     }
 }

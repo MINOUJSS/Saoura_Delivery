@@ -11,7 +11,8 @@ use App\sid_deal;
 class StoreController extends Controller
 {
     public function index()
-    {           
+    { 
+        $title='الرئيسية';          
         //get discount products
         $products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->get();
         $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
@@ -38,7 +39,7 @@ class StoreController extends Controller
         //get slider deals
         $slids=deal::orderBy('id','desc')->get();
         
-        return view('store.index',compact('dis_products','slids','sid_deal','last_products','piked_products'));
+        return view('store.index',compact('title','dis_products','slids','sid_deal','last_products','piked_products'));
     }
 
     public function dis_products($id)
@@ -61,7 +62,7 @@ class StoreController extends Controller
     public function products()
     {
         $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);
-        return view('store.products',compact('products'));
+        return view('store.products',compact('title','products'));
     }
 
     public function product_page()

@@ -27,7 +27,8 @@ use Auth;
 class ProductController extends Controller
 {
     public function index()
-    {      
+    { 
+        $title='منتجاتنا';     
         //destroy searcher session
         // if(session()->has('searcher'))
         // {
@@ -410,7 +411,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         }else{
         $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);                
         }
-        return view('store.products',compact('products','min_price','max_price','colors','sizes','brands')); 
+        return view('store.products',compact('title','products','min_price','max_price','colors','sizes','brands')); 
     }
 
     public function product($slug)
@@ -672,11 +673,13 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
 
     public function showCart()
     {
-        return view('store.cart');
+        $title='السلة';
+        return view('store.cart',compact('title'));
     }
 
     public function products_by_category($slug)
     {
+        $title='منتجاتنا|حسب الأصناف';
         $category=category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
@@ -709,11 +712,12 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
             $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
         //dd($products);
-        return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
+        return view('store.products',compact('title','products','colors','sizes','brands','min_price','max_price')); 
     }
 
     public function products_by_sub_category($slug)
     {
+        $title='منتجاتنا|حسب تحت الأصناف';
         $sub_category=Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
@@ -744,11 +748,12 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         {
             $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
-        return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
+        return view('store.products',compact('title','products','colors','sizes','brands','min_price','max_price')); 
     }
 
     public function products_by_sub_sub_category($slug)
     {
+        $title='منتجاتنا|حسب  تحت تحت الأصناف';
         $sub_sub_category=Sub_Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
@@ -779,7 +784,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         {
             $products=product::where('id',0)->where('statu',1)->where('qty','!=',0)->paginate(12);
         }
-        return view('store.products',compact('products','colors','sizes','brands','min_price','max_price')); 
+        return view('store.products',compact('title','products','colors','sizes','brands','min_price','max_price')); 
     }
 
     public function find_products(Request $request)
