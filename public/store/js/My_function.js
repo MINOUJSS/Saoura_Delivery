@@ -500,7 +500,7 @@ setTimeout(alert('1000'),1000);
    // fix nav bar whenn scrolling
    $(window).scroll(function(){
       $('nav').toggleClass('navbar-fixed-top',$(this).scrollTop() >50);
-      $('.fix-order-btn').toggleClass('order-btn-fixed-bottom',$(this).scrollTop() >800);
+      $('.fix-order-btn').toggleClass('order-btn-fixed-bottom',$(this).scrollTop() >500);
    });
    //show and hid search form
    $('.xs-search-btn').click(function(){
