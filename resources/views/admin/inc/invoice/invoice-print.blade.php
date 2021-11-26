@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header">
-              <i class="fa fa-globe"></i>{{store_name_value()}}
+              <i class="fa fa-globe"></i> {{store_name_value()}}
               <small class="pull-right">تاريخ الطلب:{{$order->created_at->format('d-m-Y')}}</small>
             </h2>
           </div><!-- /.col -->
@@ -27,7 +27,7 @@
             </address>
           </div><!-- /.col -->
           <div class="col-sm-4 invoice-col">
-            إلى السيد
+            إلى السيد(ة)
             <address>
               <strong>{{$order->billing_name}}</strong><br>
               {{$order->billing_address}}<br>
@@ -127,27 +127,33 @@
                   <th>Tax (9.3%)</th>
                   <td>$10.34</td>
                 </tr> --}}
-                <tr>
+                {{-- <tr>
                   <th>مصاريف الشحن:</th>
                   <td>0 دج</td>
                 </tr>
-                <tr>
+                <tr> --}}
                   <th>المبلغ الإجمالي:</th>
                   <td>{{$total}} دج</td>
                 </tr>
               </tbody></table>
             </div>
+            <p class="lead">تواصلوا معنا:</p>
+         <ul class="text-muted well well-sm no-shadow">
+          <li>عبر موقعنا الرسمي :إتصل_بنا/{{url('/')}}</li>
+          <li>صفحة  الفيس بوك الرسمية : https://www.facebook.com/Saoura-delivery-109610364241532</li>
+          <li>قناة اليوتيوب الرسمية : https://www.youtube.com/channel/UCI8WJx13xbdkczkZLBmOwmw</li>
+        </ul>
+            <h3 class="text-center">الساورة دليفري تشكركم  على ثقتكم</h3>
           </div><!-- /.col -->
         </div><!-- /.row -->
-
         <!-- this row will not appear when printing -->
-        <div class="row no-print">
+        {{-- <div class="row no-print">
           <div class="col-xs-12">
-            {{-- <a href="{{route('admin.invoice',$order->id)}}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a> --}}
-            {{-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-            <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button> --}}
+            <a href="{{route('admin.invoice',$order->id)}}" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+            <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
+            <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
           </div>
-        </div>
+        </div> --}}
       </section>
       <!--End Page Content Here-->
 

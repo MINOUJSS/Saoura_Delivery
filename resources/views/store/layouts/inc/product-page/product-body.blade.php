@@ -78,7 +78,7 @@
                 <button style="margin-top:10px" type="submit" name="submit" value="تعديل" class="col-xs-12 primary-btn add-to-cart"><i class="fa fa-edit"></i> تعديل الكمية</button>
                 </div>
                 <div class="form-group col-xs-12">
-                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> أطلبه الآن</button>
                 </div>
                 </form>            
             @else 
@@ -101,7 +101,7 @@
                 <button type="submit" name="submit" value="submit" class="primary-btn add-to-cart col-xs-12"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
                 </div>
                 <div class="form-group col-xs-12 col-lg-6 pull-left">
-                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> أطلبه الآن</button>
                 </div>
                 </form>
             @endif 
@@ -128,7 +128,7 @@
                     <input id="size_id" name="size_id" class="input" type="hidden" value="@if(old('size_id')){{old('size_id')}}@else{{session()->get('cart')->items[$product->id]['size_id']}}@endif">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
                 <button style="margin-top:10px" type="submit" name="submit" value="تعديل" class="primary-btn add-to-cart"><i class="fa fa-edit"></i> تعديل الكمية</button>
-                <button type="submit" name="checkout" value="checkout" style="margin-top:5px;width:100%;" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                <button type="submit" name="checkout" value="checkout" style="margin-top:5px;width:100%;" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> أطلبه الآن</button>
                 </div>
                 </form>            
             @else 
@@ -147,7 +147,7 @@
                     <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
                 <button type="submit" name="submit" value="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>إلى السلة</button>
-                <button type="submit" name="checkout" value="checkout" style="margin-top:5px;width:100%;" class="primary-btn btn-danger"><i class="fa fa-dollar"></i> إطلبه الآن</button>
+                <button type="submit" name="checkout" value="checkout" style="margin-top:5px;width:100%;" class="primary-btn btn-danger"><i class="fa fa-dollar"></i> أطلبه الآن</button>
                 </div>
                 </form>
             @endif        

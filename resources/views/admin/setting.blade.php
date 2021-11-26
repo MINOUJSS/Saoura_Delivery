@@ -45,6 +45,24 @@
                 </span>
                 @endif
             </div>
+            <div class="form-group {{$errors->has('phone')?'has-error' : ''}}">
+              <label for="phone">{{store_phone_label()}}</label>
+              <input name="phone" class="form-control" type="text" placeholder="أكتب هاتف المتجر هنا" value="{{store_phone_value()}}" >
+              @if($errors->has('phone'))
+              <span class="help-block">
+                  {{$errors->first('phone')}}
+              </span>
+              @endif
+          </div>
+          <div class="form-group {{$errors->has('address')?'has-error' : ''}}">
+            <label for="address">{{store_address_label()}}</label>
+            <input name="address" class="form-control" type="text" placeholder="أكتب عنوان المتجر  هنا" value="{{store_address_value()}}" >
+            @if($errors->has('address'))
+            <span class="help-block">
+                {{$errors->first('address')}}
+            </span>
+            @endif
+        </div>
             <div class="form-group {{$errors->has('email')?'has-error' : ''}}">
                 <label for="email">{{store_email_label()}}</label>
                 <input name="email" class="form-control" type="text" placeholder="أكتب إسم المتجر هنا" value="{{store_email_value()}}" >

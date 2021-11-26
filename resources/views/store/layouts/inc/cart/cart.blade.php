@@ -78,7 +78,7 @@
                                             $item_ids_string.=''.$id.'';
                                         }else
                                         {
-                                        $item_ids_string.=''.$id.'';
+                                        $item_ids_string.=''.$id.',';
                                         }
                                         $item_ids_string.='';
                                         @endphp
@@ -174,27 +174,27 @@
                                             </td>
                                             <td></td>
                                         </tr>  
+                                                                                                                  
+                                        @endforeach 
                                         <!---->
                                         @php
-                                            $item_ids[]=$item['id'];
-                                            $item_ids_string='';
+                                            //$item_ids[]=$item['id'];
+                                            $item_ids_string='[';
                                         @endphp 
-                                        <!--/-->                                                                          
-                                        @endforeach 
+                                        <!--/-->
                                         <!---->
                                         <!--convert array to string-->
                                         @foreach ($item_ids as $index=>$id)                         
                                         @php
                                         if($index+1>=count($item_ids)){ 
-                                            $item_ids_string.=''.$id.'';
+                                            $item_ids_string.=''.$id.']';
                                         }else
                                         {
-                                        $item_ids_string.=''.$id.'';
-                                        }
-                                        
+                                        $item_ids_string.=''.$id.',';
+                                        }     
                                         @endphp
                                         @endforeach  
-                                        <input type="hidden" name="item_ids_array" id="item_ids_array" value="{{$item_ids_string}}">
+                                        <input type="hidden" name="item_ids_array" id="item_ids_array" value="{{$item_ids_string}}h">
                                         <!---->                                       
                                         @endif                                        
                                     </tbody>
@@ -287,8 +287,9 @@
         document.getElementById('total-lg-'+item_id).innerHTML=product_price*qty+ " دج";
         document.getElementById('total-hidden-lg-'+item_id).value=product_price*qty;
         // //get item_id array
-        var item_ids_array=document.getElementById('item_ids_array-lg').value;
-        //alert(item_ids_array);
+        var item_ids=document.getElementById('item_ids_array-lg').value;
+        var item_ids_array=item_ids.split(',');
+        // alert(item_ids_array[1]);
        var total=0;
         for(var i = 0 ; i < item_ids_array.length ; i++)
         {
@@ -313,7 +314,8 @@
         document.getElementById('total-'+item_id).innerHTML=product_price*qty+ " دج";
         document.getElementById('total-hidden-'+item_id).value=product_price*qty;
         // //get item_id array
-        var item_ids_array=document.getElementById('item_ids_array-lg').value;
+        var item_ids=document.getElementById('item_ids_array-lg').value;
+        var item_ids_array=item_ids.split(',');
         //alert(item_ids_array);
        var total=0;
         for(var i = 0 ; i < item_ids_array.length ; i++)

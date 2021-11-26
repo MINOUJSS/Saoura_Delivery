@@ -31,6 +31,8 @@ class SettingController extends Controller
         ]);        
         //creat varible
         $store_name=setting::where('var','store_name')->first();
+        $phone=setting::where('var','phone')->first();
+        $address=setting::where('var','address')->first();
         $email=setting::where('var','email')->first();
         $facebook=setting::where('var','facebook')->first();
         $youtube=setting::where('var','youtube')->first();
@@ -39,6 +41,10 @@ class SettingController extends Controller
         //update
         $store_name->value=$request->store_name;
         $store_name->update();
+        $phone->value=$request->phone;
+        $phone->update();
+        $address->value=$request->address;
+        $address->update();
         $email->value=$request->email;
         $email->update();
         $facebook->value=$request->facebook;

@@ -75,9 +75,9 @@
                   <th style="width:90px;">السعر</th>
                   <th>التخفيض</th>
                   <th style="width:90px;">المبلغ</th>
-                  @if(count($products)>1)
+                  {{-- @if(count($products)>1) --}}
                   <th style="width:90px;">العمليات</th>
-                  @endif
+                  {{-- @endif --}}
                 </tr>
               </thead>
               <tbody>
@@ -122,6 +122,7 @@
                     @if(count($products)>1)
                     <td><i id="delete_order_product" title="{{$product->product->name}}" url="{{url('/admin/order/'.$product->order_id.'/product/'.$product->product_id.'/delete')}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
                     @endif
+                    <td><a href="{{route('admin.order.edit',$product->order_id)}}"><i class="fa fa-edit text-success cursor-pointer"></i></a></td>
                   @else 
                   <td>/</td>
                   @endif

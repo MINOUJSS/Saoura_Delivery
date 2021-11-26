@@ -46,7 +46,73 @@ class OrderController extends Controller
         $order=Order::findOrfail($id);
         $products=order_product::where('order_id',$id)->get();
         return view('admin.order-details',compact('order','products','deny_obses','return_obses'));
-    }  
+    } 
+    
+    public function order_edit($id)
+    {
+        //
+        $deny_obses=deny_order_observation::all();
+        $return_obses=return_order_observation::all();
+        //
+        $order=Order::findOrfail($id);
+        $products=order_product::where('order_id',$id)->get();
+        return view('admin.order-edit',compact('order','products','deny_obses','return_obses'));
+    }
+
+    public function update_order(Request $request)
+    {
+        //validate data
+        $this->validate($request,[
+            'first-name' => 'required|min:1',
+            'email' => 'sometimes:required|sometimes:email',
+            'address' =>'required',
+            'tel' => 'required|numeric|min:9',            
+        ]);
+        
+    
+        //update Order
+        $order=order::findOrFail($id);
+        $order->billing_name=$request->input('first-name');
+        $order->billing_email=$request->email;
+        $order->billing_address=$request->address;        
+        $order->billing_mobile=$request->tel;
+        $order->total=$request->total;
+        $order->update();
+        //update order product
+        for($x=0;$x<=count($request->product_id)-1;$x++)
+        {
+        $order_product=new order_product;
+        $order_product->product_id=$request->product_id[$x];
+        $order_product->qty=$request->product_qty[$x];
+        if($request->product_color[$x]==0)
+        {
+            $order_product->color_id=1;
+        }else
+        {
+            $order_product->color_id=$request->product_color[$x];
+        }
+        if($request->product_size[$x]==0)
+        {
+            $order_product->size_id=1;
+        }else
+        {
+            $order_product->size_id=$request->product_size[$x];
+        }                        
+        $order_product->save();
+        //modify the qty in magazin
+        $product=product::find($request->product_id[$x]);
+        $product->qty=($product->qty - $request->product_qty[$x]);
+        $product->update();
+        }              
+        //send thanks email to user about  this order
+        
+        //alert for success message
+        Alert::success('تعديل طلب', 'تم تعديل الطلب بنجاح');
+        // redirect to thank you page;
+        //return redirect()->back();
+        return redirect()->back();
+
+    }
 
     public function order_confirm($order_id)
     {

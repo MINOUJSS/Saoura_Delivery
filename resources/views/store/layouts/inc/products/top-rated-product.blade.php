@@ -14,6 +14,7 @@
     <h3 class="aside-title">آخر المنتجات التي تم تقييمها</h3>
     <!-- widget product -->
     @foreach($reating_products as $index=>$product)
+    @if($product->status!=1)
     <div class="product product-widget">
         <div class="product-thumb">
         <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="">
@@ -34,6 +35,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endforeach
     <!-- /widget product -->
 @endif

@@ -1196,6 +1196,18 @@ function store_name_value()
         return null;    
     }
 }
+//function store_phone_label()
+function store_phone_label()
+{
+    $setting=App\setting::where('var','phone')->first();
+    return $setting->display_var;    
+}
+//function store_address_label()
+function store_address_label()
+{
+    $setting=App\setting::where('var','address')->first();
+    return $setting->display_var;    
+}
 //function store_email_label()
 function store_email_label()
 {
@@ -1658,6 +1670,18 @@ function product_availability($id)
         return 'غير متوفر في المخازن';
     }
 }
+//function get_product_colors
+function get_product_colors($product_id)
+{
+    $product_colors=App\product_colors::where('product_id',$product_id)->get();
+    return $product_colors;
+}
+//function get_product_sizes
+function get_product_sizes($product_id)
+{
+    $product_sizes=App\product_sizes::where('product_id',$product_id)->get();
+    return $product_sizes;
+}
 //function get_product_color_name_form_id_color
 function get_product_color_code_form_id_color($id)
 {
@@ -1959,7 +1983,7 @@ function get_color_name_from_id($color_id)
 }
 function get_size_name_from_id($size_id)
 {
-    $size=App\color::find($size_id);
+    $size=App\size::find($size_id);
     if($size!=null)
     {
     return $size->name;

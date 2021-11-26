@@ -82,7 +82,7 @@
                                             $item_ids_string.=''.$id.'';
                                         }else
                                         {
-                                        $item_ids_string.=''.$id.'';
+                                        $item_ids_string.=''.$id.',';
                                         }
                                         $item_ids_string.='';
                                         @endphp
@@ -491,7 +491,8 @@
         document.getElementById('total-lg-'+item_id).innerHTML=product_price*qty+ " دج";
         document.getElementById('total-hidden-lg-'+item_id).value=product_price*qty;
         // //get item_id array
-        var item_ids_array=document.getElementById('item_ids_array-lg').value;
+        var item_ids=document.getElementById('item_ids_array-lg').value;
+        var item_ids_array=item_ids.split(',');
         //alert(item_ids_array);
        var total=0;
         for(var i = 0 ; i < item_ids_array.length ; i++)
@@ -517,7 +518,8 @@
         document.getElementById('total-'+item_id).innerHTML=product_price*qty+ " دج";
         document.getElementById('total-hidden-'+item_id).value=product_price*qty;
         // //get item_id array
-        var item_ids_array=document.getElementById('item_ids_array-lg').value;
+        var item_ids=document.getElementById('item_ids_array-lg').value;
+        var item_ids_array=item_ids.split(',');
         //alert(item_ids_array);
        var total=0;
         for(var i = 0 ; i < item_ids_array.length ; i++)
