@@ -5,16 +5,21 @@
  {
      if(!in_array(App\product::findOrFail($reating->product_id),$reating_products))
      {
-        $reating_products[]=App\product::findOrFail($reating->product_id);
+        //$reating_products[]=App\product::findOrFail($reating->product_id);
+        $reating_products[]=App\product::where('id',$reating->product_id)->where('statu',1)->first();
      }    
  }
 @endphp
 @if(count($reating_products)>0)
+{{-- {{dd($reating_products)}} --}}
 <div class="aside">
+    
+    @foreach($reating_products as $index=>$product)
+    @if($product!=null && $index==0)
     <h3 class="aside-title">آخر المنتجات التي تم تقييمها</h3>
     <!-- widget product -->
-    @foreach($reating_products as $index=>$product)
-    @if($product->status!=1)
+    @endif
+    @if($product!=null)
     <div class="product product-widget">
         <div class="product-thumb">
         <img src="{{url('/admin-css/uploads/images/products/'.$product->image)}}" alt="">
