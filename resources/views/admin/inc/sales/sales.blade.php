@@ -31,6 +31,7 @@
           <table class="table table-hover">
             <tbody><tr>
               <th>#</th>
+              <th>تاريخ المبيعة</th>
               <th>رقم الطلب</th>
               <th>اسم المستهلك</th>
               <th>رقم المنتج</th>
@@ -50,8 +51,9 @@
             @foreach($sales as $index=>$sale)
             <tr>
               <td>{{$index + 1}}</td>
+              <td>{{$sale->created_at->diffForHumans()}}</td>
               <td>{{$sale->order_id}}</td>
-              <td>{{$sale->consumer->name}}</td>
+              <td>@if($sale->consumer->name=='Default'){{$sale->order->billing_name}}@else{{$sale->consumer->name}}@endif</td>
               <td>{{$sale->product->id}}</td>
               <td>{{$sale->product->name}}</td>
               <td><span class="text-danger">{{$sale->charge_price}}</span></td>
@@ -67,7 +69,8 @@
             @endphp
             @endforeach
             <th>
-              <td></td>              
+              <td></td> 
+              <td></td>             
               <td></td>
               <td></td>
               <td>المجموع</td>
@@ -77,6 +80,7 @@
               <td>{{$total_benifis}}</td>
             </th>
             @else 
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

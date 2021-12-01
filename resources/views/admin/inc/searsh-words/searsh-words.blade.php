@@ -33,18 +33,20 @@
               <th>#</th>
               <th>اسم الزبون</th>
               <th>كلمة البحث</th>
+              <th>تارخ البحث</th>
               <th>العمليات</th>
             </tr>
             @if($searsh_words->count()>0)
             @foreach($searsh_words as $index=>$s_word)
             <tr>
               <td>{{$index + 1}}</td>
-              @if($s_word->consumer!=null)
+              @if($s_word->consumer!=null && $s_word->consumer->name!='Default')
               <td>{{$s_word->consumer->name}}</td>
               @else 
               <td>زبون غير مسجل</td>
               @endif
               <td>{{$s_word->word}}</td>
+              <td>{{$s_word->created_at->diffForHumans()}}</td>
               <td></td>
             </tr>
             @endforeach
