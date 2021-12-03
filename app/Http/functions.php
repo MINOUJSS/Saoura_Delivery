@@ -1028,11 +1028,11 @@ function get_no_read_contact_data()
     return $contacts;
 }
 //get_no_read_contatc
-// function get_no_read_contact()
-// {
-//     $contacts=App\contact_us::where('status',0)->get();
-//     return count($contacts);
-// }
+function get_no_read_contact()
+{
+    $contacts=App\contact_us::where('status',0)->get();
+    return count($contacts);
+}
 //has reply
 function has_reply($contact_us_id)
 {
