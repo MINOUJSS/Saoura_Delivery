@@ -11,8 +11,8 @@
 	<meta property="og:title" content="{{$product->name}}">
 	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
 	@else
-	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
 	<meta property="og:image" content="https://saouradelivery.com/store/img/logo.png">
+	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
 	@endif
 	
 	
