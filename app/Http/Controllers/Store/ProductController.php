@@ -418,6 +418,11 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
     {
         $title=$slug;
         $product=product::where('slug',$slug)->first();
+        if($product->statu==0)
+        {
+            //return to not found page
+            return redirect()->back();
+        }
         $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
         $similar_products_list=up_sale::where('first_product_id',$product->id)->where('type',1)->get();
         $similar_products_ids=array();
