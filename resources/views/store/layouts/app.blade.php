@@ -9,10 +9,10 @@
 	<!---->
 	@if(is_product_details_page(Route::current()->getName()))
 	<meta property="og:title" content="{{$product->name}}">
-	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
+	<meta property="og:image" content="{{url('/admin-css/img/products/'.$product->image)}}">
 	@else
 	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
-	<meta property="og:image" content="https://scontent.fcbh1-1.fna.fbcdn.net/v/t39.30808-1/p200x200/228555755_323162239553009_9088820491241450887_n.png?_nc_cat=111&ccb=1-5&_nc_sid=1eb0c7&_nc_ohc=TLO3UUYMkfoAX85pqD0&_nc_ht=scontent.fcbh1-1.fna&oh=6b6b2455cc60aa6229785b76250703fd&oe=61AE78DD">
+	<meta property="og:image" content="{{url('/store/uploads/images/logo7.png'">
 	@endif
 	
 	
