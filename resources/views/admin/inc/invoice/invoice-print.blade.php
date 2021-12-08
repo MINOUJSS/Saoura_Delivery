@@ -80,12 +80,14 @@
                       0 %
                     @endif  
                   </td>
-                  <td>
+                  <td>                
                       @if(has_discount_in_this_order_date($product->product_id,$product->order->created_at))
                       @php
-                          $total=$total+(price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty);
+                          // $total=$total+(price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty);
+                          $total=$total+(price_with_discount($product->product_id) * $product->qty);
                       @endphp
-                      {{price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty}}  
+                      {{-- {{price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty}}   --}}
+                      {{price_with_discount($product->product_id) * $product->qty}}  
                       @else 
                     @php
                         $total=$total+($product->product->selling_price * $product->qty);

@@ -1890,6 +1890,7 @@ function has_discount_in_this_order_date($product_id,$date)
 function price_with_discount($product_id)
 {
     $product=App\product::find($product_id);
+    // dd($product_id);
     $discount_data=App\discount::where('product_id',$product_id)->first();
     if($discount_data!=null){
     $new_price=$discount_data->discount;

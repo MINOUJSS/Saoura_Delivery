@@ -34,7 +34,8 @@ class InvoiceController extends Controller
             $price_wout_dis=$price_wout_dis+$product->product->selling_price;
             if(has_discount_in_this_order_date($product->product_id,$order->created_at))
             {
-                $total=$total+(price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty);
+                // $total=$total+(price_with_discount($product->product->selling_price,get_product_discount($product->product_id)) * $product->qty);
+                $total=$total+(price_with_discount($product->product_id) * $product->qty);
                 $binifis=$binifis+(get_product_binifis_with_discount($product->product_id) * $product->qty);
             }else
             {

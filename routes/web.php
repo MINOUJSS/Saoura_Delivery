@@ -356,3 +356,5 @@ Route::post('/أسئلة-شائعة/create','Store\PagesController@faq_store')->
 Route::post('/email_list/create','Store\PagesController@email_list_store')->name('email_list.store');
 //thank you page
 Route::get('/thank-you','Store\ThankYouPageController@index')->name('store.thanks');
+//qty_zero
+Route::get('/qty-zero','Store\PagesController@qty_zero')->name('store.qty_zero');

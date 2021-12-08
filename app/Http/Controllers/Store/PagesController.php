@@ -185,4 +185,9 @@ class PagesController extends Controller
         return redirect()->back();
         }
     }
+    public function qty_zero()
+    {
+        $title='نفاذ الكمية';
+        return view('store.qty-zero',compact('title'));
+    }
 }
