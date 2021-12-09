@@ -98,7 +98,7 @@
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
                 </div>
                 <div class="form-group col-xs-12 col-lg-6 pull-left">
-                <button type="submit" name="submit" value="submit" class="primary-btn add-to-cart col-xs-12"><i class="fa fa-shopping-cart"></i> أضف إلى السلة</button>
+                <button type="submit" name="submit" value="submit" class="primary-btn add-to-cart col-xs-12"><i class="fa fa-shopping-cart"></i> أضف للسلة</button>
                 </div>
                 <div class="form-group col-xs-12 col-lg-6 pull-left">
                 <button type="submit" name="checkout" value="checkout" class="primary-btn btn-danger col-xs-12"><i class="fa fa-dollar"></i> أطلبه الآن</button>
