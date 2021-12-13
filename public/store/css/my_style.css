@@ -227,4 +227,24 @@ li
    font-size: 20px;
    padding:5px;
  }
+/*animate order btn*/
+ .blink{
+  /* width:200px;
+  height: 50px;
+    background-color: magenta; */
+  /* padding: 15px;	 */
+  text-align: center;
+  /* line-height: 50px; */
+}
+.b-span{
+  font-size: 18px;
+  font-family: cursive;
+  color: white;
+  animation: blink 1s linear infinite;
+}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
  /*::::::::::::end media screen:::::::::*/
