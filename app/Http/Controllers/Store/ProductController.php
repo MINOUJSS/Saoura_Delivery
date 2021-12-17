@@ -409,8 +409,8 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         
         $products=$query->where('statu',1)->where('qty','!=',0)->paginate(12);
         }else{
-        // $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);                
-        $products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(12);                
+        $products=product::OrderBy('id','desc')->where('statu',1)->where('qty','!=',0)->paginate(12);                
+        // $products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(12);                
         }
         return view('store.products',compact('title','products','min_price','max_price','colors','sizes','brands')); 
     }
