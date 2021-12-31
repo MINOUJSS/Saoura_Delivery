@@ -419,11 +419,16 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
     {
         $title=$slug;
         $product=product::where('slug',$slug)->first();
-        if($product->statu==0)
+        if($product!=null)
         {
-            //return to not found page
-            return redirect()->back();
-        }
+            if($product->statu==0 or $product->qty==0)
+            {
+                //return to not found page
+                // return redirect()->back();
+                return redirect(route('store.qty_zero'));
+            }
+        
+
         $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
         $similar_products_list=up_sale::where('first_product_id',$product->id)->where('type',1)->get();
         $similar_products_ids=array();
@@ -449,6 +454,11 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         {
             $product=product::findOrfail(0);
         }
+
+    }else
+    {
+        return redirect(route('store.product_not_found'));
+    }
     }
 
     public function addToCart(product $product)

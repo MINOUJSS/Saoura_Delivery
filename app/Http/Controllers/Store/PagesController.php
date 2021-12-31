@@ -190,4 +190,9 @@ class PagesController extends Controller
         $title='نفاذ الكمية';
         return view('store.qty-zero',compact('title'));
     }
+    public function product_not_found()
+    {
+        $title='المنتج غير موجود';
+        return view('store.product-not-found',compact('title'));
+    }
 }
