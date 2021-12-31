@@ -48,7 +48,16 @@
             <!-- ASIDE IN SMALL SCREEN-->
             <div id="aside" class="hidden-md hidden-lg col-md-3">
                 <!-- aside widget -->
-
+                @if($sid_deal!==null)
+                <div class="banner banner-2">
+                    {{-- <img src="{{url('store')}}/img/banner14.jpg" alt="" height="438" width="263"> --}}
+                    <img src="{{url('admin-css/uploads/images/deals').'/'.$sid_deal->image}}" alt="" height="438" width="263">
+                    <div class="banner-caption">
+                        <h2 class="white-color">{{$sid_deal->title}}</h2>
+                        <a href="{{$sid_deal->link}}"><button class="primary-btn">أطلب الآن</button></a>
+                    </div>
+                </div>
+                @endif
                 <!-- /aside widget -->
             </div>
             <!-- /ASIDE IN SMALL SCREEN-->

@@ -1661,7 +1661,7 @@ function has_sub_sub_category($sub_category_id)
 function product_availability($id)
 {
     $product=App\product::findOrFail($id);
-    if($product->qty > 1)
+    if($product->qty > 0)
     {
         return 'متوفر في المخازن بكميات محدودة';
     }

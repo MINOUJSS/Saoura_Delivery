@@ -357,6 +357,6 @@ Route::post('/email_list/create','Store\PagesController@email_list_store')->name
 //thank you page
 Route::get('/thank-you','Store\ThankYouPageController@index')->name('store.thanks');
 //qty_zero
-Route::get('/qty-zero','Store\PagesController@qty_zero')->name('store.qty_zero');
+Route::get('/qty-zero/{product_id}','Store\PagesController@qty_zero')->name('store.qty_zero');
 //product not fount
 Route::get('/product-not-found','Store\PagesController@product_not_found')->name('store.product_not_found');

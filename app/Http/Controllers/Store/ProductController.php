@@ -425,7 +425,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
             {
                 //return to not found page
                 // return redirect()->back();
-                return redirect(route('store.qty_zero'));
+                return redirect(route('store.qty_zero',$product->id));
             }
         
 

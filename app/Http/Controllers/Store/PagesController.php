@@ -16,6 +16,8 @@ use App\contact_us;
 use App\Consumer;
 use App\email_list;
 use App\admin_notefication;
+use App\product;
+use App\sid_deal;
 use Auth;
 
 class PagesController extends Controller
@@ -185,14 +187,23 @@ class PagesController extends Controller
         return redirect()->back();
         }
     }
-    public function qty_zero()
+    public function qty_zero($product_id)
     {
+        $product=product::find($product_id);
+        if($product==null)
+        {
+            return redirect(route('store.product_not_found'));
+        }else
+        {
         $title='نفاذ الكمية';
-        return view('store.qty-zero',compact('title'));
+        $sid_deal=sid_deal::inRandomOrder()->first();
+        return view('store.qty-zero',compact('title','product','sid_deal'));
+        }
     }
     public function product_not_found()
     {
         $title='المنتج غير موجود';
-        return view('store.product-not-found',compact('title'));
+        $sid_deal=sid_deal::inRandomOrder()->first();
+        return view('store.product-not-found',compact('title','sid_deal'));
     }
 }

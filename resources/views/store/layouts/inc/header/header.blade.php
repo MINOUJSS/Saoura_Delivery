@@ -4,9 +4,11 @@
         <div class="container">
             <div class="pull-left">
                 {{-- <img src="{{url('store/img/drapo.png')}}" height="20"> --}}
-                <span>التوصيل سريع و مجاني في ولاية بشار و الدفع عند الإستلام!</span>
+                <span>التوصيل مجاني في مدينة بشار و الدفع عند الإستلام!</span>
             </div>
             <div class="pull-right">
+                <a class="header-top-links" href="tel:0660007370" target="blank">0660007370 <i class="fa fa-phone" style="color:rgb(43, 7, 250)"></i></a> &ThinSpace;|&ThinSpace;
+                <a href="https://wa.me/213660007370" target="blank"> 660007370 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a>
                 {{-- <ul class="header-top-links">
                     <li><a href="#">المتجر</a></li>
                     <li><a href="#">النشرة الإخبارية</a></li>
@@ -249,7 +251,9 @@
         <!--container in sm-->
         <div class="container-fliud hidden-lg hidden-md"> 
                 <div class="header-text-div text-center">
-                    <p> التوصيل سريع و مجاني في ولاية بشار والدفع عند الإستلام</p>
+                    <a class="header-top-links" href="tel:0660007370" target="blank" style="color:#fff;">0660007370 <i class="fa fa-phone" style="color:rgb(43, 7, 250)"></i></a> &ThinSpace;|&ThinSpace;
+                <a href="https://wa.me/213660007370" target="blank" style="color:#fff;"> 660007370 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a>
+                    <p> التوصيل مجاني في مدينة بشار والدفع عند الإستلام</p>                    
                 </div>           
             <div class="hidden-xs hidden-sm pull-left">                
                 <!-- Logo -->

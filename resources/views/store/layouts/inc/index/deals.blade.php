@@ -24,7 +24,7 @@
                     <img src="{{url('admin-css/uploads/images/deals').'/'.$sid_deal->image}}" alt="" height="438" width="263">
                     <div class="banner-caption">
                         <h2 class="white-color">{{$sid_deal->title}}</h2>
-                        <a href="{{$sid_deal->link}}"><button class="primary-btn">إشتري الآن</button></a>
+                        <a href="{{$sid_deal->link}}"><button class="primary-btn">أطلب الآن</button></a>
                     </div>
                 </div>
                 @endif

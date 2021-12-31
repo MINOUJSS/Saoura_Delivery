@@ -26,7 +26,16 @@
             <!-- ASIDE IN LARGE SCREEN-->
             <div id="aside" class="hidden-xs hidden-sm col-md-3">
                 <!-- aside widget -->
-
+                @if($sid_deal!==null)
+                <div class="banner banner-2">
+                    {{-- <img src="{{url('store')}}/img/banner14.jpg" alt="" height="438" width="263"> --}}
+                    <img src="{{url('admin-css/uploads/images/deals').'/'.$sid_deal->image}}" alt="" height="438" width="263">
+                    <div class="banner-caption">
+                        <h2 class="white-color">{{$sid_deal->title}}</h2>
+                        <a href="{{$sid_deal->link}}"><button class="primary-btn">أطلب الآن</button></a>
+                    </div>
+                </div>
+                @endif
                 <!-- /aside widget -->
             </div>
             <!-- /ASIDE IN LARGE SCREEN-->
@@ -35,10 +44,53 @@
             <div id="main" class="col-md-9">
 
                 <!-- DASHBOARD -->
-                    <div class="row">                    
+                    <div class="row"> 
+                        <!--start image-->
+                        <div class="col-md-6" style="margin-top:10px;">
+                            <div id="product-main-view">
+                                <div class="product-view">
+                                    <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}">
+                                </div>
+                                @if(count(get_all_product_images($product->id))>=1)
+                                @foreach(get_all_product_images($product->id) as $image)                    
+                                <div class="product-view">
+                                <img src="{{$image}}">
+                                </div>
+                                @endforeach
+                                @endif
+                                {{-- <div class="product-view">
+                                    <img src="{{url('store')}}/img/main-product02.jpg" alt="">
+                                </div>
+                                <div class="product-view">
+                                    <img src="{{url('store')}}/img/main-product03.jpg" alt="">
+                                </div>
+                                <div class="product-view">
+                                    <img src="{{url('store')}}/img/main-product04.jpg" alt="">
+                                </div> --}}
+                            </div>
+                            <div id="product-view">
+                                <div class="product-view">
+                                    <img src="{{url('admin-css/uploads/images/products/'.$product->image)}}">
+                                </div>
+                                @if(count(get_all_product_images($product->id))>=1)
+                                @foreach(get_all_product_images($product->id) as $image)
+                                <div class="product-view">
+                                    <img src="{{$image}}" alt="test test">
+                                </div>
+                                @endforeach
+                                @endif
+                                {{-- <div class="product-view">
+                                    <img src="{{url('store')}}/img/thumb-product03.jpg" alt="">
+                                </div>
+                                <div class="product-view">
+                                    <img src="{{url('store')}}/img/thumb-product04.jpg" alt="">
+                                </div> --}}
+                            </div>
+                        </div>
+                        <!--end image-->
                         <!---->
                       <h1>عذراً,لقد نفذ هذا المنتج من مخازننا !</h1>
-                      <p>يرجى الإتصال بإدارة المتجر لتوفير هذه السلعة الأسبوع المقبل من خلال <a href="{{route('contact_us')}}">إتصل بنا</a></p>
+                      <p>يرجى الإتصال بإدارة المتجر لتوفير هذه السلعة الأسبوع المقبل من خلال صفحة : <b> <a href="{{route('contact_us')}}">إتصل بنا</a></b></p>
                       <a href="{{route('products')}}"><button class="primary-btn"><i class="fa fa-arrow-circle-left"> العودة للتسوق</i></button></a>
                         <!---->
                     </div>
