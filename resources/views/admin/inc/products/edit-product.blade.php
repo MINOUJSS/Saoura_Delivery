@@ -51,7 +51,7 @@
                     <select class="form-control" name="product_supplier">
                       <option value="1" @if(old('product_supplier')==1 || $product->supplier_id==1){{'selected'}}@endif>لا مزود</option>
                       @foreach ($suppliers as $supplier)
-                          <option value="{{$supplier->id}}" @if(old('product_supplier')==$supplier->id || $product->supplier->id=$supplier->id) selected @endif>{{$supplier->name}}</option>
+                          <option value="{{$supplier->id}}" @if(old('product_supplier')==$supplier->id || $product->supplier->id==$supplier->id) {{'selected'}} @endif>{{$supplier->name}}</option>
                       @endforeach                
                     </select>              
                   </div>
