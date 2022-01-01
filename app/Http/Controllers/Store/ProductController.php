@@ -695,7 +695,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
 
     public function products_by_category($slug)
     {
-        $title='منتجاتنا|حسب الأصناف';
+        $title='منتجاتنا|'.$slug;
         $category=category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
@@ -733,7 +733,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
 
     public function products_by_sub_category($slug)
     {
-        $title='منتجاتنا|حسب تحت الأصناف';
+        $title='منتجاتنا|'.$slug;
         $sub_category=Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();
@@ -769,7 +769,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
 
     public function products_by_sub_sub_category($slug)
     {
-        $title='منتجاتنا|حسب  تحت تحت الأصناف';
+        $title='منتجاتنا|'.$slug;
         $sub_sub_category=Sub_Sub_Category::where('slug',$slug)->first();        
         $colors=color::all();
         $sizes=size::all();

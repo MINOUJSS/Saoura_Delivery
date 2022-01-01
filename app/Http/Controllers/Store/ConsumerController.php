@@ -33,15 +33,17 @@ class ConsumerController extends Controller
      */
     public function index()
     {  
-        //dd(request()->root());        
-        return view('store.consumer.index');
+        //dd(request()->root()); 
+        $title='حسابي';       
+        return view('store.consumer.index',compact('title'));
     }
     public function edit_account($consumer_id)
     {
+        $title='تعديل حسابي';
         if(Auth::guard('consumer')->user()->id==$consumer_id)
         {
         $consumer=Consumer::find($consumer_id);
-        return view('store.consumer.edit-account',compact('consumer'));
+        return view('store.consumer.edit-account',compact('consumer','title'));
         }
         else
         {
@@ -74,10 +76,11 @@ class ConsumerController extends Controller
     }
     public function edit_password($consumer_id)
     {
+        $title='تعديل كلمة المرور';
         if(Auth::guard('consumer')->user()->id==$consumer_id)
         {
         $consumer=consumer::find($consumer_id);
-        return view('store.consumer.edit-password',compact('consumer'));
+        return view('store.consumer.edit-password',compact('consumer','title'));
         }else
         {
             return redirect()->back();
@@ -114,10 +117,11 @@ class ConsumerController extends Controller
     }
     public function orders($consumer_id)
     {
+        $title='طلباتي';
         if(Auth::guard('consumer')->user()->id==$consumer_id){
         //$products=order_product::where('consumer_id',$consumer_id)->get();
         $orders=order::where('consumer_id',$consumer_id)->paginate(10);
-        return view('store.consumer.orders',compact('orders'));
+        return view('store.consumer.orders',compact('orders','title'));
         }else
         {
             return redirect(route('consumer.orders',Auth::guard('consumer')->user()->id));
@@ -125,8 +129,9 @@ class ConsumerController extends Controller
     }
     public function order_details($id)
     {
+        $title='تفاصيل الطلب';
         $products=order_product::where('order_id',$id)->get();
-        return view('store.consumer.order-details',compact('products'));
+        return view('store.consumer.order-details',compact('products','title'));
     }
     public function add_to_wish_list($product_id)
     {        
@@ -180,6 +185,7 @@ class ConsumerController extends Controller
 
     public function wish_list()
     {
+        $title='صفحة قائمة المفضلات';
        $w_list=wish_list::where('consumer_id',Auth::guard('consumer')->user()->id)->get();
        $query=product::orderBy('id','desc');
        if(count($w_list)>0)
@@ -193,11 +199,12 @@ class ConsumerController extends Controller
         {
          $products=product::where('id',0)->paginate(12);
         }
-        return view('store.wish-list',compact('products'));
+        return view('store.wish-list',compact('products','title'));
     }
 
     public function compar_list()
     {
+        $title='صفحة قائمة المقارنات';
         $c_list=compar_list::where('consumer_id',Auth::guard('consumer')->user()->id)->get();
        $query=product::orderBy('id','desc');
        if(count($c_list)>0)
@@ -211,6 +218,6 @@ class ConsumerController extends Controller
         {
          $products=product::where('id',0)->paginate(12);
         }
-        return view('store.compar-list',compact('products'));
+        return view('store.compar-list',compact('products','title'));
     }
 }
