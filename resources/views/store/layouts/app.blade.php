@@ -12,7 +12,7 @@
 	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
 	@else
 	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
-	<meta property="og:image" content="{{url('/store/uploads/images/logo7.png')}}">
+	<meta property="og:image" content="{{url('/store/img/logo7.png')}}">
 	@endif
 	
 	
