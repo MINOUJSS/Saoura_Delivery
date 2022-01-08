@@ -16,7 +16,7 @@
         <!-- row -->
         <div class="row">
             <div class="container">
-                {{-- <div class="row"> --}}
+                <div class="row">
                         <!-- ASIDE IN LG SCEEN-->
                         <div id="aside" class="col-md-3 hidden-xs hidden-sm">
                             <!-- aside widget -->
@@ -99,7 +99,7 @@
                             <!-- /aside widget -->
                         </div>
                         <!-- /ASIDE IN SM SCREEN-->
-                {{-- </div> --}}
+                </div>
                 <!--row-->
             </div>
             <!--container-->
