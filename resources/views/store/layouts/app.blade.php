@@ -241,7 +241,8 @@
 			var path_array=document.location.pathname.split('/');
             var cat_or_sub_cat_name=path_array[path_array.length-1];
 			
-			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name || pathname =='/product/'+cat_or_sub_cat_name)
+			// if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name || pathname =='/product/'+cat_or_sub_cat_name)
+			if(pathname =='/' || pathname =='/products' || pathname =='/products/search' || pathname =='/consumer/wish-list' || pathname =='/consumer/compar-list' || pathname =='/products/category/'+cat_or_sub_cat_name || pathname =='/products/sub-category/'+cat_or_sub_cat_name || pathname =='/products/sub-sub-category/'+cat_or_sub_cat_name)
 			{
 				//products		
 				var product_ratings=document.getElementsByName('products_ratings');
