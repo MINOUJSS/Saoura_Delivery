@@ -10,7 +10,7 @@ use App\brand;
 use App\supplier;
 use App\category;
 use App\Product_Images;
-use App\Product_videos;
+use App\product_videos;
 use App\product_colors;
 use App\product_sizes;
 use App\Product_Category;
