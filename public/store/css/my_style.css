@@ -133,7 +133,10 @@ li
   float: right;
   margin: 5px;
 }
-
+.fb-customerchat
+{
+  z-index: 2;
+}
 .fix-order-btn
 {
   left:0px;
