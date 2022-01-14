@@ -707,7 +707,7 @@ class ProductController extends Controller
     public function add_videos($id)
     {    
         $product=product::findOrFail($id);
-        $product_videos=Product_videos::orderBy('id','desc')->where('product_id',$product->id)->get();
+        $product_videos=product_videos::orderBy('id','desc')->where('product_id',$product->id)->get();
         //$product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
         return view('admin.add-videos-to-product',compact('product','product_videos'));
     }
@@ -719,7 +719,7 @@ class ProductController extends Controller
             'video_link'=>'required'
         ]);
       //store video for this product
-          $product_video=new Product_videos;
+          $product_video=new product_videos;
           $product_video->user_id=$request->input('user_id');
           $product_video->product_id=$request->input('product_id');
           $product_video->video_url=$request->input('video_link');          
@@ -744,7 +744,7 @@ class ProductController extends Controller
   
  public function edit_video($id)
  {
-    $prod_video=Product_videos::findOrfail($id);
+    $prod_video=product_videos::findOrfail($id);
     $product=product::findOrFail($prod_video->product_id);
     $product_videos=Product_videos::orderBy('id','desc')->where('product_id',$product->id)->get();
     // $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
@@ -758,7 +758,7 @@ class ProductController extends Controller
               'video_link' => 'required'
           ]);
           //insert into database;
-          $product_video=Product_videos::findOrFail($request->input('product_video_id'));          
+          $product_video=product_videos::findOrFail($request->input('product_video_id'));          
           $product_video->user_id=$request->input('user_id');
           $product_video->product_id=$request->input('product_id');            
           $product_video->video_url=$request->input('video_link');
@@ -784,7 +784,7 @@ class ProductController extends Controller
 
  public function delete_video($id)
  {
-    $product_video=Product_videos::findOrFail($id);
+    $product_video=product_videos::findOrFail($id);
         $product_id=$product_video->product_id;
         //delete data
         $product_video->delete();
