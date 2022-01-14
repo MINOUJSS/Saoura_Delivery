@@ -15,12 +15,19 @@ class CreateProductVideosTable extends Migration
     {
         Schema::create('product_videos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
             ->references('id')
             ->on('products')
             ->onDelete('cascade');
-            $table->text('video');
+            $table->text('video')->nullable();
+            $table->text('video_url')->nullable();
+            $table->integer('type')->default(0);
             $table->timestamps();
         });
     }

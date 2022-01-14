@@ -22,7 +22,9 @@
 
                 @include('store.layouts.inc.product-page.product-main-view')
                 @include('store.layouts.inc.product-page.product-body')
-                
+                <!--start video dev-->
+                    @include('store.layouts.inc.product-page.product-videos')
+                <!--end video dev-->
                 <div class="col-md-12">
                 @include('store.layouts.inc.product-page.product-tab')
                 </div>

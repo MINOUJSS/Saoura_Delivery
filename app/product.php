@@ -50,6 +50,11 @@ class product extends Model
     {
         return $this->hasMany('App\Product_Images');
     }
+
+    public function videos()
+    {
+        return $this->hasMany('App\Product_videos');
+    }
     
     public function colors()
     {

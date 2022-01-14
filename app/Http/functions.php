@@ -1700,6 +1700,19 @@ function get_product_size_form_id_size($id)
     $size=App\size::findOrFail($id);
     return $size->size;
 }
+//is_this_product_has_videis
+function is_this_product_has_videos($product_id)
+{
+$product_videos=App\product_videos::where('product_id',$product_id)->get();
+if(count($product_videos) >= 1)
+   {
+    return true;
+   }
+   else
+   {
+    return false;
+   }
+}
 //function return css code to border the selected color box
 function selected_box_color($product_id,$color_id)
 {

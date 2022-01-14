@@ -102,6 +102,7 @@
               <tr>
                 <td>{{$product->id}}</td>
                 <td>
+                  <a href="{{url('admin/product/'.$product->id.'/add-videos')}}"><button class="btn btn-block btn-success btn-xs"><i class="fa fa-video"> إضافة فيديو</i></button></a>
                   <a href="{{url('admin/product/'.$product->id.'/add-images')}}"><button class="btn btn-block btn-warning btn-xs"><i class="fa fa-hand-scissors-o"> إضافة صورة</i></button></a>
                   <a href="{{url('admin/product/'.$product->id.'/add-color')}}" ><button class="btn btn-block btn-info btn-xs"><i class="fa fa-eyedropper"> إضافة لون</i></button></a>
                   <a href="{{url('admin/product/'.$product->id.'/add-size')}}"><button class="btn btn-block btn-primary btn-xs"><i class="fa fa-hand-scissors-o"> إضافة مقاس</i></button></a>

@@ -10,6 +10,7 @@ use App\brand;
 use App\supplier;
 use App\category;
 use App\Product_Images;
+use App\Product_videos;
 use App\product_colors;
 use App\product_sizes;
 use App\Product_Category;
@@ -701,6 +702,108 @@ class ProductController extends Controller
         //redirect
         //return redirect()->back();
     }
+
+    //=============start video functions ======
+    public function add_videos($id)
+    {    
+        $product=product::findOrFail($id);
+        $product_videos=Product_videos::orderBy('id','desc')->where('product_id',$product->id)->get();
+        //$product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
+        return view('admin.add-videos-to-product',compact('product','product_videos'));
+    }
+
+    public function store_video(Request $request)
+    {
+        //validation
+        $this->validate($request,[
+            'video_link'=>'required'
+        ]);
+      //store video for this product
+          $product_video=new Product_videos;
+          $product_video->user_id=$request->input('user_id');
+          $product_video->product_id=$request->input('product_id');
+          $product_video->video_url=$request->input('video_link');          
+          $product_video->save();
+          //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بإضافة فيديو '.$product_video->video_url.' للمنتج '.$product_video->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+          //success Alert
+          Alert::success('إضافة فيديو', 'تم إضافة الفيديو بنجاح');                  
+         //redirecte
+         return redirect()->back();
+ } 
+  
+ public function edit_video($id)
+ {
+    $prod_video=Product_videos::findOrfail($id);
+    $product=product::findOrFail($prod_video->product_id);
+    $product_videos=Product_videos::orderBy('id','desc')->where('product_id',$product->id)->get();
+    // $product_colors=product_colors::orderBy('id','desc')->where('product_id',$product->id)->get();        
+    return view('admin.edit-videos-to-product',compact('product','product_videos','prod_video'));
+ }
+
+ public function update_video(Request $request)
+ {  
+          //validation
+          $this->validate($request,[
+              'video_link' => 'required'
+          ]);
+          //insert into database;
+          $product_video=Product_videos::findOrFail($request->input('product_video_id'));          
+          $product_video->user_id=$request->input('user_id');
+          $product_video->product_id=$request->input('product_id');            
+          $product_video->video_url=$request->input('video_link');
+          $product_video->update();
+          //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتعديل الفيديو '.$product_video->video_url.' للمنتج '.$product_video->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+          //success Alert
+          Alert::success('تعديل فيديو', 'تم تعديل الفيديو بنجاح');                    
+          //redirecte
+          return redirect()->back();
+     
+ }
+
+ public function delete_video($id)
+ {
+    $product_video=Product_videos::findOrFail($id);
+        $product_id=$product_video->product_id;
+        //delete data
+        $product_video->delete();
+        //noteficte admin
+        $note=new admin_notefication;
+        $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بحذف الفيديو '.$product_video->video_url.' للمنتج '.$product_video->product->name;
+        $note->icon ='fa fa-info-circle';
+        $note->type=1;
+        $note->link=route('admin.products');
+        $note->save();
+        //insert reading note for this admin
+        $r_note=new reading_notification;
+        $r_note->admin_id=Auth::guard('admin')->user()->id;
+        $r_note->note_id=$note->id;
+        $r_note->save();
+        //redirect
+        return redirect(route('admin.product.add.videos',$product_id));
+ }
+    //============end video functions
 
     public function add_images($id)
     {    
