@@ -12,10 +12,36 @@
 	<!--og title and og image-->
 	@if(is_product_details_page(Route::current()->getName()))
 	<meta property="og:title" content="{{$product->name}}">
+	<meta property="og:locale" content="ar_AR">
+	<meta property="og:type" content="product">
+	<meta property="og:site_name" content="متجر الساورة دليفري">
 	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
+	<!--if has seo-->
+	@if(product_has_seo($product->id))
+	<meta name="keywords" content="{{$product->seo->key_words}}">
+	<meta name="description" content="{{$product->seo->description}}">
+	<meta property="og:description" content="{{$product->seo->description}}">
+	<meta name="link" content="{{$product->seo->link}}">
+	@else
+	<meta name="keywords" content="بيع,شراء,الساورة,دليفري,الساورة دليفري,أول,بشار,في بشار,متجر إلكتروني,تبادل,سلع,تاغيت,سياحة">
+	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta name="link" content="https://saouradelivery.com/">
+	@endif
+	<!--/if has seo-->
 	@else
 	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
+	<meta property="og:locale" content="ar_AR">
+	<meta property="og:type" content="store">
+	<meta property="og:url" content="https://saouradelivery.com/">
+	<meta property="og:site_name" content="متجر الساورة دليفري">
 	<meta property="og:image" content="{{url('/store/img/logo7.png')}}">
+	<!---->
+	<meta name="keywords" content="بيع,شراء,الساورة,دليفري,الساورة دليفري,أول,بشار,في بشار,متجر إلكتروني,تبادل,سلع,تاغيت,سياحة">
+	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta name="link" content="https://saouradelivery.com/">
+	<!---->
 	@endif	
 	<!--/og title and og image-->
 	<link rel="icon" type="image/png" href="{{url('store/img')}}/logo3.png">
