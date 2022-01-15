@@ -6,6 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<!--seo-->
+
+	<!--/seo-->
 	<!--og title and og image-->
 	@if(is_product_details_page(Route::current()->getName()))
 	<meta property="og:title" content="{{$product->name}}">
@@ -220,10 +223,10 @@
 
 			<!--start massenger-->
 	<!-- Messenger Chat Plugin Code -->
-    <div id="fb-root" style="z-index:10;"></div>
+    <div id="fb-root" style="z-index:99999;"></div>
 
     <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat" style="z-index:10;">
+    <div id="fb-customer-chat" class="fb-customerchat" style="z-index:99999;">
     </div>
 
     <script>
