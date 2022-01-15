@@ -25,6 +25,9 @@
 
             <a href="#tab2">{{$reviews->count()}} مراجعات / إضافة مراجعة</a>
         </div>
+        <!--fack views-->
+        <h4 class="fackviews">يشاهده الآن : <span id="fackviews">8</span> أشخاص</h4>
+        <!--end fack views-->
         <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
         <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
         <!---->

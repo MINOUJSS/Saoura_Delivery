@@ -133,9 +133,11 @@ li
   float: right;
   margin: 5px;
 }
-.fb-customerchat
+.fackviews
 {
-  z-index: 99999;
+  border:1px solid #000;
+  padding:2px;
+  margin:5px;
 }
 .fix-order-btn
 {

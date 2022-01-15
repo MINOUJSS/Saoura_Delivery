@@ -6,17 +6,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<!---->
+	<!--og title and og image-->
 	@if(is_product_details_page(Route::current()->getName()))
 	<meta property="og:title" content="{{$product->name}}">
 	<meta property="og:image" content="{{url('/admin-css/uploads/images/products/'.$product->image)}}">
 	@else
 	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
 	<meta property="og:image" content="{{url('/store/img/logo7.png')}}">
-	@endif
-	
-	
-	<!---->
+	@endif	
+	<!--/og title and og image-->
 	<link rel="icon" type="image/png" href="{{url('store/img')}}/logo3.png">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<!--Google Analytics Code here-->
@@ -222,10 +220,10 @@
 
 			<!--start massenger-->
 	<!-- Messenger Chat Plugin Code -->
-    <div id="fb-root"></div>
+    <div id="fb-root" style="z-index:10;"></div>
 
     <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat">
+    <div id="fb-customer-chat" class="fb-customerchat" style="z-index:10;">
     </div>
 
     <script>
@@ -358,6 +356,9 @@
 	</script>
 	<!--incloud sweet alert script-->
 	@include('sweetalert::alert')	
+
+	<!--start test-->
+	<!--end test-->
 </body>
 
 </html>

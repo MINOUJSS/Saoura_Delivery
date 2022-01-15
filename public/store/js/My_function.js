@@ -38,6 +38,12 @@ function min_product_qty_in_details()
 }
 
 $(document).ready(function(){ 
+
+   document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
+	setInterval(function(){ 
+      var random_number =Math.floor((Math.random()*10)+1) ;  
+	   document.getElementById('fackviews').textContent=random_number;
+	}, 10000);
    // add product qty
    // $(add_product_qty).on('click',function(){
    //    $('#qty_input').val(parseInt($('#qty_input').val())+1);
