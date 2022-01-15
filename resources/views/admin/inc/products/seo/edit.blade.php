@@ -51,7 +51,7 @@
                 @endif
             </div>
             <div class="form-group {{$errors->has('description')? 'has-error' : ''}}">
-                <textarea id="article-ckeditor" class="form-control" name="description" placeholder="أكتب الكلمات المفتاحية هنا مثال:(ساعة,وقت,منبه)" rows="5">
+                <textarea id="article-ckeditor1" class="form-control" name="description" placeholder="أكتب الكلمات المفتاحية هنا مثال:(ساعة,وقت,منبه)" rows="5">
                    @if(!old('description'))
                    {{$seo->description}}
                    @else

@@ -54,7 +54,7 @@
                 <td>{{$seo->description}}</td>
                 <td>{{$seo->link}}</td>
                 <td>
-                    <a href="{{route('admin.edit.product.seo',$seo->id)}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
+                    <a href="{{route('admin.edit.product.seo',$seo->product->id)}}" style="margin-left:20px;"><i class="fa fa-edit text-success"></i></a>
                   <i id="delete_product_seo" title="{{$seo->product->name}}" url="{{route('admin.delete.product.seo',$seo->id)}}" class="fa fa-trash-o text-danger cursor-pointer"></i>
                 </td>
               </tr>

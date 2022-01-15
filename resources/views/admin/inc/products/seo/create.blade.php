@@ -49,7 +49,7 @@
             </div>
             <div class="form-group {{$errors->has('description')? 'has-error' : ''}}">
                 <label for="description">نص مختصر يحتوي على الكلمات المفتاحية</label>
-                <textarea id="article-ckeditor" class="form-control" name="description" placeholder="أكتب الكلمات المفتاحية هنا مثال:(ساعة,وقت,منبه)" rows="5">
+                <textarea id="article-ckeditor1" class="form-control" name="description" placeholder="أكتب الكلمات المفتاحية هنا مثال:(ساعة,وقت,منبه)" rows="5">
                     {{old('description')}}
                    </textarea>
                 @if ($errors->has('description'))

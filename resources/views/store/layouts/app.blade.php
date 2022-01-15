@@ -19,8 +19,8 @@
 	<!--if has seo-->
 	@if(product_has_seo($product->id))
 	<meta name="keywords" content="{{$product->seo->key_words}}">
-	<meta name="description" content="{{$product->seo->description}}">
-	<meta property="og:description" content="{{$product->seo->description}}">
+	<meta name="description" content="{!!$product->seo->description!!}">
+	<meta property="og:description" content="{!!$product->seo->description!!}">
 	<meta name="link" content="{{$product->seo->link}}">
 	@else
 	<meta name="keywords" content="بيع,شراء,الساورة,دليفري,الساورة دليفري,أول,بشار,في بشار,متجر إلكتروني,تبادل,سلع,تاغيت,سياحة">
