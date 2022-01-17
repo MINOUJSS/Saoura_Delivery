@@ -1,4 +1,6 @@
 //
+document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
+//
 function add_product_qty(item_id)
 {
    $('#qty-'+item_id).val(parseInt($('#qty-'+item_id).val())+1);
@@ -39,9 +41,10 @@ function min_product_qty_in_details()
 
 $(document).ready(function(){ 
 
+   //fack views
    document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
 	setInterval(function(){ 
-      var random_number =Math.floor((Math.random()*10)+1) ;  
+      var random_number =Math.floor((Math.random()*9)+1) ;  
 	   document.getElementById('fackviews').textContent=random_number;
 	}, 10000);
    // add product qty
@@ -105,32 +108,39 @@ if (url.match('#')) {
     $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
 } 
 //
-function select_color(color_id)
+function select_color(color_id,product_id)
 {
  //change value in hideen input box of color_id 
  $('#color_id').val(color_id);
+ $('#color_id-'+product_id).val(color_id);
+ $('#color_id_lg-'+product_id).val(color_id);
  //clear old border of other color box
  for(var x=1;x<=20;x++)
  {
-    $('#color-box-'+x).css('border','none');
+    $('#color-box-'+product_id+'-'+x).css('border','none');
+    $('#color-box-lg-'+product_id+'-'+x).css('border','none');
  }
  //change css of the color box how has click
- $('#color-box-'+color_id).css('border','2px solid #000');
+ $('#color-box-'+product_id+'-'+color_id).css('border','2px solid #000');
+ $('#color-box-lg-'+product_id+'-'+color_id).css('border','2px solid #000');
 
 }
 //
-function select_size(size_id)
+function select_size(size_id,product_id)
 {
  //change value in hideen input box of size_id 
  $('#size_id').val(size_id);
+ $('#size_id-'+product_id).val(size_id);
+ $('#size_id_lg-'+product_id).val(size_id);
  //clear old border of other color box
  for(var x=1;x<=20;x++)
  {
-    $('#size-box-'+x).css('border','none');
+    $('#size-box-'+product_id+'-'+x).css('border','none');
+    $('#size-box-lg-'+product_id+'-'+x).css('border','none');
  }
  //change css of the color box how has click
- $('#size-box-'+size_id).css('border','2px solid #000');    
-  
+ $('#size-box-'+product_id+'-'+size_id).css('border','2px solid #000'); 
+ $('#size-box-lg-'+product_id+'-'+size_id).css('border','2px solid #000');   
 };
 
 // add_color_to_searcher

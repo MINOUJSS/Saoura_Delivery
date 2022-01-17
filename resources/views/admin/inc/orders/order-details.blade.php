@@ -63,6 +63,7 @@
         <!-- Table row -->
         <div class="row">
           <div class="col-xs-12 table-responsive">
+            <a href="{{route('admin.order.edit',$order->id)}}"><button class="btn btn-success"><i class="fa fa-edit"></i> تعديل الطلب</button></a>
             <table class="table table-striped" id="datatable">
               <thead>
                 <tr>
@@ -122,7 +123,8 @@
                     @if(count($products)>1)
                     <td><i id="delete_order_product" title="{{$product->product->name}}" url="{{url('/admin/order/'.$product->order_id.'/product/'.$product->product_id.'/delete')}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
                     @endif
-                    <td><a href="{{route('admin.order.edit',$product->order_id)}}"><i class="fa fa-edit text-success cursor-pointer"></i></a></td>
+                    <td></td>
+                    {{-- <td><a href="{{route('admin.order.edit',$product->order_id)}}"><i class="fa fa-edit text-success cursor-pointer"></i></a></td> --}}
                   @else 
                   <td>/</td>
                   @endif

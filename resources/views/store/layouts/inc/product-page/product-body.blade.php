@@ -26,9 +26,9 @@
             <a href="#tab2">{{$reviews->count()}} مراجعات / إضافة مراجعة</a>
         </div>
         <!--fack views-->
-        <h4 class="fackviews">يشاهده الآن : <span id="fackviews">8</span> أشخاص</h4>
+        <h4 class="fackviews">يشاهده الآن : <span id="fackviews"></span> أشخاص</h4>
         <!--end fack views-->
-        <p><strong>التوفر:</strong> {{product_availability($product->id)}}</p>
+        <h5><strong>التوفر:</strong> <span style="color:#F8694A">{{product_availability($product->id)}}</span></h5>
         <p><strong>العلامة التجارية:</strong> {{$product->brand->name}}</p>
         <!---->
         @if(has_discount($product->id))
@@ -45,7 +45,7 @@
             <ul class="size-option">
                 <li><span class="text-uppercase">المقاس:</span></li>
                 @foreach($product->sizes as $size)                
-                <li class="active"><a id="size-box-{{$size->id}}" style="cursor:pointer;@if(session()->has('cart') && session()->get('cart')->items[$product->id]['size_id']==$size->id){{'border:2px solid #000;'}}@endif" onclick="select_size({{$size->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li>
+                <li class="active"><a id="size-box-{{$size->size_id}}" style="cursor:pointer;@if(session()->has('cart') && session()->get('cart')->items[$product->id]['size_id']==$size->size_id){{'border:2px solid #000;'}}@endif" onclick="select_size({{$size->size_id}},{{$product->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li>
                 {{-- <li><a href="#">XL</a></li>
                 <li><a href="#">SL</a></li> --}}
                 @endforeach
@@ -55,7 +55,7 @@
             <ul class="color-option">                
                 <li><span class="text-uppercase">اللون:</span></li>
                 @foreach($product->colors as $color)
-                <li class="active"><a id="color-box-{{$color->color_id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->color_id)}};@if(session()->has('cart') && session()->get('cart')->items[$product->id]['color_id']==$color->color_id){{'border:2px solid #000;'}}@endif" onclick="select_color({{$color->color_id}})"></a></li>
+                <li class="active"><a id="color-box-{{$color->color_id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->color_id)}};@if(session()->has('cart') && session()->get('cart')->items[$product->id]['color_id']==$color->color_id){{'border:2px solid #000;'}}@endif" onclick="select_color({{$color->color_id}},{{$product->id}})"></a></li>
                 @endforeach
             </ul>
             @endif
@@ -96,8 +96,8 @@
                     <!--min qty ntb-->
                     <span id="min_product_qty" onclick="min_product_qty_in_details()" class="btn btn-info" style="width:17%">-</span>
                     <!---->
-                    <input id="color_id" name="color_id" class="input" type="hidden" value="0">
-                    <input id="size_id" name="size_id" class="input" type="hidden" value="0">                
+                    <input id="color_id" name="color_id" class="input" type="hidden" value="1">
+                    <input id="size_id" name="size_id" class="input" type="hidden" value="1">                
                 {{-- <input class="fa fa-shopping-cart primary-btn add-to-cart" type="submit" name="submit" value="أضف إلى السلة"> --}}
                 </div>
                 <div class="form-group col-xs-12 col-lg-6 pull-left">

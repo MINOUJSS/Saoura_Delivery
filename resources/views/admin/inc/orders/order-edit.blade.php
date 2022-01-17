@@ -90,7 +90,7 @@
                         <select name="color-{{$product->id}}">
                             <option value="1">إفتراضي</option>
                             @foreach(get_product_colors($product->product->id) as $color)
-                            <option value="{{$color->color_id}}">{{get_color_name_from_id($color->color_id)}}</option>
+                            <option value="{{$color->color_id}}" @if($product->color->id == $color->color_id) {{'selected'}}@endif>{{get_color_name_from_id($color->color_id)}}</option>
                             @endforeach
                         </select>
                         @else
@@ -102,7 +102,7 @@
                         <select name="size-{{$product->id}}">
                             <option value="1">إفتراضي</option>
                             @foreach(get_product_sizes($product->product->id) as $size)
-                            <option value="{{$size->size_id}}">{{get_size_name_from_id($size->size_id)}}</option>
+                            <option value="{{$size->size_id}}" @if($product->size->id == $size->size_id) {{'selected'}}@endif>{{get_size_name_from_id($size->size_id)}}</option>
                             @endforeach
                         </select>
                         @else
@@ -154,11 +154,27 @@
                   </tr>
                   @endforeach
                 </tbody>
-              </table>
+              </table>              
             </div><!-- /.col -->
           </div><!-- /.row -->
-          <!---->
-          <div class="box-footer">
+          <!--add discount and shiping-->
+          <div class="row">
+            <div class="container">
+              <div class="col-lg-3">
+              <div class="form-group">
+                <label>تخفيض إجالي على الطلب</label>
+                <input class="form-control" type="number" name="global-discount" id="global-discount" value="@if(old('global-discount')){{old('global-discount')}}@else{{$total}}@endif">
+              </div>
+              <div class="form-group">
+                <label>مصاريف الشحن</label>
+                <input class="form-control" type="number" name="sheping" id="sheping" value="@if(old('sheping')){{old('sheping')}}@else{{'0'}}@endif">
+              </div>
+              </div>
+            </div>
+          </div>
+          <!--/ add discount and shiping-->
+          <!---->  
+          <div class="box-footer">                        
             <button name="submit" type="submit" class="btn btn-info pull-right">تعديل</button>
           </div><!-- /.box-footer -->
         </form>

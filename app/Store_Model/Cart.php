@@ -39,8 +39,8 @@ class Cart
         'id' =>$product->id,
         'title' =>$product->name,
         'price' =>$price,
-        'color_id' =>0,
-        'size_id' =>0,
+        'color_id' =>1,
+        'size_id' =>1,
         'qty' =>0,
         'image' =>$product->image
     ];    
