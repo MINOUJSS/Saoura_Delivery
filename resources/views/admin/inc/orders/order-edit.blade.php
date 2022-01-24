@@ -20,7 +20,9 @@
           <h3 class="box-title">فورم تعديل معلومات الطالب</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="{{route('admin.order.update')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="order_id" value="{{$order->id}}">
           <div class="box-body">
             <div class="form-group">
               <label for="name" class="col-sm-2 control-label">الاسم</label>
@@ -46,7 +48,7 @@
                   <input name="email" type="email" class="form-control" placeholder="البريد الإلكتروني" value="@if(old('email')){{old('email')}}@else{{$order->billing_email}}@endif">
                 </div>
               </div>
-              <input type="hidden" name="total" value="{{$order->total}}">
+              <input type="hidden" name="total" id="form-total" value="{{$order->total}}">
           </div><!-- /.box-body -->
           <!---->
           <hr>
@@ -147,35 +149,74 @@
                       @if(count($products)>1)
                       <td><i id="delete_order_product" title="{{$product->product->name}}" url="{{url('/admin/order/'.$product->order_id.'/product/'.$product->product_id.'/delete')}}" class="fa fa-trash-o text-danger cursor-pointer"></i></td>
                       @endif
-                      <td><a href="{{route('admin.order.edit',$product->order_id)}}"><i class="fa fa-edit text-success cursor-pointer"></i></a></td>
+                      <td></td>
+                      {{-- <td><a href="{{route('admin.order.edit',$product->order_id)}}"><i class="fa fa-edit text-success cursor-pointer"></i></a></td> --}}
                     @else 
                     <td>/</td>
                     @endif
                   </tr>
+                  {{-- start get product  id in array --}}
+                  @php
+                     $items_ids[]=$product->id; 
+                  @endphp
+                  {{-- end get product  id in array --}}
                   @endforeach
                 </tbody>
               </table>              
             </div><!-- /.col -->
           </div><!-- /.row -->
+          @php
+              $items_ids_array="";
+              foreach($items_ids as $key=>$val)
+              {
+                if($key >= count($items_ids)-1)
+                {
+                  $items_ids_array.=$val;
+                }
+                else
+                {
+                  $items_ids_array.=$val.',';
+                }
+              }
+          @endphp
+          <input type="hidden" name="items_ids_array" id="items_ids_array" value="{{$items_ids_array}}">
           <!--add discount and shiping-->
           <div class="row">
             <div class="container">
               <div class="col-lg-3">
               <div class="form-group">
-                <label>تخفيض إجالي على الطلب</label>
-                <input class="form-control" type="number" name="global-discount" id="global-discount" value="@if(old('global-discount')){{old('global-discount')}}@else{{$total}}@endif">
+                <label>تخفيض على الفاتورة</label>
+                @php
+                if($order->discount != null)
+                {$global_discount=$order->discount->discount;}
+                else
+                {$global_discount=0;}    
+                @endphp
+                {{-- @if($order->discount != null){{$global_discount=$order->discount->discount}}@else{{$global_discount=0}}@endif --}}
+                <input class="form-control" onchange="change_total_sheping_discount_values()" type="number" name="global-discount" id="global-discount" value="@if(old('global-discount')){{old('global-discount')}}@else{{$global_discount}}@endif">
               </div>
               <div class="form-group">
+                @php
+                if($order->shepping != null)
+                {$shepping=$order->shepping->shepping;}
+                else
+                {$shepping=0;}    
+                @endphp                
                 <label>مصاريف الشحن</label>
-                <input class="form-control" type="number" name="sheping" id="sheping" value="@if(old('sheping')){{old('sheping')}}@else{{'0'}}@endif">
+                <input class="form-control" onchange="change_total_sheping_discount_values()" type="number" name="sheping" id="sheping" value="@if(old('sheping')){{old('sheping')}}@else{{$shepping}}@endif">
               </div>
               </div>
             </div>
           </div>
           <!--/ add discount and shiping-->
+          <!---->
+          <div id="new_item_div">
+
+          </div>
+          <!---->
           <!---->  
           <div class="box-footer">                        
-            <button name="submit" type="submit" class="btn btn-info pull-right">تعديل</button>
+            <button name="submit" type="submit" class="btn btn-info pull-left"><i class="fa fa-save"></i> حفظ التعديلات</button>
           </div><!-- /.box-footer -->
         </form>
         <!---->
@@ -255,7 +296,9 @@
               <table class="table">
                 <tbody><tr>
                   <th style="width:50%">المبلغ الأولي:</th>
-                  <td>{{$total}} دج</td>
+                  <td><span id="total">{{$total}}</span> دج
+                  <input type="hidden" name="primary-total" id="primary-total" value="{{$total}}">
+                  </td>
                 </tr>
                 {{-- <tr>
                   <th>Tax (9.3%)</th>
@@ -263,11 +306,15 @@
                 </tr> --}}
                 <tr>
                   <th>مصاريف الشحن:</th>
-                  <td>0 دج</td>
+                  <td><span id="sheping-span">{{$shepping}}</span> دج</td>
+                </tr>
+                <tr>
+                  <th>تخفيض على الفاتورة:</th>
+                  <td><span id="discount-span">{{$global_discount}}</span> دج</td>
                 </tr>
                 <tr>
                   <th>المبلغ الإجمالي:</th>
-                  <td>{{$total}} دج</td>
+                  <td><span id="global-total">{{($total+$shepping)-$global_discount}}</span> دج</td>
                 </tr>
               </tbody></table>
             </div>
@@ -287,6 +334,60 @@
         document.getElementById('qty-'+item_id).value=1;
       }
       var subtotal=(document.getElementById('amount-'+item_id).value * document.getElementById('qty-'+item_id).value);
-      document.getElementById('product-total-'+item_id).innerHTML=subtotal + " دج";
+      document.getElementById('product-total-'+item_id).innerHTML=subtotal + " دج" +"<input type='hidden' name='subtotal-"+item_id+"' id='subtotal-"+item_id+"' value='"+subtotal+"'>";
+      // call function to change global-total
+      //waite one secound 
+      change_values_of_order(document.getElementById('items_ids_array').value)
+      //change_global_total(subtotal); 
+
+    }
+    function change_values_of_order(item_total_array)
+    {
+      // setTimeout(function(){
+      //   alert('hi');
+      // }, 1000);
+      // item_total_array=Array(item_total_array);
+      ids_array=item_total_array.split(',');
+      // document.getElementById('new_item_div').innerHTML="<div id='new_item_values'></div>";
+      // var html="";
+      var total=parseInt(0);
+      for (let x = 0; x < ids_array.length; x++) {
+        const element = ids_array[x];
+        new_value=document.getElementById('subtotal-'+element).value;
+        total+=parseInt(new_value);
+        // html+="<input type='hidden' id='item_"+element+"' value='"+new_value+"'>";
+      } 
+      //change global-discount
+      //document.getElementById('global-discount').value=0;
+      // alert(total);
+      var global_discount=parseInt(document.getElementById('global-discount').value);
+      var sheping=parseInt(document.getElementById('sheping').value);
+      //change total
+      document.getElementById('total').innerHTML=total;
+      document.getElementById('primary-total').value=total;
+      //change sheping-span
+      document.getElementById('sheping-span').innerHTML=sheping;
+      //change discount-span
+      document.getElementById('discount-span').innerHTML=global_discount;
+      //change global-total
+      document.getElementById('form-total').value=(total+sheping)-global_discount;
+      document.getElementById('global-total').innerHTML=(total+sheping)-global_discount;
+      // document.getElementById('new_item_values').innerHTML=html;      
+    }
+    function change_total_sheping_discount_values()
+    {
+      var global_discount=parseInt(document.getElementById('global-discount').value);
+      var sheping=parseInt(document.getElementById('sheping').value);
+      //change total
+      total=parseInt(document.getElementById('primary-total').value);
+      document.getElementById('total').innerHTML=total;
+      
+      //change sheping-span
+      document.getElementById('sheping-span').innerHTML=sheping;
+      //change discount-span
+      document.getElementById('discount-span').innerHTML=global_discount;
+      //change global-total
+      document.getElementById('form-total').value=(total+sheping)-global_discount;
+      document.getElementById('global-total').innerHTML=(total+sheping)-global_discount;
     }
   </script>

@@ -1756,7 +1756,7 @@ function print_product_colors_lg_html($product_id)
         foreach($colors as $p_color)
         {
         $color=App\color::findOrFail($p_color->color_id);
-        $html.='<li><a id="color-box-lg-'.$product_id.'-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.','.$product_id.')"></a></li>';        
+        $html.='<li><a id="color-box-lg-'.$product_id.'-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.','.$product_id.');save_checkout_colors_and_sizes_values('.$product_id.')"></a></li>';        
         }
     }
     $html.='</ul>';
@@ -1784,7 +1784,7 @@ function print_product_colors_html($product_id)
         foreach($colors as $p_color)
         {
         $color=App\color::findOrFail($p_color->color_id);
-        $html.='<li><a id="color-box-'.$product_id.'-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.','.$product_id.')"></a></li>';        
+        $html.='<li><a id="color-box-'.$product_id.'-'.$color->id.'" style="cursor:pointer;margin-right:5px;background-color:'.get_product_color_code_form_id_color($color->id).';'.selected_box_color($product_id,$color->id).'" onclick="select_color('.$color->id.','.$product_id.');save_checkout_colors_and_sizes_values('.$product_id.')"></a></li>';        
         }
     }
     $html.='</ul>';
@@ -1812,7 +1812,7 @@ function print_product_sizes_lg_html($product_id)
         foreach($sizes as $p_size)
         {
         $size=App\size::findOrFail($p_size->size_id);
-        $html.='<li class="active"><a id="size-box-lg-'.$product_id.'-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.','.$product_id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
+        $html.='<li class="active"><a id="size-box-lg-'.$product_id.'-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.','.$product_id.');save_checkout_colors_and_sizes_values('.$product_id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
         }
     }
     $html.='</ul>';
@@ -1840,7 +1840,7 @@ function print_product_sizes_html($product_id)
         foreach($sizes as $p_size)
         {
         $size=App\size::findOrFail($p_size->size_id);
-        $html.='<li class="active"><a id="size-box-'.$product_id.'-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.','.$product_id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
+        $html.='<li class="active"><a id="size-box-'.$product_id.'-'.$size->id.'" id="size-box-'.$size->id.'" onclick="select_size('.$size->id.','.$product_id.');save_checkout_colors_and_sizes_values('.$product_id.')" style="cursor:pointer;'.selected_box_size($product_id,$size->id).'">'.get_product_size_form_id_size($size->id).'</a></li>';
         }
     }
     $html.='</ul>';
@@ -1891,8 +1891,9 @@ function has_discount_in_this_order_date($product_id,$date)
     if($discount!=null)
     {
         $exp_date=strtotime(date($discount->exp_date));
+        $updated_date=strtotime(date($discount->updated_at));
         $order_date=strtotime(date($date));
-        if($order_date<=$exp_date)
+        if($order_date<=$exp_date && $order_date>=$updated_date)
         {
             return true;
         }

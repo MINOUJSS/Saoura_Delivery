@@ -171,6 +171,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/Orders','Admin\OrderController@index')->name('admin.orders');
     Route::get('/order/{id}','Admin\OrderController@order_details')->name('admin.order.details');
     Route::get('/order/{id}/edit','Admin\OrderController@order_edit')->name('admin.order.edit');
+    Route::post('/order/update','Admin\OrderController@update_order')->name('admin.order.update');
     Route::get('/order/{order_id}/confirm','Admin\OrderController@order_confirm')->name('admin.order.confirm');
     Route::get('/order/{order_id}/ship','Admin\OrderController@order_ship')->name('admin.order.ship');
     Route::get('/order/{order_id}/complate','Admin\OrderController@order_complate')->name('admin.order.complate');

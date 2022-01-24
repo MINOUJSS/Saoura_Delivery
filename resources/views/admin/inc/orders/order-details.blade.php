@@ -225,13 +225,29 @@
                   <th>Tax (9.3%)</th>
                   <td>$10.34</td>
                 </tr> --}}
+                @php
+                if($order->shepping != null)
+                {$shepping=$order->shepping->shepping;}
+                else
+                {$shepping=0;}    
+                @endphp
                 <tr>
                   <th>مصاريف الشحن:</th>
-                  <td>0 دج</td>
+                  <td><span id="sheping-span">{{$shepping}}</span> دج</td>
+                </tr>
+                @php
+                if($order->discount != null)
+                {$global_discount=$order->discount->discount;}
+                else
+                {$global_discount=0;}    
+                @endphp
+                <tr>
+                  <th>تخفيض على الفاتورة:</th>
+                  <td><span id="discount-span">{{$global_discount}}</span> دج</td>
                 </tr>
                 <tr>
                   <th>المبلغ الإجمالي:</th>
-                  <td>{{$total}} دج</td>
+                  <td>{{($total+$shepping)-$global_discount}} دج</td>
                 </tr>
               </tbody></table>
             </div>

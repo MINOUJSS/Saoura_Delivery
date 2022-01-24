@@ -121,9 +121,9 @@
                 @if(session()->has('cart'))
                     @foreach(session()->get('cart')->items as $item)
                            <input type="hidden" name="product_id[]" value="{{$item['id']}}">
-                           <input type="hidden" name="product_qty[]" value="{{$item['qty']}}">                           
-                           <input type="hidden" name="product_color[]" value="{{$item['color_id']}}">
-                           <input type="hidden" name="product_size[]" value="{{$item['size_id']}}">
+                           <input type="hidden" name="product_qty[]" id="product_qty_{{$item['id']}}" value="{{$item['qty']}}">                           
+                           <input type="hidden" name="product_color[]" id="product_color_{{$item['id']}}" value="{{$item['color_id']}}">
+                           <input type="hidden" name="product_size[]" id="product_size_{{$item['id']}}" value="{{$item['size_id']}}">
                     @endforeach
                 @endif
                 <!---->

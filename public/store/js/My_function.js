@@ -114,16 +114,21 @@ function select_color(color_id,product_id)
  $('#color_id').val(color_id);
  $('#color_id-'+product_id).val(color_id);
  $('#color_id_lg-'+product_id).val(color_id);
+ $('#product_color_'+product_id).val(color_id);
  //clear old border of other color box
  for(var x=1;x<=20;x++)
  {
+   $('#color-box-'+x).css('border','none');
+   $('#color-box-lg-'+x).css('border','none');
     $('#color-box-'+product_id+'-'+x).css('border','none');
     $('#color-box-lg-'+product_id+'-'+x).css('border','none');
  }
  //change css of the color box how has click
+ $('#color-box-'+color_id).css('border','2px solid #000');
+ $('#color-box-lg-'+color_id).css('border','2px solid #000');
  $('#color-box-'+product_id+'-'+color_id).css('border','2px solid #000');
  $('#color-box-lg-'+product_id+'-'+color_id).css('border','2px solid #000');
-
+ 
 }
 //
 function select_size(size_id,product_id)
@@ -132,17 +137,55 @@ function select_size(size_id,product_id)
  $('#size_id').val(size_id);
  $('#size_id-'+product_id).val(size_id);
  $('#size_id_lg-'+product_id).val(size_id);
+ $('#product_size_'+product_id).val(size_id);
  //clear old border of other color box
  for(var x=1;x<=20;x++)
  {
+   $('#size-box-'+x).css('border','none');
+   $('#size-box-lg-'+x).css('border','none');
     $('#size-box-'+product_id+'-'+x).css('border','none');
     $('#size-box-lg-'+product_id+'-'+x).css('border','none');
  }
  //change css of the color box how has click
+ $('#size-box-'+size_id).css('border','2px solid #000'); 
+ $('#size-box-lg-'+size_id).css('border','2px solid #000');
  $('#size-box-'+product_id+'-'+size_id).css('border','2px solid #000'); 
  $('#size-box-lg-'+product_id+'-'+size_id).css('border','2px solid #000');   
 };
-
+// function save color and size values in checkout page
+function save_checkout_colors_and_sizes_values(product_id)
+{
+   color_id = document.getElementById('product_color_'+product_id).value;            
+      size_id = document.getElementById('product_size_'+product_id).value;                  
+      qty = document.getElementById('product_qty_'+product_id).value;
+   //save change in session
+ _token   = $('meta[name="csrf-token"]').attr('content');      
+ // //send data to products controler to add to catr function   
+ var host_name=document.location.protocol+'//'+document.location.host;
+ $.ajax({
+    url:host_name+'/product/'+product_id+'/updateqty-with-get-method',
+    method:'POST',
+    data:{color_id: color_id,size_id:size_id,qty:qty,_token :_token},
+    //dataType: 'JSON',
+    success:function(response){
+       console.log(response);
+       $('#cart_section').fadeIn(500).html(response);  
+       $('#xs_cart_section').fadeIn(500).html(response);   
+       //alert success
+       // Swal.fire({
+       //    //position: 'top-end',
+       //    icon: 'success',
+       //    title: 'تم إضافة المنتج إلى السلة',
+       //    showConfirmButton: false,
+       //    timer: 1500
+       //  })
+    },
+    error: function(response) {
+       console.log(response);
+      }
+ 
+ });
+}
 // add_color_to_searcher
 function add_color_to_searcher(color_id)
 {
@@ -342,7 +385,9 @@ function update_qty_lg(product_id)
    
       color_id = document.getElementById('color_id_lg-'+product_id).value;            
       size_id = document.getElementById('size_id_lg-'+product_id).value;                  
-      qty = document.getElementById('qty-lg-'+product_id).value;            
+      qty = document.getElementById('qty-lg-'+product_id).value;
+      //change qty in hidden input
+      document.getElementById('product_qty_'+product_id).value=qty;            
       _token   = $('meta[name="csrf-token"]').attr('content');      
    // //send data to products controler to add to catr function   
    var host_name=document.location.protocol+'//'+document.location.host;
@@ -378,6 +423,8 @@ function update_qty(product_id)
       color_id = document.getElementById('color_id-'+product_id).value;            
       size_id = document.getElementById('size_id-'+product_id).value;                  
       qty = document.getElementById('qty-'+product_id).value;            
+      //change qty in hidden input
+      document.getElementById('product_qty_'+product_id).value=qty; 
       _token   = $('meta[name="csrf-token"]').attr('content');      
    // //send data to products controler to add to catr function   
    var host_name=document.location.protocol+'//'+document.location.host;

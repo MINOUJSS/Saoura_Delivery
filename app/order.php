@@ -19,5 +19,15 @@ class order extends Model
     {
         return $this->hasMany('App\order_product');
     }
+
+    public function discount()
+    {
+        return $this->hasOne('App\order_discount');
+    }
+
+    public function shepping()
+    {
+        return $this->hasOne('App\order_shepping');
+    }
     
 }

@@ -40,12 +40,14 @@
         @endif
         <!---->
         <p>{!!$product->long_description!!}</p>
-        <div class="product-options"> 
+        <div class="product-options">
             @if(count($product->sizes)>0)           
             <ul class="size-option">
                 <li><span class="text-uppercase">المقاس:</span></li>
-                @foreach($product->sizes as $size)                
-                <li class="active"><a id="size-box-{{$size->size_id}}" style="cursor:pointer;@if(session()->has('cart') && session()->get('cart')->items[$product->id]['size_id']==$size->size_id){{'border:2px solid #000;'}}@endif" onclick="select_size({{$size->size_id}},{{$product->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li>
+                @foreach($product->sizes as $size) 
+                {{-- {{dd()}}                 --}}
+                {{-- <li class="active"><a id="size-box-{{$size->size_id}}" style="cursor:pointer;@if(session()->has('cart') && session()->get('cart')->items[$product->id]['size_id']==$size->size_id){{'border:2px solid #000;'}}@endif" onclick="select_size({{$size->size_id}},{{$product->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li> --}}
+                <li class="active"><a id="size-box-{{$size->size_id}}" style="cursor:pointer;" onclick="select_size({{$size->size_id}},{{$product->id}})">{{get_product_size_name_form_id_size($size->size_id)}}</a></li>
                 {{-- <li><a href="#">XL</a></li>
                 <li><a href="#">SL</a></li> --}}
                 @endforeach
@@ -55,7 +57,8 @@
             <ul class="color-option">                
                 <li><span class="text-uppercase">اللون:</span></li>
                 @foreach($product->colors as $color)
-                <li class="active"><a id="color-box-{{$color->color_id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->color_id)}};@if(session()->has('cart') && session()->get('cart')->items[$product->id]['color_id']==$color->color_id){{'border:2px solid #000;'}}@endif" onclick="select_color({{$color->color_id}},{{$product->id}})"></a></li>
+                {{-- <li class="active"><a id="color-box-{{$color->color_id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->color_id)}};@if(session()->has('cart') && session()->get('cart')->items[$product->id]['color_id']==$color->color_id){{'border:2px solid #000;'}}@endif" onclick="select_color({{$color->color_id}},{{$product->id}})"></a></li> --}}
+                <li class="active"><a id="color-box-{{$color->color_id}}" style="cursor:pointer;background-color:{{get_product_color_code_form_id_color($color->color_id)}};" onclick="select_color({{$color->color_id}},{{$product->id}})"></a></li>
                 @endforeach
             </ul>
             @endif

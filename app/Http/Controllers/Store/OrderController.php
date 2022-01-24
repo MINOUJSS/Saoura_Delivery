@@ -9,6 +9,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Consumer;
 use App\order;
 use App\order_product;
+use App\order_discount;
+use App\order_shepping;
 use App\orders_notification;
 use App\product;
 use App\Jobs\send_info_mail_about_oreder_to_admin;
@@ -99,6 +101,16 @@ class OrderController extends Controller
             $order_product->size_id=$request->product_size[$x];
         }                        
         $order_product->save();
+        //create order_discount
+        $order_discount=new order_discount;
+        $order_discount->order_id=$order->id;
+        $order_discount->discount=0;
+        $order_discount->save();
+        //create order_shepping
+        $order_shepping=new order_shepping;
+        $order_shepping->order_id=$order->id;
+        $order_shepping->shepping=0;
+        $order_shepping->save();
         //modify the qty in magazin
         $product=product::find($request->product_id[$x]);
         $product->qty=($product->qty - $request->product_qty[$x]);
