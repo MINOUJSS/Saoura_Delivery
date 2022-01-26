@@ -1,9 +1,9 @@
-{{-- <script>
+<script>
     fbq('track', 'Purchase', {
       value: 100,
       currency: 'DZD',
     });
-  </script> --}}
+  </script>
 <!-- BREADCRUMB -->
 <div id="breadcrumb">
     <div class="container">
