@@ -5,8 +5,10 @@
         <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header">
-              <i class="fa fa-globe"></i> {{store_name_value()}}
-              <small class="pull-right">تاريخ الطلب:{{$order->created_at->format('d-m-Y')}}</small>
+              <img src="{{url('store/img/logo.png')}}" >
+              {{-- <i class="fa fa-globe"></i> {{store_name_value()}} --}}
+              {{-- <small class="pull-right">تاريخ الطلب:{{$order->created_at->format('d-m-Y')}}</small> --}}
+              <small class="pull-right">تاريخ تحرير الفاتورة:{{date('d-m-Y')}}</small>
             </h2>
           </div><!-- /.col -->
         </div>
@@ -118,7 +120,7 @@
             </p> 
           </div><!-- /.col -->
           <div class="col-md-6">
-            <p class="lead">المبلغ المستحق {{$order->created_at->format('Y/m/d')}} </p>
+            <p class="lead">تاريخ تقديم الطلب : {{$order->created_at->format('Y/m/d')}} </p>
             <div class="table-responsive">
               <table class="table">
                 <tbody><tr>
