@@ -117,6 +117,6 @@ class DiscountsController extends Controller
         //Alert success message        
         Alert::success('رائع', 'تم تعديل التخفيض بنجاح');
         //redirect back();
-        return redirect()->back();
+        return redirect(route('admin.discounts'));
     }
 }
