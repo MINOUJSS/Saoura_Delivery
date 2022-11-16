@@ -3,7 +3,7 @@
     @foreach($products as $index => $product)
     <!-- Product Single -->
     <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
-        <div class="product product-single">
+        <div class="product product-single sc-product">
 
             <div class="product-rating pull-left">
                 <div name="products_ratings" data-rating="{{get_product_reating_from_id($product->id)}}"></div>
