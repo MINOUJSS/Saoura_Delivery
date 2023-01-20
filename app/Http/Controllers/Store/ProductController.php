@@ -415,6 +415,51 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
         return view('store.products',compact('title','products','min_price','max_price','colors','sizes','brands')); 
     }
 
+    public function quick_order($slug)
+    {
+        $title=$slug;
+        $product=product::where('slug',$slug)->first();
+        if($product!=null)
+        {
+            if($product->statu==0 or $product->qty==0)
+            {
+                //return to not found page
+                // return redirect()->back();
+                return redirect(route('store.qty_zero',$product->id));
+            }
+        
+
+        $piked_products=product::inRandomOrder()->where('statu',1)->where('qty','!=',0)->paginate(4);
+        $similar_products_list=up_sale::where('first_product_id',$product->id)->where('type',1)->get();
+        $similar_products_ids=array();
+        foreach($similar_products_list as $list)
+        {
+            $similar_products_ids[]=$list->second_product_id;
+        }
+       //dd($similar_products_ids);
+        $similar_products=product::inRandomOrder()->whereIn('id',$similar_products_ids)->paginate(4);
+        //dd($similar_products);
+        $accessories_products_list=up_sale::orderBy('id','desc')->where('first_product_id',$product->id)->where('type',2)->get();
+        $accessories_products_ids=array();
+        foreach($accessories_products_list as $list)
+        {
+            $accessories_products_ids[]=$list->second_product_id;
+        }
+        $accessories_products=product::inRandomOrder()->whereIn('id',$accessories_products_ids)->paginate(4);
+        if($product != null)
+        {
+        $reviews=reating::where('product_id',$product->id)->where('visible',1)->paginate(5);
+        return view('store.quick-order',compact('product','reviews','piked_products','title','similar_products','accessories_products'));
+        }else
+        {
+            $product=product::findOrfail(0);
+        }
+
+    }else
+    {
+        return redirect(route('store.product_not_found'));
+    }
+    }
     public function product($slug)
     {
         $title=$slug;

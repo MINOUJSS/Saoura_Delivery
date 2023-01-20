@@ -201,7 +201,7 @@
                             @endif
                         </div> --}}
                         
-                        <div class="form-group {{$errors->has('email')? 'has-error':''}}">
+                        {{-- <div class="form-group {{$errors->has('email')? 'has-error':''}}">
                             <input class="input" type="hidden" name="email" placeholder="البريد الإلكتروني" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->email}}@else{{old('email')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
                             <input class="input" type="email" name="email" placeholder="البريد الإلكتروني (إختياري)" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->email}}@else{{old('email')}}@endif" @if(Auth::guard('consumer')->check())disabled @endif>
                             @if($errors->has('email'))
@@ -209,7 +209,7 @@
                             {{ $errors->first('email')}}
                             </span>
                             @endif
-                        </div>
+                        </div> --}}
                         <!--test move submit btn-->
                         <div class="form-group">
                         <div>
@@ -251,7 +251,7 @@
                             <div class="caption">
                                 <p>زبوننا المحترم يرجى التأكد من صحة العنوان و رقم الهاتف ليتمكن مندوبنا من التواصل معك لإستلام منتجاتك.
                                     <p>
-                                        <p><b class="text-danger">ملاحظة : </b> التوصيل مجاني في ولاية بشار</p>
+                                        {{-- <p><b class="text-danger">ملاحظة : </b> التوصيل مجاني في ولاية بشار</p> --}}
                             </div>
                         </div>
                         {{-- <div class="input-checkbox">

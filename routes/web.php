@@ -277,6 +277,8 @@ Route::get('/products/search', 'Store\ProductController@find_products')->name('s
 Route::get('/shop-by', 'Store\ProductController@shop_bay_result')->name('shop_by');
 //
 Route::get('/product/{slug}', 'Store\ProductController@product')->name('store.product.details');
+//
+Route::get('/quick-order/product/{slug}', 'Store\ProductController@quick_order')->name('store.quick_order.product.details');
 //add to cart
 Route::get('product/{product}/add-to-cart','Store\ProductController@addToCart')->name('cart.add');
 Route::post('product/{product}/add-with-qty','Store\ProductController@addWithQty')->name('cart.addwithqty');
@@ -291,6 +293,8 @@ Route::get('/checkout','Store\CheckoutController@index')->name('checkout');
 Route::get('cart/','Store\ProductController@showCart')->name('cart.show');
 //order
 Route::post('order/create','Store\OrderController@create_order')->name('store.create.order');
+//
+Route::post('quick-order/create','Store\OrderController@create_quick_order')->name('store.create.quick.order');
 //categories
 Route::get('/products/category/{slug}', 'Store\ProductController@products_by_category')->name('store.products.by.category');
 //sub categories

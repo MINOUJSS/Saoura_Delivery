@@ -145,4 +145,126 @@ class OrderController extends Controller
         return redirect(route('store.thanks'))->with('order_id',$order->id);
 
     }
+
+    public function create_quick_order(Request $request)
+    {        
+        //check if is consumer or not var $consumer_id        
+        if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->id!=1)
+        {
+            $consumer_id = Auth::guard('consumer')->user()->id;
+        }
+        else
+        {
+            $consumer_id = 1;
+        }
+       // return Auth::guard()-;
+       
+        //validate data
+        $this->validate($request,[
+            'name' => 'required|min:1',
+            'email' => 'sometimes:required|sometimes:email',
+            'address' =>'required',
+            'tel' => 'required|numeric|min:9',            
+        ]);
+        if($request->create_account=='on')
+        {
+            $this->validate($request,[
+            'password' =>'required|min:6'
+            ]);
+        }
+        
+        //if create acount is checked create consumer and get $consumer_id
+        if($request->create_account=='on')
+        {
+            //create consumer
+            $consumer=new Consumer;
+            $consumer->name=$request->input('first-name');
+            $consumer->email=$request->input('email');
+            $consumer->address=$request->input('address');
+            $consumer->password=Hash::make($request->input('password'));
+            $consumer->telephone=$request->input('tel');
+            $consumer->save();            
+            //get consumer id
+            $consumer_id=$consumer->id;
+        }
+        //chick if auth has adderess
+        if((Auth::guard('consumer')->check()) && (Auth::guard('consumer')->user()->address)==null)
+        {
+            $consumer=consumer::find(Auth::guard('consumer')->user()->id);
+            $consumer->address=$request->address;
+            $consumer->update();
+        }             
+        //create Order
+        $order=new order;
+        $order->consumer_id=$consumer_id;
+        $order->billing_name=$request->name;
+        $order->billing_email=$request->email;
+        $order->billing_address=$request->address;        
+        $order->billing_mobile=$request->tel;
+        $order->total=$request->total;
+        $order->status=0;
+        $order->save();
+        //create order product    
+        $order_product=new order_product;
+        $order_product->order_id=$order->id;
+        $order_product->product_id=$request->product_id;
+        $order_product->consumer_id=$consumer_id;
+        $order_product->qty=$request->product_qty;
+        if($request->product_color==0)
+        {
+            $order_product->color_id=1;
+        }else
+        {
+            $order_product->color_id=$request->product_color;
+        }
+        if($request->product_size==0)
+        {
+            $order_product->size_id=1;
+        }else
+        {
+            $order_product->size_id=$request->product_size;
+        }                        
+        $order_product->save();
+        //create order_discount
+        $order_discount=new order_discount;
+        $order_discount->order_id=$order->id;
+        $order_discount->discount=0;
+        $order_discount->save();
+        //create order_shepping
+        $order_shepping=new order_shepping;
+        $order_shepping->order_id=$order->id;
+        $order_shepping->shepping=0;
+        $order_shepping->save();
+        //modify the qty in magazin
+        $product=product::find($request->product_id);
+        $product->qty=($product->qty - $request->product_qty);
+        $product->update();        
+        //remove cart session
+        session()->forget('cart');        
+        //notificate admin about this order
+        $note=new orders_notification;
+        $note->order_id=$order->id;
+        $note->title='لديك طلب جديد';
+        $note->icon ='fa fa-cart-plus';
+        $note->type=1;
+        $note->link="/admin/order/".$order->id;
+        $note->save();
+        //notificate admin about this order
+        $admins=Admin::all();
+        foreach ($admins as $admin) {
+            $data=array(
+                'email' => $admin->email,
+                'name'  => $admin->name,
+                'order_id' => $order->id
+            );
+            dispatch(new send_info_mail_about_oreder_to_admin($data));
+        }
+        //send thanks email to user about  this order
+        
+        //alert for success message
+        Alert::success('إضافة طلب', 'تم إضافة طلبك بنجاح');
+        // redirect to thank you page;
+        //return redirect()->back();
+        return redirect(route('store.thanks'))->with('order_id',$order->id);
+    }
 }
