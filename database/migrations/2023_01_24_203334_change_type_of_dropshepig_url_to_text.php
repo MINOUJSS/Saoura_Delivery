@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDropshipingUrlToProductTable extends Migration
+class ChangeTypeOfDropshepigUrlToText extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDropshipingUrlToProductTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('dropsheping_url')->nullable()->after('dropsheping');
+            $table->text('dropsheping_url')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AddDropshipingUrlToProductTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('dropsheping_url');
+            $table->string('dropsheping_url')->nullable()->change();
         });
     }
 }
