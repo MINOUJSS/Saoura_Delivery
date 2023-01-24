@@ -76,6 +76,7 @@
                   <th style="width:90px;">السعر</th>
                   <th>التخفيض</th>
                   <th style="width:90px;">المبلغ</th>
+                  <th>drop sheping url</th>
                   {{-- @if(count($products)>1) --}}
                   <th style="width:90px;">العمليات</th>
                   {{-- @endif --}}
@@ -118,6 +119,13 @@
                        @else 
                       /
                        @endif
+                  </td>
+                  <td>                    
+                    @if($product->product->dropsheping_url!=null)
+                    <a href="{{$product->product->dropsheping_url}}" target="blanck">طلب المنتج من موقع المورد</a>
+                    @else
+                    /
+                    @endif                    
                   </td>
                   @if($product->product!=null)
                     @if(count($products)>1)

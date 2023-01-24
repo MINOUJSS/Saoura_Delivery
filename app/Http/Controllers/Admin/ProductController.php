@@ -104,6 +104,7 @@ class ProductController extends Controller
             $product->statu=1;
         }
         $product->dropsheping=$request->dropsheping;
+        $product->dropsheping_url=$request->dropsheping_url;
         $product->is_new=$request->is_new;
         // $product->category_id=$request->input('product_category');
         // $product->sub_category_id=$request->input('product_sub_category');
@@ -238,6 +239,7 @@ class ProductController extends Controller
             $product->statu=1;
         }
         $product->dropsheping=$request->dropsheping;
+        $product->dropsheping_url=$request->dropsheping_url;
         $product->is_new=$request->is_new;
         // $product->category_id=$request->input('product_category');
         // $product->sub_category_id=$request->input('product_sub_category');

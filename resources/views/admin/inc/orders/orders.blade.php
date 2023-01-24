@@ -41,7 +41,7 @@
               <th>اسم الزبون</th>
               <th>البريد الإكتروني</th>
               <th>العنوان</th>
-              <th>عضوية الزبون</th>
+              <th>عضوية الزبون</th>              
               <th>تاريخ الطلب</th>
               <th>حالة الطلب</th>
             </tr>
@@ -53,7 +53,7 @@
               <td>{{$order->billing_name}}</td>              
               <td>{{$order->billing_email}}</td>
               <td>{{$order->billing_address}}</td>
-              <td>{!!consumer_is_register($order->consumer_id)!!}</td>
+              <td>{!!consumer_is_register($order->consumer_id)!!}</td>             
               <td>{{$order->created_at->diffForHumans()}}</td>
               <td>{!!order_status($order->status)!!}</td>              
             </tr>

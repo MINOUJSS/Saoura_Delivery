@@ -197,6 +197,10 @@
               <option value="1" @if(old('dropsheping')==1 || $product->dropsheping==1){{'selected'}}@endif>دروب شبين</option>
           </select>
         </div>
+        <h4>عنوان المنتج في موقع المورد</h4>
+        <div calss='form-group'>
+          <input type='text' class='form-control' name='dropsheping_url' placeholder='أكتب عنوان المنتج في موقع المورد' value="@if(old('dropsheping_url')){{old('dropsheping_url')}}@else{{$product->dropsheping_url}}@endif"/>
+        </div>
         <h4>منتج جديد (مستعمل)</h4>
         <div classe="form-group">
           <select class="form-control" name="is_new">
