@@ -71,7 +71,7 @@ class DealController extends Controller
             'title'=>'required|min:6',
             'daitels'=>'required|min:50',
             // 'descount'=>'required|numeric',
-            'link'=>'required|url',
+            'link'=>'required',
             'image' =>'mimes:jpeg,bmp,png'
         ]);
         //save data
