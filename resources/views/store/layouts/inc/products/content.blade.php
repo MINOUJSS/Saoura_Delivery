@@ -12,11 +12,11 @@
 <!-- section -->
 <div class="section">
     <!-- container -->
-    <div class="container">
+    <div class="container">        
         <!-- row -->
         <div class="row">
             <div class="container">
-                <div class="row">
+                <div class="">
                         <!-- ASIDE IN LG SCEEN-->
                         <div id="aside" class="col-md-3 hidden-xs hidden-sm">
                             <!-- aside widget -->

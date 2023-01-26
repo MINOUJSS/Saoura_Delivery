@@ -42,6 +42,8 @@
     {{-- <div class="clearfix visible-lg visible-md"></div>     --}}
     @endforeach
     @else 
-    <p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i>  ما تبحث عنة غير موجود!</p>
+    <div>
+        <p class="text-danger text-center"><i class="fa fa-frown-o fa-2x"></i>  ما تبحث عنة غير موجود!</p>
+    </div>    
     @endif
 </div>
