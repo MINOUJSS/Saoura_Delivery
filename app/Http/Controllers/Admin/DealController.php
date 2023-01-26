@@ -128,7 +128,7 @@ class DealController extends Controller
                     'title'=>'required|min:6',
                     'daitels'=>'required|min:50',
                     // 'descount'=>'required|numeric',
-                    'link'=>'required|url',
+                    'link'=>'required',
                     'image' =>'required|mimes:jpeg,bmp,png'
                 ]); 
                 // save data
@@ -187,7 +187,7 @@ class DealController extends Controller
         $this->validate($request,[
             'product_id' =>'required|numeric',
             'title'=>'required|min:6',            
-            'link'=>'required|url',
+            'link'=>'required',
             'exp_date'=>'required',
             'image' =>'required|mimes:jpeg,bmp,png'
         ]); 
@@ -240,7 +240,7 @@ $r_note->save();
         $this->validate($request,[
             'product_id' =>'required|numeric',
             'title'=>'required|min:6',            
-            'link'=>'required|url',
+            'link'=>'required',
             'exp_date'=>'required',
             'image' =>'mimes:jpeg,bmp,png'
         ]);
