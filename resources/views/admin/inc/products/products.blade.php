@@ -79,6 +79,7 @@
                 <th>العمليات</th>
                 <th>صورة المنتج</th>
                 <th>إسم المنتج</th>
+                <th>طلب سريع</th>
                 <th>ملكية المنتج</th>
                 <th>حالة المنتج</th>
                 {{-- <th>العلامة التجارية</th>
@@ -123,7 +124,13 @@
                 </td>
                 <td><img src="{{url('admin-css/uploads/images/products/'.$product->image)}}" height="50" width="50"></td>
                 <td><a href="{{route('admin.product.details',$product->id)}}">{{$product->name}}</a></td>
-                <td>{!!product_dropsheping_statu($product->dropsheping)!!}</td>
+                <td><a href="{{route('store.quick_order.product.details',$product->slug)}}?#quick-order" target="_blank" rel="noopener noreferrer">فتح صفحة المنتج</a></td>
+                <td>
+                  {!!product_dropsheping_statu($product->dropsheping)!!}
+                  @if($product->dropsheping==1 && $product->dropsheping_url!=null)          
+                  <a href="{{$product->dropsheping_url}}" target="_blank" rel="noopener noreferrer"><span class="label label-warning"><i class="fa fa-shopping-cart"> طلب المنتج</i></span></a>                  
+                  @endif
+                </td>
                 <td><a href="{{route('admin.product.change_statu',$product->id)}}">{!!product_status($product->statu)!!}</a></td>
                 {{-- @if($product->brand!=null)
                 <td>{{$product->brand->name}}</td>
