@@ -1531,7 +1531,7 @@ function discount_status($discount_id)
 //:::::::::::function get_meta_og_image ::::::::::::
 function is_product_details_page($route_name)
 {
-        if($route_name == "store.product.details")
+        if($route_name == "store.product.details" || $route_name=="store.quick_order.product.details")
         {
             return true;
         }
