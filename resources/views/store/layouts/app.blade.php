@@ -24,13 +24,13 @@
 	<meta name="link" content="{{$product->seo->link}}">
 	@else
 	<meta name="keywords" content="بيع,شراء,الساورة,دليفري,الساورة دليفري,أول,بشار,في بشار,متجر إلكتروني,تبادل,سلع,تاغيت,سياحة">
-	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
-	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في الجزائر">
+	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في الجزائر">
 	<meta name="link" content="https://saouradelivery.com/">
 	@endif
 	<!--/if has seo-->
 	@else
-	<meta property="og:title" content="الساورة دليفري أول متجر إلكتروني في بشار">
+	<meta property="og:title" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في الجزائر">
 	<meta property="og:locale" content="ar_AR">
 	<meta property="og:type" content="store">
 	<meta property="og:url" content="https://saouradelivery.com/">
@@ -38,8 +38,8 @@
 	<meta property="og:image" content="{{url('/store/img/logo7.png')}}">
 	<!---->
 	<meta name="keywords" content="بيع,شراء,الساورة,دليفري,الساورة دليفري,أول,بشار,في بشار,متجر إلكتروني,تبادل,سلع,تاغيت,سياحة">
-	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
-	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في ولاية بشار">
+	<meta name="description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في الجزائر">
+	<meta property="og:description" content="الساورة دليفري وجهتك الموثوقة للتسوق عبر الأنترنت في الجزائر">
 	<meta name="link" content="https://saouradelivery.com/">
 	<!---->
 	@endif	
