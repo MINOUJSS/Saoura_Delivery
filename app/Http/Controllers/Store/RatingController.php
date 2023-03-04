@@ -31,7 +31,7 @@ class RatingController extends Controller
             //if is nat consumer validation
             $this->validate($request,[
                 'name' =>'required|min:3',
-                'email' =>'required|email',                
+                // 'email' =>'required|email',                
                 'rating_text' => 'required',
                 'rating' =>'required'
             ]);
