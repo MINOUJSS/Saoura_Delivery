@@ -1,6 +1,4 @@
 //
-document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
-//
 function add_product_qty(item_id)
 {
    $('#qty-'+item_id).val(parseInt($('#qty-'+item_id).val())+1);
@@ -569,3 +567,7 @@ setTimeout(alert('1000'),1000);
    $('.xs-search-btn').click(function(){
          $('#xs-search-form').toggle(); 
    });
+
+//
+document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
+//

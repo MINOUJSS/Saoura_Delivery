@@ -249,7 +249,12 @@
         </div>
         <!--/container in lg-->
         <!--container in sm-->
-        <div class="container-fliud hidden-lg hidden-md"> 
+        <div class="container-fliud hidden-lg hidden-md">
+            <!--add telegram btn hear-->
+            <div class="header-text-div text-center">
+                
+            </div>
+            <!--end add telegram btn hear-->
                 <div class="header-text-div text-center">
                     <a class="header-top-links" href="tel:0660007370" target="blank" style="color:#fff;">0660007370 <i class="fa fa-phone" style="color:rgb(43, 7, 250)"></i></a>|
                 <a href="https://wa.me/213660007370" target="blank" style="color:#fff;"> 660007370 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a>

@@ -417,7 +417,7 @@ if(count(session()->get('searcher')->query['colors'])>0 && count(session()->get(
 
     public function quick_order($slug)
     {
-        $title=$slug;
+        $title="طلب-سريع|".$slug;
         $product=product::where('slug',$slug)->first();
         if($product!=null)
         {

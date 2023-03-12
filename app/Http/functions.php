@@ -2163,6 +2163,23 @@ function get_instagram_data()
     $setting=App\setting::where('var','instagram')->first();
     return $setting;
 }
+function has_telegram()
+{
+    $setting=App\setting::where('var','telegram')->first();
+    if($setting->value!=null)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+//function get instagram data
+function get_telegram_data()
+{
+    $setting=App\setting::where('var','telegram')->first();
+    return $setting;
+}
 //function google_analitycs_code_is_avtive()
 function google_analitycs_code_is_avtive()
 {

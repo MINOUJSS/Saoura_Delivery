@@ -194,7 +194,7 @@
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<div class="footer">
 						<h3 class="footer-header">إبقى في إتصال معنا</h3>
-						<p>سجل في القائمة البريدية للمتجر ليصلك كل جديد عن العروض المغرية لمتجرنا في ولاية بشار.</p>
+						<p>سجل في القائمة البريدية للمتجر ليصلك كل جديد عن العروض المغرية لمتجرنا في الجزائر.</p>
 						<form action="{{route('email_list.store')}}" method="POST" enctype="multipart/form-data">
 							@csrf
 							<div class="form-group {{$errors->has('footer_email')? 'has-error': ''}}">
