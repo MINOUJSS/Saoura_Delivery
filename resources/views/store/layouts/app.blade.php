@@ -151,11 +151,11 @@
 							<li><a href="#"><i class="fa fa-pinterest"></i></a></li> --}}
 						</ul>
 						<!-- /footer social -->
-                        <p>
+                        {{-- <p>
 							للإستفسار إتصل بنا عبر الهاتف : 
 						<a href="tel:0660007370" target="blank"><i class="fa fa-phone"></i> 0660007370</a>
 						</p>
-						<p>أو عبر الواتس أب : <i class="fa fa-whatsapp" style="color:#0f0"></i> <a href="https://wa.me/213660007370" target="blank"> 660007370 (213+)</a></p>
+						<p>أو عبر الواتس أب : <i class="fa fa-whatsapp" style="color:#0f0"></i> <a href="https://wa.me/213660007370" target="blank"> 660007370 (213+)</a></p> --}}
 					</div>
 				</div>
 				<!-- /footer widget -->
