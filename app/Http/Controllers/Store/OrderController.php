@@ -38,7 +38,7 @@ class OrderController extends Controller
             'first-name' => 'required|min:1',
             'email' => 'sometimes:required|sometimes:email',
             'address' =>'required',
-            'tel' => 'required|numeric|min:10',            
+            'tel' => ['required', 'regex:/^0[1-9]\d{8}$/'],            
         ]);
         if($request->create_account=='on')
         {
@@ -164,7 +164,7 @@ class OrderController extends Controller
             'name' => 'required|min:1',
             'email' => 'sometimes:required|sometimes:email',
             'address' =>'required',
-            'tel' => 'required|numeric|min:10',            
+            'tel' => ['required', 'regex:/^0[1-9]\d{8}$/'],            
         ]);
         if($request->create_account=='on')
         {
