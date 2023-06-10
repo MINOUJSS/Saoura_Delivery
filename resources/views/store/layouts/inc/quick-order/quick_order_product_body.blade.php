@@ -1,5 +1,21 @@
 <div class="col-md-6">
     <div class="product-body">
+        <!--if is admin-->        
+        @if(Auth::guard('admin')->user()!=null && Auth::guard('admin')->user()->id==1)
+        <div class="row">
+            <div class="admin-btn-control">
+            <div class="col-lg-4" style="margin:5px;">                                                         
+                <a target="blank" href="{{url('admin/product').'/'.$product->id.'/edit'}}" class="btn btn-block btn-info btn-flat"><i class="fa fa-edit"> تعديل المنتج </i></a>
+            </div>
+            @if($product->dropsheping_url!="")
+            <div class="col-lg-4" style="margin:5px;">                                                         
+                <a target="blank" href="{{$product->dropsheping_url }}" class="btn btn-block btn-primary btn-flat"><i class="fa fa-shopping-cart"> طلب المنتج </i></a>
+            </div>
+            @endif
+             </div>
+        </div>
+        @endif
+        <!--end if is admin-->
         <div class="product-label">
             @if(is_new_product($product->created_at))
             <span>جديد</span>

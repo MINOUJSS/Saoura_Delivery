@@ -152,6 +152,10 @@ li
   position:fixed;
   bottom:0px;
 }
+.admin-btn-control
+{
+  padding:10px;
+}
  /*::::::::::::start media screen:::::::::*/ 
  @media only screen and (max-width: 991px) {
    /**/
