@@ -88,7 +88,7 @@
                 <div class="col-md-6">
                     <h4 class="text-uppercase">أكتب رأيك</h4>
                     @if(!Auth::guard('consumer')->check())
-                    <p>لن يتم نشر عنوان بريدك الإلكتروني</p>
+                    {{-- <p>لن يتم نشر عنوان بريدك الإلكتروني</p> --}}
                     @endif
                     <form class="review-form" action="{{route('store.create.rating')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -102,14 +102,14 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group {{$errors->has('email')? 'has-error' : ''}}">
+                        {{-- <div class="form-group {{$errors->has('email')? 'has-error' : ''}}">
                             <input name="email" class="input" type="email" placeholder="بريدك الإلكتروني" value="{{old('email')}}"/>
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     {{$errors->first('email')}}
                                 </span>
                             @endif
-                        </div>
+                        </div> --}}
                         @endif
                         <div class="form-group {{$errors->has('rating_text')? 'has-error':''}}">
                             <textarea name="rating_text" class="input" placeholder="اكتب رأيك هنا">{{old('rating_text')}}</textarea>
