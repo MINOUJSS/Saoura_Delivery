@@ -166,7 +166,7 @@
 
                         <div class="form-group {{$errors->has('address')? 'has-error':''}}">
                             <input class="input" type="hidden" name="address" placeholder="عنوان إستلام المنتجات" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->address}}@else{{old('address')}}@endif" @if(!Auth::guard('consumer')->check())disabled @endif>
-                            <input class="input" type="text" name="address" placeholder="عنوان إستلام المنتجات (مطلوب)" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->address}}@else{{old('address')}}@endif" @if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->address!='')disabled @endif>
+                            <input class="input" type="text" name="address" placeholder="الولاية و البلدية و عنوان إستلام المنتجات (مطلوب)" value="@if(Auth::guard('consumer')->check()){{Auth::guard('consumer')->user()->address}}@else{{old('address')}}@endif" @if(Auth::guard('consumer')->check() && Auth::guard('consumer')->user()->address!='')disabled @endif>
                             @if($errors->has('address'))
                             <span class="help-block">
                             {{ $errors->first('address')}}
