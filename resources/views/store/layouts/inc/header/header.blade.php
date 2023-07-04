@@ -7,8 +7,8 @@
                 <span>التوصيل لـ 58 ولاية والدفع عند الإستلام!</span>
             </div>
             <div class="pull-right">
-                {{-- <a class="header-top-links" href="tel:0660007370" target="blank">0660007370 <i class="fa fa-phone" style="color:rgb(43, 7, 250)"></i></a> &ThinSpace;|&ThinSpace;
-                <a href="https://wa.me/213660007370" target="blank"> 660007370 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a> --}}
+                <a class="header-top-links" href="tel:0668657120" target="blank">0660007370 <i class="fa fa-phone" style="color:rgb(43, 7, 250)"></i></a> &ThinSpace;|&ThinSpace;
+                <a href="https://wa.me/213660007370" target="blank"> 668657120 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a>
                 <a class="header-top-links" href="https://t.me/SaouraDelivery" target="blank">إشترك معنا على قناة التليغرام ليصلك كل جديد <i class="fa fa-telegram" style="color:rgb(43, 7, 250)"></i></a>
                 {{-- <ul class="header-top-links">
                     <li><a href="#">المتجر</a></li>
@@ -257,9 +257,9 @@
             </div>
             <!--end add telegram btn hear-->
                 <div class="header-text-div text-center">
-                    {{-- <a class="header-top-links" href="tel:0660007370" target="blank" style="color:#fff;">0660007370 <i class="fa fa-phone" style="color:rgb(94, 140, 225)"></i></a>|
-                <a href="https://wa.me/213660007370" target="blank" style="color:#fff;"> 660007370 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a> --}}
-                <a class="header-top-links" href="https://t.me/SaouraDelivery" target="blank" style="color:#fff;">إضغط هنا ليصلك كل جديد <i class="fa fa-telegram" style="color:rgb(78, 91, 236)"></i></a>    
+                    <a class="header-top-links" href="tel:0668657120" target="blank" style="color:#fff;">0660007370 <i class="fa fa-phone" style="color:rgb(94, 140, 225)"></i></a>|
+                <a href="https://wa.me/213660007370" target="blank" style="color:#fff;"> 668657120 (213+) <i class="fa fa-whatsapp" style="color:#0f0"></i></a><br>
+                <a class="header-top-links" href="https://t.me/SaouraDelivery" target="blank" style="color:#fff;">قناتنا على التليغرام <i class="fa fa-telegram" style="color:rgb(78, 91, 236)"></i></a>    
                 <p>التوصيل لـ 58 ولاية والدفع عند الإستلام</p>                    
                 </div>           
             <div class="hidden-xs hidden-sm pull-left">                
