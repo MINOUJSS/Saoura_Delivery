@@ -54,8 +54,8 @@
               <td>{{$sale->created_at->diffForHumans()}}</td>
               <td>{{$sale->order_id}}</td>
               <td>@if($sale->consumer->name=='Default'){{$sale->order->billing_name}}@else{{$sale->consumer->name}}@endif</td>
-              <td>{{$sale->product->id}}</td>
-              <td>{{$sale->product->name}}</td>
+              <td>{{$sale->product_id}}</td>
+              <td>{{$sale->product_name}}</td>
               <td><span class="text-danger">{{$sale->charge_price}}</span></td>
               <td><span class="text-success">{{$sale->selling_price}}</span></td>
               <td>{{$sale->qty}}</td>
