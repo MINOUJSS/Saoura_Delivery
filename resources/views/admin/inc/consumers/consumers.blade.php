@@ -49,7 +49,7 @@
               <td>{{$consumer->telephone}}</td>
               <td>{{$consumer->address}}</td>
               <td>{{$consumer->googl_map_address}}</td>
-              <td>{{$consumer->->created_at->diffForHumans()}}</td>
+              <td>{{$consumer->created_at->diffForHumans()}}</td>
               <td>
                 @if ($consumer->id==1)
                     لا يمكن التعديل أو الحذف 
