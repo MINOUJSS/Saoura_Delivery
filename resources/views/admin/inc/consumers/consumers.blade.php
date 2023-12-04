@@ -37,6 +37,7 @@
               <th>رقم الهاتف</th>
               <th>العنوان</th>
               <th>العنوان على جوجل ماب</th>
+              <th>التاريخ</th>
               <th>العمليات</th>
             </tr>
             @foreach($consumers as $index=>$consumer)
@@ -48,6 +49,7 @@
               <td>{{$consumer->telephone}}</td>
               <td>{{$consumer->address}}</td>
               <td>{{$consumer->googl_map_address}}</td>
+              <td>{{$consumer->->created_at->diffForHumans()}}</td>
               <td>
                 @if ($consumer->id==1)
                     لا يمكن التعديل أو الحذف 
