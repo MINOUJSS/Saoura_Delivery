@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-xs-12">
         <h2 class="page-header">
-          <i class="fa fa-globe"></i> {{store_name_value()}}
+          <img src="{{url('store/img/logo.png')}}" >
+          {{-- <i class="fa fa-globe"></i> {{store_name_value()}} --}}
           <small class="pull-right">يوم:{{date('d-m-Y')}}</small>
         </h2>
       </div><!-- /.col -->
@@ -26,6 +27,7 @@
               <th>إسم الزبون</th>
               <th>هاتف الزبون</th>
               <th>عنوان التسليم</th>
+              <th>مصاريف التوصيل</th>
               <th>المبلغ المستحق</th>
             </tr>
           </thead>
@@ -39,7 +41,8 @@
                 <td>{{$order->id}}</td>
                 <td>{{$order->billing_name}}</td>
                 <td>{{$order->billing_mobile}}</td>
-                <td>{{$order->billing_address}}</td>                
+                <td>{{$order->billing_address}}</td>
+                <td>{{get_order_sheping_price($order->id)}}</td>                
                 <td>{{$order->total}} د.ج</td>
               </tr>      
               @php
@@ -68,13 +71,20 @@
           <table class="table">
             <tbody><tr>              
             <tr>
-              <th>المبلغ المستحق:</th>
+              <th>المبلغ الإجمالي:</th>
               <td>
                   @if ($global==0)
                   {{'0.00'}}
                   @else
                   {{$global}}
                   @endif                  
+                  د.ج
+                </td>
+            </tr>
+            <tr>
+              <th>مستحقات الساورة دليفري:</th>
+              <td>
+                  {{get_delivery_list_earnings($orders)}}                  
                   د.ج
                 </td>
             </tr>

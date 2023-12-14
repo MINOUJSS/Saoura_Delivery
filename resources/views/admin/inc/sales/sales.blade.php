@@ -13,7 +13,51 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">إحصائيات المبيعات</h3>
+          <div class="box-body">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">أرباح اليوم</span>
+                  <span class="info-box-number">{{get_day_earning()}} دج</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
 
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">أرباح الأسبوع</span>
+                  <span class="info-box-number">{{get_week_earning()}} دج</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-money"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">الأرباح الشهرية</span>
+                  <span class="info-box-number">{{get_month_earning()}} دج</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">إجمالي الأرباح</span>
+                  <span class="info-box-number">{{get_all_earning()}} دج</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Your Page Content Here -->
       <div class="box">
         <div class="box-header">
@@ -27,6 +71,7 @@
             </div>
           </div>
         </div><!-- /.box-header -->
+
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tbody><tr>

@@ -1525,6 +1525,132 @@ function discount_status($discount_id)
         return '<span class="label label-success">فعال</span>';
     }
 }
+//get_delivery_list_earnings
+function get_delivery_list_earnings($orders)
+{
+   $earning=0;
+ foreach($orders as $order)
+ {
+    //get product
+    $order_product=App\order_product::where('order_id',$order->id)->get();
+    //get product earning =([seling price - baying parce]* qty)
+    foreach($order_product as $product)
+    {
+        //get product data
+        $prduct_data=App\product::where('id',$product->product_id)->first();
+        //earning =([seling price - baying parce]* qty)
+        $earning=$earning+(($prduct_data->selling_price - $prduct_data->Purchasing_price)*$product->qty);
+    }
+
+ }
+ return $earning;
+}
+// get_order_sheping_price
+function get_order_sheping_price($order_id)
+{
+    //get sheping price
+    $order_sheping=App\order_shepping::where('order_id',$order_id)->first();
+    return $order_sheping->shepping;
+}
+//get_all_earning()
+function get_all_earning()
+{
+    //get all completed sales
+    $completed_sales=App\Completed_Sale::all();
+    //get all charge_price
+    $charge_price=0;
+    foreach($completed_sales as $sales)
+    {
+        $charge_price=$charge_price+($sales->charge_price * $sales->qty);
+    }
+
+    //get all selling price
+    $selling_price=0;
+    foreach($completed_sales as $sales)
+    {
+        $selling_price=$selling_price+($sales->selling_price * $sales->qty);
+    }
+
+    //get all earnings
+    $all_earnings=$selling_price-$charge_price;
+
+    return $all_earnings;
+}
+//get_month_earning()
+function get_month_earning()
+{
+    $charge_price=0;
+    $selling_price=0;
+    //select all completed sales in this week
+    $completed_sales=App\Completed_Sale::all();
+    foreach($completed_sales as $sale)
+    {
+    $now=new DateTime();
+            $date= new DateTime($sale->created_at);        
+            $inreval=$date->diff($now);
+            $days=$inreval->format('%a') ;
+        //if days <= 7 count earnig
+        if($days <= 30)
+        {
+            //get charge_price
+            $charge_price=$charge_price+($sale->charge_price * $sale->qty);
+            //get selling_price
+            $selling_price=$selling_price+($sale->selling_price * $sale->qty);
+        }
+    }
+    $earning_month=$selling_price-$charge_price;
+    return $earning_month;
+}
+//get_week_earning()
+function get_week_earning()
+{
+    $charge_price=0;
+    $selling_price=0;
+    //select all completed sales in this week
+    $completed_sales=App\Completed_Sale::all();
+    foreach($completed_sales as $sale)
+    {
+    $now=new DateTime();
+            $date= new DateTime($sale->created_at);        
+            $inreval=$date->diff($now);
+            $days=$inreval->format('%a') ;
+        //if days <= 7 count earnig
+        if($days <= 7)
+        {
+            //get charge_price
+            $charge_price=$charge_price+($sale->charge_price * $sale->qty);
+            //get selling_price
+            $selling_price=$selling_price+($sale->selling_price * $sale->qty);
+        }
+    }
+    $earning_week=$selling_price-$charge_price;
+    return $earning_week;
+}
+//get_day_earning()
+function get_day_earning()
+{
+    $charge_price=0;
+    $selling_price=0;
+    //select all completed sales in this week
+    $completed_sales=App\Completed_Sale::all();
+    foreach($completed_sales as $sale)
+    {
+    $now=new DateTime();
+            $date= new DateTime($sale->created_at);        
+            $inreval=$date->diff($now);
+            $days=$inreval->format('%a') ;
+        //if days <= 7 count earnig
+        if($days <= 1)
+        {
+            //get charge_price
+            $charge_price=$charge_price+($sale->charge_price * $sale->qty);
+            //get selling_price
+            $selling_price=$selling_price+($sale->selling_price * $sale->qty);
+        }
+    }
+    $earning_day=$selling_price-$charge_price;
+    return $earning_day;
+}
 /*---------------------------------------------------------
     //        Store Functions                //
 ---------------------------------------------------------*/

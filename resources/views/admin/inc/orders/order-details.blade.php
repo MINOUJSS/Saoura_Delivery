@@ -63,7 +63,9 @@
         <!-- Table row -->
         <div class="row">
           <div class="col-xs-12 table-responsive">
+            @if ($order->status==0)
             <a href="{{route('admin.order.edit',$order->id)}}"><button class="btn btn-success"><i class="fa fa-edit"></i> تعديل الطلب</button></a>
+            @endif
             <table class="table table-striped" id="datatable">
               <thead>
                 <tr>
