@@ -162,6 +162,8 @@ class ProductController extends Controller
         $r_note->admin_id=Auth::guard('admin')->user()->id;
         $r_note->note_id=$note->id;
         $r_note->save();
+        // publish this product on facebook with api
+        // publish this product on telegrame with api
         //alert success message
         Alert::success('رائع', 'تم إضافة المنتج بنجاح');
         //redirecte to category page

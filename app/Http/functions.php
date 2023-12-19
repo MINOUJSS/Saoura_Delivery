@@ -1651,6 +1651,73 @@ function get_day_earning()
     $earning_day=$selling_price-$charge_price;
     return $earning_day;
 }
+// get_day_users
+function get_day_users()
+{
+
+}
+// get_last_week_users
+function get_last_week_users()
+{
+
+}
+// get_last_month_users
+function get_last_month_users()
+{
+
+}
+// get_last_year_users
+function get_last_year_users()
+{
+
+}
+// get_all_users
+function get_all_users()
+{
+
+}
+//get_pending_orders
+function get_pending_orders()
+{
+    $orders=App\order::where('status',0)->get();
+    return $orders->count();
+}
+//get_confirmed_orders
+function get_confirmed_orders()
+{
+    $orders=App\order::where('status',1)->get();
+    return $orders->count();
+}
+//get_delivered_orders
+function get_delivered_orders()
+{
+    $orders=App\order::where('status',2)->get();
+    return $orders->count();
+}
+//get_completed_orders
+function get_completed_orders()
+{
+    $orders=App\order::where('status',3)->get();
+    return $orders->count();
+}
+//get_canceled_orders
+function get_canceled_orders()
+{
+    $orders=App\order::where('status',4)->get();
+    return $orders->count();
+}
+//get_returned_orders
+function get_returned_orders()
+{
+    $orders=App\order::where('status',5)->get();
+    return $orders->count(); 
+}
+//get_all_orders
+function get_all_orders()
+{
+    $orders=App\order::all();
+    return $orders->count();
+}
 /*---------------------------------------------------------
     //        Store Functions                //
 ---------------------------------------------------------*/
