@@ -168,6 +168,7 @@
           <li>قناة اليوتيوب الرسمية : https://www.youtube.com/channel/UCI8WJx13xbdkczkZLBmOwmw</li>
         </ul>
             <h3 class="text-center">الساورة دليفري تشكركم  على ثقتكم</h3>
+            <img src="{{url('store/img/QR_Code.png')}}" width="50px">
           </div><!-- /.col -->
         </div><!-- /.row -->
         <!-- this row will not appear when printing -->

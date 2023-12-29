@@ -1,4 +1,6 @@
 <?php
+use Stevebauman\Location\Facades\Location;
+use illuminate\support\Arr;
 /*---------------------------------------------------------
     //        Admen Functions                //
 ---------------------------------------------------------*/
@@ -1651,30 +1653,127 @@ function get_day_earning()
     $earning_day=$selling_price-$charge_price;
     return $earning_day;
 }
-// get_day_users
-function get_day_users()
-{
-
+// get_visitor_info()
+function get_visitor_location($IpAddress)
+{  
+    // learn more from https://github.com/stevebauman/location  
+    // you can get the following information withe the default driver IpApi        
+//   +ip: "66.102.0.0"
+//   +countryName: "United States"
+//   +countryCode: "US"
+//   +regionCode: "CA"
+//   +regionName: "California"
+//   +cityName: "Mountain View"
+//   +zipCode: "94043"
+//   +isoCode: null
+//   +postalCode: null
+//   +latitude: "37.422"
+//   +longitude: "-122.084"
+//   +metroCode: null
+//   +areaCode: "CA"
+//   +timezone: "America/Los_Angeles"
+//   +driver: "Stevebauman\Location\Drivers\IpApi"
+    if ($position = Location::get($IpAddress)) {
+        // Successfully retrieved position.     
+        return $position;
+    } else {
+        // Failed retrieving position.
+        return null;
+    }       
 }
-// get_last_week_users
-function get_last_week_users()
+//get visitor information and insert into database
+function Add_Visitor()
+{    
+    // get request information
+if(request()->session()->get('visitor')==null){
+$session=request()->session();
+$session->put('visitor',request()->server);
+$server=$session->get('visitor');
+$server_arry_data=array();
+foreach ($server as $key => $value) 
 {
-
+    $server_arry_data=Arr::add($server_arry_data,$key,$value);   
 }
-// get_last_month_users
-function get_last_month_users()
-{
-
+    // get location information
+    $ip=request()->server('REMOTE_ADDR');
+    $location_data=get_visitor_location($ip);
+    //check if the same visitor    
+    if(is_the_same_visitor(request()->server('HTTP_COOKIE'))==false)
+    {
+        // insert visitor data into database
+        $visitor=new App\Visitor;
+        $visitor->server_data=json_encode($server_arry_data);
+        $visitor->location_data=json_encode($location_data);
+        $visitor->save();
+    };
 }
-// get_last_year_users
-function get_last_year_users()
-{
-
+// request()->session()->forget('visitor');
 }
-// get_all_users
-function get_all_users()
+//get visitor data from database
+function get_visitor_data()
 {
-
+// you can get this data from request()->server 
+//   "DOCUMENT_ROOT" => "E:\laravel projects\Saoura_Delivery\public"
+//   "REMOTE_ADDR" => "127.0.0.1"
+//   "REMOTE_PORT" => "59868"
+//   "SERVER_SOFTWARE" => "PHP 7.4.20 Development Server"
+//   "SERVER_PROTOCOL" => "HTTP/1.1"
+//   "SERVER_NAME" => "127.0.0.1"
+//   "SERVER_PORT" => "8000"
+//   "REQUEST_URI" => "/admin"
+//   "REQUEST_METHOD" => "GET"
+//   "SCRIPT_NAME" => "/index.php"
+//   "SCRIPT_FILENAME" => "E:\laravel projects\Saoura_Delivery\public\index.php"
+//   "PATH_INFO" => "/admin"
+//   "PHP_SELF" => "/index.php/admin"
+//   "HTTP_HOST" => "127.0.0.1:8000"
+//   "HTTP_CONNECTION" => "keep-alive"
+//   "HTTP_CACHE_CONTROL" => "max-age=0"
+//   "HTTP_SEC_CH_UA" => ""Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120""
+//   "HTTP_SEC_CH_UA_MOBILE" => "?0"
+//   "HTTP_SEC_CH_UA_PLATFORM" => ""Windows""
+//   "HTTP_UPGRADE_INSECURE_REQUESTS" => "1"
+//   "HTTP_USER_AGENT" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+//   "HTTP_ACCEPT" => "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+//   "HTTP_SEC_FETCH_SITE" => "same-origin"
+//   "HTTP_SEC_FETCH_MODE" => "navigate"
+//   "HTTP_SEC_FETCH_USER" => "?1"
+//   "HTTP_SEC_FETCH_DEST" => "document"
+//   "HTTP_REFERER" => "http://127.0.0.1:8000/admin/login"
+//   "HTTP_ACCEPT_ENCODING" => "gzip, deflate, br"
+//   "HTTP_ACCEPT_LANGUAGE" => "fr-FR,fr;q=0.9"
+//   "HTTP_COOKIE" => "_fbp=fb.3.1703239245471.1719205896; XSRF-TOKEN=eyJpdiI6Ik05OGY1WjNrQWZsSVRhYnpnSHhROXc9PSIsInZhbHVlIjoiVDkxSnNxbkQvNHpLTUtMNWdyekQzZDdOY0NGYjlTZ1VNanUybG9hSW5YS ▶"
+//   "REQUEST_TIME_FLOAT" => 1703594049.6626
+//   "REQUEST_TIME" => 1703594049
+}
+//is the same visitor
+function is_the_same_visitor($http_cookie)
+{
+    //get server data from database
+    $visitors=App\Visitor::all();
+    if ($visitors->count()!=0)
+    {
+      foreach ($visitors as $visitor)
+      {    
+        if (json_decode($visitor->server_data)->HTTP_COOKIE==$http_cookie)
+        {            
+            return true;
+        }else
+        {            
+            return false;
+        }
+      }
+    }else
+    {        
+        return false;
+    }
+    
+}
+// all visitors count
+function get_all_visitors_count()
+{
+    $visitors=App\Visitor::all();
+    return $visitors->count();
 }
 //get_pending_orders
 function get_pending_orders()

@@ -116,6 +116,83 @@
         </div>
 
       </div>
+      <!---->
+      <div class="row">
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">أون لاين</span>
+              <span class="info-box-number">                
+                0
+              </span>
+            </div><!-- /.info-box-content -->
+          </div><!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">اليوم</span>
+              <span class="info-box-number">410</span>
+            </div><!-- /.info-box-content -->
+          </div><!-- /.info-box -->
+        </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">أمس</span>
+            <span class="info-box-number">410</span>
+          </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">آخر أسبوع</span>
+            <span class="info-box-number">410</span>
+          </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">آخر شهر</span>
+            <span class="info-box-number">410</span>
+          </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">آخر سنة</span>
+            <span class="info-box-number">410</span>
+          </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+          <span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">إجمالي الزوار</span>
+            <span class="info-box-number">{{get_all_visitors_count()}}</span>
+          </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+      </div>
+
+      </div>
+      <!---->
 
       <div class="row">
 

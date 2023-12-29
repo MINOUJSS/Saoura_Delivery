@@ -73,8 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |---------------------------------------------------------|
   -->
   <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-
+    <div class="wrapper">          
       <!-- Main Header -->
       @yield('header')
       <!-- Left side column. contains the logo and sidebar -->
