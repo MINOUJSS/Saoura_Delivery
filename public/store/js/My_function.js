@@ -568,6 +568,6 @@ setTimeout(alert('1000'),1000);
          $('#xs-search-form').toggle(); 
    });
 
-//
+//fake view page
 document.getElementById('fackviews').textContent=Math.floor((Math.random()*10)+1);
 //

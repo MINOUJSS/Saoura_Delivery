@@ -288,12 +288,11 @@
 	<script src="{{url('store')}}/js/slick.min.js"></script>
 	<script src="{{url('store')}}/js/nouislider.min.js"></script>
 	<script src="{{url('store')}}/js/jquery.zoom.min.js"></script>
-	<script src="{{url('store')}}/js/main.js"></script>
-	<script src="{{url('store')}}/js/My_function.js"></script>
-	<script src="{{url('store')}}/js/starrr.js"></script>	
+	<script src="{{url('store')}}/js/main.js"></script>	
 	<!--ckeditor-->
     <script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
     <script>CKEDITOR.replace('article-ckeditor');</script>
+	<script src="{{url('store')}}/js/starrr.js"></script>
 	<script>
 		$(function(){																					
 			// 
@@ -389,6 +388,7 @@
 	@include('sweetalert::alert')	
 
 	<!--start test-->
+	<script src="{{url('store')}}/js/My_function.js"></script>
 	<!--end test-->
 </body>
 
