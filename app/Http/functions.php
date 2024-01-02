@@ -1696,7 +1696,8 @@ foreach ($server as $key => $value)
 }
     // get location information
     $ip=request()->server('REMOTE_ADDR');
-    $location_data=get_visitor_location($ip);
+    // $location_data=get_visitor_location($ip);
+    $location_data=$ip;
     //check if the same visitor    
     if(is_the_same_visitor(request()->server('HTTP_COOKIE'))==false)
     {

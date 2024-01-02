@@ -107,7 +107,7 @@
 </head>
 
 <body>
-	{{-- {{Add_Visitor()}} --}}
+	{{Add_Visitor()}}
 	{{-- trucking visited pages   --}}
 	<!-- HEADER -->
 	@yield('header')
