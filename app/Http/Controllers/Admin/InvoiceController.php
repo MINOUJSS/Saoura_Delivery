@@ -22,7 +22,7 @@ class InvoiceController extends Controller
 
     public function invoice($order_id)
     { 
-        $title='طباعة فاتورة';        
+        $title='طباعة فاتورة';
         $order=Order::findOrfail($order_id);
         $products=order_product::where('order_id',$order_id)->get();
         //
@@ -56,11 +56,11 @@ class InvoiceController extends Controller
     }
 
     public function print_invoice($order_id)
-    { 
-        $title='طباعة فاتورة';       
+    {         
         $order=Order::findOrfail($order_id);
         $products=order_product::where('order_id',$order_id)->get();        
         $invoice=invoice::where('order_id',$order_id)->first();
+        $title='طباعة فاتورة رقم:'.$invoice->id;
         return view('admin.inc.invoice.invoice-print',compact('order','products','invoice','title'));
     }
 }

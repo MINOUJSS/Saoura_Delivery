@@ -116,8 +116,8 @@
         </div>
 
       </div>
-      <!---->
-      <div class="row">
+      <!--visitors statistique-->
+      {{-- <div class="row">
 
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
@@ -191,8 +191,8 @@
         </div><!-- /.info-box -->
       </div>
 
-      </div>
-      <!---->
+      </div> --}}
+      <!--/visitors statistique-->
 
       <div class="row">
 
