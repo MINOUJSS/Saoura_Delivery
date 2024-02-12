@@ -201,7 +201,7 @@ $r_note->save();
         $order=Order::findOrfail($order_id);
         //update status
         $order->status=3;
-        $order->update();
+        $order->update();        
         //noteficte admin
 $note=new admin_notefication;
 $note->title='قام '.get_admin_data(Auth::guard('admin')->user()->id)->name.' بتسليم الطلب رقم '.$order_id;
@@ -213,21 +213,21 @@ $note->save();
 $r_note=new reading_notification;
 $r_note->admin_id=Auth::guard('admin')->user()->id;
 $r_note->note_id=$note->id;
-$r_note->save();        
-        //insert in compladed sales table
-        $order_products=order_product::where('order_id',$order_id)->get();
-        foreach($order_products as $product)
-        {
-            $completed_sale=new Completed_Sale;
-            $completed_sale->consumer_id=$product->order->consumer_id;
-            $completed_sale->order_id=$order_id;
-            $completed_sale->product_id=$product->product_id;
-            $completed_sale->product_name=$product->product->name;
-            $completed_sale->charge_price=get_product_charge($product->product->id);
-            $completed_sale->selling_price=price_with_discount($product->product->id);
-            $completed_sale->qty=$product->qty;
-            $completed_sale->save();
-        }         
+$r_note->save(); 
+//insert in compladed sales table
+$order_products=order_product::where('order_id',$order_id)->get();
+foreach($order_products as $product)
+{
+    $completed_sale=new Completed_Sale;
+    $completed_sale->consumer_id=$product->order->consumer_id;
+    $completed_sale->order_id=$order_id;
+    $completed_sale->product_id=$product->product_id;
+    $completed_sale->product_name=$product->product->name;
+    $completed_sale->charge_price=get_product_charge($product->product->id);
+    $completed_sale->selling_price=price_with_discount($product->product->id);
+    $completed_sale->qty=$product->qty;
+    $completed_sale->save();
+}                        
     }
 
     public function order_deny(Request $request)

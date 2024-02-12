@@ -2492,3 +2492,22 @@ function print_google_analytics_code()
     $g_a_code=App\google_analytic::find(1);
     return $g_a_code->code;
 }
+//function facebook_pic_is_avtive()
+function facebook_pic_is_avt()
+{
+    $f_p_code=App\facebook_pixle::find(1);
+    if($f_p_code->active == 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+}
+//function print_facebook_pixel
+function print_facebook_pixel()
+{
+    $f_p_code=App\facebook_pixle::find(1);
+    return $f_p_code->code;
+}

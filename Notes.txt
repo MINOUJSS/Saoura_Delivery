@@ -1,0 +1,5 @@
+modify type of linke column at deals table
+add liverison compane
+add yalidin api
+ مشكل عند تأكيد الطلب يتم إنقاص الكمية مرة أخرى  بعد الطلب
+ خلق برنامج أفيليت  لزيادة المبيعات

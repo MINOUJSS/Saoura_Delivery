@@ -1959,7 +1959,7 @@ function complate_order(order_id)
             swal.fire({
                 icon:'success',
                 title:"رائع",
-                text:"تم يسليم الطلب"
+                text:"تم تسليم الطلب"
             });
             window.location.reload();
         },
@@ -1968,8 +1968,12 @@ function complate_order(order_id)
             swal.fire({
                 icon:'error',
                 title:'خطأ',
-                text:'لم يتم تسليم الطلب  لسبب غير معروف',
+                text:xhr.toString,
                 confirmButtonText:"حسناً"
+                // icon:'error',
+                // title:'خطأ',
+                // text:'لم يتم تسليم الطلب  لسبب غير معروف',
+                // confirmButtonText:"حسناً"
             });
 
         }                    

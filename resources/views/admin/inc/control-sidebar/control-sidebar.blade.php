@@ -19,6 +19,15 @@
               </div>
             </a>
           </li>
+          <li>
+            <a href="{{route('admin.edit.facebook.pixle')}}">
+              <i class="menu-icon fa fa-line-chart bg-red"></i>
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Facebook Pixle</h4>
+                <p>إدخال كود البيكسل و تفعيله</p>
+              </div>
+            </a>
+          </li>
         </ul><!-- /.control-sidebar-menu -->
 
         <h3 class="control-sidebar-heading">الكلمات المفتاحية للمنتجات</h3>

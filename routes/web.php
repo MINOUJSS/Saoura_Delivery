@@ -203,6 +203,9 @@ Route::prefix('admin')->group(function(){
     //Google analytics
     Route::get('google-analytic/edit','Admin\GoogleAnalyticsController@edit')->name('admin.edit.google.analytic');
     Route::post('google-analytic/update','Admin\GoogleAnalyticsController@update')->name('admin.update.google.analytic');
+    //Facebook pixel
+    Route::get('facebook-pixle/edit','Admin\FacebookPixlesController@edit')->name('admin.edit.facebook.pixle');
+    Route::post('facebook-pixle/update','Admin\FacebookPixlesController@update')->name('admin.update.facebook.pixle');
     //up_sales
     Route::get('/up-sales','Admin\UpSaleController@index')->name('admin.upsales');
     Route::get('/up-sale/create','Admin\UpSaleController@create')->name('admin.upsale.create');
