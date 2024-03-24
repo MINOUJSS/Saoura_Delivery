@@ -3,7 +3,7 @@
     <section class="content-header">
       <h1>
         الطلبات 
-        <small>كل الطلبات</small>
+        <small>الطلبات الملغية</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> الرئيسية</a></li>
@@ -19,7 +19,7 @@
       <a class="btn btn-app" href="{{route('admin.delivery.list')}}">
         <span class="badge bg-teal">{{$global_sheeping_orders->count()}}</span>
         <i class="fa fa-truck"></i> قائمة التوصيل
-      </a>
+      </a>      
       <!--/-->
       {{-- pending orders --}}
       <a class="btn btn-app" href="{{route('admin.orders-pending')}}">

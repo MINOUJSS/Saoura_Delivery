@@ -3,7 +3,7 @@
     <section class="content-header">
       <h1>
         الطلبات 
-        <small>كل الطلبات</small>
+        <small>الطلبات قيد الإنتظار</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{route('admin.dashboard')}}"><i class="fa fa-dashboard"></i> الرئيسية</a></li>

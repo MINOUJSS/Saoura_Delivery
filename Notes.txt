@@ -1,3 +1,5 @@
+إضافة خدمة ما بعد  البيع
+إضافة صفحة لعرض الطلبات قيد الإنتظار و المؤكدةوالمرسولة و المكتملة و الملغيةو المرجعة
 modify type of linke column at deals table
 add liverison compane
 add yalidin api

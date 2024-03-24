@@ -169,6 +169,11 @@ Route::prefix('admin')->group(function(){
     Route::get('/searsh-words','Admin\SearshWordsController@index')->name('admin.searsh-words');
     //orders
     Route::get('/Orders','Admin\OrderController@index')->name('admin.orders');
+    Route::get('/pending-orders','Admin\OrderController@pending_orders')->name('admin.orders-pending');
+    Route::get('/confirmed-orders','Admin\OrderController@confirmed_orders')->name('admin.orders-confirmed');
+    Route::get('/shipping-orders','Admin\OrderController@shipping_orders')->name('admin.orders-shipping');
+    Route::get('/completed-orders','Admin\OrderController@completed_orders')->name('admin.orders-completed');
+    Route::get('/canceled-orders','Admin\OrderController@canceled_orders')->name('admin.orders-canceled');
     Route::get('/order/{id}','Admin\OrderController@order_details')->name('admin.order.details');
     Route::get('/order/{id}/edit','Admin\OrderController@order_edit')->name('admin.order.edit');
     Route::post('/order/update','Admin\OrderController@update_order')->name('admin.order.update');

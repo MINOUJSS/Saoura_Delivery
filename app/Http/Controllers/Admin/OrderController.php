@@ -29,13 +29,49 @@ class OrderController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
+    //all orders
     public function index()
     {
         $global_sheeping_orders=order::where('status',2)->get();
         $orders=Order::orderBy('id','desc')->paginate(10);
         return view('admin.orders',compact('orders','global_sheeping_orders'));
     } 
+    //pending orders
+    public function pending_orders()
+    {
+        $global_sheeping_orders=order::where('status',2)->get();
+        $orders=Order::orderBy('id','desc')->where('status',0)->paginate(10);
+        return view('admin.orders-pending',compact('orders','global_sheeping_orders'));
+    }
+    //confirmed orders
+    public function confirmed_orders()
+    {
+        $global_sheeping_orders=order::where('status',2)->get();
+        $orders=Order::orderBy('id','desc')->where('status',1)->paginate(10);
+        return view('admin.orders-confirmed',compact('orders','global_sheeping_orders'));
+    }
+    //shipping orders
+    public function shipping_orders()
+    {
+        $global_sheeping_orders=order::where('status',2)->get();
+        $orders=Order::orderBy('id','desc')->where('status',2)->paginate(10);
+        return view('admin.orders-shipping',compact('orders','global_sheeping_orders'));
+    }
+    //completed orders
+    public function completed_orders()
+    {
+        $global_sheeping_orders=order::where('status',2)->get();
+        $orders=Order::orderBy('id','desc')->where('status',3)->paginate(10);
+        return view('admin.orders-completed',compact('orders','global_sheeping_orders'));
+    }
+    //cancled orders
+    public function canceled_orders()
+    {
+        $global_sheeping_orders=order::where('status',2)->get();
+        $orders=Order::orderBy('id','desc')->where('status','>=',4)->paginate(10);
+        return view('admin.orders-canceled',compact('orders','global_sheeping_orders'));
+    }
+
     public function order_details($id)
     {
         //update status in adminnotification
