@@ -1,0 +1,22 @@
+<?php
+namespace Database\Seeders;
+use Illuminate\Database\Seeder;
+use App\category;
+
+class Default_Category_Table_Seeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $category=category::create([
+            'name'=>'بدون تصنيف',
+            'slug'=>'بدون-تصنيف',
+            'image'=>'/',
+            'icon'=>'/'
+        ]);
+    }
+}
